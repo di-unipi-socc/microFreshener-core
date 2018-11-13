@@ -2,54 +2,86 @@ tosca_definitions_version: tosca_simple_yaml_1_2
 
 description: Definition of the custom types of Micro TOSCA model
 
+# team
 group_types:
   micro.groups.Team:
     derived_from: tosca.groups.Root
+    members: [ micro.nodes.Root ]
 
 # relationship definitions
-interface_types:
-  micro.relationships.RunTime:
+relationship_types:
+  micro.relationships.Root:
     derived_from: tosca.relationships.Root
 
-  micro.relationships.DeploymentTime:
-    derived_from: tosca.relationships.Root
+  micro.relationships.InteractsWith:
+    derived_from: micro.relationships.Root
+    valid_target_types: [ micro.nodes.Root ]
+
+  # micro.relationships.RunTimeInteraction:
+  #   derived_from: micro.relationships.Root
+  #   valid_target_types: [ micro.nodes.Root ]
+  #
+  # micro.relationships.DeploymentTimeInteraction:
+  #   derived_from: micro.relationships.Root
+  #   valid_target_types: [ micro.nodes.Root ]
+
+  # micro.relationships.ICRunTimeInteraction:
+  #   derived_from: micro.relationships.RunTimeInteraction
+  #   valid_target_types: [ micro.nodes.Service, micro.nodes.CommunicationPattern]
+  #
+  # micro.relationships.ICDeploymentTimeInteraction:
+  #   derived_from: micro.relationships.DeploymentTimeInteraction
+  #   valid_target_types: [ micro.nodes.Service, micro.nodes.CommunicationPattern]
 
 # nodes definitions
 node_types:
   # root node
   micro.nodes.Root:
     derived_from: tosca.nodes.Root
-    requirements:
-    - runtimeinteraction:
-        capability: tosca.capabilities.Node
-        occurrences: [0, UNBOUNDED]
-        node: micro.nodes.Root
-        relationship: tosca.relationships.RunTime
-    - deploymenttimeinteraction:
-        capability: tosca.capabilities.Node
-        occurrences: [0, UNBOUNDED]
-        node: micro.nodes.Root
-        relationship: tosca.relationships.DeploymentTime
-  # service node
-  micro.nodes.service:
-    derived_from: tosca.nodes.Root
 
-  # db node
-  micro.nodes.db:
-    derived_from: micro.nodes.Root
-    attributes:
-      id:
-        type: string
-    capabilities:
-      attachment:
-        type: tosca.capabilities.Attachment
-        valid_source_types: [micro.nodes.Container]
-        occurrences: [0, UNBOUNDED]
-
-  # infrastructure component node
-  micro.nodes.infrastructure:
+  # Service node
+  micro.nodes.Service:
     derived_from: micro.nodes.Root
     requirements:
-      #
-    capabilities:
-      #
+      - run_time: # time_run| run_time | run_time_dependency
+          capability: tosca.capabilities.Node
+          occurrences: [0, UNBOUNDED]
+          node: micro.nodes.Root
+          relationship: micro.relationships.InteractsWith
+      - deployment_time: # deployment_time |  init_time | init_time_dependency
+          capability: tosca.capabilities.Node
+          occurrences: [0, UNBOUNDED]
+          node: micro.nodes.Root
+          relationship: micro.relationships.InteractsWith
+
+  # Database node
+  micro.nodes.Database:
+    derived_from: micro.nodes.Root
+
+  # CommunicationPattern  node
+  micro.nodes.CommunicationPattern: # InteractionPattern
+    derived_from: micro.nodes.Root
+    requirements:
+      - run_time:
+          capability: tosca.capabilities.Node
+          occurrences: [0, UNBOUNDED]
+          node: micro.nodes.Root
+          relationship: micro.relationships.InteractsWith
+      - deployment_time:
+          capability: tosca.capabilities.Node
+          occurrences: [0, UNBOUNDED]
+          node: micro.nodes.Root
+          relationship: micro.relationships.InteractsWith
+
+  #  CommunicationPatterns (default)
+  micro.nodes.CircuitBreaker:
+    derived_from: micro.nodes.CommunicationPattern
+
+  micro.nodes.Gateway:
+    derived_from: micro.nodes.CommunicationPattern
+
+  micro.nodes.MessageBroker:
+    derived_from: micro.nodes.CommunicationPattern
+
+  micro.nodes.MessageRouter:
+    derived_from: micro.nodes.CommunicationPattern
