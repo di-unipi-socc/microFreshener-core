@@ -15,3 +15,6 @@ topology_template:
         - deployment_time: b
     b:
       type: micro.nodes.Service
+      requirements:
+        - run_time: a
+        - deployment_time: a
