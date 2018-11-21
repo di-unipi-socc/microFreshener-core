@@ -5,8 +5,7 @@ import six
 
 from .nodes import  Root, Service, Database, CommunicationPattern
 
-
-class Template:
+class MicroToscaTemplate:
 
     def __init__(self, name):
         self._nodes = {}

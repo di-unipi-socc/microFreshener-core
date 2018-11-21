@@ -46,4 +46,4 @@ class InteractsWith(Relationship):
             return (full_name, _get_str_name(self.target))
 
     def __str__(self):
-        return 'ConnectsTo({})'.format(super(ConnectsTo, self).__str__())
+        return 'InteractsWith({})'.format(super(InteractsWith, self).__str__())

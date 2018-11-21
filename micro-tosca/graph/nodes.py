@@ -116,7 +116,7 @@ class Service(Root):
 class Database(Root):
 
     def __init__(self, name):
-        super(Volume, self).__init__(name)
+        super(Database, self).__init__(name)
         # attributes
         self.id = None
 
@@ -167,4 +167,4 @@ class CommunicationPattern(Root):
 class CircuitBreaker(Root):
 
     def __init__(self, name):
-        super(CommunicationPattern, self).__init__(name)
+        super(CircuitBreaker, self).__init__(name)
