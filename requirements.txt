@@ -14,6 +14,7 @@ python-dateutil==2.7.5
 pytz==2018.7
 PyYAML==3.13
 requests==2.20.1
+ruamel.yaml==0.15.78
 six==1.11.0
 stevedore==1.30.0
 tosca-parser==1.2.0

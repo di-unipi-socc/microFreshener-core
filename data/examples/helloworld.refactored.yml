@@ -4,27 +4,25 @@ description: Hello world of usign micro-tosca model
 
 imports:
 # - tosker: https://di-unipi-socc.github.io/tosker-types/tosker.yaml
-  - micro: ../../data/micro-tosca-types.yml
+- micro: ../../data/micro-tosca-types.yml
 
 topology_template:
   node_templates:
     order:
       type: micro.nodes.Service
       requirements:
-        - run_time: order_db
-        - run_time: rabbitmq
-        - deployment_time: order_db
-        - deployment_time: shipping
-        - run_time: order_db
-        
+      - run_time: order_db
+      - deployment_time: order_db
+      - run_time: rabbitmq
+
     rabbitmq:
       type: micro.nodes.MessageBroker
 
     shipping:
       type: micro.nodes.Service
       requirements:
-        - run_time: rabbitmq
-        - run_time: order_db
+      - run_time: ddd
+      - run_time: order_db
 
     order_db:
       type: micro.nodes.Database

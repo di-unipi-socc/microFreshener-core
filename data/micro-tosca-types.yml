@@ -35,45 +35,51 @@ relationship_types:
 
 # nodes definitions
 node_types:
-  # root node
+  # Root node
   micro.nodes.Root:
     derived_from: tosca.nodes.Root
- 
-  # 
-  micro.nodes.Software:
-   derived_from: micro.nodes.Root
-   capabilities:
+    capabilities:
       feature:
         type: tosca.capabilities.Node
-        valid_source_types: [micro.nodes.Software]
+        valid_source_types: [micro.nodes.Root]
         occurrences: [0, UNBOUNDED]
+ 
+  # Software node
+  micro.nodes.Software:
+    derived_from: micro.nodes.Root
+  #  capabilities:
+  #     feature:
+  #       type: tosca.capabilities.Node
+  #       valid_source_types: [micro.nodes.Software]
+  #       occurrences: [0, UNBOUNDED]
+    requirements:
+      - run_time: # run_time_dependency | when_running
+          capability: tosca.capabilities.Node
+          occurrences: [0, UNBOUNDED]
+          node: micro.nodes.Root
+          relationship: micro.relationships.InteractsWith
+      - deployment_time: # init_time_dependency | when_deploying
+          capability: tosca.capabilities.Node
+          occurrences: [0, UNBOUNDED]
+          node: micro.nodes.Root
+          relationship: micro.relationships.InteractsWith
 
   # Service node
   micro.nodes.Service:
     derived_from: micro.nodes.Software
     requirements:
-      - run_time: # time_run| run_time | run_time_dependency | running
+      - run_time: # run_time_dependency | when_running
           capability: tosca.capabilities.Node
           occurrences: [0, UNBOUNDED]
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
-      - deployment_time: # deployment_time |  init_time | init_time_dependency | deploying
+      - deployment_time: # init_time_dependency | when_deploying
           capability: tosca.capabilities.Node
           occurrences: [0, UNBOUNDED]
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
-     
 
-  # Database node
-  micro.nodes.Database:
-    derived_from: micro.nodes.Root
-    capabilities:
-      feature:
-        type: tosca.capabilities.Node
-        valid_source_types: [micro.nodes.Service]
-        occurrences: [0, UNBOUNDED]
-
-  # CommunicationPattern  node
+  # CommunicationPattern node
   micro.nodes.CommunicationPattern: # | InteractionPattern
     derived_from: micro.nodes.Software
     requirements:
@@ -88,8 +94,16 @@ node_types:
           node: micro.nodes.Software
           relationship: micro.relationships.InteractsWith
 
+  # Database node
+  micro.nodes.Database:
+    derived_from: micro.nodes.Root
+    capabilities:
+      feature:
+        type: tosca.capabilities.Node
+        valid_source_types: [micro.nodes.Service]
+        occurrences: [0, UNBOUNDED]
 
-  #  CommunicationPatterns (default)
+  #  Type of CommunicationPatterns
   micro.nodes.CircuitBreaker:
     derived_from: micro.nodes.CommunicationPattern
 

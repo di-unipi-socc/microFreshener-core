@@ -10,6 +10,13 @@ CAPABILITIES = ENDPOINT, FEATURE, HOST, ATTACHMENT =\
                'endpoint', 'feature', 'host', 'attachement'
 
 
+def _get_str_name(obj):
+    return obj if isinstance(obj, six.string_types) else obj.name
+
+
+def _get_str_full_name(obj):
+    return obj if isinstance(obj, six.string_types) else obj.full_name
+
 class Relationship(object):
 
     def __init__(self, source, target, requirement=None, capability=None):
@@ -20,21 +27,18 @@ class Relationship(object):
 
     def __str__(self):
         return 'o={0.source},t={0.target},req={0.requirement},cap={0.capability}'.format(self)
-
-
-def _get_str_name(obj):
-    return obj if isinstance(obj, six.string_types) else obj.name
-
-
-def _get_str_full_name(obj):
-    return obj if isinstance(obj, six.string_types) else obj.full_name
-
+    
+    def __eq__(self, other):
+        return self.source == other.source and self.target == other.target 
+    
+    def __hash__(self):
+        return hash(self.source)+hash(self.target)
 
 class InteractsWith(Relationship):
 
-    def __init__(self, source, node, alias=None,
+    def __init__(self, source, target, alias=None,
                  requirement=CONNECTION, capability=ENDPOINT):
-        super(InteractsWith, self).__init__(source, node, requirement, capability)
+        super(InteractsWith, self).__init__(source, target, requirement, capability)
         self.alias = alias
 
     @property
@@ -47,3 +51,5 @@ class InteractsWith(Relationship):
 
     def __str__(self):
         return 'InteractsWith({})'.format(super(InteractsWith, self).__str__())
+
+    

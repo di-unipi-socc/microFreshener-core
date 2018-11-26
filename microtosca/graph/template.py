@@ -2,13 +2,13 @@
 Template module
 '''
 import six
-
+from collections import OrderedDict
 from .nodes import  Root, Service, Database, CommunicationPattern
 
 class MicroToscaTemplate:
 
     def __init__(self, name):
-        self._nodes = {}
+        self._nodes = OrderedDict() #{} # OrderedDictionary ??
         self.name = name
         self.outputs = []
         self.tmp_dir = None
