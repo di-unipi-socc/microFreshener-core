@@ -189,6 +189,10 @@ class CommunicationPattern(Root):
     @property
     def deployment_time(self):
          return self._deployment_time
+    
+    @property
+    def type(self):
+        return self.concrete_type
 
     # @property
     # def run_time(self):

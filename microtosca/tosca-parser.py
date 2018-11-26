@@ -27,9 +27,10 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 # CUSTOM NODE TYPEs
 SERVICE = 'micro.nodes.Service'
 COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
-MESSAGE_BROKER = 'micro.nodes.MessageBroker'
 DATABASE = 'micro.nodes.Database'
+
 MESSAGE_BROKER = 'micro.nodes.MessageBroker'
+CIRCUIT_BREAKER = 'micro.nodes.CircuitBreaker'
 
 
 # CUSTOM RELATIONSHIP TYPES
@@ -71,18 +72,18 @@ if hasattr(tosca, 'description'):
  """
 
 
-def update_req_runtime(node, old, new):
-    if 'requirements' in node:
-        for r in node['requirements']:
-            (k, v), = r.items()
-            print(k,v)
-            if 'run_time' == k and v == old  :
-                if not isinstance(v, dict):
-                    r[k] = new
-                else:
-                    r[k]['node'] = new
-                return True
-    return False
+# def update_req_runtime(node, old, new):
+#     if 'requirements' in node:
+#         for r in node['requirements']:
+#             (k, v), = r.items()
+#             print(k,v)
+#             if 'run_time' == k and v == old  :
+#                 if not isinstance(v, dict):
+#                     r[k] = new
+#                 else:
+#                     r[k]['node'] = new
+#                 return True
+#     return False
 
 def get_node_type(ruamel_commented_map):
     return ruamel_commented_map['type'] 
@@ -103,7 +104,7 @@ for node_name, commented_map in nodes_ruamel.items():
     node_type = get_node_type(commented_map)
     if node_type == SERVICE:
         el = Service.from_yaml(node_name,commented_map)
-    if node_type == MESSAGE_BROKER:
+    if node_type == MESSAGE_BROKER: # TODO: derived from CommunicationPattern
         el = CommunicationPattern.from_yaml(node_name,node_type,commented_map)
     if node_type == DATABASE:
         el = Database.from_yaml(node_name,commented_map)
@@ -132,6 +133,10 @@ def _add_back_links(template):
         for rel in node.deployment_time:
             rel.target.up_deployment_time_requirements.append(rel)
 
+print(micro_template)
+# add pointers and up:requiremsnts
+_add_pointer(micro_template)
+_add_back_links(micro_template)
 
 # shared persitency antipattern
 def shared_databases_antipatterns(micro_template):
@@ -153,24 +158,53 @@ def deployment_time_interaction_antipattern(micro_template):
         if(interaction):
             service_with_deployment_interactions.update({node.name: interaction})
     return service_with_deployment_interactions   
-            
 
-# add pointers and up requiremsnts
-_add_pointer(micro_template)
-_add_back_links(micro_template)
+def direct_run_time_interaction(micro_template):
+    services_with_direct_run_time  = {}
+    for node in micro_template.services:
+        vs_nodes = [req for req in node.up_run_time_requirements if (isinstance(req.source, Service))]
+        if(vs_nodes):
+            services_with_direct_run_time.update({node.name: vs_nodes})
+    return services_with_direct_run_time
+
+def cascading_failures(micro_template):
+    services_not_fault_resilient  = {}
+    for node in micro_template.services:
+        reqs_node = [req for req in node.run_time if isinstance(req.target, Service)]
+        # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
+        # odes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and 
+        #                                              renq.target.concrete_type !=  CIRCUIT_BREAKER)
+        #             ]
+        # vs_patterns = [node for node in nodes_patterns if node.]
+        if(reqs_node):
+            services_not_fault_resilient.update({node.name: reqs_node})
+    return services_not_fault_resilient
+
 
 #**************************
 #          Analysis
 #*************************
 sd = shared_databases_antipatterns(micro_template)
-print("\nShares databases")
+print("\nShared databases:")
 print("\t".join([str(s) for s in sd]))
 
 dt = deployment_time_interaction_antipattern(micro_template)
-print(dt)
 print("\nDeployement time interaction nodes:")
 for (s,value) in dt.items():
     print("{}:".format(s))
+    print(''.join(str(e) for e in value))
+
+dri = direct_run_time_interaction(micro_template)
+print("\nDirect run time interaction nodes:")
+for (node,value) in dri.items():
+    print("{}:".format(node))
+    print(''.join(str(e) for e in value))
+
+
+cf = direct_run_time_interaction(micro_template)
+print("\nCascading failure nodes:")
+for (node,value) in cf.items():
+    print("{}:".format(node))
     print(''.join(str(e) for e in value))
 
 """
