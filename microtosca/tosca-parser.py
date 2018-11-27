@@ -14,10 +14,10 @@ from toscaparser.tosca_template import ToscaTemplate
 from graph.nodes import Service, Database, CommunicationPattern
 from graph.relationships import InteractsWith
 from graph.template import MicroToscaTemplate
+from .analyser import MicroToscaAnalyser
 
 path = '/home/dido/code/micro-tosca/data/examples/helloworld.yml'
 path_write = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
-
 
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -112,15 +112,6 @@ for node_name, commented_map in nodes_ruamel.items():
     micro_template.push(el)
 
 
-# for n in micro_template.nodes:
-#     print('\n', n)
-#     print("relationship ")
-#     for rel in n.relationships:
-#         print(rel)
-#     print("deployment time: ")
-#     for rel in n.deployment_time:
-#         print(rel)
-
 def _add_pointer(template):
     for node in template.nodes:
         for rel in node.relationships:
@@ -138,70 +129,29 @@ print(micro_template)
 _add_pointer(micro_template)
 _add_back_links(micro_template)
 
-# shared persitency antipattern
-def shared_databases_antipatterns(micro_template):
-    """Check the  presence of inapprorpiate service intimacy and shared persistency antipatterns"""
-    shared_databases = []
-    for node in micro_template.databases:
-        s = set(rel for rel in node.incoming)
-        if( len(s) > 1):
-           shared_databases.append(node)
-    return shared_databases
-
-def deployment_time_interaction_antipattern(micro_template):
-    service_with_deployment_interactions = {}
-    for node in micro_template.services:
-        interaction = [depl_int for depl_int in node.deployment_time 
-                        if (isinstance(depl_int.target, Service) or 
-                            isinstance(depl_int.target, CommunicationPattern))
-                     ]
-        if(interaction):
-            service_with_deployment_interactions.update({node.name: interaction})
-    return service_with_deployment_interactions   
-
-def direct_run_time_interaction(micro_template):
-    services_with_direct_run_time  = {}
-    for node in micro_template.services:
-        vs_nodes = [req for req in node.up_run_time_requirements if (isinstance(req.source, Service))]
-        if(vs_nodes):
-            services_with_direct_run_time.update({node.name: vs_nodes})
-    return services_with_direct_run_time
-
-def cascading_failures(micro_template):
-    services_not_fault_resilient  = {}
-    for node in micro_template.services:
-        reqs_node = [req for req in node.run_time if isinstance(req.target, Service)]
-        # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
-        # odes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and 
-        #                                              renq.target.concrete_type !=  CIRCUIT_BREAKER)
-        #             ]
-        # vs_patterns = [node for node in nodes_patterns if node.]
-        if(reqs_node):
-            services_not_fault_resilient.update({node.name: reqs_node})
-    return services_not_fault_resilient
-
-
 #**************************
 #          Analysis
 #*************************
-sd = shared_databases_antipatterns(micro_template)
+
+analyser = Analyser ()
+sd = analyser.shared_databases_antipatterns()
 print("\nShared databases:")
 print("\t".join([str(s) for s in sd]))
 
-dt = deployment_time_interaction_antipattern(micro_template)
+dt = analyser.deployment_time_interaction_antipattern()
 print("\nDeployement time interaction nodes:")
 for (s,value) in dt.items():
     print("{}:".format(s))
     print(''.join(str(e) for e in value))
 
-dri = direct_run_time_interaction(micro_template)
+dri = analyser.direct_run_time_interaction()
 print("\nDirect run time interaction nodes:")
 for (node,value) in dri.items():
     print("{}:".format(node))
     print(''.join(str(e) for e in value))
 
 
-cf = direct_run_time_interaction(micro_template)
+cf = analyser.cascading_failures()
 print("\nCascading failure nodes:")
 for (node,value) in cf.items():
     print("{}:".format(node))
