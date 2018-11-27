@@ -25,7 +25,6 @@ path_write = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.ym
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
-
 # CUSTOM NODE TYPEs
 SERVICE = 'micro.nodes.Service'
 COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
@@ -39,9 +38,9 @@ INTERACT_WITH = 'micro.relationships.InteractsWith'
 RUN_TIME = "run_time"
 DEPLOYMENT_TIME = "deployment_time"
 
-#*****************************************
+#**********************************
 #        VALIDATOR: Open stack
-# *******************************************
+# *********************************
 tosca = ToscaTemplate(path, None)
 
 if tosca.version:
@@ -52,54 +51,28 @@ if hasattr(tosca, 'description'):
     if description:
         print("\ndescription: " + description)
 
-#**************************
+#********************************
 #         LOADER: yml 
-#*************************
+#*******************************
 loader = YmlLoader()
 micro_template = loader.parse(path)
 micro_template.update()
 
-#**************************
+#*******************************
 #         ANALYSIS
-#*************************
+#*******************************
 
 analyser = MicroToscaAnalyser(micro_template)
+res = analyser.analyse()
+print(res)
 
-sd = analyser.shared_databases_antipatterns()
-print("\nShared databases:")
-print("\t".join([str(s) for s in sd]))
-
-dt = analyser.deployment_time_interaction_antipattern()
-print("\nDeployement time interaction nodes:")
-for (s,value) in dt.items():
-    print("{}:".format(s))
-    print(''.join(str(e) for e in value))
-
-dri = analyser.direct_run_time_interaction()
-print("\nDirect run time interaction nodes:")
-for (node,value) in dri.items():
-    print("{}:".format(node))
-    print(''.join(str(e) for e in value))
-
-cf = analyser.cascading_failures()
-print("\nCascading failure nodes:")
-for (node,value) in cf.items():
-    print("{}:".format(node))
-    print(''.join(str(e) for e in value))
-
-#**********************************************
+#*******************************
 #           OUTPUTTER: json
-#*********************************************
+#*******************************
 
-import json
+# import json
 
-graph = dict()
+# graph = dict()
 
-graph['nodes'] = [ repr(n) for n in micro_template.nodes]
-print(graph)
-    
-"""
-print(type(order))
-update_req_runtime(order, 'rabbitmq','ddd')
-
-yaml.dump(micro_yml, Path(path_write)) """
+# graph['nodes'] = [ repr(n) for n in micro_template.nodes]
+# print(graph)

@@ -6,46 +6,79 @@ class MicroToscaAnalyser(object):
 
     def __init__(self, micro_tosca_template):
         self.micro_template = micro_tosca_template
+        self.shared_databases = []
+        self.not_independently_deployabe_services = []
+        self.not_horizzontally_scalable_services = []
+        self.not_fault_resilient_services = []
 
-    # shared persitency antipattern
-    def shared_databases_antipatterns(self):
-        """Check the  presence of inapprorpiate service intimacy and shared persistency antipatterns"""
-        shared_databases = []
+    def analyse(self):
         for node in self.micro_template.databases:
-            s = set(rel for rel in node.incoming)
-            if( len(s) > 1):
-                shared_databases.append(node)
-        return shared_databases
-
-    def deployment_time_interaction_antipattern(self):
-        service_with_deployment_interactions = {}
+            if(self.is_shared_database(node)): self.shared_databases.append(str(node))
         for node in self.micro_template.services:
-            interaction = [depl_int for depl_int in node.deployment_time 
-                            if (isinstance(depl_int.target, Service) or 
-                                isinstance(depl_int.target, CommunicationPattern))
-                        ]
-            if(interaction):
-                service_with_deployment_interactions.update({node.name: interaction})
-        return service_with_deployment_interactions   
+            if not self.is_independently_deployabe(node): self.not_independently_deployabe_services.append(str(node))
+            if not self.is_horizzontally_scalable(node): self.not_horizzontally_scalable_services.append(str(node))
+            if not self.is_fault_resilient(node): self.not_fault_resilient_services.append(str(node))
+        return {'shared_databases': self.shared_databases,
+                'not_independently_deployable': self.not_independently_deployabe_services,
+                'not_horizzontally_scalable_services': self.not_horizzontally_scalable_services,
+                'not_fault_resilient_services': self.not_fault_resilient_services
+                }
+    
+    def is_shared_database(self, node):
+        s = set(rel for rel in node.incoming)
+        if(len(s) > 1): return True
+        else: return False
+    
+    def is_independently_deployabe(self, node):
+        interaction = [dt_interaction for dt_interaction in node.deployment_time 
+                       if (isinstance(dt_interaction.target, Service) 
+                       # TODO: cehck if is derived from a Communication Pattern
+                       or isinstance(dt_interaction.target, CommunicationPattern))]
+        if(interaction): return False
+        else: return True
+    
+    def is_horizzontally_scalable(self, node):
+        interactions = [up_rt for up_rt in node.up_run_time_requirements if (isinstance(up_rt.source, Service))]
+        if(interactions): return False
+        else: return True
 
-    def direct_run_time_interaction(self):
-        services_with_direct_run_time  = {}
-        for node in self.micro_template.services:
-            vs_nodes = [req for req in node.up_run_time_requirements if (isinstance(req.source, Service))]
-            if(vs_nodes):
-                services_with_direct_run_time.update({node.name: vs_nodes})
-        return services_with_direct_run_time
-
-    def cascading_failures(self):
-        services_not_fault_resilient  = {}
-        for node in self.micro_template.services:
-            reqs_node = [req for req in node.run_time if isinstance(req.target, Service)]
+    def is_fault_resilient(self, node):
+        interactions = [rt_int for rt_int in node.run_time if isinstance(rt_int.target, Service)]
             # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
             # odes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and 
             #                                              renq.target.concrete_type !=  CIRCUIT_BREAKER)
             #             ]
             # vs_patterns = [node for node in nodes_patterns if node.]
-            if(reqs_node):
-                services_not_fault_resilient.update({node.name: reqs_node})
+        if(interactions): return False
+        else: return True
+
+    # shared persitency antipattern
+    def all_shared_databases(self):
+        """Check the  presence of inapprorpiate service intimacy and shared persistency antipatterns"""
+        shared_databases = []
+        for node in self.micro_template.databases:
+            if(not self.is_shared_database(node)):
+                shared_databases.append(str(node))
+        return shared_databases
+
+    def all_not_independently_deployabe(self):
+        service_with_deployment_interactions = []
+        for node in self.micro_template.services:
+            if(not self.is_independently_deployabe(node)):
+                service_with_deployment_interactions.append(str(node))
+        return service_with_deployment_interactions   
+
+    def all_not_horizzontally_scalable(self):
+        services_with_direct_run_time  = []
+        for node in self.micro_template.services:
+            if(not self.is_horizzontally_scalable(node)):
+                services_with_direct_run_time.append(str(node))
+        return services_with_direct_run_time
+
+    def all_not_fault_resilient(self):
+        services_not_fault_resilient = []
+        for node in self.micro_template.services:
+            if(not self.is_fault_resilient(node)):
+                services_not_fault_resilient.append(str(node))
         return services_not_fault_resilient
 
