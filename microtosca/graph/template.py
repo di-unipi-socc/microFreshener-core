@@ -8,7 +8,7 @@ from .nodes import  Root, Service, Database, CommunicationPattern
 class MicroToscaTemplate:
 
     def __init__(self, name):
-        self._nodes = OrderedDict() #{} # OrderedDictionary ??
+        self._nodes = {} # OrderedDictionary ??
         self.name = name
         self.outputs = []
         self.tmp_dir = None
@@ -29,6 +29,23 @@ class MicroToscaTemplate:
     def communicationPatterns(self):
         return (v for k, v in self._nodes.items() if isinstance(v, CommunicationPattern))
 
+    def update(self):
+        self._add_pointer()
+        self._add_back_links()
+        
+    
+    def _add_pointer(self):
+        for node in self.nodes:
+            for rel in node.relationships:
+                rel.target = self[rel.target]
+
+    def _add_back_links(self):
+        for node in self.nodes:
+            for rel in node.run_time:
+                rel.target.up_run_time_requirements.append(rel)
+            for rel in node.deployment_time:
+                rel.target.up_deployment_time_requirements.append(rel)
+
     def push(self, node):
         self._nodes[node.name] = node
 
@@ -44,3 +61,11 @@ class MicroToscaTemplate:
 
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
+   
+    # def __dict__(self):
+    #      graph = dict()
+    #      graph['services'] = [{"mcm":34}]
+    #      return graph
+    
+    # def __setstate__(self):
+    #     self.__dict__ = {"ciao":45}

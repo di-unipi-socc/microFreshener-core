@@ -71,7 +71,7 @@ class Software(Root):
         # requirements
         self._run_time = []
         self._deployment_time = []
-    
+ 
     @property
     def run_time(self):
          return (i.format for i in self._run_time)
@@ -104,7 +104,7 @@ class Service(Root):
         # requirements
         self._run_time = []
         self._deployment_time = []
-
+       
     #@property
     #def full_name(self):
     #    return 'tosker_{}.{}'.format(self.tpl.name, self.name)
@@ -121,9 +121,9 @@ class Service(Root):
     def deployment_time(self):
          return self._deployment_time
     
-    @staticmethod
-    def from_yaml(node_name, yaml):
-        s = Service(node_name)
+    @classmethod
+    def from_yaml(cls,node_name, yaml):
+        s = cls(node_name)
         s._yaml = yaml
         for req in get_requirements(yaml):
             for name, value in req.items(): # [('run_time', 'order_db')]
@@ -141,6 +141,20 @@ class Service(Root):
         # not have privacy on the property so objects can be modified
         # without you know.
         pass
+        # def update_req_runtime(node, old, new):
+        #     if 'requirements' in node:
+        #         for r in node['requirements']:
+        #             (k, v), = r.items()
+        #             print(k,v)
+        #             if 'run_time' == k and v == old  :
+        #                 if not isinstance(v, dict):
+        #                     r[k] = new
+        #                 else:
+        #                     r[k]['node'] = new
+        #                 return True
+        #     return False
+
+
 
     def add_run_time(self, item):
         if not isinstance(item, InteractsWith):
@@ -202,9 +216,9 @@ class CommunicationPattern(Root):
     # def deployment_time(self):
     #      return (i.format for i in self._deployment_time)
     
-    @staticmethod
-    def from_yaml(node_name, node_type, yaml):
-        c = CommunicationPattern(node_name, node_type)
+    @classmethod
+    def from_yaml(cls,node_name, node_type, yaml):
+        c = cls(node_name, node_type)
         c._yaml = yaml
         for req in get_requirements(yaml):
             for name, value in req.items(): # [('run_time', 'order_db')]
@@ -257,9 +271,9 @@ class Database(Root):
     def deployment_time(self):
          return []
 
-    @staticmethod
-    def from_yaml(node_name, yaml):
-        d = Database(node_name)
+    @classmethod
+    def from_yaml(cls,node_name, yaml):
+        d = cls(node_name)
         d._yaml = yaml
         return d
 
