@@ -3,7 +3,8 @@ Nodes module
 '''
 
 from .relationships import InteractsWith
-from .helper import get_requirements, get_node_type
+import graph.helper as helper
+
 
 # CUSTOM RELATIONSHIP TYPES
 INTERACT_WITH = 'micro.relationships.InteractsWith'
@@ -125,7 +126,7 @@ class Service(Root):
     def from_yaml(cls,node_name, yaml):
         s = cls(node_name)
         s._yaml = yaml
-        for req in get_requirements(yaml):
+        for req in helper.get_requirements(yaml):
             for name, value in req.items(): # [('run_time', 'order_db')]
                 if(name == RUN_TIME):  
                     s.add_run_time(value)
@@ -153,8 +154,6 @@ class Service(Root):
         #                     r[k]['node'] = new
         #                 return True
         #     return False
-
-
 
     def add_run_time(self, item):
         if not isinstance(item, InteractsWith):
@@ -220,7 +219,7 @@ class CommunicationPattern(Root):
     def from_yaml(cls,node_name, node_type, yaml):
         c = cls(node_name, node_type)
         c._yaml = yaml
-        for req in get_requirements(yaml):
+        for req in helper.get_requirements(yaml):
             for name, value in req.items(): # [('run_time', 'order_db')]
                 if(name == RUN_TIME):  
                     c.add_run_time(value)

@@ -6,7 +6,7 @@ description: Definition of the custom types of Micro TOSCA model
 group_types:
   micro.groups.Squad:
     derived_from: tosca.groups.Root
-    members: [ micro.nodes.Root ]
+    members: [micro.nodes.Root]
 
 # relationship definitions
 relationship_types:

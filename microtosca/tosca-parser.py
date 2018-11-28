@@ -19,9 +19,10 @@ from loader.yml import YmlLoader
 
 import json
 
-path = '/home/dido/code/micro-tosca/data/examples/helloworld.yml'
-path_write = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
+#path = '/home/dido/code/micro-tosca/data/examples/helloworld.yml'
+path = '/home/dido/code/micro-tosca/data/examples/helloworld_squads.yml'
 
+path_refactored = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
 
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
@@ -51,23 +52,34 @@ if hasattr(tosca, 'description'):
     if description:
         print("\ndescription: " + description)
 
+# if hasattr(tosca.topology_template, 'groups'):
+#     groups = tosca.topology_template.groups
+#     for g in groups:
+#         print(g.name)
+#         for m in g.members:
+#             print(m)
+
 #********************************
 #         LOADER: yml 
 #*******************************
 loader = YmlLoader()
-micro_template = loader.parse(path)
-micro_template.update()
+microtosca_template = loader.parse(path)
+microtosca_template.update() # create object pointers and up_requirements
+for s in microtosca_template.squads:
+    print(s)
+    for m in s.members:
+        print(m) 
 
 #*******************************
-#         ANALYSIS
+#         ANALYSER
 #*******************************
 
-analyser = MicroToscaAnalyser(micro_template)
-res = analyser.analyse()
-print(res)
+# analyser = MicroToscaAnalyser(microtosca_template)
+# res = analyser.analyse()
+# print(res)
 
 #*******************************
-#           OUTPUTTER: json
+#         OUTPUTTER: json
 #*******************************
 
 # import json

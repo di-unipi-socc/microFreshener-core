@@ -1,17 +1,17 @@
 '''
-Template module
+MicroToscaTemplate module
 '''
 import six
-from collections import OrderedDict
-from .nodes import  Root, Service, Database, CommunicationPattern
+from .nodes import Root, Service, Database, CommunicationPattern
+from .groups import Squad
+
 
 class MicroToscaTemplate:
 
     def __init__(self, name):
-        self._nodes = {} # OrderedDictionary ??
+        self._nodes = {}
+        self._groups = {}
         self.name = name
-        self.outputs = []
-        self.tmp_dir = None
 
     @property
     def nodes(self):
@@ -29,11 +29,24 @@ class MicroToscaTemplate:
     def communicationPatterns(self):
         return (v for k, v in self._nodes.items() if isinstance(v, CommunicationPattern))
 
+    @property
+    def groups(self):
+         return (v for k, v in self._groups.items())
+
+    @property
+    def squads(self):
+        return (v for k, v in self._groups.items() if isinstance(v, Squad))
+
     def update(self):
         self._add_pointer()
         self._add_back_links()
-        
-    
+        self._add_groups_pointers()
+
+    def _add_groups_pointers(self):
+        for g in self.groups:
+            for member in g.members:
+                g[member] = self[member]
+
     def _add_pointer(self):
         for node in self.nodes:
             for rel in node.relationships:
@@ -49,9 +62,12 @@ class MicroToscaTemplate:
     def push(self, node):
         self._nodes[node.name] = node
 
+    def add_group(self, group):
+        self._groups[group.name] = group
+
     def __getitem__(self, name):
         return self._nodes.get(name, None)
-
+ 
     def __contains__(self, item):
         if isinstance(item, six.string_types):
             return self[item] is not None
@@ -61,11 +77,11 @@ class MicroToscaTemplate:
 
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
-   
+
     # def __dict__(self):
     #      graph = dict()
     #      graph['services'] = [{"mcm":34}]
     #      return graph
-    
+
     # def __setstate__(self):
     #     self.__dict__ = {"ciao":45}
