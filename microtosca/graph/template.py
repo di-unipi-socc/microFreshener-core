@@ -37,6 +37,13 @@ class MicroToscaTemplate:
     def squads(self):
         return (v for k, v in self._groups.items() if isinstance(v, Squad))
 
+    def squad_of(self, node):
+        for squad in self.squads:
+            for member in squad.members:
+                if(member == node):
+                    return squad
+        return None
+        
     def update(self):
         self._add_pointer()
         self._add_back_links()

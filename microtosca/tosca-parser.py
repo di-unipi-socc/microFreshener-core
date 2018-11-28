@@ -17,7 +17,7 @@ from graph.template import MicroToscaTemplate
 from analyser import MicroToscaAnalyser
 from loader.yml import YmlLoader
 
-import json
+import pprint
 
 #path = '/home/dido/code/micro-tosca/data/examples/helloworld.yml'
 path = '/home/dido/code/micro-tosca/data/examples/helloworld_squads.yml'
@@ -65,18 +65,14 @@ if hasattr(tosca, 'description'):
 loader = YmlLoader()
 microtosca_template = loader.parse(path)
 microtosca_template.update() # create object pointers and up_requirements
-for s in microtosca_template.squads:
-    print(s)
-    for m in s.members:
-        print(m) 
 
 #*******************************
 #         ANALYSER
 #*******************************
 
-# analyser = MicroToscaAnalyser(microtosca_template)
-# res = analyser.analyse()
-# print(res)
+analyser = MicroToscaAnalyser(microtosca_template)
+res = analyser.analyse()
+pprint.pprint(res)
 
 #*******************************
 #         OUTPUTTER: json

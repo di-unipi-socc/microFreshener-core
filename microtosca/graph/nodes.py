@@ -72,6 +72,10 @@ class Software(Root):
         # requirements
         self._run_time = []
         self._deployment_time = []
+   
+    @property
+    def relationships(self):
+         return self._run_time + self._deployment_time
  
     @property
     def run_time(self):
