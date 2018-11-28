@@ -3,7 +3,7 @@ Nodes module
 '''
 
 from .relationships import InteractsWith
-import graph.helper as helper
+from .helper import get_requirements
 
 
 # CUSTOM RELATIONSHIP TYPES
@@ -130,7 +130,7 @@ class Service(Root):
     def from_yaml(cls,node_name, yaml):
         s = cls(node_name)
         s._yaml = yaml
-        for req in helper.get_requirements(yaml):
+        for req in get_requirements(yaml):
             for name, value in req.items(): # [('run_time', 'order_db')]
                 if(name == RUN_TIME):  
                     s.add_run_time(value)
@@ -223,7 +223,7 @@ class CommunicationPattern(Root):
     def from_yaml(cls,node_name, node_type, yaml):
         c = cls(node_name, node_type)
         c._yaml = yaml
-        for req in helper.get_requirements(yaml):
+        for req in  get_requirements(yaml):
             for name, value in req.items(): # [('run_time', 'order_db')]
                 if(name == RUN_TIME):  
                     c.add_run_time(value)

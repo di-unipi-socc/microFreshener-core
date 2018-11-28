@@ -1,6 +1,6 @@
-from graph.nodes import Service, Database, CommunicationPattern
-from graph.relationships import InteractsWith
-from graph.template import MicroToscaTemplate
+from .graph.nodes import Service, Database, CommunicationPattern
+from .graph.relationships import InteractsWith
+from .graph.template import MicroToscaTemplate
 
 
 class MicroToscaAnalyser(object):
@@ -89,7 +89,7 @@ class MicroToscaAnalyser(object):
         """Check the  presence of inapprorpiate service intimacy and shared persistency antipatterns"""
         shared_databases = []
         for node in self.micro_template.databases:
-            if(not self.is_shared_database(node)):
+            if(self.is_shared_database(node)):
                 shared_databases.append(str(node))
         return shared_databases
 

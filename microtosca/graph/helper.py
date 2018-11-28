@@ -1,6 +1,5 @@
 
 
-
 def get_type(ruamel_commented_map):
     return ruamel_commented_map['type'] if 'type' in ruamel_commented_map else ''
 

@@ -1,9 +1,9 @@
 import ruamel.yaml
 from pathlib import Path
-from graph.template import MicroToscaTemplate
-from graph.nodes import Service, Database, CommunicationPattern
-from graph.groups import Squad
-import graph.helper as helper
+from ..graph.template import MicroToscaTemplate
+from ..graph.nodes import Service, Database, CommunicationPattern
+from ..graph.groups import Squad
+from ..graph.helper import get_type
 
 # CUSTOM NODE TYPEs
 SERVICE = 'micro.nodes.Service'
@@ -28,7 +28,7 @@ class YmlLoader(object):
         nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
 
         for node_name, commented_map in nodes_ruamel.items():
-            node_type = helper.get_type(commented_map)
+            node_type = get_type(commented_map)
             if node_type == SERVICE:
                 el = Service.from_yaml(node_name,commented_map)
             if node_type == MESSAGE_BROKER: #TODO: derived from CommunicationPattern
@@ -38,7 +38,7 @@ class YmlLoader(object):
             microtosca_template.push(el)
         groups_ruamel = micro_yml.get('topology_template').get('groups')
         for (group_name, ordered_dict) in groups_ruamel.items():
-            group_type = helper.get_type(ordered_dict)
+            group_type = get_type(ordered_dict)
             if group_type == SQUAD:
                 squad = Squad.from_yaml(group_name, ordered_dict)
             microtosca_template.add_group(squad)

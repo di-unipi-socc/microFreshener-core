@@ -2,7 +2,7 @@
 MicroToscaTemplate module
 '''
 import six
-from .nodes import Root, Service, Database, CommunicationPattern
+from ..graph.nodes import Root, Service, Database, CommunicationPattern
 from .groups import Squad
 
 
