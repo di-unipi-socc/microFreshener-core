@@ -24,9 +24,9 @@ class Relationship(object):
         self.target = target
         self.requirement = requirement
         self.capability = capability
-
-    def __str__(self):
-        return 'o={0.source},t={0.target},req={0.requirement},cap={0.capability}'.format(self)
+    
+    def __repr__(self):
+        return 's={0.source},t={0.target},req={0.requirement},cap={0.capability}'.format(self)
     
     def __eq__(self, other):
         return self.source == other.source and self.target == other.target 
@@ -51,5 +51,8 @@ class InteractsWith(Relationship):
 
     def __str__(self):
         return 'InteractsWith({})'.format(super(InteractsWith, self).__str__())
+    
+    def __repr__(self):
+        return 'InteractsWith({})'.format(super(InteractsWith, self).__repr__())
 
     

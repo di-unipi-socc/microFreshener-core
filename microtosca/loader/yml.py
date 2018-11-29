@@ -5,15 +5,9 @@ from ..graph.nodes import Service, Database, CommunicationPattern
 from ..graph.groups import Squad
 from ..graph.helper import get_type
 
-# CUSTOM NODE TYPEs
-SERVICE = 'micro.nodes.Service'
-COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
-DATABASE = 'micro.nodes.Database'
 
-MESSAGE_BROKER = 'micro.nodes.MessageBroker'
-CIRCUIT_BREAKER = 'micro.nodes.CircuitBreaker'
+from ..type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
 
-SQUAD = 'micro.groups.Squad'
 
 class YmlLoader(object):
 
@@ -21,7 +15,7 @@ class YmlLoader(object):
         pass # self.microtosca_template = micro_tosca_template
     
     def parse(self, path_to_yml):
-        yaml = ruamel.yaml.YAML()#typ='safe') #typ='rt') 
+        yaml = ruamel.yaml.YAML() # default  type='rt' 
     
         microtosca_template = MicroToscaTemplate('micro.tosca')
         micro_yml = yaml.load(Path(path_to_yml))

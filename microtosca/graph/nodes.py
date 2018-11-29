@@ -5,11 +5,7 @@ Nodes module
 from .relationships import InteractsWith
 from .helper import get_requirements
 
-
-# CUSTOM RELATIONSHIP TYPES
-INTERACT_WITH = 'micro.relationships.InteractsWith'
-RUN_TIME = "run_time"
-DEPLOYMENT_TIME = "deployment_time"
+from ..type import INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 
 def _add_to_map(d, k, v):
     if d is None:
