@@ -30,7 +30,9 @@ class YmlLoader(object):
             if node_type == DATABASE:
                 el = Database.from_yaml(node_name,commented_map)
             microtosca_template.push(el)
+            
         groups_ruamel = micro_yml.get('topology_template').get('groups')
+
         for (group_name, ordered_dict) in groups_ruamel.items():
             group_type = get_type(ordered_dict)
             if group_type == SQUAD:

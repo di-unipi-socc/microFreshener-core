@@ -36,6 +36,9 @@ class MicroToscaAnalyser(object):
                 }
 
     def is_wrong_cut(self, relationship):
+
+
+        
         source_node = relationship.source
         target_node = relationship.target
         source_squad = self.micro_template.squad_of(source_node)
