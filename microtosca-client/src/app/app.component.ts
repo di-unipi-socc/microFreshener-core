@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import * as go from 'gojs';
+import { Node, Service, Database, CommunicationPattern, Link } from './d3';
 
 @Component({
   selector: 'app-root',
@@ -8,61 +8,36 @@ import * as go from 'gojs';
 })
 export class AppComponent {
   title = 'Ciao microtosca-client';
+  nodes: Node[] = [];
+  links: Link[] = [];
 
-  model = new go.GraphLinksModel(
-    [
-      { key: 1, text: "Alpha", color: "lightblue" },
-      { key: 2, text: "Beta", color: "orange" },
-      { key: 3, text: "Gamma", color: "lightgreen" },
-      { key: 4, text: "Delta", color: "pink" }
-    ],
-    [
-      { from: 1, to: 2 },
-      { from: 1, to: 3 },
-      { from: 2, to: 2 },
-      { from: 3, to: 4 },
-      { from: 4, to: 1 }
-    ]);
+  constructor() {
+    const N = 9,
+    getIndex = number => number - 1;
+
+    /** constructing the nodes array */
+    // for (let i = 1; i <= N; i++) {
+    //   this.nodes.push(new Node(i,'communicationpattern'));
+    // }
+    this.nodes.push(new Service(0));
+    this.nodes.push(new Service(0));
+
+    this.nodes.push(new Database(0));
+    this.nodes.push(new Database(0));
+
+    this.nodes.push(new CommunicationPattern(0));
+    this.nodes.push(new CommunicationPattern(0));
 
 
-  @ViewChild('text')
-  private textField: ElementRef;
+    // for (let i = 1; i <= N; i++) {
+    //   for (let m = 2; i * m <= N; m++) {
+    //     /** increasing connections toll on connecting nodes */
+    //     this.nodes[getIndex(i)].linkCount++;
+    //     this.nodes[getIndex(i * m)].linkCount++;
 
-  data: any;
-  node: go.Node;
-
-  showDetails(node: go.Node | null) {
-    this.node = node;
-    if (node) {
-      // copy the editable properties into a separate Object
-      this.data = {
-        text: node.data.text,
-        color: node.data.color
-      };
-    } else {
-      this.data = null;
-    }
-  }
-
-  onCommitDetails() {
-    if (this.node) {
-      const model = this.node.diagram.model;
-      // copy the edited properties back into the node's model data,
-      // all within a transaction
-      model.startTransaction();
-      model.setDataProperty(this.node.data, "text", this.data.text);
-      model.setDataProperty(this.node.data, "color", this.data.color);
-      model.commitTransaction("modified properties");
-    }
-  }
-
-  onCancelChanges() {
-    // wipe out anything the user may have entered
-    this.showDetails(this.node);
-  }
-
-  onModelChanged(c: go.ChangedEvent) {
-    // who knows what might have changed in the selected node and data?
-    this.showDetails(this.node);
+    //     /** connecting the nodes before starting the simulation */
+    //     this.links.push(new Link(i, i * m));
+    //   }
+    // }
   }
 }

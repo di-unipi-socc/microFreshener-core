@@ -15,6 +15,12 @@ import { MenuComponent } from './menu/menu.component';
 import {AccordionModule} from 'primeng/accordion';
 import { DiagramEditorComponent } from './diagram-editor/diagram-editor.component';
 
+//import d3js component
+import { D3Service, D3_DIRECTIVES} from './d3';
+import { GraphComponent } from './visuals/graph/graph.component';
+import { SHARED_VISUALS } from './visuals/shared';
+import { MenuEditComponent } from './menu-edit/menu-edit.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +28,11 @@ import { DiagramEditorComponent } from './diagram-editor/diagram-editor.componen
     HeroDetailComponent,
     MessagesComponent,
     MenuComponent,
-    DiagramEditorComponent
+    DiagramEditorComponent,
+    GraphComponent,
+    ...SHARED_VISUALS,
+    ...D3_DIRECTIVES,
+    MenuEditComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,7 @@ import { DiagramEditorComponent } from './diagram-editor/diagram-editor.componen
     FormsModule,
     AccordionModule
   ],
-  providers: [],
+  providers: [ D3Service],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
