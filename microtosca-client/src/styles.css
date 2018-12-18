@@ -3,3 +3,8 @@
  
 @import '../node_modules/primeng/resources/themes/nova-light/theme.css';
 @import '../node_modules/primeng/resources/primeng.min.css'; 
+
+/*primeflex style for FlexGrid*/
+@import '../node_modules/primeflex/primeflex.css';
+
+/*yFiles css styles*/

@@ -1,9 +1,37 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<div class="p-grid sample-layout">
+    <div class="p-col-12">
+            MicroTosca
+    </div>
+    <div class="p-col-12 p-md-2">
+        <app-menu>
+            
+        </app-menu>
+    </div>
+    <div class="p-col-12 p-md-10 p-col-nogutter">
+        <app-diagram-editor
+            [model]="model"
+            (nodeSelected)="showDetails($event)"
+            (modelChanged)="onModelChanged($event)">
+        </app-diagram-editor>
+           <form *ngIf="node" #form="ngForm" (ngSubmit)="onCommitDetails()">
+                Node Details:
+                <div><label>Key: </label>{{node.key}}</div>
+                <div><label>Text: </label><input [(ngModel)]="data.text" name="text"></div>
+                <div><label>Color: </label><input [(ngModel)]="data.color" name="color"></div>
+                <div><label>Location: </label>{{node.location.x.toFixed(2)}}, {{node.location.y.toFixed(2)}}</div>
+                <div><label># Links: </label>{{node.linksConnected.count}}</div>
+                <button type="submit">Commit Details</button>
+                <button (click)="onCancelChanges()">Cancel Changes</button>
+        </form> 
+    </div>
+    <div class="p-col-12">
+        Footer
+    </div>
+</div>
 
-<h1>{{title}}</h1>
 
 
-<app-menu></app-menu>
+
 
 <!-- <app-heroes></app-heroes>
 

@@ -13,6 +13,7 @@ import { MenuComponent } from './menu/menu.component';
 
 // Import primeNG modules
 import {AccordionModule} from 'primeng/accordion';
+import { DiagramEditorComponent } from './diagram-editor/diagram-editor.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import {AccordionModule} from 'primeng/accordion';
     HeroesComponent,
     HeroDetailComponent,
     MessagesComponent,
-    MenuComponent
+    MenuComponent,
+    DiagramEditorComponent
   ],
   imports: [
     BrowserModule,
