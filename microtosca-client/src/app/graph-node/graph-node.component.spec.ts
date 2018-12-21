@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DiagramEditorComponent } from './diagram-editor.component';
+import { GraphNodeComponent } from './graph-node.component';
 
-describe('DiagramEditorComponent', () => {
-  let component: DiagramEditorComponent;
-  let fixture: ComponentFixture<DiagramEditorComponent>;
+describe('GraphNodeComponent', () => {
+  let component: GraphNodeComponent;
+  let fixture: ComponentFixture<GraphNodeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DiagramEditorComponent ]
+      declarations: [ GraphNodeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DiagramEditorComponent);
+    fixture = TestBed.createComponent(GraphNodeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -11,7 +11,8 @@ import { D3Service, ForceDirectedGraph, Node } from '../../d3';
         </g>
         <g [nodeVisual]="node" 
             *ngFor="let node of nodes"  
-            [draggableNode]="node"></g>
+            [draggableNode]="node">
+        </g>
       </g>
     </svg>
   `,

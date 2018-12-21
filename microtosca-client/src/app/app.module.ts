@@ -8,31 +8,33 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './hero-detail/hero-detail.component';
-import { MessagesComponent } from './messages/messages.component';
 import { MenuComponent } from './menu/menu.component';
 
 // Import primeNG modules
 import {AccordionModule} from 'primeng/accordion';
-import { DiagramEditorComponent } from './diagram-editor/diagram-editor.component';
 
 //import d3js component
 import { D3Service, D3_DIRECTIVES} from './d3';
-import { GraphComponent } from './visuals/graph/graph.component';
-import { SHARED_VISUALS } from './visuals/shared';
+// import { GraphComponent } from './visuals/graph/graph.component';
+// import { SHARED_VISUALS } from './visuals/shared';
 import { MenuEditComponent } from './menu-edit/menu-edit.component';
+import { GraphEditorComponent } from './graph-editor/graph-editor.component';
+import { GraphNodeComponent } from './graph-node/graph-node.component';
+import { GraphLinkComponent } from './graph-link/graph-link.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
     HeroDetailComponent,
-    MessagesComponent,
+    // GraphComponent,
+    // ...SHARED_VISUALS,
     MenuComponent,
-    DiagramEditorComponent,
-    GraphComponent,
-    ...SHARED_VISUALS,
     ...D3_DIRECTIVES,
-    MenuEditComponent
+    MenuEditComponent,
+    GraphEditorComponent,
+    GraphNodeComponent,
+    GraphLinkComponent
   ],
   imports: [
     BrowserModule,
