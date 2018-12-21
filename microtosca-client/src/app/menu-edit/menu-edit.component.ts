@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Node, Database, Service, CommunicationPattern} from '../d3';
+import { Node, Database, Service,ForceDirectedGraph, D3Service, CommunicationPattern} from '../d3';
+
 
 @Component({
   selector: 'app-menu-edit',
@@ -11,12 +12,17 @@ export class MenuEditComponent implements OnInit {
   database: Node;
   communicationPattern: Node;
 
-  constructor() { }
+  graph: ForceDirectedGraph;
+
+  constructor(private d3Service: D3Service) { 
+    this.graph = d3Service.getGraph();
+  }
 
   ngOnInit() {
      this.service = new Service(0);
      this.database = new Database(1);
      this.communicationPattern = new CommunicationPattern(0);
+     
   }
 
 }

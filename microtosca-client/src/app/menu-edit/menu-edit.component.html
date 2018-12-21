@@ -5,9 +5,16 @@
 
  <div class="items-container">
   <div appDraggable>
-      <svg height="100" width="100">
+      <!-- <svg height="100" width="100">
           <circle id="circle-red" cx="50" cy="50" r="50" stroke="black" fill="red" />
-      </svg>
+      </svg> -->
+      <svg>
+      <g [nodeVisual]="service" 
+         [draggableNode]="node"
+         [draggableInGraph]="graph"
+         >
+      </g>
+    </svg>
   </div>
   <div appDraggable>
       <svg height="100" width="100">

@@ -7,7 +7,12 @@ export class D3Service {
     /** This service will provide methods to enable user interaction with elements
     * while maintaining the d3 simulations physics
     */
+    graph:  ForceDirectedGraph;
     constructor() {}
+
+    getGraph(){
+      return this.graph;
+    }
 
     /** A method to bind a pan and zoom behaviour to an svg element */
     applyZoomableBehaviour(svgElement, containerElement) {
@@ -67,7 +72,7 @@ export class D3Service {
     * This method does not interact with the document, purely physical calculations with d3
     */
     getForceDirectedGraph(nodes: Node[], links: Link[], options: { width, height} ) {
-          const graph = new ForceDirectedGraph(nodes, links, options);
-          return graph;
+          this.graph = new ForceDirectedGraph(nodes, links, options);
+          return this.graph;
     }
 }
