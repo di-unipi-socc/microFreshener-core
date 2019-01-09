@@ -6,14 +6,19 @@
         r="20" >
     </svg:circle>
     <svg:rect *ngSwitchCase="'database'" 
-        width="50" 
-        height="50" 
+        [attr.x]="node.x"
+        [attr.y]="node.y"
+        width="20" 
+        height="20" 
         style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)">
     </svg:rect>
     <svg:rect *ngSwitchCase="'communicationpattern'" 
+        [attr.x]="node.x"
+        [attr.y]="node.y"
         width="50" 
         height="50" 
-        [attr.transform]="'rotate(45)'">
+        style="fill:rgb(200,0,0);stroke-width:3;stroke:rgb(0,0,0)">
+        <!-- transform="rotate(45)"> -->
     </svg:rect>
     
     <svg:text>

@@ -6,8 +6,6 @@ import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeroesComponent } from './heroes/heroes.component';
-import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { MenuComponent } from './menu/menu.component';
 
 // Import primeNG modules
@@ -25,10 +23,6 @@ import { GraphLinkComponent } from './graph-link/graph-link.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    // GraphComponent,
-    // ...SHARED_VISUALS,
     MenuComponent,
     ...D3_DIRECTIVES,
     MenuEditComponent,

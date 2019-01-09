@@ -1,7 +1,6 @@
 
 // Implementing SimulationNodeDatum interface into our custom Node class
 export class Node implements d3.SimulationNodeDatum {
-    // Optional - defining optional implementation properties - required for relevant typing assistance
     index?: number;
     
     x?: number;
@@ -13,37 +12,30 @@ export class Node implements d3.SimulationNodeDatum {
     
     id: number;
     linkCount: number = 0;
-    type: string; // service, database, communication pattern
+    type: string;  // types of the node: service, database, communication pattern
     
     constructor(id:number, type:string) {
         this.id = id;
         this.type = type;
-        this.x = 0;
-        this.y =0;
+        this.x = 20;
+        this.y = 20;
     }
-
 }
 
 // Implementing SimulationNodeDatum interface into our custom Node class
 export class Database extends Node {
-    // Optional - defining optional implementation properties - required for relevant typing assistance
-   
     constructor(id: number) { 
-        super(id, "database"); 
+            super(id, "database"); 
     }
 }
 
 export class Service extends Node {
-    // Optional - defining optional implementation properties - required for relevant typing assistance
-   
     constructor(id: number) { 
         super(id, "service"); 
     }
 }
 
 export class CommunicationPattern extends Node {
-    // Optional - defining optional implementation properties - required for relevant typing assistance
-   
     constructor(id: number) { 
         super(id, "communicationpattern"); 
     }

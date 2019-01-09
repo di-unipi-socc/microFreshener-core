@@ -17,8 +17,10 @@ export class GraphEditorComponent implements OnInit {
 
   ngOnInit() {
       /** Receiving an initialized simulated graph from our custom d3 service */
+      this.nodes.forEach(element => {
+        console.log(element.type);
+      });
       this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
-      console.log(this.graph);
   }
 
   ngAfterViewInit() {

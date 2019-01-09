@@ -32,6 +32,7 @@ export class D3Service {
 
      /** A method to bind a draggable behaviour to an svg element */
     applyDraggableBehaviour(element, node: Node, graph: ForceDirectedGraph) {
+      console.log(element);
       const d3element = d3.select(element);
       console.log("APPLYIED DRAG");
       function started() {
