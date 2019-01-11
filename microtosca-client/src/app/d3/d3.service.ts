@@ -2,15 +2,24 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { Database, Node, Link, ForceDirectedGraph } from './models';
 import * as d3 from 'd3';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class D3Service {
     /** This service will provide methods to enable user interaction with elements
     * while maintaining the d3 simulations physics
     */
     graph:  ForceDirectedGraph;
-    constructor() {}
 
-    getGraph(){
+    constructor() { 
+      
+    }
+
+    public initGraph(nodes:Node[], links:Link[]){
+      this.graph = new ForceDirectedGraph(nodes, links, { width:200, height:200 });
+    }
+
+    public getGraph(){
       return this.graph;
     }
 
@@ -72,8 +81,8 @@ export class D3Service {
     /** The interactable graph we will simulate in this article
     * This method does not interact with the document, purely physical calculations with d3
     */
-    getForceDirectedGraph(nodes: Node[], links: Link[], options: { width, height} ) {
-          this.graph = new ForceDirectedGraph(nodes, links, options);
-          return this.graph;
-    }
+    // getForceDirectedGraph(nodes: Node[], links: Link[], options: { width, height} ) {
+    //       this.graph = new ForceDirectedGraph(nodes, links, options);
+    //       return this.graph;
+    // }
 }

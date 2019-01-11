@@ -14,15 +14,18 @@ export class MenuEditComponent implements OnInit {
 
   graph: ForceDirectedGraph;
 
+  d3service = null;
+
   constructor(private d3Service: D3Service) { 
-    this.graph = d3Service.getGraph();
+
   }
 
   ngOnInit() {
      this.service = new Service(0);
      this.database = new Database(1);
      this.communicationPattern = new CommunicationPattern(0);
-     
+     this.d3service.getGraph().addMode(new Service(2));
   }
+
 
 }

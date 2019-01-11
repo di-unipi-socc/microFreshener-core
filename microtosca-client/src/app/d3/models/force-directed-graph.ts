@@ -21,7 +21,11 @@ export class ForceDirectedGraph {
         this.nodes = nodes;
         this.links = links;
         
-        this.initSimulation(options);
+        // this.initSimulation(options);
+    }
+
+    public addNode(n:Node){
+      this.nodes.push(n);
     }
 
     connectNodes(source, target) {

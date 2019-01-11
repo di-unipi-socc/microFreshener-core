@@ -1,14 +1,19 @@
-import { Component, OnInit, Input} from '@angular/core';
-import { D3Service, ForceDirectedGraph, Node } from '../d3';
+import { Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
+import { D3Service, ForceDirectedGraph, Node, Link, Service, Database } from '../d3';
 
 @Component({
   selector: 'app-graph-editor',
   templateUrl: './graph-editor.component.html',
   styleUrls: ['./graph-editor.component.css']
 })
+
 export class GraphEditorComponent implements OnInit {
-  @Input('nodes') nodes;
-  @Input('links') links;
+  // @Input('nodes') nodes;
+  // @Input('links') links;
+  nodes: Node[] = [];
+  links: Link[] = [];
+ 
+  // @ViewChild('directedGraph') directedGraph: ElementRef;
 
   graph: ForceDirectedGraph;
   private _options: { width, height } = { width: 800, height: 600 };
@@ -17,15 +22,7 @@ export class GraphEditorComponent implements OnInit {
 
   ngOnInit() {
       /** Receiving an initialized simulated graph from our custom d3 service */
-      this.nodes.forEach(element => {
-        console.log(element.type);
-      });
-      this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
-  }
-
-  ngAfterViewInit() {
-    console.log("initialized simulation");
-     this.graph.initSimulation(this.options);
+      // this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
   }
 
   get options() {

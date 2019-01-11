@@ -40,8 +40,8 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.palette.div = this.paletteRef.nativeElement;
-    console.log("initialized menu bar");
+    //this.palette.div = this.paletteRef.nativeElement;
+    //console.log("initialized menu bar");
   }
 
 }
