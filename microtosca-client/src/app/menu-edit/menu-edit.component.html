@@ -1,4 +1,4 @@
- <div class="items-container">
+ <!-- <div class="items-container">
   <div appDraggable>
       <svg>
         <g  [nodeVisual]="service" 
@@ -7,20 +7,38 @@
         </g>
       </svg>
   </div>
-  <!-- <div appDraggable>
-      <svg height="100" width="100">
-        <rect width="100" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
-      </svg>
-  </div>
-  <div appDraggable>
-      <svg height="100" width="100">
-        <rect width="100" height="100"></rect>
-      </svg> 
-  </div> -->
-</div>
-
-<!--
-<div class="svg-container" appDroppable>
-  <svg id="dropzone" height="100%" width="100%">
-  </svg>
 </div> -->
+
+<div class="items-container">
+<svg>
+    <svg:circle ng-model="service"
+        class="node"
+        [attr.cx]="20"
+        [attr.cy]="20"
+        [draggableNode]="service"
+        [draggableInGraph]="graph"
+        r="13" >
+    </svg:circle>
+
+    <svg:rect  (click)="onClickMe()"
+        [attr.x]="10"
+        [attr.y]="50"
+        width="20" 
+        height="20" 
+        style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)">
+    </svg:rect>
+    
+    <svg:rect 
+        [attr.x]="10"
+        [attr.y]="80"
+        width="20" 
+        height="20" 
+        style="fill:rgb(200,0,0);stroke-width:3;stroke:rgb(0,0,0)">
+    </svg:rect> -->
+    
+    <!-- <svg:text>
+      class="node-name"
+      {{node.id}}
+    </svg:text> -->
+</svg>
+</div>

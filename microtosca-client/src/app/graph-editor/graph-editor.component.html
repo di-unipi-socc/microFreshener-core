@@ -1,4 +1,4 @@
-
+<!-- 
 <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
     <g [zoomableOf]="svg">
       <g [linkVisual]="link" 
@@ -10,5 +10,18 @@
           [draggableInGraph]="graph">
       </g>
     </g>
-</svg>
+</svg> -->
 
+
+<svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
+  <g [zoomableOf]="svg">
+    <g [linkVisual]="link" 
+      *ngFor="let link of graph.links">
+    </g>
+    <g [nodeVisual]="node" 
+        *ngFor="let node of graph.nodes"  
+        [draggableNode]="node"
+        [draggableInGraph]="graph">
+    </g>
+  </g>
+</svg>

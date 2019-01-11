@@ -21,7 +21,15 @@ export class ForceDirectedGraph {
         this.nodes = nodes;
         this.links = links;
         
-        // this.initSimulation(options);
+        this.initSimulation(options);
+    }
+
+    public getNodes(){
+      return this.nodes;
+    }
+
+    public getLinks(){
+      return this.links;
     }
 
     public addNode(n:Node){
@@ -41,61 +49,61 @@ export class ForceDirectedGraph {
         this.simulation.alphaTarget(0.3).restart();
     
         this.initLinks();
+    }
+    
+    initNodes() {
+      if (!this.simulation) {
+        throw new Error('simulation was not initialized yet');
       }
-    
-      initNodes() {
-        if (!this.simulation) {
-          throw new Error('simulation was not initialized yet');
-        }
-    
-        this.simulation.nodes(this.nodes);
+  
+      this.simulation.nodes(this.nodes);
+    }
+  
+    initLinks() {
+      if (!this.simulation) {
+        throw new Error('simulation was not initialized yet');
       }
-    
-      initLinks() {
-        if (!this.simulation) {
-          throw new Error('simulation was not initialized yet');
-        }
-    
-        this.simulation.force('links',
-          d3.forceLink(this.links)
-            .id(d => d['id'])
-            .strength(FORCES.LINKS)
-        );
+  
+      this.simulation.force('links',
+        d3.forceLink(this.links)
+          .id(d => d['id'])
+          .strength(FORCES.LINKS)
+      );
+    }
+  
+    initSimulation(options) {
+      if (!options || !options.width || !options.height) {
+        throw new Error('missing options when initializing simulation');
       }
-    
-      initSimulation(options) {
-        if (!options || !options.width || !options.height) {
-          throw new Error('missing options when initializing simulation');
-        }
-    
-        /** Creating the simulation */
-        if (!this.simulation) {
-          const ticker = this.ticker;
-    
-          this.simulation = d3.forceSimulation()
-            .force('charge',
-              d3.forceManyBody()
-                .strength(d => FORCES.CHARGE * d['r'])
-            )
-            .force('collide',
-              d3.forceCollide()
-                .strength(FORCES.COLLISION)
-                .radius(d => d['r'] + 5).iterations(2)
-            );
-    
-          // Connecting the d3 ticker to an angular event emitter
-          this.simulation.on('tick', function () {
-            ticker.emit(this);
-          });
-    
-          this.initNodes();
-          this.initLinks();
-        }
-    
-        /** Updating the central force of the simulation */
-        this.simulation.force('centers', d3.forceCenter(options.width / 2, options.height / 2));
-    
-        /** Restarting the simulation internal timer */
-        this.simulation.restart();
+  
+      /** Creating the simulation */
+      if (!this.simulation) {
+        const ticker = this.ticker;
+  
+        this.simulation = d3.forceSimulation()
+          .force('charge',
+            d3.forceManyBody()
+              .strength(d => FORCES.CHARGE * d['r'])
+          )
+          .force('collide',
+            d3.forceCollide()
+              .strength(FORCES.COLLISION)
+              .radius(d => d['r'] + 5).iterations(2)
+          );
+  
+        // Connecting the d3 ticker to an angular event emitter
+        this.simulation.on('tick', function () {
+          ticker.emit(this);
+        });
+  
+        this.initNodes();
+        this.initLinks();
       }
+  
+      /** Updating the central force of the simulation */
+      this.simulation.force('centers', d3.forceCenter(options.width / 2, options.height / 2));
+  
+      /** Restarting the simulation internal timer */
+      this.simulation.restart();
+    }
 }

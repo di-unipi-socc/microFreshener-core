@@ -12,11 +12,13 @@ export class D3Service {
     graph:  ForceDirectedGraph;
 
     constructor() { 
-      
+      this.graph = new ForceDirectedGraph([], [], { width:200, height:200 });
+      this.graph.initSimulation({ width:200, height:200 });
+
     }
 
-    public initGraph(nodes:Node[], links:Link[]){
-      this.graph = new ForceDirectedGraph(nodes, links, { width:200, height:200 });
+    public addNode(node:Node){
+      this.graph.addNode(node);
     }
 
     public getGraph(){
@@ -41,16 +43,13 @@ export class D3Service {
 
      /** A method to bind a draggable behaviour to an svg element */
     applyDraggableBehaviour(element, node: Node, graph: ForceDirectedGraph) {
-      console.log(element);
       const d3element = d3.select(element);
-      console.log("APPLYIED DRAG");
+ 
       function started() {
-        console.log("STARTED DRAGGABLE");
         /** Preventing propagation of dragstart to parent elements */
         d3.event.sourceEvent.stopPropagation();
 
         if (!d3.event.active) {
-          console.log("---NO ATTIVO D3 EVENT--");
           graph.simulation.alphaTarget(0.3).restart();
         }
 

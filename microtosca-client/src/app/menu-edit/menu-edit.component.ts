@@ -12,19 +12,21 @@ export class MenuEditComponent implements OnInit {
   database: Node;
   communicationPattern: Node;
 
-  graph: ForceDirectedGraph;
-
-  d3service = null;
-
+  graph:ForceDirectedGraph = null;
+  
   constructor(private d3Service: D3Service) { 
-
+    this.graph = d3Service.getGraph();
   }
 
   ngOnInit() {
      this.service = new Service(0);
      this.database = new Database(1);
      this.communicationPattern = new CommunicationPattern(0);
-     this.d3service.getGraph().addMode(new Service(2));
+  }
+
+  onClickMe(){
+    console.log("Cliccked");
+    this.d3Service.addNode(new Database(2));
   }
 
 

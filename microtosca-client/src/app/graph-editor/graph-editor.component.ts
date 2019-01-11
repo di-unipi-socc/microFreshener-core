@@ -10,8 +10,7 @@ import { D3Service, ForceDirectedGraph, Node, Link, Service, Database } from '..
 export class GraphEditorComponent implements OnInit {
   // @Input('nodes') nodes;
   // @Input('links') links;
-  nodes: Node[] = [];
-  links: Link[] = [];
+  // 
  
   // @ViewChild('directedGraph') directedGraph: ElementRef;
 
@@ -23,6 +22,20 @@ export class GraphEditorComponent implements OnInit {
   ngOnInit() {
       /** Receiving an initialized simulated graph from our custom d3 service */
       // this.graph = this.d3Service.getForceDirectedGraph(this.nodes, this.links, this.options);
+      // var nodes: Node[] = [];
+      // var links: Link[] = [];
+      // var s = new Database(1);
+      // s.x = 50;
+      // s.y = 50;
+  
+      // links.push(new Link(nodes[0], nodes[1]));
+      // this.graph = new ForceDirectedGraph([s], [], { width:200, height:200 });
+      // console.log(s.x);
+      // this.graph.addNode(s);
+
+      this.graph  = this.d3Service.getGraph();
+      // this.d3Service.addNode(new Service(1));
+      // this.d3Service.addNode(new Database(1));
   }
 
   get options() {
