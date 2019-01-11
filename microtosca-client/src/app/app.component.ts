@@ -10,21 +10,24 @@ import * as go from 'gojs';
 export class AppComponent {
   title = 'Ciao microtosca-client';
 
-  model = new go.GraphLinksModel(
-    [
+  nodeDataArray =  [
       { key: 1, text: "Alpha", color: "lightblue" },
       { key: 2, text: "Beta", color: "orange" },
       { key: 3, text: "Gamma", color: "lightgreen" },
       { key: 4, text: "Delta", color: "pink" }
-    ],
-    [
+    ];
+  
+  linkDataArray = [
       { from: 1, to: 2 },
       { from: 1, to: 3 },
-      { from: 2, to: 2 },
-      { from: 3, to: 4 },
-      { from: 4, to: 1 }
-    ]);
-    @ViewChild('text')
+      { from: 1, to: 2 },
+      { from: 1, to: 4 },
+      { from: 1, to: 1 }
+    ];
+
+   model= new go.GraphLinksModel(this.nodeDataArray,this.linkDataArray);
+   
+   @ViewChild('text')
     private textField: ElementRef;
   
     data: any;
@@ -65,7 +68,7 @@ export class AppComponent {
       this.showDetails(this.node);
     }
 
-  constructor() {
+   constructor() {
 
-  }
+   }
 }

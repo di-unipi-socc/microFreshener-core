@@ -29,6 +29,7 @@ export class DiagramEditorComponent implements OnInit {
 
   constructor() { 
     const $ = go.GraphObject.make;
+    // Create the diagram of the graph
     this.diagram = new go.Diagram();
     this.diagram.initialContentAlignment = go.Spot.Center;
     this.diagram.allowDrop = true;  // necessary for dragging from Palette
@@ -66,6 +67,7 @@ export class DiagramEditorComponent implements OnInit {
         $(go.Shape, { toArrow: "OpenTriangle" })
       );
 
+    // create the palette
     this.palette = new go.Palette();
     this.palette.nodeTemplateMap = this.diagram.nodeTemplateMap;
 
