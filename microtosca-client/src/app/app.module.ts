@@ -17,6 +17,7 @@ import { MenuEditComponent } from './menu-edit/menu-edit.component';
 import { GraphEditorComponent } from './graph-editor/graph-editor.component';
 import { GraphNodeComponent } from './graph-node/graph-node.component';
 import { GraphLinkComponent } from './graph-link/graph-link.component';
+import { DiagramEditorComponent } from './diagram-editor/diagram-editor.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { GraphLinkComponent } from './graph-link/graph-link.component';
     MenuEditComponent,
     GraphEditorComponent,
     GraphNodeComponent,
-    GraphLinkComponent
+    GraphLinkComponent,
+    DiagramEditorComponent
   ],
   imports: [
     BrowserModule,

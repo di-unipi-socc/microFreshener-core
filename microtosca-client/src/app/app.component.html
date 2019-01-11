@@ -6,9 +6,13 @@
         <app-menu> </app-menu>
     </div>
     <div class="p-col-12 p-md-10 p-col-nogutter">
-        <app-graph-editor></app-graph-editor> 
+        <!-- <app-graph-editor></app-graph-editor>  -->
         <!-- <app-graph-editor [nodes]="nodes" [links]="links"></app-graph-editor>  -->
-
+        <app-diagram-editor
+            [model]="model"
+            (nodeSelected)="showDetails($event)"
+            (modelChanged)="onModelChanged($event)">
+        </app-diagram-editor>
     </div>
     <div class="p-col-12">
         Footer
