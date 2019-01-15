@@ -11,23 +11,22 @@ export class AppComponent {
   title = 'Ciao microtosca-client';
 
   nodeDataArray =  [
-      { key: 1, text: "Alpha", color: "lightblue" },
-      { key: 2, text: "Beta", color: "orange" },
-      { key: 3, text: "Gamma", color: "lightgreen" },
-      { key: 4, text: "Delta", color: "pink" }
+      // { key: 1, text: "Service", color: "lightblue", figure:"Circle" },
+      // { key: 2, text: "Database", color: "orange", figure:"Diamond" },
+      // { key: 3, text: "CommunicationPattern", color: "lightgreen" ,  figure :"Rectangle"} ,
     ];
   
   linkDataArray = [
-      { from: 1, to: 2 },
-      { from: 1, to: 3 },
-      { from: 1, to: 2 },
-      { from: 1, to: 4 },
-      { from: 1, to: 1 }
+      // { from: 1, to: 2 },
+      // { from: 1, to: 3 },
+      // { from: 1, to: 2 },
+      // { from: 1, to: 4 },
+      // { from: 1, to: 1 }
     ];
 
-   model= new go.GraphLinksModel(this.nodeDataArray,this.linkDataArray);
+   model = new go.GraphLinksModel(this.nodeDataArray,this.linkDataArray);
    
-   @ViewChild('text')
+    @ViewChild('text')
     private textField: ElementRef;
   
     data: any;
