@@ -1,6 +1,6 @@
 
 import { EventEmitter } from '@angular/core';
-import { Link } from './link';
+import { Link, DeploymentTimeLink, RunTimeLink} from './link';
 import { Node } from './node';
 import * as d3 from 'd3';
 
@@ -21,7 +21,7 @@ export class ForceDirectedGraph {
         this.nodes = nodes;
         this.links = links;
         
-        this.initSimulation(options);
+        // this.initSimulation(options);
     }
 
     public getNodes(){
@@ -36,6 +36,10 @@ export class ForceDirectedGraph {
       this.nodes.push(n);
     }
 
+    public addLink(l:Link){
+      this.links.push(l);
+    }
+
     connectNodes(source, target) {
         let link;
     
@@ -43,7 +47,7 @@ export class ForceDirectedGraph {
           throw new Error('One of the nodes does not exist');
         }
     
-        link = new Link(source, target);
+        link = new RunTimeLink(source, target);
         this.simulation.stop();
         this.links.push(link);
         this.simulation.alphaTarget(0.3).restart();

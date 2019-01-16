@@ -13,8 +13,6 @@ export class D3Service {
 
     constructor() { 
       this.graph = new ForceDirectedGraph([], [], { width:200, height:200 });
-      this.graph.initSimulation({ width:200, height:200 });
-
     }
 
     public addNode(node:Node){
@@ -44,14 +42,14 @@ export class D3Service {
      /** A method to bind a draggable behaviour to an svg element */
     applyDraggableBehaviour(element, node: Node, graph: ForceDirectedGraph) {
       const d3element = d3.select(element);
- 
+  
       function started() {
         /** Preventing propagation of dragstart to parent elements */
         d3.event.sourceEvent.stopPropagation();
 
-        if (!d3.event.active) {
-          graph.simulation.alphaTarget(0.3).restart();
-        }
+        // if (!d3.event.active) {
+        //   graph.simulation.alphaTarget(0.3).restart();
+        // }
 
         d3.event.on('drag', dragged).on('end', ended);
 

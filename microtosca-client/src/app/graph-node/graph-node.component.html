@@ -1,28 +1,24 @@
 <svg:g width="10" height="10" [ngSwitch]="node.type">
     <svg:circle *ngSwitchCase="'service'" 
-        class="node"
+        class="service"
         [attr.cx]="node.x"
         [attr.cy]="node.y"
-        r="20" >
+        r="20">
     </svg:circle>
     <svg:rect *ngSwitchCase="'database'" 
+          class="database"
         [attr.x]="node.x"
         [attr.y]="node.y"
-        width="20" 
-        height="20" 
-        style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)">
+        width="30" 
+        height="30" 
+        >
     </svg:rect>
     <svg:rect *ngSwitchCase="'communicationpattern'" 
+        class="communicationpattern"
         [attr.x]="node.x"
         [attr.y]="node.y"
-        width="50" 
-        height="50" 
-        style="fill:rgb(200,0,0);stroke-width:3;stroke:rgb(0,0,0)">
+        width="30" 
+        height="30">
         <!-- transform="rotate(45)"> -->
     </svg:rect>
-    
-    <svg:text>
-      class="node-name"
-      {{node.id}}
-    </svg:text>
 </svg:g>

@@ -16,12 +16,15 @@
 <svg #svg [attr.width]="_options.width" [attr.height]="_options.height">
   <g [zoomableOf]="svg">
     <g [linkVisual]="link" 
-      *ngFor="let link of graph.links">
+      *ngFor="let link of graph.links"
+      (click)="onSelectedLink(link)">
     </g>
     <g [nodeVisual]="node" 
         *ngFor="let node of graph.nodes"  
         [draggableNode]="node"
-        [draggableInGraph]="graph">
+        [draggableInGraph]="graph"
+        (click)="onSelectedNode(node)"
+        >
     </g>
   </g>
 </svg>

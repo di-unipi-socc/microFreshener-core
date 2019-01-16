@@ -13,6 +13,7 @@ export class GraphLinkComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    
   }
 
 }
