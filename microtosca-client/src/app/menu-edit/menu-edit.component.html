@@ -19,7 +19,6 @@
         r="13" >
     </svg:circle>
 
-
     <svg:rect  ng-model="database"
         class="database"
         (click)="onClickNode(database)"
@@ -37,6 +36,7 @@
         height="20" 
         class="communicationpattern">
     </svg:rect> 
+
     <svg:line ng-model="deploymenttimelink"
         (click)="onClickLink(deploymenttimelink)"
         class="link"
@@ -46,6 +46,7 @@
         [attr.x2]="60"
         [attr.y2]="120">
     </svg:line>
+
     <svg:line  ng-model="runtimelink" 
             (click)="onClickLink(runtimelink)"
             class="link"
@@ -54,7 +55,6 @@
             [attr.x2]="60"
             [attr.y2]="140">
     </svg:line>
-
 </svg>
 
 </div>

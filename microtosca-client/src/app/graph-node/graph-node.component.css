@@ -1,12 +1,4 @@
-.node {
-    cursor: pointer;
-    transition: stroke-width 0.1s ease-out,
-        fill 0.1s ease-out,
-        stroke 0.1s ease-out;
 
-    stroke: white;
-    stroke-width: 0.25;
-}
 .service {
     fill:rgb(224, 221, 12);
     stroke-width:3;

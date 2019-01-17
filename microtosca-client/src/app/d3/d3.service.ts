@@ -65,7 +65,6 @@ export class D3Service {
 
           // node.fx = null;
           // node.fy = null;
-
           node.x = d3.event.x;
           node.y = d3.event.y;
         }
