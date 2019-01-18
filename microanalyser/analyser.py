@@ -6,97 +6,86 @@ class MicroAnalyser(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
-        self.wrong_cuts_relationships = []
-        self.shared_databases = []
-        self.not_independently_deployabe_services = []
-        self.not_horizzontally_scalable_services = []
-        self.not_fault_resilient_services = []
+        self.antipatterns = {} # dictionary  of function to be execetued on each node for discover an antipatterns
+        self.antipatterns['shared_database'] = self.shared_database
+        self.antipatterns['not_independently_deployable'] = self.independently_deployabe
+        self.antipatterns['not_horizzontally_scalable'] = self.horizzontally_scalable
+        self.antipatterns['not_fault_resilient'] = self.fault_resilient
+        self.antipatterns['wrong_cut'] = self.wrong_cut
+
+
+        # self.wrong_cuts_relationships = []
+        # self.shared_databases = []
+        # self.not_independently_deployabe_services = []
+        # self.not_horizzontally_scalable_services = []
+        # self.not_fault_resilient_services = []
 
     def analyse(self):
-        for node in self.micro_model.services:
-            for relationship in node.relationships:
-                if(self.is_wrong_cut(relationship)):
-                    self.wrong_cuts_relationships.append(str(relationship))
-        for node in self.micro_model.databases:
-            if(self.is_shared_database(node)):
-                self.shared_databases.append(str(node))
-        for node in self.micro_model.services:
-            if not self.is_independently_deployabe(node):
-                self.not_independently_deployabe_services.append(str(node))
-            if not self.is_horizzontally_scalable(node):
-                self.not_horizzontally_scalable_services.append(str(node))
-            if not self.is_fault_resilient(node):
-                self.not_fault_resilient_services.append(str(node))
-        return {'wrong_cuts_relationship': self.wrong_cuts_relationships,
-                'shared_databases': self.shared_databases,
-                'not_independently_deployable': self.not_independently_deployabe_services,
-                'not_horizzontally_scalable_services': self.not_horizzontally_scalable_services,
-                'not_fault_resilient_services': self.not_fault_resilient_services
-                }
-
+        nodes_ap = []
+        for node in self.micro_model.nodes:
+            nodes_ap.append(self.analyse_node(node))
+        return nodes_ap
+    
+    def analyse_node(self, node):
+        node_dict = {'node': node, 
+                    'name': node.name,
+                    'antipatterns': []
+                    }
+        for name, funct in self.antipatterns.items():
+            node_dict['antipatterns'].append({name: funct(node)})
+        return node_dict
+                
     def analyse_squad(self, name):
-        wc_rels = {}
+        wc_rels = {'squad':name, "nodes": []}
         squad = self.micro_model.get_squad(name)
         for member in squad.members:
-           wc_rels[member.name] = self.analyse_node(member.name)
+           wc_rels["nodes"].append(self.analyse_node(member))
         return wc_rels
 
-    def analyse_node(self, name):
-        wrong_cuts_relationships = []
-        node = self.micro_model[name]
+    def wrong_cut(self, node):
+        interactions = []
+        # if(isinstance(node, Service)):
         for relationship in node.relationships:
-                if(self.is_wrong_cut(relationship)):
-                    wrong_cuts_relationships.append(str(relationship))
-        return  wrong_cuts_relationships
+            source_node = relationship.source
+            target_node = relationship.target
+            source_squad = self.micro_model.squad_of(source_node)
+            target_squad = self.micro_model.squad_of(target_node)
+            if (isinstance(source_node, Service) and isinstance(target_node, Database)
+                and source_squad != target_squad):
+                interactions.append(relationship)
+        return interactions
 
-    def is_wrong_cut(self, relationship):
-        source_node = relationship.source
-        target_node = relationship.target
-        source_squad = self.micro_model.squad_of(source_node)
-        target_squad = self.micro_model.squad_of(target_node)
-        if (isinstance(source_node, Service) and isinstance(target_node, Database)
-            and source_squad != target_squad):
-            return True
-        return False
 
-    def is_shared_database(self, node):
-        s = set(rel for rel in node.incoming)
-        return  len(s) > 1
-        # if(len(s) > 1):
-        #     return True
-        # else:
-        #     return False
+    def shared_database(self, node):
+        if(isinstance(node, Database)):
+            return set(rel for rel in node.incoming)
+        else: return None
+ 
+    def independently_deployabe(self, node):
+        interaction = []
+        if(isinstance(node, Service)):
+             interaction = [dt_interaction for dt_interaction in node.deployment_time if (isinstance(dt_interaction.target, Service)
+                            # TODO: cehck if is derived from a Communication Pattern
+                            or isinstance(dt_interaction.target, CommunicationPattern))]
+        return interaction
 
-    def is_independently_deployabe(self, node):
-        interaction = [dt_interaction for dt_interaction in node.deployment_time
-                       if (isinstance(dt_interaction.target, Service)
-                           # TODO: cehck if is derived from a Communication Pattern
-                           or isinstance(dt_interaction.target, CommunicationPattern))]
-        if(interaction):
-            return False
-        else:
-            return True
+    def horizzontally_scalable(self, node):
+        interaction = []
+        if(isinstance(node, Service)):
+            interactions = [up_rt for up_rt in node.up_run_time_requirements if (
+                isinstance(up_rt.source, Service))]
+        return interaction
 
-    def is_horizzontally_scalable(self, node):
-        interactions = [up_rt for up_rt in node.up_run_time_requirements if (
-            isinstance(up_rt.source, Service))]
-        if(interactions):
-            return False
-        else:
-            return True
-
-    def is_fault_resilient(self, node):
-        interactions = [rt_int for rt_int in node.run_time if isinstance(
-            rt_int.target, Service)]
-        # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
-        # odes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and
-        #                                              renq.target.concrete_type !=  CIRCUIT_BREAKER)
-        #             ]
-        # vs_patterns = [node for node in nodes_patterns if node.]
-        if(interactions):
-            return False
-        else:
-            return True
+    def fault_resilient(self, node):
+        interactions = []
+        if(isinstance(node, Service)):
+            interactions = [rt_int for rt_int in node.run_time if isinstance(rt_int.target, Service)]
+            # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
+            # odes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and
+            #                                              renq.target.concrete_type !=  CIRCUIT_BREAKER)
+            #             ]
+            # vs_patterns = [node for node in nodes_patterns if node.]
+        return interactions
 
     # shared persitency antipattern
     def all_shared_databases(self):

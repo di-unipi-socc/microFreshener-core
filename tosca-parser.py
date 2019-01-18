@@ -46,7 +46,7 @@ analyser = MicroAnalyser(microtosca_template)
 
 # print(analyser.analyse_node('shipping'))
 # print(analyser.analyse_node('order'))
-print(analyser.analyse_squad('group2'))
+pprint.pprint(analyser.analyse_squad('group2'))
 
 
 #*******************************
