@@ -8,7 +8,6 @@ from ..graph.helper import get_type
 
 from ..type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
 
-
 class YmlLoader(object):
 
     def __init__(self):

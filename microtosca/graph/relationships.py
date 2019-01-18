@@ -9,7 +9,6 @@ REQUIREMENTS = STORAGE, CONNECTION, DEPENDENCY, HOST =\
 CAPABILITIES = ENDPOINT, FEATURE, HOST, ATTACHMENT =\
                'endpoint', 'feature', 'host', 'attachement'
 
-
 def _get_str_name(obj):
     return obj if isinstance(obj, six.string_types) else obj.name
 

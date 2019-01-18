@@ -12,7 +12,7 @@ from microtosca.graph.nodes import Service, Database, CommunicationPattern
 from microtosca.graph.relationships import InteractsWith
 from microtosca.graph.template import MicroToscaTemplate
 from microtosca.analyser import MicroToscaAnalyser
-from microtosca.loader.yml import YmlLoader
+from microtosca.loader import YmlLoader
 
 import pprint
 

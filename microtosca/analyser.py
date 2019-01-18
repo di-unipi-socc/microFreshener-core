@@ -2,7 +2,6 @@ from .graph.nodes import Service, Database, CommunicationPattern
 from .graph.relationships import InteractsWith
 from .graph.template import MicroToscaTemplate
 
-
 class MicroToscaAnalyser(object):
 
     def __init__(self, micro_tosca_template):
@@ -36,16 +35,12 @@ class MicroToscaAnalyser(object):
                 }
 
     def is_wrong_cut(self, relationship):
-
-
-        
         source_node = relationship.source
         target_node = relationship.target
         source_squad = self.micro_template.squad_of(source_node)
         target_squad = self.micro_template.squad_of(target_node)
         if (isinstance(source_node, Service) and isinstance(target_node, Database)
-                    and source_squad != target_squad
-                ):
+                    and source_squad != target_squad):
             return True
         return False
 
