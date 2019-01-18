@@ -35,8 +35,7 @@ class Squad(Root):
     #     return g
 
     def add_node(self, member):
-        # membere is a string
-        # TODO: maybe _members can be an array insted of a dictionary
+        # member is a string, with the methods update() the object are inserted 
         self._members[member] = member 
 
     def __str__(self):

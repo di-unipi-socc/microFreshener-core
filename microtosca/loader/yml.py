@@ -13,7 +13,7 @@ class MicroToscaLoader(object):
     def __init__(self):
         pass # self.microtosca_template = micro_tosca_template
     
-    def parse(self, path_to_yml):
+    def load(self, path_to_yml):
         yaml = ruamel.yaml.YAML() # default  type='rt' 
     
         microtosca_template = MicroModel('micro.tosca')

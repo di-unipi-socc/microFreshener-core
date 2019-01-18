@@ -34,22 +34,38 @@ class MicroAnalyser(object):
                 'not_fault_resilient_services': self.not_fault_resilient_services
                 }
 
+    def analyse_squad(self, name):
+        wc_rels = {}
+        squad = self.micro_model.get_squad(name)
+        for member in squad.members:
+           wc_rels[member.name] = self.analyse_node(member.name)
+        return wc_rels
+
+    def analyse_node(self, name):
+        wrong_cuts_relationships = []
+        node = self.micro_model[name]
+        for relationship in node.relationships:
+                if(self.is_wrong_cut(relationship)):
+                    wrong_cuts_relationships.append(str(relationship))
+        return  wrong_cuts_relationships
+
     def is_wrong_cut(self, relationship):
         source_node = relationship.source
         target_node = relationship.target
         source_squad = self.micro_model.squad_of(source_node)
         target_squad = self.micro_model.squad_of(target_node)
         if (isinstance(source_node, Service) and isinstance(target_node, Database)
-                    and source_squad != target_squad):
+            and source_squad != target_squad):
             return True
         return False
 
     def is_shared_database(self, node):
         s = set(rel for rel in node.incoming)
-        if(len(s) > 1):
-            return True
-        else:
-            return False
+        return  len(s) > 1
+        # if(len(s) > 1):
+        #     return True
+        # else:
+        #     return False
 
     def is_independently_deployabe(self, node):
         interaction = [dt_interaction for dt_interaction in node.deployment_time

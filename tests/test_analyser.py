@@ -30,6 +30,6 @@ class TestAnalyser(TestCase):
 
     def get_template(file):
         loader = MicroToscaLoader()
-        microtosca_template = loader.parse(file)
+        microtosca_template = loader.load(file)
         microtosca_template.update() 
         return microtosca_template

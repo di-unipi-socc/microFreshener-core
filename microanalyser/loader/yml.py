@@ -12,7 +12,7 @@ class MicroToscaLoader(object):
     def __init__(self):
         pass # self.micro_model = micro_tosca_template
     
-    def parse(self, path_to_yml):
+    def load(self, path_to_yml):
         yaml = ruamel.yaml.YAML() # default  type='rt' 
     
         micro_model = MicroModel('micro.tosca')
@@ -52,6 +52,8 @@ class MicroToscaLoader(object):
                 squad = Squad(group_name)
                 for member in self.get_members(ordered_dict):
                     squad.add_node(member)
+                    # squad.add_node(micro_model[member])
+
             micro_model.add_group(squad)
         return micro_model
 

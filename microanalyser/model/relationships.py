@@ -12,7 +12,6 @@ CAPABILITIES = ENDPOINT, FEATURE, HOST, ATTACHMENT =\
 def _get_str_name(obj):
     return obj if isinstance(obj, six.string_types) else obj.name
 
-
 def _get_str_full_name(obj):
     return obj if isinstance(obj, six.string_types) else obj.full_name
 

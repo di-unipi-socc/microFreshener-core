@@ -33,7 +33,7 @@ if tosca.version:
 #         LOADER: yml 
 #*******************************
 loader = MicroToscaLoader()
-microtosca_template = loader.parse(path_to_yml)
+microtosca_template = loader.load(path_to_yml)
 microtosca_template.update() # create object pointers and up_requirements
 
 #*******************************
@@ -41,8 +41,13 @@ microtosca_template.update() # create object pointers and up_requirements
 #*******************************
 
 analyser = MicroAnalyser(microtosca_template)
-res = analyser.analyse()
-pprint.pprint(res)
+# res = analyser.analyse()
+# pprint.pprint(res)
+
+# print(analyser.analyse_node('shipping'))
+# print(analyser.analyse_node('order'))
+print(analyser.analyse_squad('group2'))
+
 
 #*******************************
 #         OUTPUTTER: json

@@ -36,6 +36,9 @@ class MicroModel:
     def squads(self):
         return (v for k, v in self._groups.items() if isinstance(v, Squad))
 
+    def get_squad(self, name):
+        return self._groups.get(name, None)
+
     def squad_of(self, node):
         for squad in self.squads:
             for member in squad.members:
@@ -71,9 +74,10 @@ class MicroModel:
     def add_group(self, group):
         self._groups[group.name] = group
 
+    # return a node by its name
     def __getitem__(self, name):
         return self._nodes.get(name, None)
- 
+        
     def __contains__(self, item):
         if isinstance(item, six.string_types):
             return self[item] is not None
@@ -83,11 +87,3 @@ class MicroModel:
 
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
-
-    # def __dict__(self):
-    #      model = dict()
-    #      model['services'] = [{"mcm":34}]
-    #      return model
-
-    # def __setstate__(self):
-    #     self.__dict__ = {"ciao":45}
