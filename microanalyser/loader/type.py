@@ -1,5 +1,6 @@
+# MicroTosca types
 
-#  node types
+# MicroTosca node types of  
 SERVICE = 'micro.nodes.Service'
 COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 DATABASE = 'micro.nodes.Database'
@@ -11,5 +12,5 @@ INTERACT_WITH = 'micro.relationships.InteractsWith'
 RUN_TIME = "run_time"
 DEPLOYMENT_TIME = "deployment_time"
 
-
+# SUD type
 SQUAD = 'micro.groups.Squad'

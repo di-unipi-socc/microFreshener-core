@@ -6,7 +6,7 @@ def readme():
         return f.read()
 
 
-setup(name='microtosca',
+setup(name='microanalyser',
       version='0.1',
       description='',
       long_description=readme(),
@@ -15,7 +15,7 @@ setup(name='microtosca',
       author='Davide Neri',
       author_email='davide.neri@di.unipi.it',
       license='MIT',
-      packages=['microtosca'],
+      packages=['microanalyser'],
       install_requires=[
           'ruamel.yaml','tosca-parser'
       ],

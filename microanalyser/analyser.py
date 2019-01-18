@@ -1,11 +1,11 @@
-from .graph.nodes import Service, Database, CommunicationPattern
-from .graph.relationships import InteractsWith
-from .graph.template import MicroToscaTemplate
+from .model.nodes import Service, Database, CommunicationPattern
+from .model.relationships import InteractsWith
+from .model.template import MicroModel
 
-class MicroToscaAnalyser(object):
+class MicroAnalyser(object):
 
-    def __init__(self, micro_tosca_template):
-        self.micro_template = micro_tosca_template
+    def __init__(self, micro_model):
+        self.micro_model = micro_model
         self.wrong_cuts_relationships = []
         self.shared_databases = []
         self.not_independently_deployabe_services = []
@@ -13,14 +13,14 @@ class MicroToscaAnalyser(object):
         self.not_fault_resilient_services = []
 
     def analyse(self):
-        for node in self.micro_template.services:
+        for node in self.micro_model.services:
             for relationship in node.relationships:
                 if(self.is_wrong_cut(relationship)):
                     self.wrong_cuts_relationships.append(str(relationship))
-        for node in self.micro_template.databases:
+        for node in self.micro_model.databases:
             if(self.is_shared_database(node)):
                 self.shared_databases.append(str(node))
-        for node in self.micro_template.services:
+        for node in self.micro_model.services:
             if not self.is_independently_deployabe(node):
                 self.not_independently_deployabe_services.append(str(node))
             if not self.is_horizzontally_scalable(node):
@@ -37,8 +37,8 @@ class MicroToscaAnalyser(object):
     def is_wrong_cut(self, relationship):
         source_node = relationship.source
         target_node = relationship.target
-        source_squad = self.micro_template.squad_of(source_node)
-        target_squad = self.micro_template.squad_of(target_node)
+        source_squad = self.micro_model.squad_of(source_node)
+        target_squad = self.micro_model.squad_of(target_node)
         if (isinstance(source_node, Service) and isinstance(target_node, Database)
                     and source_squad != target_squad):
             return True
@@ -86,28 +86,28 @@ class MicroToscaAnalyser(object):
     def all_shared_databases(self):
         """Check the  presence of inapprorpiate service intimacy and shared persistency antipatterns"""
         shared_databases = []
-        for node in self.micro_template.databases:
+        for node in self.micro_model.databases:
             if(self.is_shared_database(node)):
                 shared_databases.append(str(node))
         return shared_databases
 
     def all_not_independently_deployabe(self):
         service_with_deployment_interactions = []
-        for node in self.micro_template.services:
+        for node in self.micro_model.services:
             if(not self.is_independently_deployabe(node)):
                 service_with_deployment_interactions.append(str(node))
         return service_with_deployment_interactions
 
     def all_not_horizzontally_scalable(self):
         services_with_direct_run_time = []
-        for node in self.micro_template.services:
+        for node in self.micro_model.services:
             if(not self.is_horizzontally_scalable(node)):
                 services_with_direct_run_time.append(str(node))
         return services_with_direct_run_time
 
     def all_not_fault_resilient(self):
         services_not_fault_resilient = []
-        for node in self.micro_template.services:
+        for node in self.micro_model.services:
             if(not self.is_fault_resilient(node)):
                 services_not_fault_resilient.append(str(node))
         return services_not_fault_resilient

@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from microtosca.loader.yml import YmlLoader
-from microtosca.graph.template import MicroToscaTemplate
-from microtosca.analyser import MicroToscaAnalyser
+from microanalyser.loader.yml import MicroToscaLoader
+from microanalyser.model.template import MicroModel
+from microanalyser.analyser import MicroAnalyser
 
 class TestAnalyser(TestCase):
 
@@ -10,7 +10,7 @@ class TestAnalyser(TestCase):
     def setUpClass(self):
         file = 'data/examples/helloworld_squads.yml'
         self.microtosca_template = self.get_template(file)
-        self.analyser = MicroToscaAnalyser(self.microtosca_template)
+        self.analyser = MicroAnalyser(self.microtosca_template)
 
     def test_shared_database(self):
         dbshared = self.analyser.all_shared_databases()
@@ -29,7 +29,7 @@ class TestAnalyser(TestCase):
         self.assertEqual(nid,['order (service)'])
 
     def get_template(file):
-        loader = YmlLoader()
+        loader = MicroToscaLoader()
         microtosca_template = loader.parse(file)
         microtosca_template.update() 
         return microtosca_template

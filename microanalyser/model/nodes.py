@@ -5,8 +5,6 @@ Nodes module
 from .relationships import InteractsWith
 from .helper import get_requirements
 
-from ..type import INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
-
 def _add_to_map(d, k, v):
     if d is None:
         d = {}
@@ -100,8 +98,6 @@ class Service(Root):
     def __init__(self, name):
         super(Service, self).__init__(name)
         
-        self._yaml = None 
-
         # requirements
         self._run_time = []
         self._deployment_time = []
@@ -121,39 +117,6 @@ class Service(Root):
     @property
     def deployment_time(self):
          return self._deployment_time
-    
-    @classmethod
-    def from_yaml(cls,node_name, yaml):
-        s = cls(node_name)
-        s._yaml = yaml
-        for req in get_requirements(yaml):
-            for name, value in req.items(): # [('run_time', 'order_db')]
-                if(name == RUN_TIME):  
-                    s.add_run_time(value)
-                if(name == DEPLOYMENT_TIME):
-                    s.add_deployment_time(value)
-        return s
-
-    def update_yaml(self):
-        # Update the self._yaml dictionary with the property of
-        # the Service object.
-        # You can also maintain updated the _yaml dictionary at
-        # every change of the Service object,  but in Python you do
-        # not have privacy on the property so objects can be modified
-        # without you know.
-        pass
-        # def update_req_runtime(node, old, new):
-        #     if 'requirements' in node:
-        #         for r in node['requirements']:
-        #             (k, v), = r.items()
-        #             print(k,v)
-        #             if 'run_time' == k and v == old  :
-        #                 if not isinstance(v, dict):
-        #                     r[k] = new
-        #                 else:
-        #                     r[k]['node'] = new
-        #                 return True
-        #     return False
 
     def add_run_time(self, item):
         if not isinstance(item, InteractsWith):
@@ -183,8 +146,6 @@ class CommunicationPattern(Root):
     def __init__(self, name, ctype):
         super(CommunicationPattern, self).__init__(name)
        
-        self._yaml = None # yaml object reference
-
         self.concrete_type = ctype # 'MessageBrocker, CircuitBRaker'
 
         # requirements
@@ -215,17 +176,6 @@ class CommunicationPattern(Root):
     # def deployment_time(self):
     #      return (i.format for i in self._deployment_time)
     
-    @classmethod
-    def from_yaml(cls,node_name, node_type, yaml):
-        c = cls(node_name, node_type)
-        c._yaml = yaml
-        for req in  get_requirements(yaml):
-            for name, value in req.items(): # [('run_time', 'order_db')]
-                if(name == RUN_TIME):  
-                    c.add_run_time(value)
-                if(name == DEPLOYMENT_TIME):
-                    c.add_deployment_time(value)
-        return c
 
     def add_run_time(self, item):
         if not isinstance(item, InteractsWith):
@@ -252,8 +202,6 @@ class Database(Root):
     def __init__(self, name):
         super(Database, self).__init__(name)
 
-        self._yaml = None # yaml object reference
-
     #@property
     #def full_name(self):
     #    return 'tosker_{}.{}'.format(self.tpl.name, self.name)
@@ -269,12 +217,6 @@ class Database(Root):
     @property
     def deployment_time(self):
          return []
-
-    @classmethod
-    def from_yaml(cls,node_name, yaml):
-        d = cls(node_name)
-        d._yaml = yaml
-        return d
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'database')

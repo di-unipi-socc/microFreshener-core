@@ -26,15 +26,15 @@ class Squad(Root):
     def members(self):
         return [v for k, v in self._members.items()]
 
-    @classmethod
-    def from_yaml(cls, group_name, yaml):
-        g = cls(group_name)
-        g._yaml = yaml
-        for member in get_members(yaml):
-            g.push(member)
-        return g
+    # @classmethod
+    # def from_yaml(cls, group_name, yaml):
+    #     g = cls(group_name)
+    #     g._yaml = yaml
+    #     for member in get_members(yaml):
+    #         g.add_node(member)
+    #     return g
 
-    def push(self, member):
+    def add_node(self, member):
         # membere is a string
         # TODO: maybe _members can be an array insted of a dictionary
         self._members[member] = member 

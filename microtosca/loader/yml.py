@@ -1,14 +1,14 @@
 import ruamel.yaml
 from pathlib import Path
-from ..graph.template import MicroToscaTemplate
-from ..graph.nodes import Service, Database, CommunicationPattern
-from ..graph.groups import Squad
-from ..graph.helper import get_type
+from ..model.template import MicroModel
+from ..model.nodes import Service, Database, CommunicationPattern
+from ..model.groups import Squad
+from ..model.helper import get_type
 
 
 from ..type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
 
-class YmlLoader(object):
+class MicroToscaLoader(object):
 
     def __init__(self):
         pass # self.microtosca_template = micro_tosca_template
@@ -16,7 +16,7 @@ class YmlLoader(object):
     def parse(self, path_to_yml):
         yaml = ruamel.yaml.YAML() # default  type='rt' 
     
-        microtosca_template = MicroToscaTemplate('micro.tosca')
+        microtosca_template = MicroModel('micro.tosca')
         micro_yml = yaml.load(Path(path_to_yml))
         nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
 
@@ -28,7 +28,7 @@ class YmlLoader(object):
                 el = CommunicationPattern.from_yaml(node_name,node_type,commented_map)
             if node_type == DATABASE:
                 el = Database.from_yaml(node_name,commented_map)
-            microtosca_template.push(el)
+            microtosca_template.add_node(el)
             
         groups_ruamel = micro_yml.get('topology_template').get('groups')
 

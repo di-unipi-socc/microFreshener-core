@@ -1,5 +1,5 @@
 """
-Use of MicroTosca package
+Use of microanalyser package
 """
 
 import os
@@ -8,11 +8,11 @@ import os
 from toscaparser.common.exception import ValidationError
 from toscaparser.tosca_template import ToscaTemplate
 
-from microtosca.graph.nodes import Service, Database, CommunicationPattern
-from microtosca.graph.relationships import InteractsWith
-from microtosca.graph.template import MicroToscaTemplate
-from microtosca.analyser import MicroToscaAnalyser
-from microtosca.loader import YmlLoader
+from microanalyser.model.nodes import Service, Database, CommunicationPattern
+from microanalyser.model.relationships import InteractsWith
+from microanalyser.model.template import MicroModel
+from microanalyser.analyser import MicroAnalyser
+from microanalyser.loader import MicroToscaLoader
 
 import pprint
 
@@ -32,7 +32,7 @@ if tosca.version:
 #********************************
 #         LOADER: yml 
 #*******************************
-loader = YmlLoader()
+loader = MicroToscaLoader()
 microtosca_template = loader.parse(path_to_yml)
 microtosca_template.update() # create object pointers and up_requirements
 
@@ -40,7 +40,7 @@ microtosca_template.update() # create object pointers and up_requirements
 #         ANALYSER
 #*******************************
 
-analyser = MicroToscaAnalyser(microtosca_template)
+analyser = MicroAnalyser(microtosca_template)
 res = analyser.analyse()
 pprint.pprint(res)
 
@@ -50,7 +50,7 @@ pprint.pprint(res)
 
 # import json
 
-# graph = dict()
+# model = dict()
 
-# graph['nodes'] = [ repr(n) for n in micro_template.nodes]
-# print(graph)
+# model['nodes'] = [ repr(n) for n in micro_template.nodes]
+# print(model)

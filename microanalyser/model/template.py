@@ -1,11 +1,11 @@
 '''
-MicroToscaTemplate module
+MicroModel module
 '''
 import six
 from .nodes import Root, Service, Database, CommunicationPattern
 from .groups import Squad
 
-class MicroToscaTemplate:
+class MicroModel:
 
     def __init__(self, name):
         self._nodes = {}
@@ -65,7 +65,7 @@ class MicroToscaTemplate:
             for rel in node.deployment_time:
                 rel.target.up_deployment_time_requirements.append(rel)
 
-    def push(self, node):
+    def add_node(self, node):
         self._nodes[node.name] = node
 
     def add_group(self, group):
@@ -85,9 +85,9 @@ class MicroToscaTemplate:
         return ', '.join((i.name for i in self.nodes))
 
     # def __dict__(self):
-    #      graph = dict()
-    #      graph['services'] = [{"mcm":34}]
-    #      return graph
+    #      model = dict()
+    #      model['services'] = [{"mcm":34}]
+    #      return model
 
     # def __setstate__(self):
     #     self.__dict__ = {"ciao":45}
