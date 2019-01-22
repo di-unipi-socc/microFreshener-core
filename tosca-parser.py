@@ -11,7 +11,7 @@ from toscaparser.tosca_template import ToscaTemplate
 from microanalyser.model.nodes import Service, Database, CommunicationPattern
 from microanalyser.model.relationships import InteractsWith
 from microanalyser.model.template import MicroModel
-from microanalyser.analyser import MicroAnalyser
+from microanalyser.analyser.analyser import MicroAnalyser
 from microanalyser.loader import MicroToscaLoader
 
 import pprint
@@ -41,12 +41,13 @@ microtosca_template.update() # create object pointers and up_requirements
 #*******************************
 
 analyser = MicroAnalyser(microtosca_template)
+
 # res = analyser.analyse()
 # pprint.pprint(res)
 
-# print(analyser.analyse_node('shipping'))
-# print(analyser.analyse_node('order'))
-pprint.pprint(analyser.analyse_squad('group2'))
+# pprint.pprint(analyser.analyse_node('shipping'))
+pprint.pprint(analyser.analyse_node('order_db'))
+# pprint.pprint(analyser.analyse_squad('group2'))
 
 
 #*******************************

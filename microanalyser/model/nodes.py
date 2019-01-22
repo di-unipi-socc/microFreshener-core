@@ -218,6 +218,9 @@ class Database(Root):
     def deployment_time(self):
          return []
 
+    def analyse(self):
+        return set(rel) for rel in node.incoming
+
     def __str__(self):
         return '{} ({})'.format(self.name, 'database')
 
