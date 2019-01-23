@@ -42,14 +42,14 @@ microtosca_template.update() # create object pointers and up_requirements
 
 analyser = MicroAnalyser(microtosca_template)
 
-res = analyser.analyse(nodes_to_exclude = ['shipping','order'], principles_to_exclude=[], config_node ={})
+res = analyser.analyse(nodes_to_exclude = [], principles_to_exclude=[], config_nodes ={})
 pprint.pprint(res)
 # pprint.pprint(analyser.analyse_node('shipping', config_analysis={'antipatterns':[SHARED_PERSISTENCY]})) # constraints=[DEPLOYMENT_INTERACTION]
 
 # pprint.pprint(analyser.analyse_node('order_db'))
 # pprint.pprint(analyser.analyse_node('order_db', constraints=[SHARED_PERSISTNECY]))
 
-# pprint.pprint(analyser.analyse_squad('group2'))
+#pprint.pprint(analyser.analyse_squad('group2'))
 
 
 #*******************************

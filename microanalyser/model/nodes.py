@@ -108,19 +108,19 @@ class Service(Software):
         self._run_time = []
         self._deployment_time = []
 
-    def check_antipatterns(self, config_analysis={}):
+    def check_antipatterns(self, antipatterns_tobe_discarded=[]):
         # config_analysis  = {
         #      'antipatterns' :['ap1, ap2, apn]
         #      'refactorings'. [r1, r2, rn]
         # }
         antipatterns =[]
-        antipatterns_to_discard = config_analysis.get('antipatterns',[])
-        refactorings = config_analysis.get('refactorings',[])
-        if DEPLOYMENT_INTERACTION not in antipatterns_to_discard:
+    
+        
+        if DEPLOYMENT_INTERACTION not in antipatterns_tobe_discarded:
             antipatterns.append(self._deployment_interations().to_dict())
-        if DIRECT_INTERACTION  not in antipatterns_to_discard:
+        if DIRECT_INTERACTION  not in antipatterns_tobe_discarded:
             antipatterns.append(self._direct_interactions().to_dict())
-        if CASCADING_FAILURE  not in antipatterns_to_discard:
+        if CASCADING_FAILURE  not in antipatterns_tobe_discarded:
             antipatterns.append(self._cascading_failures().to_dict())
         return antipatterns
 
@@ -255,11 +255,11 @@ class Database(Root):
     def deployment_time(self):
          return []
 
-    def check_antipatterns(self, config_analysis={}):
+    def check_antipatterns(self, antipatterns_tobe_discarded=[]):
         antipatterns = []
-        antipatterns_to_discard = config_analysis.get('antipatterns',[])
-        # refactorings = config_analysis.get('refactorings',[])
-        if SHARED_PERSISTENCY not in antipatterns_to_discard:
+    
+        # 
+        if SHARED_PERSISTENCY not in antipatterns_tobe_discarded:
             antipatterns.append(self._shared_persitency().to_dict())
         return antipatterns
     
