@@ -13,7 +13,7 @@ from microanalyser.model.relationships import InteractsWith
 from microanalyser.model.template import MicroModel
 from microanalyser.analyser.analyser import MicroAnalyser
 from microanalyser.loader import MicroToscaLoader
-
+from microanalyser.model.antipatterns import DEPLOYMENT_INTERACTION, DIRECT_INTERACTION, SHARED_PERSISTENCY
 import pprint
 
 example = 'data/examples/helloworld_squads.yml'
@@ -42,21 +42,16 @@ microtosca_template.update() # create object pointers and up_requirements
 
 analyser = MicroAnalyser(microtosca_template)
 
-# res = analyser.analyse()
-# pprint.pprint(res)
+res = analyser.analyse(nodes_to_exclude = ['shipping','order'], principles_to_exclude=[], config_node ={})
+pprint.pprint(res)
+# pprint.pprint(analyser.analyse_node('shipping', config_analysis={'antipatterns':[SHARED_PERSISTENCY]})) # constraints=[DEPLOYMENT_INTERACTION]
 
-# pprint.pprint(analyser.analyse_node('shipping'))
-pprint.pprint(analyser.analyse_node('order_db'))
+# pprint.pprint(analyser.analyse_node('order_db'))
+# pprint.pprint(analyser.analyse_node('order_db', constraints=[SHARED_PERSISTNECY]))
+
 # pprint.pprint(analyser.analyse_squad('group2'))
 
 
 #*******************************
 #         OUTPUTTER: json
 #*******************************
-
-# import json
-
-# model = dict()
-
-# model['nodes'] = [ repr(n) for n in micro_template.nodes]
-# print(model)

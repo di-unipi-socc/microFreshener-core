@@ -1,6 +1,7 @@
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from ..model.relationships import InteractsWith
 from ..model.template import MicroModel
+from ..model.property import CONFIG_ANALYSER
 
 class MicroAnalyser(object):
 
@@ -20,6 +21,17 @@ class MicroAnalyser(object):
             {   id: 1,
                 name: bounded context: {
                 antipatterns : [
+                    {   id: 1,
+                        name: wrong_cut 
+                        cause: Interaction(x,y)
+                        refactorings: [
+                            {   id: 1,
+                                name: movedbT1,
+                                solution: 
+                            },
+                            {   id: 2,
+                                name: movedbT2:
+                                solution:  antipatterns : [
                     {   id: 1,
                         name: wrong_cut 
                         cause: Interaction(x,y)
@@ -66,32 +78,33 @@ class MicroAnalyser(object):
         ]
 
         '''
-        self.constraints = {} # dictionary of filter 
-    
-    def filters_node(self, node, nodes_tobe_excluded):
-        return  node.name in nodes_tobe_excluded
-
-    def addAntipattenFunction(self, antipattern_funct):
-        self.antipatterns[antipattern_funct.__name__ ] = antipattern_funct
-        print(antipattern_funct.__name__ )
-
-    def analyse(self):
-        nodes_ap = []
+    def analyse(self, nodes_to_exclude = [], principles_to_exclude=[], config_node ={}): 
+        # config_nodes  = { 'shipping': {   
+        #                        antipatterns :['ap1, ap2,ap3]
+        #               }
+        results = {'nodes':[]}
         for node in self.micro_model.nodes:
-            nodes_ap.append(self.analyse_node(node))
-        return nodes_ap
+            if node.name not in nodes_to_exclude:
+                # for principle in CONFIG_ANALYSER.get('principles', []):
+                #     if principle not in principles_to_exclude:
+                        res = self.analyse_node(node, config_node.get(node.name, {}))
+                        results['nodes'].append(res)
+        return results
     
-    def analyse_node(self, node):
+    def analyse_node(self, node, config_analysis= {}): 
+        '''
+        config_analysis  = {
+             'antipatterns' :['ap1, ap2, apn]
+             'refactorings'. [r1, r2, rn]
+        }
+
+        '''
+        
         node = node if hasattr(node, 'name') else self.micro_model[node]
-        print(node.name)
-        node_dict = {'node': node, 
-                    'name': node.name,
-                    'antipatterns': []
-                    }
-        for name, funct in self.antipatterns.items():
-            node_dict['antipatterns'].append({name: funct(node)})
-        return node_dict
-                
+        res = {'name': node.name}
+        res['antipatterns'] =  node.check_antipatterns(config_analysis)
+        return res
+
     def analyse_squad(self, name):
         wc_rels = {'squad':name, "nodes": []}
         squad = self.micro_model.get_squad(name)
@@ -111,7 +124,6 @@ class MicroAnalyser(object):
                 interactions.append(relationship)
                 
         return interactions
-
 
     def shared_persistency(self, node):
         if(isinstance(node, Database)):

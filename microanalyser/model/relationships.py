@@ -31,6 +31,9 @@ class Relationship(object):
     
     def __hash__(self):
         return hash(self.source)+hash(self.target)
+    
+    def to_dict(self):
+        return {'source': str(self.source), 'target': str(self.target)}
 
 class InteractsWith(Relationship):
 
