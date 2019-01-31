@@ -14,5 +14,19 @@ class MergeMicroservice(Refactoring):
     def __init__(sharedpersistency):
         self.shared_persitency = sharedpersistency
     
-    def solution(self):
+    def solution(self, micro_model):
+
         
+
+class MergeMicroservice(Refactoring):
+
+    def __init__():
+        
+    
+    def solution(self):
+
+
+
+def merge_services(micro_model, shared_persistency):
+        for interaction in self.interactions:
+

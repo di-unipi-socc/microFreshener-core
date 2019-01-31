@@ -1,0 +1,58 @@
+import json 
+
+from ..model.template import MicroModel
+from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
+from ..model.nodes import Root, Service, Database, CommunicationPattern
+
+
+class JSONTransformer(object):
+
+    def __init__(self):
+        pass
+
+    # Transform a microModel Oject to a Dicionary format.
+    # @input:  microModel 
+    # @return: JSON string 
+    def transform(self,micro_model):
+        return self.serialize(micro_model)
+        # TODO: returns a JSON o bject instead of dict
+        # ATTENTIOn: in the restfule api the Response() object requires a dict that are than converted into json
+        # return json.dumps(self.serialize(micro_model), ensure_ascii=False)
+
+    def serialize(self, obj):
+        d = {}
+        if (isinstance(obj, MicroModel)):
+             d["name"] = obj.name # name of the models
+             d['nodes'] = []      # list of nodes in the model
+             for n in obj.nodes:
+                ndict = {}
+                ndict['name'] = n.name
+                if(isinstance(n, Service)):
+                   ndict['type'] =  "service"
+                elif(isinstance(n, Database)):
+                    ndict['type'] =  "database"
+                elif(isinstance(n, CommunicationPattern)):
+                   ndict['type'] =  "communicationpattern"
+                else:
+                    # TODO throw an excpetion ?? Node not found
+                    ndict['type'] =  None
+                ndict['run_time_links']  = []
+                ndict['deployment_time_links'] =  []
+                for rel in n.relationships:
+                    nrel = {}
+                    if(isinstance(rel.target, Root)):
+                        nrel['target'] = rel.target.name
+                    else:
+                        nrel['target'] = rel.target
+                    if(isinstance(rel, DeploymentTimeInteraction)):
+                        nrel['type'] = 'deploymenttime'
+                        ndict['deployment_time_links'].append(nrel)
+                    elif(isinstance(rel, RunTimeInteraction)):
+                        nrel['type'] = 'runtime'
+                        ndict['run_time_links'].append(nrel)
+                    else:
+                        nrel['type'] = None
+                        #TODO Throw an exception type not recognized
+                        raise ValueError('Type of relationship not recognized.')
+                d['nodes'].append(ndict)
+        return d

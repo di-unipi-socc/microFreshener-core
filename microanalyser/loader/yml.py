@@ -19,7 +19,6 @@ class MicroToscaLoader(object):
 
         micro_yml = yaml.load(Path(path_to_yml))
         nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
-
         for node_name, commented_map in nodes_ruamel.items():
             node_type = self.get_type(commented_map)
             if node_type == SERVICE:
@@ -45,7 +44,6 @@ class MicroToscaLoader(object):
             micro_model.add_node(el) 
             
         groups_ruamel = micro_yml.get('topology_template').get('groups')
-
         for (group_name, ordered_dict) in groups_ruamel.items():
             group_type = self.get_type(ordered_dict)
             if group_type == SQUAD:

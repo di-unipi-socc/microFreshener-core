@@ -56,4 +56,36 @@ class InteractsWith(Relationship):
     def __repr__(self):
         return 'InteractsWith({})'.format(super(InteractsWith, self).__repr__())
 
+
+class DeploymentTimeInteraction(InteractsWith):
+
+    def __init__(self, source, target, alias=None,
+                 requirement=CONNECTION, capability=ENDPOINT):
+        super(InteractsWith, self).__init__(source, target, requirement, capability)
+
+    def __str__(self):
+        return 'DeploymentTimeInteraction({})'.format(super(InteractsWith, self).__str__())
+    
+    def __repr__(self):
+        return 'DeploymentTimeInteraction({})'.format(super(InteractsWith, self).__repr__())
+    
+    def to_dict(self):
+        return {'source': str(self.source), 'target': str(self.target), "type":"deploymenttime"}
+
+class RunTimeInteraction(InteractsWith):
+
+    def __init__(self, source, target, alias=None,
+                 requirement=CONNECTION, capability=ENDPOINT):
+        super(InteractsWith, self).__init__(source, target, requirement, capability)
+    
+    def __str__(self):
+        return 'RunTimeInteraction({})'.format(super(InteractsWith, self).__str__())
+    
+    def __repr__(self):
+        return 'RunTimeInteraction({})'.format(super(InteractsWith, self).__repr__())
+
+    def to_dict(self):
+        return {'source': str(self.source), 'target': str(self.target), "type":"runtime"}
+
+
     

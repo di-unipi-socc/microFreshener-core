@@ -5,13 +5,16 @@ import six
 from .nodes import Root, Service, Database, CommunicationPattern
 from .groups import Squad
 
+# importing "copy" for copy operations 
+import copy 
+  
 class MicroModel:
 
     def __init__(self, name):
         self._nodes = {}
         self._groups = {}
         self.name = name
-
+        
     @property
     def nodes(self):
         return (v for k, v in self._nodes.items())
@@ -70,7 +73,14 @@ class MicroModel:
 
     def add_node(self, node):
         self._nodes[node.name] = node
-
+    
+    def delete_node(self, node):
+        for rel in node.relationships:
+            print(rel)
+            print("removing ".format(rel) )
+            rel.target.remove_incoming_relationship(rel) # remove the up relationship
+        del self._nodes[node.name]
+        
     def add_group(self, group):
         self._groups[group.name] = group
 
@@ -87,3 +97,6 @@ class MicroModel:
 
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
+
+    def copy(self):
+        return copy.deepcopy(self)

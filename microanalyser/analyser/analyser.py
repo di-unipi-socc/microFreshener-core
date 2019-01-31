@@ -87,11 +87,11 @@ class MicroAnalyser(object):
             if node.name not in nodes_to_exclude:
                 # for principle in CONFIG_ANALYSER.get('principles', []):
                 #     if principle not in principles_to_exclude:
-                        res = self.analyse_node(node, config_nodes.get(node.name, {}))
+                        res = self.analyse_node(node, config_nodes.get(node.name, []))
                         results['nodes'].append(res)
         return results
     
-    def analyse_node(self, node, config_analysis= {}): 
+    def analyse_node(self, node, antipatterns_tobe_discarded=[]): 
         '''
         config_analysis  = {
              'antipatterns' :['ap1, ap2, apn]
@@ -99,10 +99,9 @@ class MicroAnalyser(object):
         }
 
         '''
-        
         node = node if hasattr(node, 'name') else self.micro_model[node]
         res = {'name': node.name}
-        res['antipatterns'] =  node.check_antipatterns(config_analysis)
+        res['antipatterns'] =  node.check_antipatterns(antipatterns_tobe_discarded)
         return res
 
     def analyse_squad(self, name, config_nodes={}):

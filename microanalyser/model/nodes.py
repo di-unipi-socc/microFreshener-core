@@ -2,7 +2,7 @@
 nodes module
 '''
 
-from .relationships import InteractsWith
+from .relationships import DeploymentTimeInteraction, RunTimeInteraction
 from .helper import get_requirements
 
 from .antipatterns import WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INTERACTION, CASCADING_FAILURE
@@ -31,10 +31,26 @@ class Root(object):
         # reverse requirements
         self.up_deployment_time_requirements = []
         self.up_run_time_requirements = []
-        self.antipatterns = {}
 
-    def add_antipattern_function(self, funct):
-        self.antipatterns[funct.__name__, funct ]
+        # list of antipatterns afflicting a node 
+        self.antipatterns =[]
+
+    def addAntipattern(self, antipattern):
+        if(not antipattern.isEmpty()):
+            self.antipatterns.append(antipattern)
+    
+    def getAntipatterns(self):
+        return [ a.to_dict() for a in self.antipatterns]
+
+    def remove_incoming_relationship(self, relationship):
+        if isinstance(relationship, RunTimeInteraction) and relationship in self.up_run_time_requirements:
+            self.up_run_time_requirements.remove(relationship)
+        if isinstance(relationship, DeploymentTimeInteraction) and relationship in self.up_deployment_time_requirements:
+            self.up_deployment_time_requirements.remove(relationship)
+
+    @property
+    def neighbors(self):
+        return set()
 
     @property
     def incoming(self):
@@ -72,6 +88,9 @@ class Software(Root):
         self._run_time = []
         self._deployment_time = []
 
+    @property
+    def neighbors(self):
+        return set(rel.target for rel in self.relationships)
 
     @property
     def relationships(self):
@@ -84,17 +103,17 @@ class Software(Root):
     @property
     def deployment_time(self):
          return (i.format for i in self._deployment_time)
-    
+      
     def add_run_time(self, item):
-        if not isinstance(item, InteractsWith):
-            item = InteractsWith(self, item)
+        if not isinstance(item, RunTimeInteraction):
+            item = RunTimeInteraction(self, item)
         self._run_time.append(item)
         if not isinstance(item.target, str):
             item.target.up_run_time_requirements.append(item)
 
     def add_deployment_time(self, item, alias=None):
-        if not isinstance(item, InteractsWith):
-            item = InteractsWith(self, item, alias)
+        if not isinstance(item, DeploymentTimeInteraction):
+            item = DeploymentTimeInteraction(self, item, alias)
         self._deployment_time.append(item)
         if not isinstance(item.target, str):
             item.target.up_deployment_time_requirements.append(item)
@@ -109,22 +128,16 @@ class Service(Software):
         self._deployment_time = []
 
     def check_antipatterns(self, antipatterns_tobe_discarded=[]):
-        # config_analysis  = {
-        #      'antipatterns' :['ap1, ap2, apn]
-        #      'refactorings'. [r1, r2, rn]
-        # }
-        antipatterns =[]
-    
-        
         if DEPLOYMENT_INTERACTION not in antipatterns_tobe_discarded:
-            antipatterns.append(self._deployment_interations().to_dict())
+            self.addAntipattern(self._deployment_interations())
         if DIRECT_INTERACTION  not in antipatterns_tobe_discarded:
-            antipatterns.append(self._direct_interactions().to_dict())
+            self.addAntipattern(self._direct_interactions())
         if CASCADING_FAILURE  not in antipatterns_tobe_discarded:
-            antipatterns.append(self._cascading_failures().to_dict())
-        return antipatterns
+            self.addAntipattern(self._cascading_failures())
+        return self.getAntipatterns()
 
     def _deployment_interations(self):
+        print("Checking deployment imte interactions for antiapattere")
         deployment_interactions = [dt_interaction for dt_interaction in self.deployment_time 
                             if (isinstance(dt_interaction.target, Service)
                             # TODO: cehck if the targer is derived from teh  Communication Pattern class
@@ -155,21 +168,6 @@ class Service(Software):
     @property
     def deployment_time(self):
          return self._deployment_time
-
-    def add_run_time(self, item):
-        if not isinstance(item, InteractsWith):
-            item = InteractsWith(self, item)
-        self._run_time.append(item)
-        if not isinstance(item.target, str):
-            item.target.up_run_time_requirements.append(item)
-
-    def add_deployment_time(self, item, alias=None):
-        if not isinstance(item, InteractsWith):
-            item = InteractsWith(self, item, alias)
-        self._deployment_time.append(item)
-        if not isinstance(item.target, str):
-            item.target.up_deployment_time_requirements.append(item)
-
 
     def get_str_obj(self):
         return '{}, {}'.format(
@@ -217,26 +215,17 @@ class CommunicationPattern(Software):
     # def deployment_time(self):
     #      return (i.format for i in self._deployment_time)
     
-
-    def add_run_time(self, item):
-        if not isinstance(item, InteractsWith):
-            item = InteractsWith(self, item)
-        self._run_time.append(item)
-        if not isinstance(item.target, str):
-            item.target.up_run_time_requirements.append(item)
-
-    def add_deployment_time(self, item, alias=None):
-        if not isinstance(item, InteractsWith):
-            item = InteractsWith(self, item, alias)
-        self._deployment_time.append(item)
-        if not isinstance(item.target, str):
-            item.target.up_deployment_time_requirements.append(item)
-
     def get_str_obj(self):
         return '{}, {}'.format(super(CommunicationPattern, self), _str_obj(self))
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.concrete_type)
+
+    # def __eq__(self, other):
+    #     return super(CommunicationPattern, self).__eq__(other) and  self.concrete_type == other.type
+
+    # def __hash__(self):
+    #     return hash(self.name)
 
 class Database(Root):
 
@@ -256,15 +245,15 @@ class Database(Root):
          return []
 
     def check_antipatterns(self, antipatterns_tobe_discarded=[]):
-        antipatterns = []
-    
-        # 
         if SHARED_PERSISTENCY not in antipatterns_tobe_discarded:
-            antipatterns.append(self._shared_persitency().to_dict())
-        return antipatterns
-    
+            self.addAntipattern(self._shared_persitency())
+        return self.getAntipatterns()
+
+    def count_antipatterns(self):
+        return len(self.check_antipatterns)
+
     def _shared_persitency(self):
-       return SharedPersistency(self.incoming) if len(self.incoming) > 1 else None
+       return SharedPersistency(self.incoming)
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'database')
