@@ -12,10 +12,11 @@ from microanalyser.model.nodes import Service, Database, CommunicationPattern
 from microanalyser.model.relationships import InteractsWith
 from microanalyser.model.template import MicroModel
 from microanalyser.analyser.analyser import MicroAnalyser
+
 from microanalyser.loader import MicroToscaLoader
 from microanalyser.loader import JSONLoader
+
 from microanalyser.trasformer import JSONTransformer
-from microanalyser.model.antipatterns import DEPLOYMENT_INTERACTION, DIRECT_INTERACTION, SHARED_PERSISTENCY
 import pprint
 
 example = 'data/examples/helloworld_squads.yml'
@@ -52,6 +53,7 @@ if tosca.version:
 loader = JSONLoader()
 micro_model = loader.load(path_to_json)
 
+
 # add node
 # s = Service(name="new")
 # s.add_deployment_time(micro_model["order"])
@@ -81,7 +83,7 @@ analyser = MicroAnalyser(micro_model)
 # analyse a sungle node
 res = analyser.analyse() #nodes_to_exclude = [], principles_to_exclude=[], config_nodes ={}
 pprint.pprint(res)
-# pprint.pprint(analyser.analyse_node('order_db'))
+# pprint.pprint(analyser.analyse_node_principles(micro_model['orderdb']))
 # pprint.pprint(analyser.analyse_node('order_db', constraints=[SHARED_PERSISTNECY]))
 
 # analyse a single squad
@@ -90,18 +92,14 @@ pprint.pprint(res)
 #*******************************
 #         PLANNER
 #*******************************
-def merge_services(micro_model, shared_persistency):
-    copy_micro_model = micro_model.copy()
-    new_name = "_".join([node.name for node in shared_persistency.source_nodes])
-    new_service = Service(new_name)
+# def merge_services(micro_model, shared_persistency):
+#     copy_micro_model = micro_model.copy()
+#     new_name = "_".join([node.name for node in shared_persistency.source_nodes])
+#     new_service = Service(new_name)
     
-    for node in shared_persistency.source_nodes:
-        pass
-        copy_micro_model.delete_node(node)
-    
-    # for antipattern in micro_model['order_db'].check_antipatterns():
-    #     for node in antipattern.source_nodes:
-    #         print(node.name)
+#     for node in shared_persistency.source_nodes:
+#         pass
+#         copy_micro_model.delete_node(node)
 
 #*******************************
 #         OUTPUTTER: json

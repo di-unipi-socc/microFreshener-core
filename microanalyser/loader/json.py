@@ -19,32 +19,32 @@ class JSONLoader(object):
             micro_model = MicroModel(data['name'])
             for n in data['nodes']:
                 if( n['type'] == 'service'):
-                    print("found servie", n['name'])
+                    # print("found servie", n['name'])
                     el = Service(n['name'])
                     for runtime_links in n['run_time_links']:
                         target = runtime_links['target']
-                        print("\t addind run time to" + target)
+                        # print("\t addind run time to" + target)
                         el.add_run_time(target)
                     for deploymentime_links in n['deployment_time_links']:
                         target = deploymentime_links['target']
-                        print("\t adding deployment time to" + target)
+                        # print("\t adding deployment time to" + target)
                         el.add_deployment_time(target)
                 if( n['type'] == 'communicationpattern'):
                     el = CommunicationPattern(n['name'], 'messagebroker')
-                    print("found cp", n['name'])
+                    # print("found cp", n['name'])
                     for runtime_links in n['run_time_links']:
                         target = runtime_links['target']
-                        print("\t addind run time to" + target)
+                        # print("\t addind run time to" + target)
                         el.add_run_time(target)
                     for deploymentime_links in n['deployment_time_links']:
                         target = deploymentime_links['target']
-                        print("\t adding deployment time to" + target)
+                        # print("\t adding deployment time to" + target)
                         el.add_deployment_time(target)
                 if( n['type'] == 'database'):
                     el = Database(n['name'])
-                    print("found db", n['name'])
+                    # print("found db", n['name'])
                 micro_model.add_node(el) 
-                print("Added node {}".format(el))
+                # print("Added node {}".format(el))
         micro_model.update()
         return micro_model
 
@@ -55,7 +55,7 @@ class JSONLoader(object):
         micro_model = MicroModel('micro.tosca')
         for n in model_as_dict['nodes']:
             if(n['type'] == 'service'):
-                print("found servie", n['name'])
+                # print("found servie", n['name'])
                 el = Service(n['name'])
                 for runtime_links in n['run_time_links']:
                     target = runtime_links['target']

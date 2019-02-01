@@ -1,109 +1,127 @@
+
 from ..model.nodes import Root, Service, Database, CommunicationPattern
-from ..model.relationships import InteractsWith
-from ..model.template import MicroModel
-from ..model.property import CONFIG_ANALYSER
+from .principles   import BoundedContextPrinciple, DecentralizedDataPrinciple, IndependentlyDeployablePrinciple, HorizzontallyScalablePrinciple, FaultResiliencePrinciple
+from .antipatterns import DirectInteractionAntipattern, SharedPersistencyAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
+
+
+import pprint
 
 class MicroAnalyser(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
-        self.antipatterns = {} # dictionary  of function to be execetued on each node for discover an antipatterns
-        # self.antipatterns['wrong_cut'] = self.wrong_cut
-        # self.antipatterns['shared_persistency'] = self.shared_persistency
-        # self.antipatterns['deployment_time_interaction'] = self.deployment_time_interaction
-        # self.antipatterns['direct_service_interaction'] = self.direct_service_interaction
-        # self.antipatterns['cascading_failures'] = self.cascading_failures
-        '''
-        {
-        node : x
-        type : Service | Database | CommunicationPattern
-        properties : [
-            {   id: 1,
-                name: bounded context: {
-                antipatterns : [
-                    {   id: 1,
-                        name: wrong_cut 
-                        cause: Interaction(x,y)
-                        refactorings: [
-                            {   id: 1,
-                                name: movedbT1,
-                                solution: 
-                            },
-                            {   id: 2,
-                                name: movedbT2:
-                                solution:  antipatterns : [
-                    {   id: 1,
-                        name: wrong_cut 
-                        cause: Interaction(x,y)
-                        refactorings: [
-                            {   id: 1,
-                                name: movedbT1,
-                                solution: 
-                            },
-                            {   id: 2,
-                                name: movedbT2:
-                                solution:  
-                            },
-                            {   id: 3
-                                name: addManager: 
-                                solution; 
-                            }
-                    ]
-                ]
-            },
-            {   id: 2
-                name: decentralized data managment
-                antipatterns :[
-                    {
-                        name: shared persitency,
-                        cause: interaction() intercation()
-                        refactorings: [
-                            {
-                                name:shares persistency
-                                solution:
-                            }
-                    ]
-                    }
-                ]
-            },
-            {   id: 3
-                name: independently deployable 
-            },
-            {
-                name: horizzontally scalable
-            },
-            {
-                name: fault tolerance
-            }
-        ]
 
-        '''
+    # def indexedByPrinciples():
+    #     principles = [IndependentlyDeployablePrinciple(),HorizzontallyScalablePrinciple(), FaultResiliencePrinciple(), FaultResiliencePrinciple(), DecentralizedDataPrinciple()]
+    #     res = {}
+    #     for principle in principles:
+    #         res = {'name': principle.name}
+    #         for node in self.micro_model.nodes:
+    #             pinc_res = principle.apply_to(node)
+
+
+    #     indDepl.apply_to(node)
+    #     res['principles'].append(indDepl.to_dict())
+
+    #     horScal.apply_to(node)
+    #     res['principles'].append(horScal.to_dict())
+
+    #     faultRes.apply_to(node)
+    #     res['principles'].append(faultRes.to_dict())
+    # if (isinstance(node, Database)):
+    #     decData.apply_to(node)
+    #     res['principles'].append(decData.to_dict())
+       
     def analyse(self, nodes_to_exclude = [], principles_to_exclude=[], config_nodes={}): 
-        # config_nodess  = { 'shipping': {   
-        #                        antipatterns :['ap1, ap2,ap3]
-        #               }
+        # principles_to_exclude = ['independently deployable', horizzontally scalable, ]
+        # config_nodes  = { 'shipping': { 'antipatterns-to_eclude" :['ap1', 'ap2', 'ap3'] }
         results = {'nodes':[]}
         for node in self.micro_model.nodes:
             if node.name not in nodes_to_exclude:
-                # for principle in CONFIG_ANALYSER.get('principles', []):
-                #     if principle not in principles_to_exclude:
-                        res = self.analyse_node(node, config_nodes.get(node.name, []))
-                        results['nodes'].append(res)
+                    res = self.analyse_node(node, principles_to_exclude, config_nodes.get(node.name, []))
+                    results['nodes'].append(res)
         return results
-    
-    def analyse_node(self, node, antipatterns_tobe_discarded=[]): 
-        '''
-        config_analysis  = {
-             'antipatterns' :['ap1, ap2, apn]
-             'refactorings'. [r1, r2, rn]
-        }
+ 
+    '''
+    {
+    node : <name>
+    type : Service | Database | CommunicationPattern
+    principles : [
+        {   id: 1,
+            name: bounded context: {
+            antipatterns : [
+                {   id: 1,
+                    name: wrong_cut 
+                    cause: Interaction(x,y)
+                    refactorings: [
+                        {   id: 1,
+                            name: movedbT1,
+                            solution: 
+                        },
+                        {   id: 2,
+                            name: movedbT2:
+                            solution:  antipatterns : [
+                {   id: 1,
+                    name: wrong_cut 
+                    cause: Interaction(x,y)
+                    refactorings: [
+                        {   id: 1,
+                            name: movedbT1,
+                            solution: 
+                        },
+                        {   id: 2,
+                            name: movedbT2:
+                            solution:  
+                        },
+                        {   id: 3
+                            name: addManager: 
+                            solution; 
+                        }
+                ]
+            ]
+        },
+        {   id: 2
+            name: decentralized data managment
+            antipatterns :[
+                {
+                    name: shared persitency,
+                    cause: interaction() intercation()
+                    refactorings: [
+                        {
+                            name:shares persistency
+                            solution:
+                        }
+                ]
+                }
+            ]
+        },
+        {   id: 3
+            name: independently deployable 
+        ...
+    ]
+    '''
+    def analyse_node(self, node, principles_to_exclude=[], antipatterns_to_exclude=[]):
+        res = {'name' : node.name}
+        res['principles'] =  []
+        print("analysing node ", node.name)
+        if (isinstance(node, Service)):
+            indDepl = IndependentlyDeployablePrinciple()
+            indDepl.apply_to(node)
+            res['principles'].append(indDepl.to_dict())
 
-        '''
-        node = node if hasattr(node, 'name') else self.micro_model[node]
-        res = {'name': node.name}
-        res['antipatterns'] =  node.check_antipatterns(antipatterns_tobe_discarded)
+            horScal = HorizzontallyScalablePrinciple()
+            horScal.apply_to(node)
+            res['principles'].append(horScal.to_dict())
+
+            faultRes = FaultResiliencePrinciple()
+            faultRes.apply_to(node)
+            res['principles'].append(faultRes.to_dict())
+        if (isinstance(node, Database)):
+            decData = DecentralizedDataPrinciple()
+            decData.apply_to(node)
+            res['principles'].append(decData.to_dict())
         return res
-
+            
     def analyse_squad(self, name, config_nodes={}):
         wc_rels = {'squad': name, "nodes": []}
         squad = self.micro_model.get_squad(name)
@@ -120,8 +138,7 @@ class MicroAnalyser(object):
     #         target_squad = self.micro_model.squad_of(target_node)
     #         if (isinstance(source_node, Service) and isinstance(target_node, Database)
     #             and source_squad != target_squad):
-    #             interactions.append(relationship)
-                
+    #             interactions.append(relationship)    
     #     return interactions
 
     # def shared_persistency(self, node):
