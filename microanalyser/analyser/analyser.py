@@ -1,45 +1,28 @@
 
 from ..model.nodes import Root, Service, Database, CommunicationPattern
+from .helper import build_principle_from_name
+from .principles import PRINCIPLES
 from .principles   import BoundedContextPrinciple, DecentralizedDataPrinciple, IndependentlyDeployablePrinciple, HorizzontallyScalablePrinciple, FaultResiliencePrinciple
 from .antipatterns import DirectInteractionAntipattern, SharedPersistencyAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
-
-
 import pprint
 
 class MicroAnalyser(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
+        self.principles = PRINCIPLES
 
-    # def indexedByPrinciples():
-    #     principles = [IndependentlyDeployablePrinciple(),HorizzontallyScalablePrinciple(), FaultResiliencePrinciple(), FaultResiliencePrinciple(), DecentralizedDataPrinciple()]
-    #     res = {}
-    #     for principle in principles:
-    #         res = {'name': principle.name}
-    #         for node in self.micro_model.nodes:
-    #             pinc_res = principle.apply_to(node)
-
-
-    #     indDepl.apply_to(node)
-    #     res['principles'].append(indDepl.to_dict())
-
-    #     horScal.apply_to(node)
-    #     res['principles'].append(horScal.to_dict())
-
-    #     faultRes.apply_to(node)
-    #     res['principles'].append(faultRes.to_dict())
-    # if (isinstance(node, Database)):
-    #     decData.apply_to(node)
-    #     res['principles'].append(decData.to_dict())
-       
-    def analyse(self, nodes_to_exclude = [], principles_to_exclude=[], config_nodes={}): 
-        # principles_to_exclude = ['independently deployable', horizzontally scalable, ]
+    def analyse(self, nodes_to_exclude = [], principles_to_check=PRINCIPLES, config_nodes={}): 
+        # principles_to_check = ['independently deployable', horizzontally scalable, ]
         # config_nodes  = { 'shipping': { 'antipatterns-to_eclude" :['ap1', 'ap2', 'ap3'] }
-        results = {'nodes':[]}
+        
+        print(self.principles)
+        results ={}
+        results ['nodes'] = []
         for node in self.micro_model.nodes:
             if node.name not in nodes_to_exclude:
-                    res = self.analyse_node(node, principles_to_exclude, config_nodes.get(node.name, []))
-                    results['nodes'].append(res)
+                res = self.analyse_node(node, principles_to_check, config_nodes.get(node.name, []))
+                results['nodes'].append(res)
         return results
  
     '''
@@ -100,26 +83,19 @@ class MicroAnalyser(object):
         ...
     ]
     '''
-    def analyse_node(self, node, principles_to_exclude=[], antipatterns_to_exclude=[]):
+    def analyse_node(self, node, principles_to_check=[], antipatterns_to_exclude=[]):
         res = {'name' : node.name}
         res['principles'] =  []
         print("analysing node ", node.name)
-        if (isinstance(node, Service)):
-            indDepl = IndependentlyDeployablePrinciple()
-            indDepl.apply_to(node)
-            res['principles'].append(indDepl.to_dict())
+        print("Principles to check ", principles_to_check)
+        for principle_name in principles_to_check:
+            # print("Checking principle: ", principle_name)
+            principleObject = build_principle_from_name(principle_name)#IndependentlyDeployablePrinciple()
+            principleObject.apply_to(node)
+            if(not principleObject.isEmpty()):
+                print(principle_name)
+                res['principles'].append(principleObject.to_dict())
 
-            horScal = HorizzontallyScalablePrinciple()
-            horScal.apply_to(node)
-            res['principles'].append(horScal.to_dict())
-
-            faultRes = FaultResiliencePrinciple()
-            faultRes.apply_to(node)
-            res['principles'].append(faultRes.to_dict())
-        if (isinstance(node, Database)):
-            decData = DecentralizedDataPrinciple()
-            decData.apply_to(node)
-            res['principles'].append(decData.to_dict())
         return res
             
     def analyse_squad(self, name, config_nodes={}):
@@ -128,6 +104,13 @@ class MicroAnalyser(object):
         for member in squad.members:
            wc_rels["nodes"].append(self.analyse_node(member, config_nodes.get(member.name, {})))
         return wc_rels
+    
+    # def _check_principle_on_node(self, node, principle):
+    #     indDepl = IndependentlyDeployablePrinciple()
+    #     indDepl.apply_to(node)
+    #     if(not indDepl.isEmpty()):
+    #         res['principles'].append(indDepl.to_dict())
+
 
     # def wrong_cut(self, node):
     #     interactions = []

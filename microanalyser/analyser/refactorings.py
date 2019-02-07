@@ -4,19 +4,20 @@ REFACTORINGS = WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INT
 
 from antipatterns import SharedPersistency
 
+# NOT USED OBJECTS CLASS !!!!
+
 class Refactoring(object):
 
-    def __init__(self,):
+    def __init__(self):
         pass
 
 class MergeMicroservice(Refactoring):
 
-    def __init__(sharedpersistency):
-        self.shared_persitency = sharedpersistency
+    def __init__():
+        
     
     def solution(self, micro_model):
 
-        
 
 class MergeMicroservice(Refactoring):
 

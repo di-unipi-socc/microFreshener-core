@@ -3,22 +3,33 @@
 ANTIPATTERNS = WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INTERACTION, CASCADING_FAILURE =\
              'wrong_cut', 'shared_persitency', 'deployment_interaction', 'direct_Interaction', 'cascading_failure'
 
-from  ..model.relationships import InteractsWith
+from ..model.relationships import InteractsWith
 from ..model.nodes import Service, Database, CommunicationPattern
 
 class Antipattern(object):
+
     def __init__(self):
-        self.refactorings = []
-        self.interactions = [] # list of the interactions that cause the antipatterns
+        self.refactorings = [] # list of the refactorings to resolve the antipattern
+        self.interactions = [] # list of the Interactions that cause the antipatterns
 
     def isEmpty(self): # check if the antipatterns has some "bad" interactions that cause the antipattern
         return len(self.interactions) == 0
     
     def getInteractions(self):
-        return  self.interactions
+        print(self.interactions)
+        return [interaction.to_dict() for interaction in self.interactions]
     
+    def addRefactoring(self,refactoring):
+        self.refactorings.append(refactoring)
+    
+    def getRefactorings(self):
+        return  [refactoring for refactoring in self.refactorings]
+
+    def to_dict(self):
+        return {'name': self.name, 'cause': self.getInteractions(), 'refactorings': self.getRefactorings()}
+
     def check(self, node):
-        print("chcking antipatterns", node.name)
+        pass
 
 class WrongCutAntipattern(Antipattern):
     name = WRONG_CUT
@@ -27,12 +38,13 @@ class WrongCutAntipattern(Antipattern):
         super(WrongCutAntipattern, self).__init__()     
         self.squada = squada
         self.squadb = squadb
+
+        self.addRefactoring({'name':"move database"})
+        self.addRefactoring({'name': "add database manager"})
+        self.addRefactoring({'name': 'move communication'})
     
-    def to_dict(self):
-        return {'name': self.name, 'cause':self.getInteractions()}
-    
-    def refactorings(self):
-        return [ {'id':1, 'name': 'prova1'},{'id': 2, 'name': 'prova2'}]
+    # def to_dict(self):
+    #     return {'name': self.name, 'cause': self.getInteractions(), 'refactorings': self.getRefactorings()}
 
 class SharedPersistencyAntipattern(Antipattern):
     name = SHARED_PERSISTENCY
@@ -40,10 +52,12 @@ class SharedPersistencyAntipattern(Antipattern):
     # interactions is a list of interations that cause the shared persistence antipattern
     def __init__(self):
         super(SharedPersistencyAntipattern, self).__init__()     
-        # self.interactions = interactions 
+        self.addRefactoring({'name':"merge services"})
+        self.addRefactoring({'name': "split database"})
+        self.addRefactoring({'name': 'add database manager'})
     
-    def to_dict(self):
-        return {'name': self.name, 'cause': self.getInteractions()}
+    # def to_dict(self):
+    #     return {'name': self.name, 'cause': self.getInteractions(), 'refactorings': self.getRefactorings()}
     
     def check(self, node):
         self.interactions = node.incoming
@@ -53,10 +67,12 @@ class DeploymentInteractionAntipattern(Antipattern):
     name = DEPLOYMENT_INTERACTION
 
     def __init__(self):
-        super(DeploymentInteractionAntipattern, self).__init__() 
+        super(DeploymentInteractionAntipattern, self).__init__()
+        self.addRefactoring({'name':"promote interactions"})
+        self.addRefactoring({'name': "remove interaction"})
 
-    def to_dict(self):
-        return {'name': self.name, 'cause': self.getInteractions()}
+    # def to_dict(self):
+    #     return {'name': self.name, 'cause': self.getInteractions(),'refactorings': self.getRefactorings()}
 
     def refactorings(self):
         return [ {'id':1, 'name': 'splitdatabase'}, {'id':1, 'name': 'merge services'}]
@@ -75,40 +91,33 @@ class DirectInteractionAntipattern(Antipattern):
 
     def __init__(self):
         super(DirectInteractionAntipattern, self).__init__()     
-        # self.interactions = interactions  #  list of interactions that cause the antipattern
+        self.addRefactoring({'name':"add messagge broker"})
+        self.addRefactoring({'name':"add circuit braker"})
 
-    def to_dict(self):
-        return {'name': self.name, 
-                'cause': self.getInteractions(),
-        }
-                # 'refactorings': self.refactorings()}
+    # def to_dict(self):
+    #     return {'name': self.name, 'cause': self.getInteractions(),'refactorings': self.getRefactorings()}
 
-    def refactorings(self):
-        return [ {'id':1, 'name': 'splitdatabase'}, {'id':1, 'name': 'merge services'}]
-    
     def check(self, node):
         print("chcking direct interactions", node.name)
         self.interactions = [up_rt for up_rt in node.up_run_time_requirements if (isinstance(up_rt.source, Service))]
-        
 
-# TODO: delete cascading failure ( it is a direct interaction) 
-# and add the "NotResilientPath"  antipatterns: occurs when the path do not contains a circuitbracker communicatio npatterns.
+# TODO: delete cascading failure (it is a direct interaction) --> maybe note because the same antipattenrs may have differnt refactorings
+# and add the "NotResilientPath" antipatterns: 
+# occurs when the path do not contains a circuitbracker communicatio npatterns.
 class CascadingFailureAntipattern(Antipattern):
     
     name = CASCADING_FAILURE
 
     def __init__(self):
         super(CascadingFailureAntipattern, self).__init__()     
-        # self.interactions = interactions
+        self.addRefactoring({'name':"add circuit braker"})
+        self.addRefactoring({'name':"add message broker"})
 
     def __str__(self):
         return 'CascadingFailure({})'.format(super(Antipattern, self).__str__())
 
-    def to_dict(self):
-        return {'name': self.name, 'cause': self.getInteractions()}
-
-    def refactorings(self):
-        return [ {'id':1, 'name': 'splitdatabase'}, {'id':1, 'name': 'merge services'}]
+    # def to_dict(self):
+    #     return {'name': self.name, 'cause': self.getInteractions(), 'refactorings': self.getRefactorings()}
     
     def check(self, node):
         print("chcking cascading failure antipatterns", node.name)

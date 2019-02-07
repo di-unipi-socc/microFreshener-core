@@ -55,7 +55,9 @@ class InteractsWith(Relationship):
     
     def __repr__(self):
         return 'InteractsWith({})'.format(super(InteractsWith, self).__repr__())
-
+    
+    def to_dict(self):
+        return {'source': str(self.source), 'target': str(self.target)}
 
 class DeploymentTimeInteraction(InteractsWith):
 
@@ -70,7 +72,9 @@ class DeploymentTimeInteraction(InteractsWith):
         return 'DeploymentTimeInteraction({})'.format(super(InteractsWith, self).__repr__())
     
     def to_dict(self):
-        return {'source': str(self.source), 'target': str(self.target), "type":"deploymenttime"}
+        # return {'source': str(self.source), 'target': str(self.target), "type":"deploymenttime"}
+        return {'source': self.source.name, 'target': self.target.name, "type":"deploymenttime"}
+
 
 class RunTimeInteraction(InteractsWith):
 
@@ -85,7 +89,9 @@ class RunTimeInteraction(InteractsWith):
         return 'RunTimeInteraction({})'.format(super(InteractsWith, self).__repr__())
 
     def to_dict(self):
-        return {'source': str(self.source), 'target': str(self.target), "type":"runtime"}
+        # return {'source': str(self.source), 'target': str(self.target), "type":"runtime"}
+        return {'source': self.source.name, 'target': self.target.name, "type":"runtime"}
+
 
 
     
