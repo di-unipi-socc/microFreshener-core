@@ -62,7 +62,7 @@ class HorizontalScalabilityPrinciple(Principle):
 
     def __init__(self):
         super(HorizontalScalabilityPrinciple, self).__init__(4, HORIZONTAL_SCALABILITY)
-        self.addAntipattern(DirectInteractionAntipattern())
+        self.addAntipattern(DirectInteractionAntipattern(incoming=True))
     
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}

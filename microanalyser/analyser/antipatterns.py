@@ -89,17 +89,21 @@ class DirectInteractionAntipattern(Antipattern):
     
     name = DIRECT_INTERACTION
 
-    def __init__(self):
+    def __init__(self, incoming=False):
         super(DirectInteractionAntipattern, self).__init__()     
         self.addRefactoring({'name':"add messagge broker"})
         self.addRefactoring({'name':"add circuit braker"})
+        self.incoming = incoming # check incoming direct interactions, else check outgoing interactions
 
     # def to_dict(self):
     #     return {'name': self.name, 'cause': self.getInteractions(),'refactorings': self.getRefactorings()}
 
     def check(self, node):
-        print("chcking direct interactions", node.name)
-        self.interactions = [up_rt for up_rt in node.up_run_time_requirements if (isinstance(up_rt.source, Service))]
+        print("checking direct interaction", node.name)
+        if(self.incoming):
+            self.interactions = [up_rt for up_rt in node.up_run_time_requirements if (isinstance(up_rt.source, Service))]
+        else:
+            self.interactions = [rt for rt in node.run_time if (isinstance(rt.source, Service))]
 
 # TODO: delete cascading failure (it is a direct interaction) --> maybe note because the same antipattenrs may have differnt refactorings
 # and add the "NotResilientPath" antipatterns: 

@@ -56,10 +56,6 @@ class Root(object):
             self.up_deployment_time_requirements.remove(relationship)
 
     @property
-    def neighbors(self):
-        return set()
-
-    @property
     def incoming(self):
         return  self.up_deployment_time_requirements  +  self.up_run_time_requirements 
 
@@ -95,9 +91,6 @@ class Software(Root):
         self._run_time = []
         self._deployment_time = []
 
-    @property
-    def neighbors(self):
-        return set(rel.target for rel in self.relationships)
 
     @property
     def relationships(self):
