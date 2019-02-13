@@ -7,7 +7,7 @@ from .helper import get_requirements
 
 # from .antipatterns import WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INTERACTION, CASCADING_FAILURE
 # from .antipatterns import DirectInteraction, SharedPersistency, CascadingFailure, DeploymentInteraction
-# from ..analyser.principles import BoundedContextPrinciple, DecentralizedDataPrinciple, IndependentlyDeployablePrinciple, HorizzontallyScalablePrinciple, FaultResiliencePrinciple
+# from ..analyser.principles import BoundedContextPrinciple, DecentraliseEverythingPrinciple, IndependentDeployabilityPrinciple, HorizontalScalabilityPrinciple, IsolateFailurePrinciple
 
 def _add_to_map(d, k, v):
     if d is None:
@@ -135,9 +135,9 @@ class Service(Software):
         self._deployment_time = []
 
         # principles associated with a Service node
-        # self.addPrinciples(IndependentlyDeployablePrinciple())
-        # self.addPrinciples(HorizzontallyScalablePrinciple())
-        # self.addPrinciples(FaultResiliencePrinciple())
+        # self.addPrinciples(IndependentDeployabilityPrinciple())
+        # self.addPrinciples(HorizontalScalabilityPrinciple())
+        # self.addPrinciples(IsolateFailurePrinciple())
     
     # TODO: add options to the method to persalised the analysis
     def analyse(self, options=None):
@@ -254,7 +254,7 @@ class Database(Root):
 
     def __init__(self, name):
         super(Database, self).__init__(name)
-        # self.addPrinciples(DecentralizedDataPrinciple)
+        # self.addPrinciples(DecentraliseEverythingPrinciple)
 
     @property
     def relationships(self):

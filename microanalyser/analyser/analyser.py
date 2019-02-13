@@ -2,7 +2,7 @@
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from .helper import build_principle_from_name
 from .principles import PRINCIPLES
-from .principles   import BoundedContextPrinciple, DecentralizedDataPrinciple, IndependentlyDeployablePrinciple, HorizzontallyScalablePrinciple, FaultResiliencePrinciple
+from .principles   import DecentraliseEverythingPrinciple, IndependentDeployabilityPrinciple, HorizontalScalabilityPrinciple, IsolateFailurePrinciple
 from .antipatterns import DirectInteractionAntipattern, SharedPersistencyAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
 import pprint
 
@@ -86,16 +86,15 @@ class MicroAnalyser(object):
     def analyse_node(self, node, principles_to_check=[], antipatterns_to_exclude=[]):
         res = {'name' : node.name}
         res['principles'] =  []
-        print("analysing node ", node.name)
+        print("Analysing node ", node.name)
         print("Principles to check ", principles_to_check)
         for principle_name in principles_to_check:
             # print("Checking principle: ", principle_name)
-            principleObject = build_principle_from_name(principle_name)#IndependentlyDeployablePrinciple()
+            principleObject = build_principle_from_name(principle_name)
             principleObject.apply_to(node)
             if(not principleObject.isEmpty()):
                 print(principle_name)
                 res['principles'].append(principleObject.to_dict())
-
         return res
             
     def analyse_squad(self, name, config_nodes={}):
@@ -106,7 +105,7 @@ class MicroAnalyser(object):
         return wc_rels
     
     # def _check_principle_on_node(self, node, principle):
-    #     indDepl = IndependentlyDeployablePrinciple()
+    #     indDepl = IndependentDeployabilityPrinciple()
     #     indDepl.apply_to(node)
     #     if(not indDepl.isEmpty()):
     #         res['principles'].append(indDepl.to_dict())

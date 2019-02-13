@@ -20,8 +20,8 @@ class TestAnalyser(TestCase):
         nid = self.analyser.all_not_independently_deployabe()
         self.assertEqual(nid,['order (service)'])
 
-    def test_not_horizzontally_scalable(self):
-        nid = self.analyser.all_not_horizzontally_scalable()
+    def test_not_HORIZONTAL_SCALABILITY(self):
+        nid = self.analyser.all_not_HORIZONTAL_SCALABILITY()
         self.assertEqual(nid,['shipping (service)'])
 
     def test_not_fault_resilient(self):

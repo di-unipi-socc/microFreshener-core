@@ -1,9 +1,8 @@
 from .antipatterns import WrongCutAntipattern, DirectInteractionAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 
-PRINCIPLES = BOUNDED_CONTEXT, DECENTRALIZED_DATA, INDEPENDENTLY_DEPLOYABLE, HORIZZONTALLY_SCALABLE, FAULT_RESILIENCE=\
-             'boundedContext', 'decentralizedData', 'independentlyDeployable', 'horizzontallyScalable', 'faultResilience'
-
+PRINCIPLES = INDEPENDENT_DEPLOYABILITY,  HORIZONTAL_SCALABILITY, ISOLATE_FAILURE, DECENTRALISE_EVERYTHING= \
+             'IndependentDeployability', 'HorizontalScalability', 'IsolateFailure', 'DecentraliseEverything'
 
 class Principle(object):
     name = "PRINCIPLE"
@@ -40,49 +39,12 @@ class Principle(object):
     
     def apply_to(self, node):
         pass
-    
-class BoundedContextPrinciple(Principle):
-    name = BOUNDED_CONTEXT
+
+class IndependentDeployabilityPrinciple(Principle):
+    name = INDEPENDENT_DEPLOYABILITY
 
     def __init__(self):
-        super(BoundedContextPrinciple, self).__init__(1, BOUNDED_CONTEXT)
-        self.addAntipattern(WrongCutAntipattern("pepe", "dooa",[]))
-    
-    def to_dict(self):
-        return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
-
-    def occurs(self):
-        return self
-
-    def apply_to(self, node):
-        if (isinstance(node, Database)):
-            for antipattern in self.getAntipatterns():
-                antipattern.check(node)
-                # print(antipattern.getInteractions())
-        return self
-
-class DecentralizedDataPrinciple(Principle):
-    name = DECENTRALIZED_DATA
-
-    def __init__(self):
-        super(DecentralizedDataPrinciple, self).__init__(2, DECENTRALIZED_DATA)
-        self.addAntipattern(SharedPersistencyAntipattern())
-    
-    def to_dict(self):
-        return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
-
-    def apply_to(self, node):
-        if (isinstance(node, Database)):
-            for antipattern in self.getAntipatterns():
-                antipattern.check(node)
-                # print(antipattern.getInteractions())
-        return self
-
-class IndependentlyDeployablePrinciple(Principle):
-    name = INDEPENDENTLY_DEPLOYABLE
-
-    def __init__(self):
-        super(IndependentlyDeployablePrinciple, self).__init__(3, INDEPENDENTLY_DEPLOYABLE)
+        super(IndependentDeployabilityPrinciple, self).__init__(3, INDEPENDENT_DEPLOYABILITY)
         self.addAntipattern(DeploymentInteractionAntipattern())
     
     def to_dict(self):
@@ -95,11 +57,11 @@ class IndependentlyDeployablePrinciple(Principle):
                 # print(antipattern.getInteractions())
         return self
 
-class HorizzontallyScalablePrinciple(Principle):
-    name = HORIZZONTALLY_SCALABLE
+class HorizontalScalabilityPrinciple(Principle):
+    name = HORIZONTAL_SCALABILITY
 
     def __init__(self):
-        super(HorizzontallyScalablePrinciple, self).__init__(4, HORIZZONTALLY_SCALABLE)
+        super(HorizontalScalabilityPrinciple, self).__init__(4, HORIZONTAL_SCALABILITY)
         self.addAntipattern(DirectInteractionAntipattern())
     
     def to_dict(self):
@@ -112,11 +74,11 @@ class HorizzontallyScalablePrinciple(Principle):
                 # print(antipattern.getInteractions())
         return self
 
-class FaultResiliencePrinciple(Principle):
-    name = FAULT_RESILIENCE
+class IsolateFailurePrinciple(Principle):
+    name = ISOLATE_FAILURE
 
     def __init__(self):
-        super(FaultResiliencePrinciple, self).__init__(5, FAULT_RESILIENCE)
+        super(IsolateFailurePrinciple, self).__init__(5, ISOLATE_FAILURE)
         self.addAntipattern(DirectInteractionAntipattern())
 
     def to_dict(self):
@@ -128,3 +90,19 @@ class FaultResiliencePrinciple(Principle):
                 antipattern.check(node)
         return self
 
+class DecentraliseEverythingPrinciple(Principle):
+    name = DECENTRALISE_EVERYTHING
+
+    def __init__(self):
+        super(DecentraliseEverythingPrinciple, self).__init__(2, DECENTRALISE_EVERYTHING)
+        self.addAntipattern(SharedPersistencyAntipattern())
+    
+    def to_dict(self):
+        return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
+
+    def apply_to(self, node):
+        if (isinstance(node, Database)):
+            for antipattern in self.getAntipatterns():
+                antipattern.check(node)
+                # print(antipattern.getInteractions())
+        return self
