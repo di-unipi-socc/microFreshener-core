@@ -62,7 +62,8 @@ class HorizontalScalabilityPrinciple(Principle):
 
     def __init__(self):
         super(HorizontalScalabilityPrinciple, self).__init__(4, HORIZONTAL_SCALABILITY)
-        self.addAntipattern(DirectInteractionAntipattern(incoming=True))
+        self.addAntipattern(DirectInteractionAntipattern())
+        # TODO: add NotHavingApiGateway
     
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
@@ -79,7 +80,8 @@ class IsolateFailurePrinciple(Principle):
 
     def __init__(self):
         super(IsolateFailurePrinciple, self).__init__(5, ISOLATE_FAILURE)
-        self.addAntipattern(DirectInteractionAntipattern())
+        self.addAntipattern(CascadingFailureAntipattern())
+        #TODO: add TimeoutAntipattern ?? maybe is the same of cascading failure
 
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
@@ -96,6 +98,7 @@ class DecentraliseEverythingPrinciple(Principle):
     def __init__(self):
         super(DecentraliseEverythingPrinciple, self).__init__(2, DECENTRALISE_EVERYTHING)
         self.addAntipattern(SharedPersistencyAntipattern())
+        # TODO; add ESB-based interactions, Single-layer teams (WrongCutAntipattern)
     
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
