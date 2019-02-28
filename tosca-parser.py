@@ -21,7 +21,7 @@ from microanalyser.analyser.principles import PRINCIPLES
 import pprint
 
 example = 'data/examples/helloworld_squads.yml'
-json_ex = 'data/examples/helloworld_squads.json'
+json_ex = 'data/examples/hello-world-ok.json'
 path_refactored = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
 
 path_to_yml = os.path.join(os.path.dirname(os.path.realpath(__file__)), example)
@@ -84,7 +84,9 @@ analyser = MicroAnalyser(micro_model)
 # analyse a sungle node
 # res = analyser.analyse() #nodes_to_exclude = [], principles_to_exclude=[], config_nodes ={}
 # pprint.pprint(res)
-pprint.pprint(analyser.analyse_node(micro_model['order'], PRINCIPLES)) #, principles_to_discard=['horizzontallyScalable', 'faultResilience']))
+n = micro_model.findByName('order')
+# print(n)
+pprint.pprint(analyser.analyse_node(n, PRINCIPLES)) #, principles_to_discard=['horizzontallyScalable', 'faultResilience']))
 # pprint.pprint(analyser.analyse_node('order_db', constraints=[SHARED_PERSISTNECY]))
 
 # analyse a single squad

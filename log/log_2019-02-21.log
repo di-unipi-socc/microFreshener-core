@@ -1,0 +1,304 @@
+2019-02-21 16:39:27,753 	 [INFO | json.py:28] > LKJLK
+2019-02-21 16:39:27,753 	 [INFO | json.py:28] > LKJLK
+2019-02-21 16:39:43,197 	 [DEBUG | json.py:28] > LKJLK
+2019-02-21 16:39:43,197 	 [DEBUG | json.py:28] > LKJLK
+2019-02-21 16:40:38,850 	 [DEBUG | json.py:33] > Created Database orderdb
+2019-02-21 16:40:38,850 	 [DEBUG | json.py:27] > Created service shipping
+2019-02-21 16:40:38,850 	 [DEBUG | json.py:27] > Created service order
+2019-02-21 16:40:38,851 	 [DEBUG | json.py:30] > Created Communication Pattern rabbitmq
+2019-02-21 16:40:57,929 	 [DEBUG | json.py:33] > Created Database orderdb
+2019-02-21 16:40:57,930 	 [DEBUG | json.py:38] > Added node orderdb
+2019-02-21 16:40:57,930 	 [DEBUG | json.py:27] > Created service shipping
+2019-02-21 16:40:57,930 	 [DEBUG | json.py:38] > Added node shipping
+2019-02-21 16:40:57,930 	 [DEBUG | json.py:27] > Created service order
+2019-02-21 16:40:57,930 	 [DEBUG | json.py:38] > Added node order
+2019-02-21 16:40:57,931 	 [DEBUG | json.py:30] > Created Communication Pattern rabbitmq
+2019-02-21 16:40:57,931 	 [DEBUG | json.py:38] > Added node rabbitmq
+2019-02-21 16:42:17,876 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:42:17,877 	 [DEBUG | json.py:33] > Created Database orderdb
+2019-02-21 16:42:17,877 	 [DEBUG | json.py:38] > Added node orderdb
+2019-02-21 16:42:17,877 	 [DEBUG | json.py:27] > Created service shipping
+2019-02-21 16:42:17,877 	 [DEBUG | json.py:38] > Added node shipping
+2019-02-21 16:42:17,878 	 [DEBUG | json.py:27] > Created service order
+2019-02-21 16:42:17,878 	 [DEBUG | json.py:38] > Added node order
+2019-02-21 16:42:17,878 	 [DEBUG | json.py:30] > Created Communication Pattern rabbitmq
+2019-02-21 16:42:17,878 	 [DEBUG | json.py:38] > Added node rabbitmq
+2019-02-21 16:42:43,747 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:42:58,350 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:42:58,350 	 [INFO | json.py:38] > Added node orderdb
+2019-02-21 16:42:58,350 	 [INFO | json.py:38] > Added node shipping
+2019-02-21 16:42:58,351 	 [INFO | json.py:38] > Added node order
+2019-02-21 16:42:58,351 	 [INFO | json.py:38] > Added node rabbitmq
+2019-02-21 16:43:40,835 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:43:40,836 	 [INFO | json.py:38] > Added node orderdb
+2019-02-21 16:43:40,836 	 [INFO | json.py:38] > Added node shipping
+2019-02-21 16:43:40,836 	 [INFO | json.py:38] > Added node order
+2019-02-21 16:43:40,836 	 [INFO | json.py:38] > Added node rabbitmq
+2019-02-21 16:43:40,836 	 [INFO | json.py:50] > Added runtime link order (service) orderdb (database)
+2019-02-21 16:43:40,836 	 [INFO | json.py:52] > Added runtime link rabbitmq
+2019-02-21 16:43:40,837 	 [INFO | json.py:50] > Added runtime link shipping (service) orderdb (database)
+2019-02-21 16:43:40,837 	 [INFO | json.py:50] > Added runtime link rabbitmq (messagebroker) shipping (service)
+2019-02-21 16:43:57,088 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:43:57,088 	 [INFO | json.py:38] > Added node orderdb
+2019-02-21 16:43:57,089 	 [INFO | json.py:38] > Added node shipping
+2019-02-21 16:43:57,089 	 [INFO | json.py:38] > Added node order
+2019-02-21 16:43:57,089 	 [INFO | json.py:38] > Added node rabbitmq
+2019-02-21 16:43:57,089 	 [INFO | json.py:50] > Added runtime link order (service)->orderdb (database)
+2019-02-21 16:43:57,089 	 [INFO | json.py:52] > Added runtime link shipping (service) ->order (service)
+2019-02-21 16:43:57,089 	 [INFO | json.py:50] > Added runtime link shipping (service)->orderdb (database)
+2019-02-21 16:43:57,089 	 [INFO | json.py:50] > Added runtime link rabbitmq (messagebroker)->shipping (service)
+2019-02-21 16:44:07,156 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:44:07,157 	 [INFO | json.py:38] > Added node orderdb
+2019-02-21 16:44:07,157 	 [INFO | json.py:38] > Added node shipping
+2019-02-21 16:44:07,157 	 [INFO | json.py:38] > Added node order
+2019-02-21 16:44:07,157 	 [INFO | json.py:38] > Added node rabbitmq
+2019-02-21 16:44:07,157 	 [INFO | json.py:50] > Added runtime link order (service) -> orderdb (database)
+2019-02-21 16:44:07,158 	 [INFO | json.py:52] > Added runtime link shipping (service) -> order (service)
+2019-02-21 16:44:07,158 	 [INFO | json.py:50] > Added runtime link shipping (service) -> orderdb (database)
+2019-02-21 16:44:07,158 	 [INFO | json.py:50] > Added runtime link rabbitmq (messagebroker) -> shipping (service)
+2019-02-21 16:44:48,551 	 [INFO | json.py:18] > Loading file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:46:41,494 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:46:45,763 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:46:45,764 	 [INFO | template.py:83] > Added node orderdb (database)
+2019-02-21 16:46:45,764 	 [INFO | template.py:83] > Added node shipping (service)
+2019-02-21 16:46:45,764 	 [INFO | template.py:83] > Added node order (service)
+2019-02-21 16:46:45,764 	 [INFO | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:46:55,450 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:47:04,646 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:47:04,646 	 [DEBUG | json.py:33] > Created Database orderdb
+2019-02-21 16:47:04,646 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:47:04,646 	 [DEBUG | json.py:38] > Added node orderdb
+2019-02-21 16:47:04,647 	 [DEBUG | json.py:27] > Created service shipping
+2019-02-21 16:47:04,647 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:47:04,647 	 [DEBUG | json.py:38] > Added node shipping
+2019-02-21 16:47:04,647 	 [DEBUG | json.py:27] > Created service order
+2019-02-21 16:47:04,647 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:47:04,647 	 [DEBUG | json.py:38] > Added node order
+2019-02-21 16:47:04,648 	 [DEBUG | json.py:30] > Created Communication Pattern rabbitmq
+2019-02-21 16:47:04,648 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:47:04,649 	 [DEBUG | json.py:38] > Added node rabbitmq
+2019-02-21 16:47:04,649 	 [DEBUG | json.py:45] > Added runtime link order (service) -> orderdb (database)
+2019-02-21 16:47:04,650 	 [DEBUG | json.py:47] > Added runtime link shipping (service) -> order (service)
+2019-02-21 16:47:04,650 	 [DEBUG | json.py:45] > Added runtime link shipping (service) -> orderdb (database)
+2019-02-21 16:47:04,650 	 [DEBUG | json.py:45] > Added runtime link rabbitmq (messagebroker) -> shipping (service)
+2019-02-21 16:47:37,840 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:47:37,841 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:47:37,841 	 [DEBUG | json.py:38] > Loaded node orderdb
+2019-02-21 16:47:37,841 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:47:37,841 	 [DEBUG | json.py:38] > Loaded node shipping
+2019-02-21 16:47:37,842 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:47:37,842 	 [DEBUG | json.py:38] > Loaded node order
+2019-02-21 16:47:37,842 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:47:37,842 	 [DEBUG | json.py:38] > Loaded node rabbitmq
+2019-02-21 16:47:44,586 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:47:44,586 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:47:44,586 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:47:44,587 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:47:44,587 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:49:57,486 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:49:57,487 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:49:57,487 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:49:57,488 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:49:57,488 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:51:08,602 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:51:08,603 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:51:08,603 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:51:08,603 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:51:08,604 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:51:08,604 	 [DEBUG | nodes.py:116] > order (service) : adding runtime Link to orderdb (database)
+2019-02-21 16:51:08,604 	 [DEBUG | nodes.py:116] > shipping (service) : adding runtime Link to orderdb (database)
+2019-02-21 16:51:08,604 	 [DEBUG | nodes.py:116] > rabbitmq (messagebroker) : adding runtime Link to shipping (service)
+2019-02-21 16:51:40,571 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:51:40,572 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:51:40,572 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:51:40,572 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:51:40,572 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:51:40,573 	 [DEBUG | nodes.py:116] > order (service) : adding runtime Link to orderdb (database)
+2019-02-21 16:51:40,573 	 [DEBUG | nodes.py:116] > shipping (service) : adding runtime Link to orderdb (database)
+2019-02-21 16:51:40,573 	 [DEBUG | nodes.py:116] > rabbitmq (messagebroker) : adding runtime Link to shipping (service)
+2019-02-21 16:51:56,334 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:51:56,335 	 [DEBUG | template.py:83] > Added node orderdb (database)
+2019-02-21 16:51:56,335 	 [DEBUG | template.py:83] > Added node shipping (service)
+2019-02-21 16:51:56,335 	 [DEBUG | template.py:83] > Added node order (service)
+2019-02-21 16:51:56,335 	 [DEBUG | template.py:83] > Added node rabbitmq (messagebroker)
+2019-02-21 16:51:56,335 	 [DEBUG | nodes.py:116] > order (service): adding runtime Link to orderdb (database)
+2019-02-21 16:51:56,336 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment Link to order (service)
+2019-02-21 16:51:56,336 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime Link to orderdb (database)
+2019-02-21 16:51:56,336 	 [DEBUG | nodes.py:116] > rabbitmq (messagebroker): adding runtime Link to shipping (service)
+2019-02-21 16:52:37,013 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:52:37,013 	 [DEBUG | template.py:83] > orderdb (database) - Added node
+2019-02-21 16:52:37,014 	 [DEBUG | template.py:83] > shipping (service) - Added node
+2019-02-21 16:52:37,014 	 [DEBUG | template.py:83] > order (service) - Added node
+2019-02-21 16:52:37,014 	 [DEBUG | template.py:83] > rabbitmq (messagebroker) - Added node
+2019-02-21 16:52:37,014 	 [DEBUG | nodes.py:116] > order (service): adding runtime Link to orderdb (database)
+2019-02-21 16:52:37,015 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment Link to order (service)
+2019-02-21 16:52:37,015 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime Link to orderdb (database)
+2019-02-21 16:52:37,015 	 [DEBUG | nodes.py:116] > rabbitmq (messagebroker): adding runtime Link to shipping (service)
+2019-02-21 16:52:47,996 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:52:47,996 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 16:52:47,996 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 16:52:47,997 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 16:52:47,997 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 16:52:47,997 	 [DEBUG | nodes.py:116] > order (service): adding runtime Link to orderdb (database)
+2019-02-21 16:52:47,997 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment Link to order (service)
+2019-02-21 16:52:47,998 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime Link to orderdb (database)
+2019-02-21 16:52:47,998 	 [DEBUG | nodes.py:116] > rabbitmq (messagebroker): adding runtime Link to shipping (service)
+2019-02-21 16:53:18,345 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 16:53:18,345 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 16:53:18,346 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 16:53:18,346 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 16:53:18,346 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 16:53:18,346 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 16:53:18,346 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order (service)
+2019-02-21 16:53:18,347 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 16:53:18,347 	 [DEBUG | nodes.py:116] > rabbitmq (messagebroker): adding runtime link to shipping (service)
+2019-02-21 17:05:45,548 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:05:45,549 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:05:45,549 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:05:45,549 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:05:45,549 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:05:45,549 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:05:45,550 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:05:45,550 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:05:45,550 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:05:45,550 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:05:45,550 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:05:45,550 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:05:45,551 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:06:59,861 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:06:59,861 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:06:59,862 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:06:59,862 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:06:59,862 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:06:59,862 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:06:59,862 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:06:59,863 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:06:59,863 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:06:59,863 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:06:59,863 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:06:59,863 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:06:59,864 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:06:59,864 	 [INFO | analyser.py:92] > order (service): analyse node
+2019-02-21 17:08:32,632 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:08:32,632 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:08:32,633 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:08:32,633 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:08:32,633 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:08:32,633 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:08:32,633 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:08:32,634 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:08:32,634 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:08:32,634 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:08:32,634 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:08:32,634 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:08:32,634 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:08:32,635 	 [DEBUG | analyser.py:92] > Analyser - analysing node order (service).
+2019-02-21 17:08:49,332 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:08:49,332 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:08:49,332 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:08:49,332 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:08:49,333 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:08:49,333 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:08:49,333 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:08:49,333 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:08:49,333 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:08:49,333 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:08:49,334 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:08:49,334 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:08:49,334 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:08:49,334 	 [DEBUG | analyser.py:92] > Analyser - analysing node order (service).
+2019-02-21 17:08:49,334 	 [DEBUG | analyser.py:93] > Analyser - checking principles: ('IndependentDeployability', 'HorizontalScalability', 'IsolateFailure', 'DecentraliseEverything')
+2019-02-21 17:09:38,201 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:09:38,201 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:09:38,202 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:09:38,203 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:09:38,203 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:09:38,203 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:09:38,203 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:09:38,203 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:09:38,204 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:09:38,204 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:09:38,204 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:09:38,204 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:09:38,204 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:09:38,205 	 [DEBUG | analyser.py:92] > Analyser - analysing node order (service).
+2019-02-21 17:09:38,205 	 [DEBUG | analyser.py:96] > Analyser - checking IndependentDeployability principle
+2019-02-21 17:09:38,206 	 [DEBUG | analyser.py:96] > Analyser - checking HorizontalScalability principle
+2019-02-21 17:09:38,206 	 [DEBUG | analyser.py:96] > Analyser - checking IsolateFailure principle
+2019-02-21 17:09:38,207 	 [DEBUG | analyser.py:96] > Analyser - checking DecentraliseEverything principle
+2019-02-21 17:12:02,838 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:12:02,839 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:12:02,839 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:12:02,839 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:12:02,840 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:12:02,840 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:12:02,840 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:12:02,840 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:12:02,841 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:12:02,841 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:12:02,841 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:12:02,841 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:12:02,841 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:12:02,842 	 [DEBUG | analyser.py:92] > Analyser - analysing node order (service).
+2019-02-21 17:12:02,842 	 [DEBUG | analyser.py:96] > Analyser - checking IndependentDeployability principle
+2019-02-21 17:12:12,448 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:12:12,448 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:12:12,449 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:12:12,449 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:12:12,449 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:12:12,449 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:12:12,449 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:12:12,450 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:12:12,450 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:12:12,450 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:12:12,450 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:12:12,450 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:12:12,450 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:12:12,451 	 [DEBUG | analyser.py:92] > Analyser - analysing node order (service).
+2019-02-21 17:12:12,451 	 [DEBUG | analyser.py:96] > Analyser - checking IndependentDeployability principle
+2019-02-21 17:12:12,451 	 [DEBUG | antipatterns.py:61] > Deployment Interaction antipattern on node order (service)
+2019-02-21 17:12:12,451 	 [DEBUG | analyser.py:96] > Analyser - checking HorizontalScalability principle
+2019-02-21 17:12:12,451 	 [DEBUG | analyser.py:96] > Analyser - checking IsolateFailure principle
+2019-02-21 17:12:12,452 	 [DEBUG | analyser.py:96] > Analyser - checking DecentraliseEverything principle
+2019-02-21 17:13:09,472 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:13:09,473 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:13:09,473 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:13:09,473 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:13:09,474 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:13:09,474 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:13:09,474 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:13:09,474 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:13:09,475 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:13:09,475 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:13:09,475 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:13:09,475 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:13:09,475 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:13:09,475 	 [DEBUG | analyser.py:92] > Analyser - analysing node order (service).
+2019-02-21 17:13:09,476 	 [DEBUG | analyser.py:96] > Analyser - checking IndependentDeployability principle
+2019-02-21 17:13:09,476 	 [DEBUG | antipatterns.py:61] > Deployment Interaction antipattern on node order (service)
+2019-02-21 17:13:09,476 	 [DEBUG | analyser.py:96] > Analyser - checking HorizontalScalability principle
+2019-02-21 17:13:09,476 	 [DEBUG | antipatterns.py:78] > Direct Interaction antipattern on node order (service)
+2019-02-21 17:13:09,476 	 [DEBUG | analyser.py:96] > Analyser - checking IsolateFailure principle
+2019-02-21 17:13:09,476 	 [DEBUG | antipatterns.py:97] > Cascading Failure antipattern on node order (service)
+2019-02-21 17:13:09,476 	 [DEBUG | analyser.py:96] > Analyser - checking DecentraliseEverything principle
+2019-02-21 17:14:12,065 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-21 17:14:12,065 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-02-21 17:14:12,065 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-02-21 17:14:12,066 	 [DEBUG | template.py:83] > order (service): Added node
+2019-02-21 17:14:12,066 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-02-21 17:14:12,066 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-02-21 17:14:12,066 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:14:12,066 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-02-21 17:14:12,067 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-02-21 17:14:12,067 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-02-21 17:14:12,067 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-02-21 17:14:12,067 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-02-21 17:14:12,067 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-02-21 17:14:12,067 	 [DEBUG | analyser.py:91] > Analyser - analysing node order (service).
+2019-02-21 17:14:12,068 	 [DEBUG | analyser.py:95] > Analyser - checking IndependentDeployability principle
+2019-02-21 17:14:12,068 	 [DEBUG | antipatterns.py:61] > Deployment Interaction antipattern on node order (service)
+2019-02-21 17:14:12,068 	 [DEBUG | analyser.py:95] > Analyser - checking HorizontalScalability principle
+2019-02-21 17:14:12,068 	 [DEBUG | antipatterns.py:78] > Direct Interaction antipattern on node order (service)
+2019-02-21 17:14:12,068 	 [DEBUG | analyser.py:95] > Analyser - checking IsolateFailure principle
+2019-02-21 17:14:12,068 	 [DEBUG | antipatterns.py:97] > Cascading Failure antipattern on node order (service)
+2019-02-21 17:14:12,069 	 [DEBUG | analyser.py:95] > Analyser - checking DecentraliseEverything principle

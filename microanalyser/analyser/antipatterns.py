@@ -4,6 +4,9 @@ ANTIPATTERNS = WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INT
         'Wrong Cut', 'Shared Persistency', 'Deployment Interaction', 'Direct Interaction', 'Cascading Failure'
 
 from ..model.nodes import Service, Database, CommunicationPattern
+from ..logging import MyLogger
+
+logger = MyLogger().get_logger()
 
 class Antipattern(object):
 
@@ -15,7 +18,6 @@ class Antipattern(object):
         return len(self.interactions) == 0
 
     def getInteractions(self):
-        print(self.interactions)
         return [interaction.to_dict() for interaction in self.interactions]
 
     def addRefactoring(self, refactoring):
@@ -41,7 +43,12 @@ class SharedPersistencyAntipattern(Antipattern):
         self.addRefactoring({'name': 'add database manager'})
 
     def check(self, node):
-        self.interactions = node.incoming
+        self.interactions = list(set(node.incoming)) 
+
+    
+    def isEmpty(self):  # check if the antipatterns has some "bad" interactions that cause the antipattern
+        print(self.interactions)
+        return len(self.interactions) <= 1
 
 class DeploymentInteractionAntipattern(Antipattern):
 
@@ -56,7 +63,7 @@ class DeploymentInteractionAntipattern(Antipattern):
         return [{'id': 1, 'name': 'splitdatabase'}, {'id': 1, 'name': 'merge services'}]
 
     def check(self, node):
-        print("checking deployment interactions", node.name)
+        logger.debug("{} antipattern on node {}".format(self.name, node))
         deployment_interactions = [dt_interaction for dt_interaction in node.deployment_time
                                    if (isinstance(dt_interaction.target, Service)
                                        # TODO: check if the targer is derived from the Communication Pattern class
@@ -73,8 +80,8 @@ class DirectInteractionAntipattern(Antipattern):
         self.addRefactoring({'name': "add circuit braker"})
 
     def check(self, node):
-        print("checking direct interaction", node.name)
-
+        logger.debug("{} antipattern on node {}".format(self.name, node))
+        
         self.interactions = [up_rt for up_rt in node.up_run_time_requirements if (
             isinstance(up_rt.source, Service))]
 
@@ -92,7 +99,7 @@ class CascadingFailureAntipattern(Antipattern):
         return 'CascadingFailure({})'.format(super(Antipattern, self).__str__())
 
     def check(self, node):
-        print("checking cascading failure antipatterns", node.name)
+        logger.debug("{} antipattern on node {}".format(self.name, node))        
         # TODO: check also if there is a path from the node to a service node without a circuit breaker
         self.interactions = [rt for rt in node.run_time if (
             isinstance(rt.target, Service))]

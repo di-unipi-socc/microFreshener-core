@@ -22,11 +22,13 @@ class JSONTransformer(object):
     def serialize(self, obj):
         d = {}
         if (isinstance(obj, MicroModel)):
-             d["name"] = obj.name # name of the models
-             d['nodes'] = []      # list of nodes in the model
-             for n in obj.nodes:
+            d["name"] = obj.name # name of the models
+            d['nodes'] = []      # nodes 
+            d['links'] = []      # links 
+            for n in obj.nodes:
                 ndict = {}
                 ndict['name'] = n.name
+                ndict['id'] = n.id
                 if(isinstance(n, Service)):
                    ndict['type'] =  "service"
                 elif(isinstance(n, Database)):
@@ -36,23 +38,25 @@ class JSONTransformer(object):
                 else:
                     # TODO throw an excpetion ?? Node not found
                     ndict['type'] =  None
-                ndict['run_time_links']  = []
-                ndict['deployment_time_links'] =  []
+                d['nodes'].append(ndict)
+
                 for rel in n.relationships:
                     nrel = {}
-                    if(isinstance(rel.target, Root)):
-                        nrel['target'] = rel.target.name
-                    else:
-                        nrel['target'] = rel.target
+                    # nrel['target'] = rel.target.id
+                    # nrel['source'] = rel.source.id
+                    nrel['target'] = rel.target.name
+                    nrel['source'] = rel.source.name
+                    # if(isinstance(rel.target, Root)):
+                    #     nrel['target'] = rel.target.name
+                    # else:
+                    #     nrel['target'] = rel.target
                     if(isinstance(rel, DeploymentTimeInteraction)):
                         nrel['type'] = 'deploymenttime'
-                        ndict['deployment_time_links'].append(nrel)
                     elif(isinstance(rel, RunTimeInteraction)):
                         nrel['type'] = 'runtime'
-                        ndict['run_time_links'].append(nrel)
                     else:
                         nrel['type'] = None
                         #TODO Throw an exception type not recognized
-                        raise ValueError('Type of relationship not recognized.')
-                d['nodes'].append(ndict)
+                        raise ValueError('Relationship not recognized.')
+                    d['links'].append(nrel)
         return d

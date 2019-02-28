@@ -18,7 +18,6 @@ topology_template:
         - deployment_time: shipping
         - deployment_time: rabbitmq
         
-        
     rabbitmq:
       type: micro.nodes.MessageBroker
 

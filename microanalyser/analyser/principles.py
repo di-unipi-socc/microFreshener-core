@@ -1,6 +1,10 @@
 from .antipatterns import WrongCutAntipattern, DirectInteractionAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 
+from ..logging import MyLogger
+
+logger = MyLogger().get_logger()
+
 PRINCIPLES = INDEPENDENT_DEPLOYABILITY,  HORIZONTAL_SCALABILITY, ISOLATE_FAILURE, DECENTRALISE_EVERYTHING= \
              'IndependentDeployability', 'HorizontalScalability', 'IsolateFailure', 'DecentraliseEverything'
 

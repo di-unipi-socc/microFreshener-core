@@ -6,6 +6,11 @@ from .principles   import DecentraliseEverythingPrinciple, IndependentDeployabil
 from .antipatterns import DirectInteractionAntipattern, SharedPersistencyAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
 import pprint
 
+from ..logging import MyLogger
+
+logger = MyLogger().get_logger()
+
+
 class MicroAnalyser(object):
 
     def __init__(self, micro_model):
@@ -15,8 +20,7 @@ class MicroAnalyser(object):
     def analyse(self, nodes_to_exclude = [], principles_to_check=PRINCIPLES, config_nodes={}): 
         # principles_to_check = ['independently deployable', horizzontally scalable, ]
         # config_nodes  = { 'shipping': { 'antipatterns-to_eclude" :['ap1', 'ap2', 'ap3'] }
-        
-        print(self.principles)
+        logger.info("Analyser - analysing ...")
         results ={}
         results ['nodes'] = []
         for node in self.micro_model.nodes:
@@ -84,16 +88,14 @@ class MicroAnalyser(object):
     ]
     '''
     def analyse_node(self, node, principles_to_check=[], antipatterns_to_exclude=[]):
-        res = {'name' : node.name}
+        logger.debug("Analyser - analysing node {}.".format(node))
+        res = {'name' : node.name, 'id': node.id}
         res['principles'] =  []
-        print("Analysing node ", node.name)
-        print("Principles to check ", principles_to_check)
         for principle_name in principles_to_check:
-            # print("Checking principle: ", principle_name)
+            logger.debug("Analyser - checking {} principle".format(principle_name))
             principleObject = build_principle_from_name(principle_name)
             principleObject.apply_to(node)
             if(not principleObject.isEmpty()):
-                print(principle_name)
                 res['principles'].append(principleObject.to_dict())
         return res
             
