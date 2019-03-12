@@ -1,0 +1,215 @@
+2019-03-12 14:53:56,292 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 14:53:56,292 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 14:53:56,292 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 14:53:56,293 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 14:53:56,293 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 14:53:56,293 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 14:53:56,294 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 14:53:56,294 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 14:53:56,294 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 14:53:56,294 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 14:53:56,295 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 14:53:56,295 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 14:53:56,295 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 14:53:56,295 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 14:53:56,297 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world-ok.json
+2019-03-12 14:53:56,298 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 14:53:56,298 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-03-12 14:53:56,298 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 14:53:56,298 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-03-12 14:53:56,298 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-03-12 14:53:56,299 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-03-12 14:53:56,299 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-03-12 14:53:56,299 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-03-12 14:53:56,299 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-03-12 14:53:56,299 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-03-12 14:53:56,300 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-03-12 14:53:56,300 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-03-12 14:55:03,184 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 14:55:03,184 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 14:55:03,184 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 14:55:03,184 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 14:55:03,185 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 14:55:03,185 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 14:55:03,185 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 14:55:03,185 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 14:55:03,185 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 14:55:03,186 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 14:55:03,186 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 14:55:03,186 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 14:55:03,186 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 14:55:03,186 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 14:55:03,188 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world-ok.json
+2019-03-12 14:55:03,189 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 14:55:03,189 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-03-12 14:55:03,189 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 14:55:03,190 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-03-12 14:55:03,190 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-03-12 14:55:03,190 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-03-12 14:55:03,190 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-03-12 14:55:03,190 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-03-12 14:55:03,190 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-03-12 14:55:03,190 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-03-12 14:55:03,191 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-03-12 14:55:03,191 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-03-12 15:19:36,747 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 15:19:36,747 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 15:19:36,747 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 15:19:36,747 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 15:19:36,748 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 15:19:36,748 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 15:19:36,748 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 15:19:36,748 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 15:19:36,749 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 15:19:36,749 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 15:19:36,749 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 15:19:36,749 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 15:19:36,750 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 15:19:36,750 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 15:19:36,752 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world-ok.json
+2019-03-12 15:19:36,752 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 15:19:36,752 	 [DEBUG | template.py:83] > orderdb (database): Added node
+2019-03-12 15:19:36,752 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 15:19:36,753 	 [DEBUG | template.py:83] > rabbitmq (messagebroker): Added node
+2019-03-12 15:19:36,753 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to orderdb (database)
+2019-03-12 15:19:36,753 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq (messagebroker)
+2019-03-12 15:19:36,753 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to orderdb (database)
+2019-03-12 15:19:36,754 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping (service)
+2019-03-12 15:19:36,754 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to orderdb (database)
+2019-03-12 15:19:36,754 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq (messagebroker)
+2019-03-12 15:19:36,754 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping (service)
+2019-03-12 15:19:36,754 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to orderdb (database)
+2019-03-12 15:19:36,775 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 15:19:36,775 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 15:19:36,775 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 15:19:36,775 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 15:19:36,776 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 15:19:36,776 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 15:19:36,776 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 15:19:36,776 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 15:19:36,776 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 15:19:36,777 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 15:19:36,777 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 15:19:36,777 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 15:19:36,777 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 15:19:36,778 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 15:25:33,089 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 15:25:33,089 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 15:25:33,089 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 15:25:33,089 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 15:25:33,090 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 15:25:33,090 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 15:25:33,090 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 15:25:33,090 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 15:25:33,091 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 15:25:33,091 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 15:25:33,091 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 15:25:33,091 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 15:25:33,092 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 15:25:33,092 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 15:36:00,378 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 15:36:00,379 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 15:36:00,379 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 15:36:00,379 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 15:36:00,379 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 15:36:00,380 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 15:36:00,380 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 15:36:00,380 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 15:36:00,380 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 15:36:00,381 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 15:36:00,381 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 15:36:00,381 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 15:36:00,382 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 15:36:00,382 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 15:39:25,430 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to order_db
+2019-03-12 15:39:25,430 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to rabbitmq
+2019-03-12 15:39:25,431 	 [DEBUG | nodes.py:116] > order (service): adding runtime link to shipping
+2019-03-12 15:39:25,431 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to shipping
+2019-03-12 15:39:25,431 	 [DEBUG | nodes.py:124] > order (service): adding deployment link to order_db
+2019-03-12 15:39:25,431 	 [DEBUG | template.py:83] > order (service): Added node
+2019-03-12 15:39:25,432 	 [DEBUG | template.py:83] > rabbitmq (micro.nodes.MessageBroker): Added node
+2019-03-12 15:39:25,432 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to rabbitmq
+2019-03-12 15:39:25,432 	 [DEBUG | nodes.py:116] > shipping (service): adding runtime link to order_db
+2019-03-12 15:39:25,432 	 [DEBUG | nodes.py:124] > shipping (service): adding deployment link to order_db
+2019-03-12 15:39:25,433 	 [DEBUG | template.py:83] > shipping (service): Added node
+2019-03-12 15:39:25,433 	 [DEBUG | template.py:83] > order_db (database): Added node
+2019-03-12 15:39:25,433 	 [DEBUG | template.py:94] > Added group group1 (squad)
+2019-03-12 15:39:25,433 	 [DEBUG | template.py:94] > Added group group2 (squad)
+2019-03-12 15:43:25,936 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld_squads.yml
+2019-03-12 15:43:53,156 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld_squads.yml
+2019-03-12 15:44:03,442 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world-ok.json
+2019-03-12 15:45:07,006 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld-ok.json
+2019-03-12 15:45:22,137 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world-ok.json
+2019-03-12 15:49:04,273 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world-ok.json
+2019-03-12 15:49:27,767 	 [INFO | json.py:18] > Loading JSON file: data/examples/hello-world.json
+2019-03-12 15:49:37,133 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 15:50:15,556 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 15:53:06,310 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 15:53:27,351 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 15:57:20,138 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 15:57:29,734 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 15:57:46,327 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:01:55,597 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:02:46,281 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:02:55,036 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:03:05,236 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:03:42,504 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:04:01,188 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:04:16,981 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:04:51,283 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:05:36,480 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:05:54,428 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:07:03,483 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:07:15,125 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:07:25,572 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:07:37,911 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:11:49,690 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:12:27,906 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:13:47,555 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:13:59,056 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:16:06,621 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:20:16,238 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:22:39,688 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:23:22,755 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:23:54,843 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:24:24,050 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:24:28,089 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:24:52,658 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:25:01,142 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-03-12 16:26:17,146 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world.json
+2019-03-12 16:26:24,520 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 16:27:11,362 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 16:27:47,572 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 16:28:14,450 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 16:28:17,327 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:28:43,930 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:29:05,949 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:29:08,758 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 16:29:36,250 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 16:29:38,719 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:30:48,954 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:42:15,444 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:42:54,358 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:43:38,985 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:44:31,325 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:45:39,872 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 16:45:42,978 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:16:21,845 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:16:27,809 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:16:34,286 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:16:39,015 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:18:42,031 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:18:53,524 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:19:04,541 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:19:53,281 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:20:56,009 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:20:57,928 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:24:02,258 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:24:16,138 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:24:40,789 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:25:45,557 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:26:19,094 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:26:21,894 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:26:30,848 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:26:45,248 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:26:57,228 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json

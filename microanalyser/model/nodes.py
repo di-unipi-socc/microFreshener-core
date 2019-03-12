@@ -67,7 +67,7 @@ class Root(object):
 
     @property
     def incoming_run_time(self):
-        return self.up_deployment_time_requirements
+        return self.up_run_time_requirements
 
     @property
     def incoming_deployment_time(self):

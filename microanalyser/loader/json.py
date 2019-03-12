@@ -48,7 +48,6 @@ class JSONLoader(object):
                     source.add_deployment_time(target)
                 else:
                     raise Exception("Link type {} is not recognized".format(ltype))
-            micro_model.update()
             return micro_model
 
     # def load(self, path_to_json):

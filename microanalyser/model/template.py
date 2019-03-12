@@ -92,9 +92,15 @@ class MicroModel:
     def add_group(self, group):
         self._groups[group.name] = group
         logger.debug("Added group {}".format(group))
-
+    
+  
+    def get_node_by_name(self, name):
+        for node in self.nodes:
+            if node.name == name:
+                return node
+        return None
+  
     # return a node by its id
-
     def __getitem__(self, id):
         return self._nodes.get(id, None)
 

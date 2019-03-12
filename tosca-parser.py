@@ -21,7 +21,7 @@ from microanalyser.analyser.principles import PRINCIPLES
 import pprint
 
 example = 'data/examples/helloworld_squads.yml'
-json_ex = 'data/examples/hello-world-ok.json'
+json_ex = 'data/examples/helloworld.json'
 path_refactored = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
 
 path_to_yml = os.path.join(os.path.dirname(os.path.realpath(__file__)), example)
@@ -54,7 +54,11 @@ if tosca.version:
 loader = JSONLoader()
 micro_model = loader.load(path_to_json)
 
+shipping = micro_model.get_node_by_name("rabbitmq")
+print([link for link in shipping.incoming_deployment_time])
+print([link for link in shipping.incoming_run_time])
 
+print("£JWHESKL")
 # add node
 # s = Service(name="new")
 # s.add_deployment_time(micro_model["order"])

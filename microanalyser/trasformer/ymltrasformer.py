@@ -1,44 +1,48 @@
-import json 
+import yaml
 
 from ..model.template import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 
 
-class JSONTransformer(object):
+class YMLTransformer(object):
 
     def __init__(self):
         pass
 
     # Transform a microModel Oject to a Dicionary format.
     # @input:  microModel 
-    # @return: JSON string 
-    def transform(self,micro_model):
-        return self.serialize(micro_model)
-        # TODO: returns a JSON object instead of dict
-        # ATTENTIOn: in the restfule api the Response() object requires a dict that are than converted into json
+    # @return: dict 
+    def transform(self, micro_model):
+        dict_model = self.serialize(micro_model)
+
+        print (yaml.safe_dump(dict_model)    )
+        # TODO: returns a JSON o bject instead of dict
+        # ATTENTION: in the restfule api the Response() object requires a dict that are than converted into json
         # return json.dumps(self.serialize(micro_model), ensure_ascii=False)
 
     def serialize(self, obj):
         d = {}
         if (isinstance(obj, MicroModel)):
-            d["name"] = obj.name # name of the models
-            d['nodes'] = []      # nodes 
-            d['links'] = []      # links 
+            d["node_template"] = {}
+            # d["name"] = obj.name # name of the models
+            # d['nodes'] = []      # nodes 
+            # d['links'] = []      # links 
             for n in obj.nodes:
                 ndict = {}
-                ndict['name'] = n.name
-                ndict['id'] = n.id
+                # ndict['name'] = n.name
+                # ndict['id'] = n.id
                 if(isinstance(n, Service)):
-                   ndict['type'] =  "service"
+                   ndict['type'] =  "micro.nodes.Service"
                 elif(isinstance(n, Database)):
-                    ndict['type'] =  "database"
+                    ndict['type'] =  "micro.nodes.Database"
                 elif(isinstance(n, CommunicationPattern)):
-                   ndict['type'] =  "communicationpattern"
+                   ndict['type'] =  "micro.nodes.Communicationpattern"
                 else:
                     # TODO throw an excpetion ?? Node not found
                     ndict['type'] =  None
-                d['nodes'].append(ndict)
+                d["node_template"][n.name] = ndict
+                #d['nodes'].append(ndict)
 
                 for rel in n.relationships:
                     nrel = {}
