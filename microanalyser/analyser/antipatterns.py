@@ -1,10 +1,13 @@
 
-
 ANTIPATTERNS = WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INTERACTION, CASCADING_FAILURE =\
         'Wrong Cut', 'Shared Persistency', 'Deployment Interaction', 'Direct Interaction', 'Cascading Failure'
 
 from ..model.nodes import Service, Database, CommunicationPattern
 from ..logging import MyLogger
+from ..model.template import MicroModel
+from ..helper.decorator import visitor
+from ..model.nodes import Root
+
 
 logger = MyLogger().get_logger()
 
@@ -29,8 +32,9 @@ class Antipattern(object):
     def to_dict(self):
         return {'name': self.name, 'cause': self.getInteractions(), 'refactorings': self.getRefactorings()}
 
-    def check(self, node):
+    def visit(self, node):
         pass
+
 
 class SharedPersistencyAntipattern(Antipattern):
     name = SHARED_PERSISTENCY
@@ -42,9 +46,10 @@ class SharedPersistencyAntipattern(Antipattern):
         self.addRefactoring({'name': "split database"})
         self.addRefactoring({'name': 'add database manager'})
 
-    def check(self, node):
+    @visitor(Database)
+    def visit(self, node):
         self.interactions = list(set(node.incoming)) 
-
+        return self.interactions
     
     def isEmpty(self):  # check if the antipatterns has some "bad" interactions that cause the antipattern
         print(self.interactions)
@@ -62,13 +67,15 @@ class DeploymentInteractionAntipattern(Antipattern):
     def refactorings(self):
         return [{'id': 1, 'name': 'splitdatabase'}, {'id': 1, 'name': 'merge services'}]
 
-    def check(self, node):
+    @visitor(Service)
+    def visit(self, node):
         logger.debug("{} antipattern on node {}".format(self.name, node))
-        deployment_interactions = [dt_interaction for dt_interaction in node.deployment_time
+        self.interactions = [dt_interaction for dt_interaction in node.deployment_time
                                    if (isinstance(dt_interaction.target, Service)
                                        # TODO: check if the targer is derived from the Communication Pattern class
                                        or isinstance(dt_interaction.target, CommunicationPattern))]
-        self.interactions = deployment_interactions
+        #return  self.interactions if self.interactions else None
+        return self.to_dict() if not self.isEmpty() else None
 
 class DirectInteractionAntipattern(Antipattern):
 
@@ -78,13 +85,15 @@ class DirectInteractionAntipattern(Antipattern):
         super(DirectInteractionAntipattern, self).__init__()
         self.addRefactoring({'name': "add messagge broker"})
         self.addRefactoring({'name': "add circuit braker"})
-
-    def check(self, node):
+    
+    @visitor(Service)
+    def visit(self, node):
         logger.debug("{} antipattern on node {}".format(self.name, node))
         
         self.interactions = [up_rt for up_rt in node.up_run_time_requirements if (
             isinstance(up_rt.source, Service))]
-
+        #return  self.interactions if self.interactions else None
+        return self.to_dict() if not self.isEmpty() else None
 
 class CascadingFailureAntipattern(Antipattern):
 
@@ -97,14 +106,42 @@ class CascadingFailureAntipattern(Antipattern):
 
     def __str__(self):
         return 'CascadingFailure({})'.format(super(Antipattern, self).__str__())
-
-    def check(self, node):
+    
+    @visitor(Service)
+    def visit(self, node):
         logger.debug("{} antipattern on node {}".format(self.name, node))        
         # TODO: check also if there is a path from the node to a service node without a circuit breaker
-        self.interactions = [rt for rt in node.run_time if (
-            isinstance(rt.target, Service))]
+        self.interactions = [rt for rt in node.run_time if (isinstance(rt.target, Service))]
+        #return self.interactions 
+        #return self.to_dict() if not self.isEmpty() else None
 
-# NOt used antipatterns
+
+class NoApiGatewayAntipattern(Antipattern):
+    name = "NoApiGateway"
+    
+    def __init__(self):
+        super(NoApiGatewayAntipattern, self).__init__()
+    
+    def __str__(self):
+        return 'NoApiGateway({})'.format(super(Antipattern, self).__str__())
+    
+    @visitor(MicroModel)
+    def visit(self, micromodel):
+        """
+        Check if the model has at leat one gateway.
+        """
+        print("Searching api gateway")
+        api_gateways = []
+        for cp in micromodel.communicationPatterns:
+            if cp.concrete_type == "ApiGateway":
+                api_gateways.append(cp)
+        # return None if there is some gateways in the architecture (the list of gateways is not empty) 
+        # TODO: else return all the Exteranl components that shold be attached by the api gateway.
+        #      up to now return all the communication patterns
+        return  None if api_gateways else list(micromodel.communicationPatterns)
+
+
+# Not used antipatterns
 class WrongCutAntipattern(Antipattern):
     name = WRONG_CUT
 

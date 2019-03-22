@@ -28,32 +28,12 @@ def _str_obj(o):
 class Root(object):
 
     def __init__(self, name, id=None):
-        # if(id):
-        #     self.id = id i
-        # else:
-        #     self.id = "random"+name
         self.id = id  if id else "node_"+name
         self.name = name
 
         # reverse requirements
         self.up_deployment_time_requirements = []
         self.up_run_time_requirements = []
-
-        self.antipatterns = []  # list of antipatterns afflicting a node
-        # self.principles = []   # list of principles associated with a node
-
-    # def addPrinciples(self, principle):
-    #     self.principles.append(principle)
-
-    def getPrinciples(self):
-        return self.principles
-
-    def addAntipattern(self, antipattern):
-        if(not antipattern.isEmpty()):
-            self.antipatterns.append(antipattern)
-
-    def getAntipatterns(self):
-        return [a.to_dict() for a in self.antipatterns]
 
     def remove_incoming_relationship(self, relationship):
         if isinstance(relationship, RunTimeInteraction) and relationship in self.up_run_time_requirements:
@@ -77,8 +57,6 @@ class Root(object):
         return self.name
 
     def __eq__(self, other):
-        print(type(self))
-        print(type(other))
         return self.id == other.id
 
     def __hash__(self):
@@ -89,7 +67,6 @@ class Root(object):
 
     def to_dict(self):
         return {'name': self.name, 'id': self.id}
-
 
 class Software(Root):
 
@@ -138,52 +115,6 @@ class Service(Software):
         self._run_time = []
         self._deployment_time = []
 
-        # principles associated with a Service node
-        # self.addPrinciples(IndependentDeployabilityPrinciple())
-        # self.addPrinciples(HorizontalScalabilityPrinciple())
-        # self.addPrinciples(IsolateFailurePrinciple())
-
-    # TODO: add options to the method to persalised the analysis
-    def analyse(self, options=None):
-        for principle in self.getPrinciples():
-            # if principle not in options.principles_to_discard
-            print("\n" + str(principle))
-            for antipattern in principle.getAntipatterns():
-                # if antipattern not in options.principles_to_discard
-                antipattern.check(self)
-
-    # TODO remove
-    def check_antipatterns(self, antipatterns_tobe_discarded=[]):
-        if DEPLOYMENT_INTERACTION not in antipatterns_tobe_discarded:
-            self.addAntipattern(self._deployment_interations())
-        if DIRECT_INTERACTION not in antipatterns_tobe_discarded:
-            self.addAntipattern(self._direct_interactions())
-        if CASCADING_FAILURE not in antipatterns_tobe_discarded:
-            self.addAntipattern(self._cascading_failures())
-        return self.getAntipatterns()
-
-    # TODO remove this method put the into antipattern class
-    # def _deployment_interations(self):
-    #     print("Checking deployment imte interactions for antiapattere")
-    #     deployment_interactions = [dt_interaction for dt_interaction in self.deployment_time
-    #                         if (isinstance(dt_interaction.target, Service)
-    #                         # TODO: cehck if the targer is derived from teh  Communication Pattern class
-    #                         or isinstance(dt_interaction.target, CommunicationPattern))]
-    #     return DeploymentInteraction(deployment_interactions)
-
-    # def _direct_interactions(self):
-    #     interactions = [up_rt for up_rt in self.up_run_time_requirements if (isinstance(up_rt.source, Service))]
-    #     return DirectInteraction(interactions)
-
-    # def _cascading_failures(self):
-    #     interactions = [rt_int for rt_int in self.run_time if isinstance(rt_int.target, Service)]
-    #     # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
-    #     # nodes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and
-    #     #                    renq.target.concrete_type !=  CIRCUIT_BREAKER)
-    #     #             ]
-    #     # vs_patterns = [node for node in nodes_patterns if node.]
-    #     return CascadingFailure(interactions)
-
     @property
     def relationships(self):
         return self._run_time + self._deployment_time
@@ -210,7 +141,7 @@ class CommunicationPattern(Software):
     def __init__(self, name, ctype, id=None):
         super(CommunicationPattern, self).__init__(name, id)
 
-        self.concrete_type = ctype  # 'MessageBrocker, CircuitBRaker'
+        self.concretetype = ctype  # 'MessageBrocker, CircuitBRaker'
 
         # requirements
         self._run_time = []
@@ -229,11 +160,8 @@ class CommunicationPattern(Software):
         return self._deployment_time
 
     @property
-    def type(self):
-        return self.concrete_type
-
-    def check_antipatterns(self, constraints):
-        return []
+    def concrete_type(self):
+        return self.concretetype
 
     # @property
     # def run_time(self):
@@ -248,13 +176,6 @@ class CommunicationPattern(Software):
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.concrete_type)
-
-    # def __eq__(self, other):
-    #     return super(CommunicationPattern, self).__eq__(other) and  self.concrete_type == other.type
-
-    # def __hash__(self):
-    #     return hash(self.name)
-
 
 class Database(Root):
 
@@ -273,18 +194,6 @@ class Database(Root):
     @property
     def deployment_time(self):
         return []
-
-    # TODO; maybe to be moved inside the Principle Class
-    def check_antipatterns(self, antipatterns_tobe_discarded=[]):
-        if SHARED_PERSISTENCY not in antipatterns_tobe_discarded:
-            self.addAntipattern(self._shared_persitency())
-        return self.getAntipatterns()
-
-    def count_antipatterns(self):
-        return len(self.check_antipatterns)
-
-    def _shared_persitency(self):
-        return SharedPersistency(self.incoming)
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'database')

@@ -16,7 +16,6 @@ topology_template:
         - run_time: shipping
         - deployment_time: order_db
         - deployment_time: shipping
-        - deployment_time: rabbitmq
         
     rabbitmq:
       type: micro.nodes.MessageBroker
@@ -26,6 +25,7 @@ topology_template:
       requirements:
         - run_time: rabbitmq
         - run_time: order_db
+        - deployment_time: order_db
 
     order_db:
       type: micro.nodes.Database

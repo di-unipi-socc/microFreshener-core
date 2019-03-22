@@ -11,56 +11,56 @@ class YMLTransformer(object):
         pass
 
     # Transform a microModel Oject to a Dicionary format.
-    # @input:  microModel 
-    # @return: dict 
+    # @params:  microModel 
+    # @return:  dictionary 
     def transform(self, micro_model):
         dict_model = self.serialize(micro_model)
-
-        print (yaml.safe_dump(dict_model)    )
-        # TODO: returns a JSON o bject instead of dict
-        # ATTENTION: in the restfule api the Response() object requires a dict that are than converted into json
-        # return json.dumps(self.serialize(micro_model), ensure_ascii=False)
-
+        # ATTENTION: in the restful api the Response() 
+        # object requires a dict that are than converted into json (or yml?)
+        # return yaml.dump(dict_model, default_flow_style=False)
+        return dict_model
+        
     def serialize(self, obj):
-        d = {}
+        # d = {"topology_template":{
+        #     "node_templates" : {
+        #         "order": {
+        #             "type": "micro.nodes.Service",
+        #             "requirements": [
+        #                 {"run_time": "order_db"},
+        #                 {"run_time": "rabbitmq"},
+        #                 {"run_time": "shipping"},
+        #                 {"deployment_time": "order_db"},
+        #                 {"deployment_time": "shipping"},
+        #                 {"deployment_time": "rabbitmq"}
+        #             ]
+        #         }
+        #     }
+        # }}
+        # return d
+        d = {"topology_template":{}}
         if (isinstance(obj, MicroModel)):
-            d["node_template"] = {}
-            # d["name"] = obj.name # name of the models
-            # d['nodes'] = []      # nodes 
-            # d['links'] = []      # links 
+            node_templates = {}
             for n in obj.nodes:
-                ndict = {}
-                # ndict['name'] = n.name
-                # ndict['id'] = n.id
+                node = {}
+                nodeType = None
                 if(isinstance(n, Service)):
-                   ndict['type'] =  "micro.nodes.Service"
+                    nodeType =  "micro.nodes.Service"
                 elif(isinstance(n, Database)):
-                    ndict['type'] =  "micro.nodes.Database"
+                    nodeType =  "micro.nodes.Database"
                 elif(isinstance(n, CommunicationPattern)):
-                   ndict['type'] =  "micro.nodes.Communicationpattern"
+                    nodeType =  "micro.nodes.Communicationpattern"
                 else:
-                    # TODO throw an excpetion ?? Node not found
-                    ndict['type'] =  None
-                d["node_template"][n.name] = ndict
-                #d['nodes'].append(ndict)
-
+                    raise ValueError("Type of node not recognized {}".format(n))
+                node['type'] = nodeType
+                requirements = []
                 for rel in n.relationships:
-                    nrel = {}
-                    # nrel['target'] = rel.target.id
-                    # nrel['source'] = rel.source.id
-                    nrel['target'] = rel.target.name
-                    nrel['source'] = rel.source.name
-                    # if(isinstance(rel.target, Root)):
-                    #     nrel['target'] = rel.target.name
-                    # else:
-                    #     nrel['target'] = rel.target
                     if(isinstance(rel, DeploymentTimeInteraction)):
-                        nrel['type'] = 'deploymenttime'
+                        requirements.append({'deployment_time': rel.target.name })
                     elif(isinstance(rel, RunTimeInteraction)):
-                        nrel['type'] = 'runtime'
+                        requirements.append({'run_time': rel.target.name })
                     else:
-                        nrel['type'] = None
-                        #TODO Throw an exception type not recognized
-                        raise ValueError('Relationship not recognized.')
-                    d['links'].append(nrel)
+                        raise ValueError("Relationship not recognized {}".format(rel))
+                if requirements: node['requirements'] = requirements
+                node_templates[n.name] = node
+            d["topology_template"]["node_templates"] = node_templates
         return d

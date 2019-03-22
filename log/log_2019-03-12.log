@@ -213,3 +213,11 @@
 2019-03-12 17:26:30,848 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
 2019-03-12 17:26:45,248 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
 2019-03-12 17:26:57,228 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:30:40,684 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld_squads.yml
+2019-03-12 17:31:00,685 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:31:35,377 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:33:18,092 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:33:38,815 	 [INFO | json.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-03-12 17:35:22,875 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:38:50,833 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-12 17:39:11,441 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json

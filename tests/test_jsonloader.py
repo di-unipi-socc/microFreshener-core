@@ -45,27 +45,32 @@ class TestJSONLoader(TestCase):
         shipping = self.microtosca_template.get_node_by_name("shipping")
         rels = [link.source.name for link in shipping.incoming]       
         self.assertEqual(rels, ['order','order'])
+        
         order = self.microtosca_template.get_node_by_name("order")
         rels = [link.source.name for link in order.incoming]       
         self.assertEqual(rels, [])
+        
         rabbitmq = self.microtosca_template.get_node_by_name("rabbitmq")
         rels = [link.source.name for link in rabbitmq.incoming]       
         self.assertEqual(rels, ['shipping','order'])
+        
         orderdb = self.microtosca_template.get_node_by_name("orderdb")
         rels = [link.source.name for link in orderdb.incoming]       
         self.assertEqual(rels, ['shipping','order','shipping','order'])
-
 
     def test_node_incoming_runtime_links(self):
         shipping = self.microtosca_template.get_node_by_name("shipping")
         rels = [link.source.name for link in shipping.incoming_run_time]       
         self.assertEqual(rels, ['order'])
+        
         order = self.microtosca_template.get_node_by_name("order")
         rels = [link.source.name for link in order.incoming_run_time]       
         self.assertEqual(rels, [])
+        
         orderdb = self.microtosca_template.get_node_by_name("orderdb")
         rels = [link.source.name for link in orderdb.incoming_run_time]       
         self.assertEqual(rels, ['shipping','order'])
+        
         rabbitmq = self.microtosca_template.get_node_by_name("rabbitmq")
         rels = [link.source.name for link in rabbitmq.incoming_run_time]       
         self.assertEqual(rels, ['shipping','order'])
@@ -74,12 +79,15 @@ class TestJSONLoader(TestCase):
         shipping = self.microtosca_template.get_node_by_name("shipping")
         rels = [link.source.name for link in shipping.incoming_deployment_time]       
         self.assertEqual(rels, ['order'])
+        
         order = self.microtosca_template.get_node_by_name("order")
         rels = [link.source.name for link in order.incoming_deployment_time] 
         self.assertEqual(rels, [])
+        
         orderdb = self.microtosca_template.get_node_by_name("orderdb")
         rels = [link.source.name for link in orderdb.incoming_deployment_time]       
         self.assertEqual(rels, ['shipping','order'])
+        
         rabbitmq = self.microtosca_template.get_node_by_name("rabbitmq")
         rels = [link.source.name for link in rabbitmq.incoming_deployment_time]       
         self.assertEqual(rels, [])

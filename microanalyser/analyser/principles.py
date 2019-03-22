@@ -1,7 +1,9 @@
-from .antipatterns import WrongCutAntipattern, DirectInteractionAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
+from .antipatterns import WrongCutAntipattern, DirectInteractionAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern, NoApiGatewayAntipattern
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 
 from ..logging import MyLogger
+from ..model.template import MicroModel
+from ..helper.decorator import visitor
 
 logger = MyLogger().get_logger()
 
@@ -14,10 +16,10 @@ class Principle(object):
     def __init__(self, id, name):
         self.name = name
         self.id = id
-        self.antipatterns = [ ]  # list of the antipatterns that violates an principle
+        self.antipatterns = [ ]  #list of the antipatterns violating the principle
 
     def getAntipatterns(self):
-        return  self.antipatterns
+        return self.antipatterns
 
     def getOccurredAntipatterns(self):
         return [ant for ant in self.antipatterns if not ant.isEmpty()]
@@ -34,7 +36,7 @@ class Principle(object):
     # def apply_to(self, node):
     #     # check all the antiappaterrns associated with the principles
     #     for antipattern in self.getAntipatterns():
-    #         antipattern.check(node)
+    #         antipattern.visit(node)
 
     #     return  self
 
@@ -54,12 +56,23 @@ class IndependentDeployabilityPrinciple(Principle):
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
 
-    def apply_to(self, node):
-        if (isinstance(node, Service)):
-            for antipattern in self.getAntipatterns():
-                antipattern.check(node)
-                # print(antipattern.getInteractions())
-        return self
+    # def apply_to(self, node):
+    #     if (isinstance(node, Service)):
+    #         for antipattern in self.getAntipatterns():
+    #             antipattern.visit(node)
+    #     return self
+
+    @visitor(Service)
+    def visit(self, node):
+        antipatterns = []
+        for antipattern in self.getAntipatterns():
+            antipattern.visit(node)
+            #if (not antipattern.isEmpty())
+            #self.antipatterns.ap
+            # if res:
+            #     # ap = {"antipattern": antipattern.name, 'cause': res}
+            #     antipatterns.append(res)
+        return antipatterns if antipatterns else None
 
 class HorizontalScalabilityPrinciple(Principle):
     name = HORIZONTAL_SCALABILITY
@@ -67,17 +80,37 @@ class HorizontalScalabilityPrinciple(Principle):
     def __init__(self):
         super(HorizontalScalabilityPrinciple, self).__init__(4, HORIZONTAL_SCALABILITY)
         self.addAntipattern(DirectInteractionAntipattern())
-        # TODO: add NotHavingApiGateway
+        self.addAntipattern(NoApiGatewayAntipattern())
     
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
         
-    def apply_to(self, node):
-        if (isinstance(node, Service)):
-            for antipattern in self.getAntipatterns():
-                antipattern.check(node)
-                # print(antipattern.getInteractions())
-        return self
+    # def apply_to(self, node):
+    #     if (isinstance(node, Service)):
+    #         for antipattern in self.getAntipatterns():
+    #             antipattern.visit(node)
+    #             # print(antipattern.getInteractions())
+    #     return self
+
+    @visitor(MicroModel)
+    def visit(self, model):
+        antipatterns = []
+        for antipattern in self.getAntipatterns():
+            res = antipattern.visit(model)
+            if res:
+                # ap = {"antipattern": antipattern.name, 'cause': res}
+                antipatterns.append(res)
+        return antipatterns if antipatterns else None
+
+    @visitor(Service)
+    def visit(self, node):
+        antipatterns = []
+        for antipattern in self.getAntipatterns():
+            res = antipattern.visit(node)
+            if res:
+                # ap = {"antipattern": antipattern.name, 'cause': res}
+                antipatterns.append(res)
+        return antipatterns if antipatterns else None
 
 class IsolateFailurePrinciple(Principle):
     name = ISOLATE_FAILURE
@@ -90,11 +123,22 @@ class IsolateFailurePrinciple(Principle):
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
         
-    def apply_to(self, node):
-        if (isinstance(node, Service)):
-            for antipattern in self.getAntipatterns():
-                antipattern.check(node)
-        return self
+    # def apply_to(self, node):
+    #     if (isinstance(node, Service)):
+    #         for antipattern in self.getAntipatterns():
+    #             res = antipattern.visit(node)
+    #     return self
+    
+    @visitor(Service)
+    def visit(self, node):
+        #res = {'name' : self.name, 'id': node.id}
+        antipatterns = []
+        for antipattern in self.getAntipatterns():
+            res = antipattern.visit(node)
+            if(res):
+                antipatterns.append(res)
+        #res['name'] =  antipatterns
+        return antipatterns if antipatterns else None
 
 class DecentraliseEverythingPrinciple(Principle):
     name = DECENTRALISE_EVERYTHING
@@ -107,9 +151,18 @@ class DecentraliseEverythingPrinciple(Principle):
     def to_dict(self):
         return {'name': self.name, 'antipatterns':[i.to_dict() for i in self.getOccurredAntipatterns()]}
 
-    def apply_to(self, node):
-        if (isinstance(node, Database)):
-            for antipattern in self.getAntipatterns():
-                antipattern.check(node)
-                # print(antipattern.getInteractions())
-        return self
+    # def apply_to(self, node):
+    #     if (isinstance(node, Database)):
+    #         for antipattern in self.getAntipatterns():
+    #             antipattern.visit(node)
+    #             # print(antipattern.getInteractions())
+    #     return self
+
+    @visitor(Database)
+    def visit(self, node):
+        antipatterns = []
+        for antipattern in self.getAntipatterns():
+            res = antipattern.visit(node)
+            if res:
+                antipatterns.append(res)
+        return antipatterns if antipatterns else None

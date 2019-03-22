@@ -8,8 +8,8 @@ class TestYMLTrasformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld_squads.yml'
-        loader = MicroToscaLoader()
+        file = 'data/examples/helloworld.yml'
+        loader = JSONLoader()
         self.microtosca_template = loader.load(file)
         self.microtosca_template.update() 
 
