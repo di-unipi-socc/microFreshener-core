@@ -28,7 +28,7 @@ def _str_obj(o):
 class Root(object):
 
     def __init__(self, name, id=None):
-        self.id = id  if id else "node_"+name
+        self.id = id if id else "node_"+name
         self.name = name
 
         # reverse requirements

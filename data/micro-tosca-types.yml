@@ -2,11 +2,18 @@ tosca_definitions_version: tosca_simple_yaml_1_0
 
 description: Definition of the custom types of Micro TOSCA model
 
-# Squad definition
+
 group_types:
+  # Squad definition
   micro.groups.Squad:
     derived_from: tosca.groups.Root
     members: [micro.nodes.Root]
+  # Nodes accessed by external client
+  micro.groups.Edge:
+    derived_from: tosca.groups.Root
+    members: [micro.nodes.Root]
+  
+
 
 # relationship definitions
 relationship_types:

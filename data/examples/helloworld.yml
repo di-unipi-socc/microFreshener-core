@@ -29,3 +29,8 @@ topology_template:
 
     order_db:
       type: micro.nodes.Database
+  
+  groups:
+    edgenodes:
+      type: micro.groups.Edge
+      members: [ order, shipping ]

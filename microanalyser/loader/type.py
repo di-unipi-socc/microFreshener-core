@@ -1,16 +1,17 @@
 # MicroTosca types
 
-# MicroTosca node types of  
+# MICROTOSCA NODE TYPES
 SERVICE = 'micro.nodes.Service'
 COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 DATABASE = 'micro.nodes.Database'
 MESSAGE_BROKER = 'micro.nodes.MessageBroker'
 CIRCUIT_BREAKER = 'micro.nodes.CircuitBreaker'
 
-# RELATIONSHIP TYPES
+# MICROTOSCA RELATIONSHIP TYPES
 INTERACT_WITH = 'micro.relationships.InteractsWith'
 RUN_TIME = "run_time"
 DEPLOYMENT_TIME = "deployment_time"
 
-# SUD type
+# MICROTOSCA GROUP TYPES
 SQUAD = 'micro.groups.Squad'
+EDGE = 'micro.groups.Edge'

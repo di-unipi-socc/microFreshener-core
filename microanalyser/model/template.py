@@ -3,7 +3,7 @@ MicroModelTemplate module
 '''
 import six
 from .nodes import Root, Service, Database, CommunicationPattern
-from .groups import Squad
+from .groups import Squad, Edge
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -19,12 +19,6 @@ class MicroModel:
     @property
     def nodes(self):
         return (v for k, v in self._nodes.items())
-
-    def findByName(self, n):
-        for key, node in self._nodes.items():    # for name, age in dictionary.iteritems():  (for Python 2.x)
-            if (node.name == n):
-                return node
-        return None
 
     @property
     def services(self):
@@ -45,8 +39,15 @@ class MicroModel:
     @property
     def squads(self):
         return (v for k, v in self._groups.items() if isinstance(v, Squad))
+    
+    @property
+    def edges(self):
+        return (v for k, v in self._groups.items() if isinstance(v, Edge))
 
     def get_squad(self, name):
+        return self._groups.get(name, None)
+    
+    def get_group(self, name):
         return self._groups.get(name, None)
 
     def squad_of(self, node):
@@ -56,30 +57,14 @@ class MicroModel:
                     return squad
         return None
 
-    def update(self):
-        self._add_pointer()
-        self._add_back_links()
-        self._add_groups_pointers()
-
-    def _add_groups_pointers(self):
-        for g in self.groups:
-            for member in g.members:
-                g[member] = self[member]
-
-    def _add_pointer(self):
-        for node in self.nodes:
-            for rel in node.relationships:
-                rel.target = self[rel.target.id]
-
-    def _add_back_links(self):
-        for node in self.nodes:
-            for rel in node.run_time:
-                rel.target.up_run_time_requirements.append(rel)
-            for rel in node.deployment_time:
-                rel.target.up_deployment_time_requirements.append(rel)
-
     def add_node(self, node):
-        self._nodes[node.id] = node
+        # se node_ è nell'id vuold dire che l'id è stato aggiunto dal sistema perchè non presente.
+        # un nodo ha un id senza "node_" se è stato creato dall'interfaccia grafica che associa ad ogni nodo un id
+        # TODO: togliere l'id dal nodo e mantenere solo il nome come id
+        if "node_" in node.id:
+            self._nodes[node.name] = node
+        else:
+            self._nodes[node.id] = node
         logger.debug("{}: Added node".format(node))
 
     def delete_node(self, node):
@@ -92,14 +77,22 @@ class MicroModel:
     def add_group(self, group):
         self._groups[group.name] = group
         logger.debug("Added group {}".format(group))
-    
   
+   # TODO: it can be removed after having removed the id as the key in the dictionary of nodes in add_node() method
     def get_node_by_name(self, name):
         for node in self.nodes:
             if node.name == name:
                 return node
         return None
   
+    # TODO: it can be removed after having removed the id as the key in the dictionary of nodes in add_node() method
+    # because the node are found by theri name model['name]
+    def findByName(self, n):
+        for key, node in self._nodes.items():    # for name, age in dictionary.iteritems():  (for Python 2.x)
+            if (node.name == n):
+                return node
+        return None
+
     # return a node by its id
     def __getitem__(self, id):
         return self._nodes.get(id, None)
@@ -114,5 +107,27 @@ class MicroModel:
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
 
-    def copy(self):
-        return copy.deepcopy(self)
+
+
+    # def update(self):
+    #     self._add_pointer()
+    #     self._add_back_links()
+    #     self._add_groups_pointers()
+
+    # def _add_groups_pointers(self):
+    #     for g in self.groups:
+    #         for member in g.members:
+    #             g[member] = self[member]
+
+    # def _add_pointer(self):
+    #     for node in self.nodes:
+    #         for rel in node.relationships:
+    #             #rel.target = self[rel.target.id]
+    #             rel.target = self[rel.target]
+
+    # def _add_back_links(self):
+    #     for node in self.nodes:
+    #         for rel in node.run_time:
+    #             rel.target.up_run_time_requirements.append(rel)
+    #         for rel in node.deployment_time:
+    #             rel.target.up_deployment_time_requirements.append(rel)
