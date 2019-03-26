@@ -87,7 +87,7 @@ node_types:
           relationship: micro.relationships.InteractsWith
 
   # CommunicationPattern node
-  micro.nodes.CommunicationPattern: # | InteractionPattern
+  micro.nodes.CommunicationPattern: 
     derived_from: micro.nodes.Software
     requirements:
       - run_time:
@@ -114,7 +114,7 @@ node_types:
   micro.nodes.CircuitBreaker:
     derived_from: micro.nodes.CommunicationPattern
 
-  micro.nodes.Gateway:
+  micro.nodes.ApiGateway:
     derived_from: micro.nodes.CommunicationPattern
 
   micro.nodes.MessageBroker:

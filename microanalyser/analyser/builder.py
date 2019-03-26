@@ -8,6 +8,9 @@ class AnalyserBuilder(object):
   def __init__(self, micro_model):
     self.analyser = MicroAnalyser(micro_model)
 
+  def add_smell_sniffer(self, name:str):
+     pass
+
   def add_smells_related_to_principle(self, principle:str):
     # IndependentDeployability,HorizontalScalability,IsolateFailure,DecentraliseEverything
     sniffer:None

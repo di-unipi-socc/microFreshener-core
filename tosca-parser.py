@@ -13,7 +13,7 @@ from microanalyser.model.relationships import InteractsWith
 from microanalyser.model.template import MicroModel
 from microanalyser.analyser.analyser import MicroAnalyser
 
-from microanalyser.loader import MicroToscaLoader
+from microanalyser.loader import YMLLoader
 from microanalyser.loader import JSONLoader
 
 from microanalyser.trasformer import JSONTransformer
@@ -33,9 +33,10 @@ import pprint
 
 example = 'data/examples/helloworld_squads.yml'
 json_ex = 'data/examples/helloworld.json'
+yml_ex = 'data/examples/helloworld.yml'
 # path_refactored = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
 
-path_to_yml = os.path.join(os.path.dirname(os.path.realpath(__file__)), example)
+path_to_yml = os.path.join(os.path.dirname(os.path.realpath(__file__)), yml_ex)
 path_to_json= os.path.join(os.path.dirname(os.path.realpath(__file__)), json_ex )
 
 
@@ -51,13 +52,13 @@ if tosca.version:
 #         LOADER: yml, json
 #*******************************
 # Yml loader
-# loader = MicroToscaLoader()
-# micro_model = loader.load(path_to_yml)
+loader = YMLLoader()
+micro_model = loader.load(path_to_yml)
 # micro_model.update() # create object pointers and up_requirements
 
 #JSON loader
-loader = JSONLoader()
-micro_model = loader.load(path_to_json)
+# loader = JSONLoader()
+# micro_model = loader.load(path_to_json)
 
 #********************************
 #         MICRO MODEL
@@ -96,14 +97,13 @@ micro_model = loader.load(path_to_json)
 # print(smell.caused_by)
 
 #analyser = AnalyserBuilder(micro_model).add_principle("IndependentDeployability").add_principle("HorizontalScalability").build()
-an = MicroAnalyser(micro_model)
-an.add_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
-an.add_smell_sniffer(WobblyServiceInteractionSmellSniffer())
-an.add_smell_sniffer(SharedPersistencySmellSniffer())
+# an = MicroAnalyser(micro_model)
+# an.add_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
+# an.add_smell_sniffer(WobblyServiceInteractionSmellSniffer())
+# an.add_smell_sniffer(SharedPersistencySmellSniffer())
 
-print(an.run())
 
-# print(analyser.analyse())
+group = micro_model.get_group('edgenodes')
 
 #*******************************
 #         PLANNER

@@ -29,8 +29,13 @@ topology_template:
 
     order_db:
       type: micro.nodes.Database
+    
+    gateway:
+      type: micro.nodes.ApiGateway
+      requirements:
+        - run_time: shipping
   
   groups:
     edgenodes:
       type: micro.groups.Edge
-      members: [ order, shipping ]
+      members: [ order, shipping, 'gateway']

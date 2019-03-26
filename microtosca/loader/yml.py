@@ -8,7 +8,7 @@ from ..model.helper import get_type
 
 from ..type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
 
-class MicroToscaLoader(object):
+class YMLLoader(object):
 
     def __init__(self):
         pass # self.microtosca_template = micro_tosca_template

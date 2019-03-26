@@ -4,7 +4,7 @@ from ..model.template import MicroModel
 from ..model.nodes import Service, Database, CommunicationPattern
 from ..model.groups import Squad, Edge
 from .iloader import Loader
-from .type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
+from .type import SERVICE, COMMUNICATION_PATTERN,DATABASE, API_GATEWAY, MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 
 
 class YMLLoader(Loader):
@@ -28,7 +28,8 @@ class YMLLoader(Loader):
             if node_type == SERVICE:
                 el = Service(node_name)
             if node_type == MESSAGE_BROKER: #TODO: derived from CommunicationPattern
-                # el = CommunicationPattern.from_yaml(node_name, node_type, commented_map)
+                el = CommunicationPattern(node_name, node_type)
+            if node_type == API_GATEWAY:
                 el = CommunicationPattern(node_name, node_type)
             if node_type == DATABASE:
                 el = Database(node_name)

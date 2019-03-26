@@ -22,23 +22,23 @@ class TestJSONLoader(TestCase):
     def test_node_relationships(self):
         shipping = self.microtosca_template.get_node_by_name("shipping")
         rels = [link.target.name for link in shipping.relationships]       
-        self.assertEqual(rels, ['orderdb', 'rabbitmq', 'orderdb'])
+        self.assertEqual(rels, ['order_db', 'rabbitmq', 'order_db'])
 
     def test_node_deploymenttime_relationships(self):
         shipping = self.microtosca_template.get_node_by_name("shipping")
         rels = [link.target.name for link in shipping.deployment_time]       
-        self.assertCountEqual(rels, ['orderdb'])
+        self.assertCountEqual(rels, ['order_db'])
         order = self.microtosca_template.get_node_by_name("order")
         rels = [link.target.name for link in order.deployment_time]       
-        self.assertCountEqual(rels, ['shipping','orderdb'])
+        self.assertCountEqual(rels, ['shipping','order_db'])
                   
     def test_node_runtime_relationships(self):
         shipping = self.microtosca_template.get_node_by_name("shipping")
         rels = [link.target.name for link in shipping.run_time]       
-        self.assertCountEqual(rels, ['orderdb','rabbitmq'])
+        self.assertCountEqual(rels, ['order_db','rabbitmq'])
         order = self.microtosca_template.get_node_by_name("order")
         rels = [link.target.name for link in order.run_time]       
-        self.assertCountEqual(rels, ['shipping','orderdb','rabbitmq'])
+        self.assertCountEqual(rels, ['shipping','order_db','rabbitmq'])
     
     def test_node_incoming_links(self):
         shipping = self.microtosca_template.get_node_by_name("shipping")
@@ -53,8 +53,8 @@ class TestJSONLoader(TestCase):
         rels = [link.source.name for link in rabbitmq.incoming]       
         self.assertCountEqual(rels, ['shipping','order'])
         
-        orderdb = self.microtosca_template.get_node_by_name("orderdb")
-        rels = [link.source.name for link in orderdb.incoming]       
+        order_db = self.microtosca_template.get_node_by_name("order_db")
+        rels = [link.source.name for link in order_db.incoming]       
         self.assertCountEqual(rels, ['shipping','order','shipping','order'])
 
     def test_node_incoming_runtime_links(self):
@@ -66,8 +66,8 @@ class TestJSONLoader(TestCase):
         rels = [link.source.name for link in order.incoming_run_time]       
         self.assertCountEqual(rels, [])
         
-        orderdb = self.microtosca_template.get_node_by_name("orderdb")
-        rels = [link.source.name for link in orderdb.incoming_run_time]       
+        order_db = self.microtosca_template.get_node_by_name("order_db")
+        rels = [link.source.name for link in order_db.incoming_run_time]       
         self.assertCountEqual(rels, ['shipping','order'])
         
         rabbitmq = self.microtosca_template.get_node_by_name("rabbitmq")
@@ -83,8 +83,8 @@ class TestJSONLoader(TestCase):
         rels = [link.source.name for link in order.incoming_deployment_time] 
         self.assertCountEqual(rels, [])
         
-        orderdb = self.microtosca_template.get_node_by_name("orderdb")
-        rels = [link.source.name for link in orderdb.incoming_deployment_time]       
+        order_db = self.microtosca_template.get_node_by_name("order_db")
+        rels = [link.source.name for link in order_db.incoming_deployment_time]       
         self.assertCountEqual(rels, ['shipping','order'])
         
         rabbitmq = self.microtosca_template.get_node_by_name("rabbitmq")

@@ -3,7 +3,6 @@ nodes module
 '''
 
 from .relationships import DeploymentTimeInteraction, RunTimeInteraction
-from .helper import get_requirements
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -52,6 +51,7 @@ class Root(object):
     @property
     def incoming_deployment_time(self):
         return self.up_deployment_time_requirements
+    
 
     def __str__(self):
         return self.name
@@ -141,7 +141,7 @@ class CommunicationPattern(Software):
     def __init__(self, name, ctype, id=None):
         super(CommunicationPattern, self).__init__(name, id)
 
-        self.concretetype = ctype  # 'MessageBrocker, CircuitBRaker'
+        self.concretetype = ctype  # 'MessageBrocker, CircuitBreaker', 'ApiGateway'
 
         # requirements
         self._run_time = []

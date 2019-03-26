@@ -6,6 +6,7 @@ COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 DATABASE = 'micro.nodes.Database'
 MESSAGE_BROKER = 'micro.nodes.MessageBroker'
 CIRCUIT_BREAKER = 'micro.nodes.CircuitBreaker'
+API_GATEWAY="micro.nodes.ApiGateway"
 
 # MICROTOSCA RELATIONSHIP TYPES
 INTERACT_WITH = 'micro.relationships.InteractsWith'
@@ -15,3 +16,5 @@ DEPLOYMENT_TIME = "deployment_time"
 # MICROTOSCA GROUP TYPES
 SQUAD = 'micro.groups.Squad'
 EDGE = 'micro.groups.Edge'
+
+

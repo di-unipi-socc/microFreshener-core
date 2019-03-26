@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from microanalyser.loader.json import JSONLoader
+from microanalyser.loader import YMLLoader
 from microanalyser.model.template import MicroModel
 from microanalyser.analyser.builder import AnalyserBuilder
 from microanalyser.analyser.principles import IndependentDeployabilityPrinciple
@@ -11,10 +11,11 @@ class TestAnalyser(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld.json'
-        loader = JSONLoader()
+        # file = 'data/examples/helloworld.json'
+        # loader = JSONLoader()
+        file = 'data/examples/helloworld.yml'
+        loader = YMLLoader()
         self.micro_model = loader.load(file)
-        #self.analyser = AnalyserBuilder(self.micro_model).add_principle("IndependentDeployability").build()
 
     def test_EndpointBasedServiceInteractionSmell(self):
         shipping =  self.micro_model.get_node_by_name("shipping")
@@ -25,11 +26,12 @@ class TestAnalyser(TestCase):
         self.assertEqual((smell.caused_by[0]).source, self.micro_model.get_node_by_name("order"))
     
     def test_NoApiGatewaySmell(self):
-        # TODO. apigateway in not workiong (beacuse it require the gorup of nodes exernals)
-        order =  self.micro_model.get_node_by_name("order")
-        ag = NoApiGatewaySmellSniffer()
-        smell = ag.snif(order)
-        self.assertEqual(smell, None)
+        group =  self.micro_model.get_group("edgenodes")
+        napis = NoApiGatewaySmellSniffer()
+        smells = napis.snif(group)
+        self.assertEqual(len(smells), 1)
+        nodes = [smell.node.name for smell in smells]
+        self.assertCountEqual(nodes, ['order'])
         
     def test_WobblyServiceInteractionSmell(self):
         order =  self.micro_model.get_node_by_name("order")
@@ -40,9 +42,9 @@ class TestAnalyser(TestCase):
         self.assertEqual((smell.caused_by[0]).target, self.micro_model.get_node_by_name("shipping"))
     
     def test_SharedPersistencySmell(self):
-        orderdb =  self.micro_model.get_node_by_name("orderdb")
+        orderdb =  self.micro_model.get_node_by_name("order_db")
         ws = SharedPersistencySmellSniffer()
         smell = ws.snif(orderdb)
         self.assertEqual(len(smell.caused_by), 4)
         sources = [interaction.source.name for interaction in smell.caused_by]
-        self.assertEqual(sources,  ['shipping', 'order', 'shipping', 'order'])
+        self.assertCountEqual(sources,  ['shipping', 'order', 'shipping', 'order'])

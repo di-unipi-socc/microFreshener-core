@@ -8,7 +8,7 @@
         },
         {
             "id": "53689620-5132-44cc-bc8a-971fb8d86b80",
-            "name": "orderdb",
+            "name": "order_db",
             "type": "database"
         },
         {
