@@ -1,6 +1,4 @@
 from .analyser import MicroAnalyser
-from .principles import  DecentraliseEverythingPrinciple, IndependentDeployabilityPrinciple, HorizontalScalabilityPrinciple, IsolateFailurePrinciple
-from .principles import Principle
 from .sniffer import EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
 
 class AnalyserBuilder(object):
@@ -8,25 +6,25 @@ class AnalyserBuilder(object):
   def __init__(self, micro_model):
     self.analyser = MicroAnalyser(micro_model)
 
-  def add_smell_sniffer(self, name:str):
+  def add_node_smell_sniffer(self, name:str):
      pass
 
   def add_smells_related_to_principle(self, principle:str):
     # IndependentDeployability,HorizontalScalability,IsolateFailure,DecentraliseEverything
     sniffer:None
     if(principle == "HorizontalScalability"):
-      self.analyser.add_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
+      self.analyser.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
     elif (principle == "IsolateFailure"):
-      self.analyser.add_smell_sniffer(WobblyServiceInteractionSmellSniffer())
+      self.analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
     elif (principle == "IndependentDeployability"):
       pass
     elif (principle == "DecentraliseEverything"):
-      self.analyser.add_smell_sniffer(SharedPersistencySmellSniffer())
+      self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
       pass
     else:
-      raise ValueError('Principle {} not recognized'.format(principle))
+      raise ValueError(' {} not recognized'.format(principle))
 
-    # principle:Principle = None
+    # principle: = None
     # if (name == DecentraliseEverythingPrinciple.name):
     #     principle = DecentraliseEverythingPrinciple()
     # elif(name == IndependentDeployabilityPrinciple.name):

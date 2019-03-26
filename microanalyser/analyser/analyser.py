@@ -1,27 +1,26 @@
 
-from ..model.nodes import Root, Service, Database, CommunicationPattern
-from .helper import build_principle_from_name
-from .principles import PRINCIPLES
-from .principles import DecentraliseEverythingPrinciple, IndependentDeployabilityPrinciple, HorizontalScalabilityPrinciple, IsolateFailurePrinciple
-from .antipatterns import DirectInteractionAntipattern, SharedPersistencyAntipattern, SharedPersistencyAntipattern,  DeploymentInteractionAntipattern, CascadingFailureAntipattern
-from ..model.template import Service, Database, CommunicationPattern
-import pprint
-
+from ..model.nodes import Service, Database, CommunicationPattern
+from ..analyser.sniffer import NodeSmellSniffer, GroupSmellSniffer
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
-
 
 class MicroAnalyser(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
-        self.smell_sniffers = [] 
+        self.node_smell_sniffers:[NodeSmellSniffer] = []      # list of NodeSmellSniffer to be executed for each node
+        self.group_smell_sniffers:[GroupSmellSniffer] = []    # list of GroupSmellSniffers
 
-    def add_smell_sniffer(self, sniffer):
-        self.smell_sniffers.append(sniffer)
+    def add_node_smell_sniffer(self, sniffer):
+        self.node_smell_sniffers.append(sniffer)
+
+    def add_group_smell_sniffer(self, sniffer):
+        assert isinstance(sniffer, GroupSmellSniffer)
+        self.group_smell_sniffers.append(sniffer)
 
     def run(self):
+        # TODO: return an object with two fields: [ANodes], [AGroups]
         res = {}
         nodes = []
         for node in self.micro_model.nodes:
@@ -35,54 +34,30 @@ class MicroAnalyser(object):
                 anode["type"] =  "communicationpattern"
                 anode['concrete_type'] = node.concrete_type
             smells = []
-            for sniffer in self.smell_sniffers:
-                    smell = sniffer.snif(node)
-                    if(smell):
-                        smells.append(smell.to_dict())
-            anode['smells'] = smells
-            nodes.append(anode)
+            for sniffer in self.node_smell_sniffers:
+                smell = sniffer.snif(node)
+                if(smell):
+                    smells.append(smell.to_dict())
+            if(smells): # add only nodes that has at least one smell
+                anode['smells'] = smells
+                nodes.append(anode)
         res['nodes'] = nodes
+
+        groups = []
+        for group in self.micro_model.groups:
+            # TODO: create a AGroup class to mantain the results af the analysis 
+            agroup = {'name': group.name} 
+            smells = []
+            for gsniffer in self.group_smell_sniffers:
+                gsmells = gsniffer.snif(group)
+                if(gsmells):
+                    smells.append(gsmells.to_dict())
+            if(smells):
+                agroup['smells'] = smells
+                groups.append(agroup)
+        res['groups'] = groups
         return res
 
-
-    # def analyse(self, nodes_to_exclude=[], principles_to_check=PRINCIPLES, config_nodes={}):
-    #     ''' principles_to_check = ['independently deployable', horizzontally scalable, ]
-    #        config_nodes  = { 'shipping': { 'antipatterns-to_eclude" :['ap1', 'ap2', 'ap3'] }
-    #     '''
-    #     logger.info("Analyser - analysing ...")
-    #     results = {}
-    #     nodes = []
-    #     for node in self.micro_model.nodes:
-    #         if node.name not in nodes_to_exclude:
-    #             n = {"name": node.name, 'principles': self.analyse_node(node)}
-    #             nodes.append(n)
-    #     # execute the principles that involve all the nodes of the graph
-    #     for principle in self.nodesAnalysers:
-    #         res = principle.visit(self.micro_model)
-    #         results
-    #     results['nodes'] = nodes
-    #     return results
-
-    # def analyse_node(self, node):
-    #     logger.debug("Analyser - analysing node {}.".format(node))
-    #     principles = []
-    #     for principle in self.nodesAnalysers:
-    #         res = principle.visit(node)
-    #         if(res is not None):
-    #             principles.append(
-    #                 {"name": principle.name, "antipatterns": res.to_dict()})
-    #     return principles if principles else None
-
-        # logger.debug("Analyser - analysing node {}.".format(node))
-        # res = {'name' : node.name, 'id': node.id}
-        # res['principles'] =  []
-        # for principle_name in principles_to_check:
-        #     logger.debug("Analyser - checking {} principle".format(principle_name))
-        #     principleObject = build_principle_from_name(principle_name)
-        #     principleObject.apply_to(node)
-        #     if(not principleObject.isEmpty()):
-        #         res['principles'].append(principleObject.to_dict())
-        # return res
 
     '''
     {

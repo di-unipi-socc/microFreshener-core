@@ -108,6 +108,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
                         if(source.concrete_type == API_GATEWAY):
                             gw_is_found = True
                 if(not gw_is_found):
-                    nodes_with_smell.append(NoApiGatewaySmell(node, node.incoming))
-        return nodes_with_smell
+                    nodes_with_smell.append(node)
+            
+        return NoApiGatewaySmell(group, nodes_with_smell)
                     

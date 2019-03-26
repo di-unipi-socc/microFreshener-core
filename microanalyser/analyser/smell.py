@@ -27,7 +27,27 @@ class NodeSmell(object):
     def isEmpty(self):
         return len(self._interactions) == 0
 
-class NoApiGatewaySmell(NodeSmell):
+class GroupSmell(object):
+
+    def __init__(self, group, affected_nodes):
+        self._group = group
+        self._affected_nodes = affected_nodes 
+    
+    @property
+    def group(self):
+        return self._group
+    
+    @property
+    def caused_by(self):
+        return self._affected_nodes
+    
+    def to_dict(self):
+        return {"name":self.name, "group":self._group.name, "cause": [node.name for node in  self._affected_nodes]}
+
+    def isEmpty(self):
+            return len(self._affected_nodes) == 0
+
+class NoApiGatewaySmell(GroupSmell):
     name: str = "NoApiGateway"
 
     def __init__(self, node, interactions):

@@ -19,11 +19,8 @@ from microanalyser.loader import JSONLoader
 from microanalyser.trasformer import JSONTransformer
 from microanalyser.trasformer import YMLTransformer
 
-from microanalyser.analyser.principles import PRINCIPLES
 from microanalyser.analyser.builder import AnalyserBuilder
 from microanalyser.analyser.analyser import MicroAnalyser
-
-from microanalyser.analyser.principles import IndependentDeployabilityPrinciple, HorizontalScalabilityPrinciple, NoApiGatewayAntipattern
 
 from microanalyser.analyser.constant import INDEPENDENT_DEPLOYABILITY
 
@@ -75,35 +72,16 @@ micro_model = loader.load(path_to_yml)
 #*******************************
 #         ANALYSER
 #*******************************
-#  shipping =  micro_model.get_node_by_name("shipping")
-# ns = EndpointBasedServiceInteractionSmellSniffer()
-# smell = ns.snif(shipping)
-# print(smell.caused_by)
-
-# order =  micro_model.get_node_by_name("rabbitmq")
-# ag = NoApiGatewaySmellSniffer()
-# res = ag.snif(order)
-# print(res)
-
-# order =  micro_model.get_node_by_name("order")
-# ws = WobblyServiceInteractionSmellSniffer()
-# smell = ws.snif(order)
-# print(smell.caused_by)
-
-# orderdb =  micro_model.get_node_by_name("orderdb")
-# ws = SharedPersistencySmellSniffer()
-# smell = ws.snif(orderdb)
-# print([interaction.source.name for interaction in smell.caused_by])
-# print(smell.caused_by)
 
 #analyser = AnalyserBuilder(micro_model).add_principle("IndependentDeployability").add_principle("HorizontalScalability").build()
-# an = MicroAnalyser(micro_model)
-# an.add_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
-# an.add_smell_sniffer(WobblyServiceInteractionSmellSniffer())
-# an.add_smell_sniffer(SharedPersistencySmellSniffer())
-
-
-group = micro_model.get_group('edgenodes')
+an = MicroAnalyser(micro_model)
+# an.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
+# an.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
+# an.add_node_smell_sniffer(SharedPersistencySmellSniffer())
+# an.add_group_smell_sniffer(NoApiGatewaySmellSniffer())
+an.add_node_smell_sniffer(SharedPersistencySmellSniffer())
+res = an.run()
+print(res)
 
 #*******************************
 #         PLANNER
