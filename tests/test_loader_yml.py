@@ -11,7 +11,7 @@ class TestYMLTrasformer(TestCase):
         self.microtosca = self.loader.load(file)
 
     def test_number_nodes(self):
-        self.assertEqual(len(list(self.microtosca.nodes)), 4)
+        self.assertEqual(len(list(self.microtosca.nodes)), 5)
         
     def test_get_node_by_name(self):
         self.assertEqual(self.microtosca['shipping'].name, "shipping" )
@@ -43,7 +43,7 @@ class TestYMLTrasformer(TestCase):
     def test_node_incoming_links(self):
         shipping = self.microtosca["shipping"]
         rels = [link.source.name for link in shipping.incoming]       
-        self.assertCountEqual(rels, ['order','order'])
+        self.assertCountEqual(rels, ['order','order', 'gateway'])
         
         order = self.microtosca["order"]
         rels = [link.source.name for link in order.incoming]       
@@ -60,7 +60,7 @@ class TestYMLTrasformer(TestCase):
     def test_node_incoming_runtime_links(self):
         shipping = self.microtosca["shipping"]
         rels = [link.source.name for link in shipping.incoming_run_time]       
-        self.assertCountEqual(rels, ['order'])
+        self.assertCountEqual(rels, ['order', 'gateway'])
         
         order = self.microtosca["order"]
         rels = [link.source.name for link in order.incoming_run_time]       
@@ -101,4 +101,4 @@ class TestYMLTrasformer(TestCase):
         self.assertEqual('rabbitmq' in group, False)
 
         members = [m.name for m in group.members]
-        self.assertCountEqual(members, ['shipping','order'])
+        self.assertCountEqual(members, ['shipping','order','gateway'])

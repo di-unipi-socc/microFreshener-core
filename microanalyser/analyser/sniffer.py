@@ -32,7 +32,6 @@ class EndpointBasedServiceInteractionSmellSniffer(NodeSmellSniffer):
     # TODO: add decorator for sniffing only service node
     @visitor(Service)
     def snif(self, node):
-        print("Visiting service")
         bad_interactions = [up_rt for up_rt in node.up_run_time_requirements if isinstance(
             up_rt.source, Service)]
         if (bad_interactions):
@@ -42,7 +41,7 @@ class EndpointBasedServiceInteractionSmellSniffer(NodeSmellSniffer):
 
     @visitor(MicroModel)
     def snif(self, micro_model):
-        print("visiting al lthe nodes in the graph")
+        print("visiting all the nodes in the graph")
         # for all nodes in  graph
         #  snif node
 

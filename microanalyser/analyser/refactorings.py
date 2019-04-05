@@ -25,9 +25,3 @@ class MergeMicroservice(Refactoring):
         
     
     def solution(self):
-
-
-
-def merge_services(micro_model, shared_persistency):
-        for interaction in self.interactions:
-

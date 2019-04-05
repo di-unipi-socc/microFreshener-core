@@ -26,8 +26,7 @@ def _str_obj(o):
 
 class Root(object):
 
-    def __init__(self, name, id=None):
-        self.id = id if id else "node_"+name
+    def __init__(self, name):
         self.name = name
 
         # reverse requirements
@@ -57,21 +56,21 @@ class Root(object):
         return self.name
 
     def __eq__(self, other):
-        return self.id == other.id
+        return self.name == self.name
 
     def __hash__(self):
-        return hash(self.id)
+        return hash(self.name)
 
     def get_str_obj(self):
         _str_obj(self)
 
     def to_dict(self):
-        return {'name': self.name, 'id': self.id}
+        return {'name': self.name}
 
 class Software(Root):
 
-    def __init__(self, name, id=None):
-        super(Software, self).__init__(name, id)
+    def __init__(self, name):
+        super(Software, self).__init__(name)
 
         # requirements
         self._run_time = []
@@ -108,8 +107,8 @@ class Software(Root):
 
 class Service(Software):
 
-    def __init__(self, name, id=None):
-        super(Service, self).__init__(name, id)
+    def __init__(self, name):
+        super(Service, self).__init__(name)
 
         # requirements
         self._run_time = []
@@ -138,8 +137,8 @@ class Service(Software):
 
 class CommunicationPattern(Software):
 
-    def __init__(self, name, ctype, id=None):
-        super(CommunicationPattern, self).__init__(name, id)
+    def __init__(self, name, ctype):
+        super(CommunicationPattern, self).__init__(name)
 
         self.concretetype = ctype  # 'MessageBrocker, CircuitBreaker', 'ApiGateway'
 
@@ -179,8 +178,8 @@ class CommunicationPattern(Software):
 
 class Database(Root):
 
-    def __init__(self, name, id=None):
-        super(Database, self).__init__(name, id)
+    def __init__(self, name):
+        super(Database, self).__init__(name)
         # self.addPrinciples(DecentraliseEverythingPrinciple)
 
     @property

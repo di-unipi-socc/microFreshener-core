@@ -38,4 +38,4 @@ topology_template:
   groups:
     edgenodes:
       type: micro.groups.Edge
-      members: [ order, shipping, 'gateway']
+      members: [ order, shipping, gateway]

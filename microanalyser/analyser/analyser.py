@@ -20,12 +20,12 @@ class MicroAnalyser(object):
         self.group_smell_sniffers.append(sniffer)
 
     def run(self):
-        # TODO: return an object with two fields: [ANodes], [AGroups]
+        # TODO: return an object with two fields: ANodes:[], AGroups:[]
         res = {}
         nodes = []
         for node in self.micro_model.nodes:
             #  TODO: creare una classe ANode che identifica il nodo analizzato.
-            anode = {'name': node.name, 'id': node.id}
+            anode = {'name': node.name}
             if(isinstance(node, Service)):
                 anode["type"] =  "software"
             if(isinstance(node, Database)):

@@ -58,21 +58,15 @@ class MicroModel:
         return None
 
     def add_node(self, node):
-        # se node_ è nell'id vuold dire che l'id è stato aggiunto dal sistema perchè non presente.
-        # un nodo ha un id senza "node_" se è stato creato dall'interfaccia grafica che associa ad ogni nodo un id
-        # TODO: togliere l'id dal nodo e mantenere solo il nome come id
-        if "node_" in node.id:
-            self._nodes[node.name] = node
-        else:
-            self._nodes[node.id] = node
+        self._nodes[node.name] = node
         logger.debug("{}: Added node".format(node))
 
     def delete_node(self, node):
         for rel in node.relationships:
             rel.target.remove_incoming_relationship(
                 rel)  # remove the up relationship
-        logger.debug("{}: deleted node".format(self._nodes[node.id]))
-        del self._nodes[node.id]
+        logger.debug("{}: deleted node".format(self._nodes[node.name]))
+        del self._nodes[node.name]
 
     def add_group(self, group):
         self._groups[group.name] = group
@@ -94,14 +88,14 @@ class MicroModel:
         return None
 
     # return a node by its id
-    def __getitem__(self, id):
-        return self._nodes.get(id, None)
+    def __getitem__(self, name):
+        return self._nodes.get(name, None)
 
     def __contains__(self, item):
         if isinstance(item, six.string_types):
             return self[item] is not None
         if isinstance(item, Root):
-            return self[item.id] is not None
+            return self[item.name] is not None
         return False
 
     def __str__(self):

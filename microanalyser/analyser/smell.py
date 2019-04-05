@@ -56,8 +56,9 @@ class NoApiGatewaySmell(GroupSmell):
     def __str__(self):
         return 'NoApiGateway({})'.format(super(NodeSmell, self).__str__())
 
+
 class EndpointBasedServiceInteractionSmell(NodeSmell):
-    name: str = "EndpointBasedServiceInteraction"
+    name: str = "EndpointBasedServiceInteractionSmell"
 
     def __init__(self,node, interactions=[]):
         super(EndpointBasedServiceInteractionSmell, self).__init__(node, interactions)
@@ -65,6 +66,10 @@ class EndpointBasedServiceInteractionSmell(NodeSmell):
     def __str__(self):
         return 'EndpointBasedServiceInteractionSmell({})'.format(super(NodeSmell, self).__str__())
     
+    def to_dict(self):
+        sup_dict = super(EndpointBasedServiceInteractionSmell, self).to_dict()
+        return {**sup_dict, **{"refactorings":[{"name": "refact1", "description":"descr 1"}, {"name": "refact2", "description":" ref2 description"}]}}
+
 
 class WobblyServiceInteractionSmell(NodeSmell):
     name: str = "WobblyServiceInteractionSmell"
@@ -74,6 +79,11 @@ class WobblyServiceInteractionSmell(NodeSmell):
 
     def __str__(self):
         return 'WobblyServiceInteractionSmell({})'.format(super(NodeSmell, self).__str__())
+    
+    def to_dict(self):
+        sup_dict = super(WobblyServiceInteractionSmell, self).to_dict()
+        return {**sup_dict, **{"refactorings":[{"name": "ref1", "description":"descr 1"}, {"name": "ref2", "description":" ref2 description"}]}}
+
 
 class SharedPersistencySmell(NodeSmell):
     name: str = "SharedPersistencySmell"
@@ -83,3 +93,7 @@ class SharedPersistencySmell(NodeSmell):
 
     def __str__(self):
         return 'SharedPersistencySmell({})'.format(super(NodeSmell, self).__str__())
+    
+    def to_dict(self):
+        sup_dict = super(SharedPersistencySmell, self).to_dict()
+        return {**sup_dict, **{"refactorings":[{"name": "Merge services", "description":"descr 1"}, {"name": "Split Data", "description":"descr 1"}, {"name": "Add Data Manager", "description":" ref2 description"}]}}

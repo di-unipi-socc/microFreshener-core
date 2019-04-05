@@ -54,12 +54,11 @@ class YMLLoader(Loader):
             if group_type == SQUAD:
                 group = Squad(group_name)
                 for member in self.get_members(ordered_dict):
-                    #group.add_node(member)
-                    group.add_node(self.micro_model[member])
+                    group.add_member(self.micro_model[member])
             if group_type == EDGE:
                 group = Edge(group_name)
                 for member in self.get_members(ordered_dict):
-                    group.add_node(self.micro_model[member])
+                    group.add_member(self.micro_model[member])
             self.micro_model.add_group(group)
 
     def get_requirements(self,ruamel_commented_map):

@@ -1,9 +1,9 @@
-import json 
+import json
 
 from ..model.template import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
-
+from ..model.groups import Edge
 
 class JSONTransformer(object):
 
@@ -11,9 +11,9 @@ class JSONTransformer(object):
         pass
 
     # Transform a microModel Oject to a Dicionary format.
-    # @input:  microModel 
-    # @return: JSON string 
-    def transform(self,micro_model):
+    # @input:  microModel
+    # @return: JSON string
+    def transform(self, micro_model):
         return self.serialize(micro_model)
         # TODO: returns a JSON object instead of dict
         # ATTENTIOn: in the restfule api the Response() object requires a dict that are than converted into json
@@ -22,28 +22,27 @@ class JSONTransformer(object):
     def serialize(self, obj):
         d = {}
         if (isinstance(obj, MicroModel)):
-            d["name"] = obj.name # name of the models
-            d['nodes'] = []      # nodes 
-            d['links'] = []      # links 
+            d["name"] = obj.name  # name of the models
+            d['nodes'] = []      # nodes
+            d['links'] = []      # links
+            d['groups'] = []      # links
             for n in obj.nodes:
                 ndict = {}
                 ndict['name'] = n.name
-                ndict['id'] = n.id
+
                 if(isinstance(n, Service)):
-                   ndict['type'] =  "service"
+                    ndict['type'] = "service"
                 elif(isinstance(n, Database)):
-                    ndict['type'] =  "database"
+                    ndict['type'] = "database"
                 elif(isinstance(n, CommunicationPattern)):
-                   ndict['type'] =  "communicationpattern"
+                    ndict['type'] = "communicationpattern"
                 else:
                     # TODO throw an excpetion ?? Node not found
-                    ndict['type'] =  None
+                    ndict['type'] = None
                 d['nodes'].append(ndict)
 
                 for rel in n.relationships:
                     nrel = {}
-                    # nrel['target'] = rel.target.id
-                    # nrel['source'] = rel.source.id
                     nrel['target'] = rel.target.name
                     nrel['source'] = rel.source.name
                     # if(isinstance(rel.target, Root)):
@@ -56,7 +55,20 @@ class JSONTransformer(object):
                         nrel['type'] = 'runtime'
                     else:
                         nrel['type'] = None
-                        #TODO Throw an exception type not recognized
+                        # TODO Throw an exception type not recognized
                         raise ValueError('Relationship not recognized.')
                     d['links'].append(nrel)
+            groups = []
+            for group in obj.groups:
+                g_dict ={}
+                g_dict['name'] = group.name
+                if(isinstance(n, Edge)):
+                    g_dict['type'] = "edgegroup"
+                    members = []
+                    for member in group.members:
+                        members.append(member.name)
+                    g_dict['members'] = members
+                groups.append(g_dict)
+            d['groups']= groups                    
+
         return d

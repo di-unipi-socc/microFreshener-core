@@ -1,0 +1,71 @@
+{
+	"tosca_definitions_version": "tosca_simple_yaml_1_0",
+	"description": "Hello world of usign micro-tosca model",
+	"imports": [
+		{
+			"micro": "../../data/micro-tosca-types.yml"
+		}
+	],
+	"topology_template": {
+		"node_templates": {
+			"order": {
+				"type": "micro.nodes.Service",
+				"requirements": [
+					{
+						"run_time": "order_db"
+					},
+					{
+						"run_time": "rabbitmq"
+					},
+					{
+						"run_time": "shipping"
+					},
+					{
+						"deployment_time": "order_db"
+					},
+					{
+						"deployment_time": "shipping"
+					}
+				]
+			},
+			"rabbitmq": {
+				"type": "micro.nodes.MessageBroker"
+			},
+			"shipping": {
+				"type": "micro.nodes.Service",
+				"requirements": [
+					{
+						"run_time": "rabbitmq"
+					},
+					{
+						"run_time": "order_db"
+					},
+					{
+						"deployment_time": "order_db"
+					}
+				]
+			},
+			"order_db": {
+				"type": "micro.nodes.Database"
+			},
+			"gateway": {
+				"type": "micro.nodes.ApiGateway",
+				"requirements": [
+					{
+						"run_time": "shipping"
+					}
+				]
+			}
+		},
+		"groups": {
+			"edgenodes": {
+				"type": "micro.groups.Edge",
+				"members": [
+					"order",
+					"shipping",
+					"gateway"
+				]
+			}
+		}
+	}
+}
