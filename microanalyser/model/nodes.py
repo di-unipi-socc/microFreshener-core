@@ -137,6 +137,7 @@ class Service(Software):
 
 class CommunicationPattern(Software):
 
+
     def __init__(self, name, ctype):
         super(CommunicationPattern, self).__init__(name)
 
@@ -161,14 +162,6 @@ class CommunicationPattern(Software):
     @property
     def concrete_type(self):
         return self.concretetype
-
-    # @property
-    # def run_time(self):
-    #      return (i.format for i in self._run_time)
-
-    # @property
-    # def deployment_time(self):
-    #      return (i.format for i in self._deployment_time)
 
     def get_str_obj(self):
         return '{}, {}'.format(super(CommunicationPattern, self), _str_obj(self))

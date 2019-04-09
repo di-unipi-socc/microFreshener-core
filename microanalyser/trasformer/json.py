@@ -5,6 +5,7 @@ from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from ..model.groups import Edge
 
+from ..loader.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
 
 class JSONTransformer(object):
 
@@ -30,13 +31,20 @@ class JSONTransformer(object):
             for n in obj.nodes:
                 ndict = {}
                 ndict['name'] = n.name
-
                 if(isinstance(n, Service)):
                     ndict['type'] = "service"
                 elif(isinstance(n, Database)):
                     ndict['type'] = "database"
                 elif(isinstance(n, CommunicationPattern)):
                     ndict['type'] = "communicationpattern"
+                    if(n.concrete_type == API_GATEWAY ):
+                        ndict['ctype'] = "ApiGateway"
+                    elif  (n.concrete_type == MESSAGE_BROKER ):
+                        ndict['ctype'] = "MessageBroker"
+                    elif  (n.concrete_type == CIRCUIT_BREAKERI ):
+                        ndict['ctype'] = "CircuitBreaker"
+                    else:
+                        raise ValueError("Concrete type {} not recognized".format(n.concrete_type))
                 else:
                     # TODO throw an excpetion ?? Node not found
                     ndict['type'] = None

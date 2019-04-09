@@ -2,8 +2,9 @@
 
 # MICROTOSCA NODE TYPES
 SERVICE = 'micro.nodes.Service'
-COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 DATABASE = 'micro.nodes.Database'
+COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
+
 MESSAGE_BROKER = 'micro.nodes.MessageBroker'
 CIRCUIT_BREAKER = 'micro.nodes.CircuitBreaker'
 API_GATEWAY="micro.nodes.ApiGateway"

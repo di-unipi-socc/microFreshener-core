@@ -81,7 +81,7 @@ an = MicroAnalyser(micro_model)
 # an.add_group_smell_sniffer(NoApiGatewaySmellSniffer())
 an.add_node_smell_sniffer(SharedPersistencySmellSniffer())
 res = an.run()
-print(res)
+# print(res)
 
 #*******************************
 #         PLANNER
@@ -99,9 +99,9 @@ print(res)
 #         TRANFORMER
 #*******************************
 
-# transformer = YMLTransformer()
-# r = transformer.transform(micro_model)
-# pprint.pprint(r)
+transformer = YMLTransformer()
+r = transformer.transform(micro_model)
+pprint.pprint(r)
 
 #*******************************
 #         OUTPUTTER

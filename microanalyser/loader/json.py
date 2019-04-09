@@ -5,6 +5,7 @@ from ..model.nodes import Service, Database, CommunicationPattern
 from ..model.groups import Edge
 from ..logging import MyLogger
 from .iloader import Loader
+from .type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 
 logger = MyLogger().get_logger()
 
@@ -17,21 +18,30 @@ class JSONLoader(Loader):
             data = json.load(f)
             micro_model = MicroModel(data['name'])
             for node in data['nodes']:
-                tnode = node['type']
-                tname = node['name']
-                if(tnode == 'service'):
-                    # logger.debug("Created service {}".format(tname))
-                    el = Service(tname)
-                elif(tnode == 'communicationpattern'):
-                    # logger.debug("Created Communication Pattern {}".format(tname))
-                    el = CommunicationPattern(tname, 'messagebroker')
-                elif(tnode == 'database'):
-                    # logger.debug("Created Database {}".format(tname))
-                    el = Database(tname)
+                type_node = node['type']
+                name_node = node['name']
+                if(type_node == 'service'):
+                    # logger.debug("Created service {}".format(name_node))
+                    el = Service(name_node)
+                elif(type_node == 'communicationpattern'):
+                    # logger.debug("Created Communication Pattern {}".format(name_node))
+                    concrete_type_node = node['ctype']
+                    if( concrete_type_node == "MessageBroker"):
+                        el = CommunicationPattern(name_node, MESSAGE_BROKER)
+                    elif (concrete_type_node == "ApiGateway"):
+                        el = CommunicationPattern(name_node, API_GATEWAY)
+                    elif concrete_type_node == "CircuitBreaker":
+                        el = CommunicationPattern(name_node, CIRCUIT_BREAKER)
+                    else:
+                        raise Exception("concrete type {} is not recognized".format(concrete_type_node))
+
+                elif(type_node == 'database'):
+                    # logger.debug("Created Database {}".format(name_node))
+                    el = Database(name_node)
                 else:
-                    raise Exception("{} Node type is not recognized".format(tnode))
+                    raise Exception("{} Node type is not recognized".format(type_node))
                 micro_model.add_node(el)
-                # logger.debug("Loaded node {}".format(tname))
+                # logger.debug("Loaded node {}".format(name_node))
             for link in data['links']:
                 ltype = link['type']
                 source = micro_model[link['source']]

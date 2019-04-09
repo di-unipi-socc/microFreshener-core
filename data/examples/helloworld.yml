@@ -39,3 +39,8 @@ topology_template:
     edgenodes:
       type: micro.groups.Edge
       members: [ order, shipping, gateway]
+
+
+
+
+      

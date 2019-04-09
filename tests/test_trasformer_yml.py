@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from microanalyser.loader import JSONLoader
+from microanalyser.loader import YMLLoader
 from microanalyser.trasformer import YMLTransformer
 
 
@@ -9,15 +9,15 @@ class TestYMLTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        pass
-        # file = 'data/examples/helloworld.json' 
-        # loader = JSONLoader()
-        # microtosca_template = loader.load(file)
-        # self.tranformer = YMLTransformer()
-        # self.dict_model = self.tranformer.transform(microtosca_template)
+        file = 'data/examples/helloworld.yml' 
+        loader = YMLLoader()
+        self.microtosca_template = loader.load(file)
+        self.tranformer = YMLTransformer()
+        
 
-    # def test_dictionary_created(self):
-    #     self.assertDictEqual(self.dict_model, ntemplate)
+    def test_dictionary_created(self):
+        yml_string = self.tranformer.transform(self.microtosca_template)
+        
 
 
 

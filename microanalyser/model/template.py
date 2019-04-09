@@ -3,6 +3,7 @@ MicroModelTemplate module
 '''
 import six
 from .nodes import Root, Service, Database, CommunicationPattern
+from .relationships import DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Squad, Edge
 from ..logging import MyLogger
 
@@ -59,7 +60,7 @@ class MicroModel:
 
     def add_node(self, node):
         self._nodes[node.name] = node
-        logger.debug("{}: Added node".format(node))
+        logger.debug("Added node {}".format(node))
 
     def delete_node(self, node):
         for rel in node.relationships:
@@ -101,27 +102,3 @@ class MicroModel:
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
 
-
-
-    # def update(self):
-    #     self._add_pointer()
-    #     self._add_back_links()
-    #     self._add_groups_pointers()
-
-    # def _add_groups_pointers(self):
-    #     for g in self.groups:
-    #         for member in g.members:
-    #             g[member] = self[member]
-
-    # def _add_pointer(self):
-    #     for node in self.nodes:
-    #         for rel in node.relationships:
-    #             #rel.target = self[rel.target.id]
-    #             rel.target = self[rel.target]
-
-    # def _add_back_links(self):
-    #     for node in self.nodes:
-    #         for rel in node.run_time:
-    #             rel.target.up_run_time_requirements.append(rel)
-    #         for rel in node.deployment_time:
-    #             rel.target.up_deployment_time_requirements.append(rel)

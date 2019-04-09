@@ -6,7 +6,9 @@ from ..model.groups import Squad, Edge
 from .iloader import Loader
 from .type import SERVICE, COMMUNICATION_PATTERN,DATABASE, API_GATEWAY, MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 
+from ..logging import MyLogger
 
+logger = MyLogger().get_logger()
 class YMLLoader(Loader):
 
     def __init__(self):
@@ -27,12 +29,16 @@ class YMLLoader(Loader):
             node_type = self.get_type(commented_map)
             if node_type == SERVICE:
                 el = Service(node_name)
-            if node_type == MESSAGE_BROKER: #TODO: derived from CommunicationPattern
-                el = CommunicationPattern(node_name, node_type)
-            if node_type == API_GATEWAY:
-                el = CommunicationPattern(node_name, node_type)
-            if node_type == DATABASE:
+            elif node_type == DATABASE:
                 el = Database(node_name)
+            elif node_type == MESSAGE_BROKER:    #TODO: derived from CommunicationPattern
+                el = CommunicationPattern(node_name, node_type)
+            elif node_type == API_GATEWAY:
+                el = CommunicationPattern(node_name, node_type)
+            elif node_type == CIRCUIT_BREAKER:
+                el = CommunicationPattern(node_name, node_type)
+            else:
+                raise ValueError("Node type {} not recognized ".format(node_type))
             self.micro_model.add_node(el) 
     
     def _add_relationships(self, micro_yml):
@@ -42,6 +48,7 @@ class YMLLoader(Loader):
             for req in self.get_requirements(commented_map):
                 for interaction_type, target_name in req.items(): # [('run_time', 'order_db')]
                     target_node = self.micro_model[target_name]
+                    logger.info("Adding relationship from {} to {}".format(source_node, target_node))
                     if(interaction_type == RUN_TIME):  
                         source_node.add_run_time(target_node)
                     if(interaction_type == DEPLOYMENT_TIME):
