@@ -5,6 +5,7 @@ from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from ..model.groups import Edge
 
+
 class JSONTransformer(object):
 
     def __init__(self):
@@ -25,7 +26,7 @@ class JSONTransformer(object):
             d["name"] = obj.name  # name of the models
             d['nodes'] = []      # nodes
             d['links'] = []      # links
-            d['groups'] = []      # links
+            d['groups'] = []
             for n in obj.nodes:
                 ndict = {}
                 ndict['name'] = n.name
@@ -58,17 +59,17 @@ class JSONTransformer(object):
                         # TODO Throw an exception type not recognized
                         raise ValueError('Relationship not recognized.')
                     d['links'].append(nrel)
-            groups = []
             for group in obj.groups:
-                g_dict ={}
-                g_dict['name'] = group.name
-                if(isinstance(n, Edge)):
-                    g_dict['type'] = "edgegroup"
-                    members = []
-                    for member in group.members:
-                        members.append(member.name)
-                    g_dict['members'] = members
-                groups.append(g_dict)
-            d['groups']= groups                    
-
+                d['groups'].append(self._transform_group(group))
         return d
+
+    def _transform_group(self, group):
+        g_dict = {}
+        g_dict['name'] = group.name
+        if(isinstance(group, Edge)):
+            g_dict['type'] = "edgegroup"
+            members = []
+            for member in group.members:
+                members.append(member.name)
+            g_dict['members'] = members
+        return g_dict

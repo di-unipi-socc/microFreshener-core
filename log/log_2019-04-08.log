@@ -1,0 +1,48 @@
+2019-04-08 11:19:20,692 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:19:20,692 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:19:20,693 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:19:20,693 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:25:07,344 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:25:07,345 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:25:07,345 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:25:07,346 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:25:37,547 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:25:37,547 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:25:37,548 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:25:37,548 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:25:48,563 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:25:48,564 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:25:48,564 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:25:48,564 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:26:02,159 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:26:02,160 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:26:02,160 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:26:02,161 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:26:18,575 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:26:18,576 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:26:18,576 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:26:18,576 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:26:34,915 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:26:34,915 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:26:34,916 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:26:34,916 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:26:54,217 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:26:54,217 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:26:54,218 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:26:54,218 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:27:22,391 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:27:22,392 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:27:22,392 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:27:22,392 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:27:47,134 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:27:47,135 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:27:47,135 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:27:47,136 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:29:26,691 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:29:26,691 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:29:26,692 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:29:26,692 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes
+2019-04-08 11:33:58,444 	 [INFO | json.py:15] > Loading JSON file: data/examples/helloworld.json
+2019-04-08 11:33:58,445 	 [INFO | json.py:59] > Added shipping to group:edgegroup  name:edgenodes
+2019-04-08 11:33:58,445 	 [INFO | json.py:59] > Added order to group:edgegroup  name:edgenodes
+2019-04-08 11:33:58,445 	 [INFO | json.py:59] > Added gateway to group:edgegroup  name:edgenodes

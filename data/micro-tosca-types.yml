@@ -13,8 +13,6 @@ group_types:
     derived_from: tosca.groups.Root
     members: [micro.nodes.Root]
   
-
-
 # relationship definitions
 relationship_types:
   micro.relationships.Root:

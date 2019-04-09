@@ -29,7 +29,7 @@ class JSONLoader(Loader):
                     # logger.debug("Created Database {}".format(tname))
                     el = Database(tname)
                 else:
-                    raise Exception("NOde type is not recognized")
+                    raise Exception("{} Node type is not recognized".format(tnode))
                 micro_model.add_node(el)
                 # logger.debug("Loaded node {}".format(tname))
             for link in data['links']:

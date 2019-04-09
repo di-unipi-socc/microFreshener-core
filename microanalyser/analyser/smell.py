@@ -56,7 +56,6 @@ class NoApiGatewaySmell(GroupSmell):
     def __str__(self):
         return 'NoApiGateway({})'.format(super(NodeSmell, self).__str__())
 
-
 class EndpointBasedServiceInteractionSmell(NodeSmell):
     name: str = "EndpointBasedServiceInteractionSmell"
 

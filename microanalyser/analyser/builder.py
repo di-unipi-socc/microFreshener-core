@@ -1,5 +1,5 @@
 from .analyser import MicroAnalyser
-from .sniffer import EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
+from .sniffer import EndpointBasedServiceInteractionSmellSniffer,NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
 
 class AnalyserBuilder(object):
 
@@ -14,6 +14,7 @@ class AnalyserBuilder(object):
     sniffer:None
     if(principle == "HorizontalScalability"):
       self.analyser.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
+      self.analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer())
     elif (principle == "IsolateFailure"):
       self.analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
     elif (principle == "IndependentDeployability"):
