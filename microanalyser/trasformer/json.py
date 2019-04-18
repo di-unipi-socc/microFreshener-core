@@ -51,25 +51,23 @@ class JSONTransformer(object):
                 d['nodes'].append(ndict)
 
                 for rel in n.relationships:
-                    nrel = {}
-                    nrel['target'] = rel.target.name
-                    nrel['source'] = rel.source.name
-                    # if(isinstance(rel.target, Root)):
-                    #     nrel['target'] = rel.target.name
-                    # else:
-                    #     nrel['target'] = rel.target
-                    if(isinstance(rel, DeploymentTimeInteraction)):
-                        nrel['type'] = 'deploymenttime'
-                    elif(isinstance(rel, RunTimeInteraction)):
-                        nrel['type'] = 'runtime'
-                    else:
-                        nrel['type'] = None
-                        # TODO Throw an exception type not recognized
-                        raise ValueError('Relationship not recognized.')
-                    d['links'].append(nrel)
+                    d['links'].append(self._transform_relationship(rel))
             for group in obj.groups:
                 d['groups'].append(self._transform_group(group))
         return d
+
+    def _transform_relationship(self, relationship):
+        nrel = {}
+        nrel['target'] = relationship.target.name
+        nrel['source'] = relationship.source.name
+        nrel['timeout'] = relationship.timedout
+        if(isinstance(relationship, DeploymentTimeInteraction)):
+            nrel['type'] = 'deploymenttime'
+        elif(isinstance(relationship, RunTimeInteraction)):
+            nrel['type'] = 'runtime'
+        else:
+            raise ValueError("{} Relationship not recognized.".format(relationship))
+        return nrel
 
     def _transform_group(self, group):
         g_dict = {}
