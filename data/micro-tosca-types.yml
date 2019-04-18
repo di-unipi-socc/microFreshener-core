@@ -21,22 +21,10 @@ relationship_types:
   micro.relationships.InteractsWith:
     derived_from: micro.relationships.Root
     valid_target_types: [ micro.nodes.Root ]
-
-  # micro.relationships.RunTimeInteraction:
-  #   derived_from: micro.relationships.Root
+  
+  # micro.relationships.InteractsWithTimeout:
+  #   derived_from: micro.relationships.InteractsWith
   #   valid_target_types: [ micro.nodes.Root ]
-  #
-  # micro.relationships.DeploymentTimeInteraction:
-  #   derived_from: micro.relationships.Root
-  #   valid_target_types: [ micro.nodes.Root ]
-
-  # micro.relationships.ICRunTimeInteraction:
-  #   derived_from: micro.relationships.RunTimeInteraction
-  #   valid_target_types: [ micro.nodes.Service, micro.nodes.CommunicationPattern]
-  #
-  # micro.relationships.ICDeploymentTimeInteraction:
-  #   derived_from: micro.relationships.DeploymentTimeInteraction
-  #   valid_target_types: [ micro.nodes.Service, micro.nodes.CommunicationPattern]
 
 # nodes definitions
 node_types:
@@ -52,18 +40,13 @@ node_types:
   # Software node
   micro.nodes.Software:
     derived_from: micro.nodes.Root
-  #  capabilities:
-  #     feature:
-  #       type: tosca.capabilities.Node
-  #       valid_source_types: [micro.nodes.Software]
-  #       occurrences: [0, UNBOUNDED]
     requirements:
-      - run_time: # run_time_dependency | when_running
+      - run_time: 
           capability: tosca.capabilities.Node
           occurrences: [0, UNBOUNDED]
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
-      - deployment_time: # init_time_dependency | when_deploying
+      - deployment_time: 
           capability: tosca.capabilities.Node
           occurrences: [0, UNBOUNDED]
           node: micro.nodes.Root
@@ -73,12 +56,12 @@ node_types:
   micro.nodes.Service:
     derived_from: micro.nodes.Software
     requirements:
-      - run_time: # run_time_dependency | when_running
+      - run_time: 
           capability: tosca.capabilities.Node
           occurrences: [0, UNBOUNDED]
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
-      - deployment_time: # init_time_dependency | when_deploying
+      - deployment_time: 
           capability: tosca.capabilities.Node
           occurrences: [0, UNBOUNDED]
           node: micro.nodes.Root

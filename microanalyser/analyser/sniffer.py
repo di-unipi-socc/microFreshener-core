@@ -93,21 +93,22 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'NoApiGatewaySmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    def snif(self, group:Edge)->[NoApiGatewaySmell]: # MAybe NoApiGatewaySmlle is a GroupSmell not a nodeSmell ?!!!
+    # MAybe NoApiGatewaySmlle is a GroupSmell not a nodeSmell ?!!!
+    def snif(self, group: Edge)->[NoApiGatewaySmell]:
         nodes_with_smell = []
         for node in group.members:
             if isinstance(node, CommunicationPattern) and node.concrete_type == API_GATEWAY:
-                pass # do not consider API_gateway nodes.
+                pass  # do not consider API_gateway nodes.
             else:
                 gw_is_found = False
                 # TODO: check if the node has not a "ignore once" or "ignore forever" flag.
                 for up_relationship in node.incoming:
                     source = up_relationship.source
-                    if isinstance(source, CommunicationPattern) and source in group: # check if the source node is in the same group
+                    # check if the source node is in the same group
+                    if isinstance(source, CommunicationPattern) and source in group:
                         if(source.concrete_type == API_GATEWAY):
                             gw_is_found = True
                 if(not gw_is_found):
                     nodes_with_smell.append(node)
-            
+
         return NoApiGatewaySmell(group, nodes_with_smell)
-                    

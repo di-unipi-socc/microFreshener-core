@@ -56,7 +56,7 @@ class Root(object):
         return self.name
 
     def __eq__(self, other):
-        return self.name == self.name
+        return self.name == other.name
 
     def __hash__(self):
         return hash(self.name)
