@@ -2,7 +2,6 @@ tosca_definitions_version: tosca_simple_yaml_1_0
 
 description: Definition of the custom types of Micro TOSCA model
 
-
 group_types:
   # Squad definition
   micro.groups.Squad:
@@ -21,6 +20,10 @@ relationship_types:
   micro.relationships.InteractsWith:
     derived_from: micro.relationships.Root
     valid_target_types: [ micro.nodes.Root ]
+    properties:
+      timeout: 
+        type: boolean
+        default: false
   
   # micro.relationships.InteractsWithTimeout:
   #   derived_from: micro.relationships.InteractsWith

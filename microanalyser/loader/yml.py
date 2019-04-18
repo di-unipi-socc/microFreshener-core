@@ -17,14 +17,30 @@ class YMLLoader(Loader):
     def load(self, path_to_yml)->MicroModel:
         self.micro_model = MicroModel('micro.tosca')
         yaml = ruamel.yaml.YAML() # default  type='rt' 
-        micro_yml = yaml.load(Path(path_to_yml))
-        self._add_nodes(micro_yml)
-        self._add_relationships(micro_yml)
-        self._add_groups(micro_yml)
+        self.micro_yml = yaml.load(Path(path_to_yml))
+        self.relationship_templates = self._parse_relationship_templates()
+        self._add_nodes()
+        self._add_relationships()
+        self._add_groups()
         return self.micro_model
+    
+    def _parse_relationship_templates(self):
+        return  self.micro_yml.get('topology_template').get('relationship_templates')
+  
+    def _get_relationship_by_name(self, name):
+        if name in self.relationship_templates:
+            return self.relationship_templates[name]
+        else:
+            raise ValueError("{} relationship template does not exist".format(name))
+    
+    def _get_relationship_property_value(self, relationship, property_name):
+        if property_name in relationship['properties']:
+            return relationship['properties'][property_name]
+        else:
+            raise ValueError("{} property does not exist on relationshp {}".format(property_name, relationship))
 
-    def _add_nodes(self, micro_yml):
-        nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
+    def _add_nodes(self):
+        nodes_ruamel = self.micro_yml.get('topology_template').get('node_templates')
         for node_name, commented_map in nodes_ruamel.items():
             node_type = self.get_type(commented_map)
             if node_type == SERVICE:
@@ -41,21 +57,34 @@ class YMLLoader(Loader):
                 raise ValueError("Node type {} not recognized ".format(node_type))
             self.micro_model.add_node(el) 
     
-    def _add_relationships(self, micro_yml):
-        nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
+    def _add_relationships(self):
+        nodes_ruamel = self.micro_yml.get('topology_template').get('node_templates')
         for node_name, commented_map in nodes_ruamel.items():
             source_node = self.micro_model[node_name]
             for req in self.get_requirements(commented_map):
-                for interaction_type, target_name in req.items(): # [('run_time', 'order_db')]
-                    target_node = self.micro_model[target_name]
-                    logger.info("Adding relationship from {} to {}".format(source_node, target_node))
+                for interaction_type, target_type in req.items():
+                    # [('run_time', ordereddict([('node', 'shipping'), ('relationship', 'timedout')]))]
+                    is_timedout_interaction = False
+                    if(isinstance(target_type, str)):
+                        target_node = self.micro_model[target_type]
+                        is_timedout_interaction = False
+                        logger.info("Adding relationship from {} to {}".format(source_node, target_node))
+                    elif isinstance(target_type, ruamel.yaml.comments.CommentedMap):
+                        for key, value in target_type.items():
+                            if(key =="relationship"):
+                                rel = self._get_relationship_by_name(value)
+                                is_timedout_interaction = self._get_relationship_property_value(rel,"timeout")
+                            elif key=="node":
+                                target_node = self.micro_model[value]
+                        logger.info("Adding Timeout relationship from {} to {}".format(source_node, target_node))
+                    print(is_timedout_interaction)
                     if(interaction_type == RUN_TIME):  
-                        source_node.add_run_time(target_node)
+                        source_node.add_run_time(target_node, with_timeout=is_timedout_interaction)
                     if(interaction_type == DEPLOYMENT_TIME):
-                        source_node.add_deployment_time(target_node)
+                        source_node.add_deployment_time(target_node, with_timeout=is_timedout_interaction)
     
-    def _add_groups(self, micro_yml):
-        groups_ruamel = micro_yml.get('topology_template').get('groups')
+    def _add_groups(self):
+        groups_ruamel = self.micro_yml.get('topology_template').get('groups')
         for (group_name, ordered_dict) in groups_ruamel.items():
             group_type = self.get_type(ordered_dict)
             if group_type == SQUAD:

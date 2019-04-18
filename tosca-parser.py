@@ -53,6 +53,7 @@ loader = YMLLoader()
 micro_model = loader.load(path_to_yml)
 # micro_model.update() # create object pointers and up_requirements
 
+exit()
 #JSON loader
 # loader = JSONLoader()
 # micro_model = loader.load(path_to_json)

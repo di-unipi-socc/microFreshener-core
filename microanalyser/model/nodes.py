@@ -88,18 +88,18 @@ class Software(Root):
     def deployment_time(self):
         return (i.format for i in self._deployment_time)
 
-    def add_run_time(self, item):
+    def add_run_time(self, item, with_timeout=False):
         logger.debug("{}: adding runtime link to {}".format(self, item))
         if not isinstance(item, RunTimeInteraction):
-            item = RunTimeInteraction(self, item)
+            item = RunTimeInteraction(self, item, is_timedout=with_timeout)
         self._run_time.append(item)
         if not isinstance(item.target, str):
             item.target.up_run_time_requirements.append(item)
 
-    def add_deployment_time(self, item, alias=None):
+    def add_deployment_time(self, item, with_timeout=False):
         logger.debug("{}: adding deployment link to {}".format(self, item))
         if not isinstance(item, DeploymentTimeInteraction):
-            item = DeploymentTimeInteraction(self, item, alias)
+            item = DeploymentTimeInteraction(self, item, with_timeout)
         self._deployment_time.append(item)
         if not isinstance(item.target, str):
             item.target.up_deployment_time_requirements.append(item)

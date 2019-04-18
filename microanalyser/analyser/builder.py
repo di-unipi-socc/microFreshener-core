@@ -10,7 +10,6 @@ class AnalyserBuilder(object):
         self.analyser = MicroAnalyser(micro_model)
 
     def add_smell(self, smell: int):
-        print(type(smell))
         if(smell == 1):  # MUltiple services in the same container
             pass
         elif(smell == 2):  # SMELL_NO_API_GATEWAY):

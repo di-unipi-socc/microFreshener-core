@@ -102,3 +102,10 @@ class TestYMLTrasformer(TestCase):
 
         members = [m.name for m in group.members]
         self.assertCountEqual(members, ['shipping','order','gateway'])
+
+    def test_timedout_relationship(self):
+        order = self.microtosca["order"]
+        shipping = self.microtosca["shipping"]
+        link_to_shipping = [link for link in order.run_time if link.target == shipping] 
+        self.assertEqual(len(link_to_shipping), 1)  
+        self.assertTrue(link_to_shipping[0].timedout)  
