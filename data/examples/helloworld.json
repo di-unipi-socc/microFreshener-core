@@ -43,7 +43,8 @@
         {
             "source": "order",
             "target": "shipping",
-            "type": "runtime"
+            "type": "runtime",
+            "timeout": true
         },
         {
             "source": "order",

@@ -46,12 +46,16 @@ class JSONLoader(Loader):
                 ltype = link['type']
                 source = micro_model[link['source']]
                 target = micro_model[link['target']]
+                timeout = False
+                if "timeout" in link:
+                    timeout = link['timeout']
+                print(timeout)
                 if(ltype == 'runtime'):
-                    source.add_run_time(target)
+                    source.add_run_time(target, with_timeout=timeout)
                     # logger.debug("Added runtime link {} -> {}".format(source, target))
                 elif (ltype == 'deploymenttime'):
                     # logger.debug("Added runtime link {} -> {}".format(source, target))
-                    source.add_deployment_time(target)
+                    source.add_deployment_time(target, with_timeout=timeout)
                 else:
                     raise Exception(
                         "Link type {} is not recognized".format(ltype))

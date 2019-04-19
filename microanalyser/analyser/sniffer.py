@@ -56,7 +56,7 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
     def snif(self, node):
         # TODO: check also if there is a path from the node to a service node without a circuit breaker
         bad_interactions = [rt for rt in node.run_time if (
-            isinstance(rt.target, Service))]
+            isinstance(rt.target, Service)) and not rt.timedout]
         if (bad_interactions):
             return WobblyServiceInteractionSmell(node, bad_interactions)
         else:
