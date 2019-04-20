@@ -16,7 +16,7 @@ class NodeSmell(object):
         return self._interactions
 
     def to_dict(self):
-        return {"name": self.name, "cause": [interation.to_dict() for interation in self._interactions]}
+        return {"name": self.name, "node": self.node.name, "cause": [interation.to_dict() for interation in self._interactions]}
 
     def add_bad_interactions(self, interactions):
         self._interactions = interactions
@@ -114,5 +114,5 @@ class SharedPersistencySmell(NodeSmell):
         return {**sup_dict, **{"refactorings": [
             {"name": "Merge services",
                 "description": "Merge services accesing the same database"},
-            {"name": "Split Data", "description": "Split the database."},
+            {"name": "Split Database", "description": "Split the database."},
             {"name": "Add Data Manager", "description": " Add Data manager"}]}}
