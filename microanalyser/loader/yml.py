@@ -17,7 +17,9 @@ class YMLLoader(Loader):
     def load(self, path_to_yml)->MicroModel:
         self.micro_model = MicroModel('micro.tosca')
         yaml = ruamel.yaml.YAML() # default  type='rt' 
+        logger.info("Loading YML file {}".format(path_to_yml))
         self.micro_yml = yaml.load(Path(path_to_yml))
+
         self.relationship_templates = self._parse_relationship_templates()
         self._add_nodes()
         self._add_relationships()
@@ -68,7 +70,7 @@ class YMLLoader(Loader):
                     if(isinstance(target_type, str)):
                         target_node = self.micro_model[target_type]
                         is_timedout_interaction = False
-                        logger.info("Adding relationship from {} to {}".format(source_node, target_node))
+                        logger.debug("Adding relationship from {} to {}".format(source_node, target_node))
                     elif isinstance(target_type, ruamel.yaml.comments.CommentedMap):
                         for key, value in target_type.items():
                             if(key =="relationship"):
@@ -76,8 +78,7 @@ class YMLLoader(Loader):
                                 is_timedout_interaction = self._get_relationship_property_value(rel,"timeout")
                             elif key=="node":
                                 target_node = self.micro_model[value]
-                        logger.info("Adding Timeout relationship from {} to {}".format(source_node, target_node))
-                    print(is_timedout_interaction)
+                        logger.debug("Adding Timeout relationship from {} to {}".format(source_node, target_node))
                     if(interaction_type == RUN_TIME):  
                         source_node.add_run_time(target_node, with_timeout=is_timedout_interaction)
                     if(interaction_type == DEPLOYMENT_TIME):

@@ -16,7 +16,6 @@ class NodeSmellSniffer(metaclass=ABCMeta):
     def snif(self, node)->NodeSmell:
         pass
 
-
 class GroupSmellSniffer(metaclass=ABCMeta):
 
     @abstractmethod
@@ -96,6 +95,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
     # MAybe NoApiGatewaySmlle is a GroupSmell not a nodeSmell ?!!!
     def snif(self, group: Edge)->[NoApiGatewaySmell]:
         nodes_with_smell = []
+        foundNoApiGatewaySmells = []
         for node in group.members:
             if isinstance(node, CommunicationPattern) and node.concrete_type == API_GATEWAY:
                 pass  # do not consider API_gateway nodes.
@@ -110,5 +110,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
                             gw_is_found = True
                 if(not gw_is_found):
                     nodes_with_smell.append(node)
+                    foundNoApiGatewaySmells.append(NoApiGatewaySmell(group, [node]))
 
-        return NoApiGatewaySmell(group, nodes_with_smell)
+        # return NoApiGatewaySmell(group, nodes_with_smell)
+        return foundNoApiGatewaySmells

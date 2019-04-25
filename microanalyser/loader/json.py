@@ -49,7 +49,6 @@ class JSONLoader(Loader):
                 timeout = False
                 if "timeout" in link:
                     timeout = link['timeout']
-                print(timeout)
                 if(ltype == 'runtime'):
                     source.add_run_time(target, with_timeout=timeout)
                     # logger.debug("Added runtime link {} -> {}".format(source, target))
@@ -69,7 +68,7 @@ class JSONLoader(Loader):
                         for member_name in group['members']:
                             member = micro_model.get_node_by_name(member_name)
                             edge.add_member(member)
-                            logger.info("Added {} to group:{}  name:{}".format(
+                            logger.debug("Added {} to group:{}  name:{}".format(
                                 member_name, group_type, group_name))
                         micro_model.add_group(edge)
                     elif (group_type == 'squadgroup'):

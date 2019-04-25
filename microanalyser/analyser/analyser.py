@@ -5,183 +5,78 @@ from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
 
+
+from microanalyser.analyser.smell import WobblyServiceInteractionSmell, EndpointBasedServiceInteractionSmell
+
+
 class MicroAnalyser(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
-        self.node_smell_sniffers:[NodeSmellSniffer] = []      # list of NodeSmellSniffer to be executed for each node
-        self.group_smell_sniffers:[GroupSmellSniffer] = []    # list of GroupSmellSniffers
+        # list of NodeSmellSniffer to be executed for each node
+        self.node_smell_sniffers: [NodeSmellSniffer] = []
+        # list of GroupSmellSniffers to be executed for each group
+        self.group_smell_sniffers: [GroupSmellSniffer] = []
+        self.ignored_smells_for_node = {}
+
+    def ignore_smell_for_node(self, node, smell):
+        if node not in self.ignored_smells_for_node:
+            self.ignored_smells_for_node[node] = [smell]
+        else:
+            self.ignored_smells_for_node[node].apped(smell)
 
     def add_node_smell_sniffer(self, sniffer):
+        assert isinstance(sniffer, NodeSmellSniffer)
+        logger.info("Node Sniffer {} added".format(sniffer))
         self.node_smell_sniffers.append(sniffer)
 
     def add_group_smell_sniffer(self, sniffer):
         assert isinstance(sniffer, GroupSmellSniffer)
+        logger.info("Group Sniffer {} added".format(sniffer))
         self.group_smell_sniffers.append(sniffer)
 
     def run(self):
-        # TODO: return an object with two fields: ANodes:[], AGroups:[]
-        res = {}
+        logger.info("Running analysis")
+        # Return a dictionary with two fields of types: ANodes:[], AGroups:[]
+        result = {}
         nodes = []
         for node in self.micro_model.nodes:
             #  TODO: creare una classe ANode che identifica il nodo analizzato.
             anode = {'name': node.name}
             if(isinstance(node, Service)):
-                anode["type"] =  "software"
+                anode["type"] = "software"
             if(isinstance(node, Database)):
-                anode["type"] =  "database"
+                anode["type"] = "database"
             if(isinstance(node, CommunicationPattern)):
-                anode["type"] =  "communicationpattern"
+                anode["type"] = "communicationpattern"
                 anode['concrete_type'] = node.concrete_type
             smells = []
             for sniffer in self.node_smell_sniffers:
                 smell = sniffer.snif(node)
                 if(smell):
                     smells.append(smell.to_dict())
-            if(smells): # add only nodes that has at least one smell
+            if(smells):  # add only nodes that has at least one smell
                 anode['smells'] = smells
                 nodes.append(anode)
-        res['nodes'] = nodes
+        result['nodes'] = nodes
 
         groups = []
         for group in self.micro_model.groups:
-            # TODO: create a AGroup class to mantain the results af the analysis 
-            agroup = {'name': group.name} 
+            # TODO: create a AGroup class to mantain the resultults af the analysis
+            agroup = {'name': group.name}
             smells = []
             for gsniffer in self.group_smell_sniffers:
                 gsmells = gsniffer.snif(group)
                 if(gsmells):
-                    smells.append(gsmells.to_dict())
+                    if isinstance(gsmells, list):
+                        for smell in gsmells:
+                            smells.append(smell.to_dict())
+                    else:
+                        smells.append(gsmells.to_dict())
+
             if(smells):
                 agroup['smells'] = smells
                 groups.append(agroup)
-        res['groups'] = groups
-        return res
+        result['groups'] = groups
 
-
-    '''
-    {
-    node : <name>
-    type : Service | Database | CommunicationPattern
-    principles : [
-        {   id: 1,
-            name: bounded context: {
-            antipatterns : [
-                {   id: 1,
-                    name: wrong_cut 
-                    cause: Interaction(x,y)
-                    refactorings: [
-                        {   id: 1,
-                            name: movedbT1,
-                            solution: 
-                        },
-                        {   id: 2,
-                            name: movedbT2:
-                            solution:  antipatterns : [
-                {   id: 1,
-                    name: wrong_cut 
-                    cause: Interaction(x,y)
-                    refactorings: [
-                        {   id: 1,
-                            name: movedbT1,
-                            solution: 
-                        },
-                        {   id: 2,
-                            name: movedbT2:
-                            solution:  
-                        },
-                        {   id: 3
-                            name: addManager: 
-                            solution; 
-                        }
-                ]
-            ]
-        },
-        {   id: 2
-            name: decentralized data managment
-            antipatterns :[
-                {
-                    name: shared persitency,
-                    cause: interaction(),
-                    refactorings: [
-                        {
-                            name:shares persistency
-                            solution:
-                        }
-                ]
-                }
-            ]
-        },
-        {   id: 3
-            name: independently deployable 
-        ...
-    ]
-    '''
-    # def analyse_node(self, node, principles_to_check=[], antipatterns_to_exclude=[]):
-    #     logger.debug("Analyser - analysing node {}.".format(node))
-    #     res = {'name' : node.name, 'id': node.id}
-    #     res['principles'] =  []
-    #     for principle_name in principles_to_check:
-    #         logger.debug("Analyser - checking {} principle".format(principle_name))
-    #         principleObject = build_principle_from_name(principle_name)
-    #         principleObject.apply_to(node)
-    #         if(not principleObject.isEmpty()):
-    #             res['principles'].append(principleObject.to_dict())
-    #     return res
-
-    def analyse_squad(self, name, config_nodes={}):
-        wc_rels = {'squad': name, "nodes": []}
-        squad = self.micro_model.get_squad(name)
-        for member in squad.members:
-            wc_rels["nodes"].append(self.analyse_node(
-                member, config_nodes.get(member.name, {})))
-        return wc_rels
-
-    # def _check_principle_on_node(self, node, principle):
-    #     indDepl = IndependentDeployabilityPrinciple()
-    #     indDepl.apply_to(node)
-    #     if(not indDepl.isEmpty()):
-    #         res['principles'].append(indDepl.to_dict())
-
-    # def wrong_cut(self, node):
-    #     interactions = []
-    #     for relationship in node.relationships:
-    #         source_node = relationship.source
-    #         target_node = relationship.target
-    #         source_squad = self.micro_model.squad_of(source_node)
-    #         target_squad = self.micro_model.squad_of(target_node)
-    #         if (isinstance(source_node, Service) and isinstance(target_node, Database)
-    #             and source_squad != target_squad):
-    #             interactions.append(relationship)
-    #     return interactions
-
-    # def shared_persistency(self, node):
-    #     if(isinstance(node, Database)):
-    #         return set(rel for rel in node.incoming)
-    #     else: return None
-
-    # def deployment_time_interaction(self, node):
-    #     interaction = []
-    #     if(isinstance(node, Service)):
-    #          interaction = [dt_interaction for dt_interaction in node.deployment_time if (isinstance(dt_interaction.target, Service)
-    #                         # TODO: cehck if is derived from a Communication Pattern
-    #                         or isinstance(dt_interaction.target, CommunicationPattern))]
-    #     return interaction
-
-    # def direct_service_interaction(self, node):
-    #     interactions = []
-    #     if(isinstance(node, Service)):
-    #         interactions = [up_rt for up_rt in node.up_run_time_requirements if (
-    #             isinstance(up_rt.source, Service))]
-    #     return interactions
-
-    # def cascading_failures(self, node):
-    #     interactions = []
-    #     if(isinstance(node, Service)):
-    #         interactions = [rt_int for rt_int in node.run_time if isinstance(rt_int.target, Service)]
-    #         # TODO: guardare se esiste un path che arriva a un'altro servizio in cui non c'è un CircuiBreaker
-    #         # nodes_patterns = [req.target for req in node.run_time if (isinstance(req.target, CommunicationPattern) and
-    #         #                                              renq.target.concrete_type !=  CIRCUIT_BREAKER)
-    #         #             ]
-    #         # vs_patterns = [node for node in nodes_patterns if node.]
-    #     return interactions
+        return result

@@ -22,8 +22,8 @@ class MyLogger(object, metaclass=SingletonType):
 
     def __init__(self):
         self._logger = logging.getLogger("microtosca")
-        self._logger.setLevel(logging.DEBUG)
-        # self._logger.setLevel(logging.INFO)
+        # self._logger.setLevel(logging.DEBUG)
+        self._logger.setLevel(logging.INFO)
 
         formatter = logging.Formatter('%(asctime)s \t [%(levelname)s | %(filename)s:%(lineno)s] > %(message)s')
 

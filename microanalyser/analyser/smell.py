@@ -27,6 +27,9 @@ class NodeSmell(object):
     def isEmpty(self):
         return len(self._interactions) == 0
 
+    def __hash__(self):
+        return hash(self.name)
+
 
 class GroupSmell(object):
 
@@ -47,7 +50,9 @@ class GroupSmell(object):
 
     def isEmpty(self):
         return len(self._affected_nodes) == 0
-
+    
+    def __hash__(self):
+        return hash(self.name)
 
 class NoApiGatewaySmell(GroupSmell):
     name: str = "NoApiGateway"

@@ -18,16 +18,20 @@ class TestJSONLoader(TestCase):
         analyser = MicroAnalyser(self.micro_object)
         analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer())
         res = analyser.run()
-        r = {'nodes': [], 'groups': [{'name': 'edgenodes', 'smells': [
-            {'name': 'NoApiGateway', 'group': 'edgenodes', 'cause': ['order']}]}]}
-        self.assertDictEqual(res, r)
+        d = res['groups'][0]['smells'][0]['cause']
+        expected = ['order']
+        self.assertEqual(d, expected)
 
     def test_SharedPersistencySmellSniffer(self):
         analyser = MicroAnalyser(self.micro_object)
         analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         res = analyser.run()
         d = res['nodes'][0]['smells'][0]['cause']
-        # r = {'nodes': [{'name': 'order_db', 'id': 'node_order_db', 'type': 'database', 'smells':
         my_res = [{'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}, {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}, {
             'source': 'order', 'target': 'order_db', 'type': 'runtime'}, {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}]
         self.assertEqual(d, my_res)
+
+
+    def test_ignored_smell(self):
+        analyser = MicroAnalyser(self.micro_object)
+        analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())

@@ -26,30 +26,13 @@ class AnalyserBuilder(object):
             self.analyser.add_node_smell_sniffer(
                 SharedPersistencySmellSniffer())
         elif (smell == 7):  # "Single Layer Team"
-            pass 
+            pass
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
 
-    def add_smells_related_to_principle(self, principle: str):
-        # IndependentDeployability,HorizontalScalability,IsolateFailure,DecentraliseEverything
-        sniffer: None
-        if(principle == "HorizontalScalability"):
-            self.analyser.add_node_smell_sniffer(
-                EndpointBasedServiceInteractionSmellSniffer())
-            self.analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer())
-        elif (principle == "IsolateFailure"):
-            self.analyser.add_node_smell_sniffer(
-                WobblyServiceInteractionSmellSniffer())
-        elif (principle == "IndependentDeployability"):
-            pass
-        elif (principle == "Decentralization"):
-            self.analyser.add_node_smell_sniffer(
-                SharedPersistencySmellSniffer())
-            pass
-        else:
-            raise ValueError('Principle {} not recognized'.format(principle))
-        return self
-
+    def ignore_smell(self, node, smell):
+        pass
+        
     def build(self):
         return self.analyser

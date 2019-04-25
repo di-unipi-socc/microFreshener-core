@@ -23,7 +23,6 @@ from microanalyser.analyser.builder import AnalyserBuilder
 from microanalyser.analyser.analyser import MicroAnalyser
 
 from microanalyser.analyser.constant import INDEPENDENT_DEPLOYABILITY
-
 from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
 
 import pprint
@@ -51,9 +50,7 @@ if tosca.version:
 # Yml loader
 loader = YMLLoader()
 micro_model = loader.load(path_to_yml)
-# micro_model.update() # create object pointers and up_requirements
 
-exit()
 #JSON loader
 # loader = JSONLoader()
 # micro_model = loader.load(path_to_json)
@@ -70,18 +67,19 @@ exit()
 # remove node
 #micro_model.delete_node(micro_model["new"])
 
-#*******************************
-#         ANALYSER
-#*******************************
+#*************************************************************
+#                        ANALYSER
+#*************************************************************
 
-#analyser = AnalyserBuilder(micro_model).add_principle("IndependentDeployability").add_principle("HorizontalScalability").build()
 an = MicroAnalyser(micro_model)
-# an.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
-# an.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
+an.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
+an.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
 # an.add_node_smell_sniffer(SharedPersistencySmellSniffer())
 # an.add_group_smell_sniffer(NoApiGatewaySmellSniffer())
-an.add_node_smell_sniffer(SharedPersistencySmellSniffer())
+# an.add_node_smell_sniffer(SharedPersistencySmellSniffer())
+an.ignore_smell_for_node(micro_model['shipping'], EndpointBasedServiceInteractionSmell)
 res = an.run()
+pprint.pprint(res)
 # print(res)
 
 #*******************************
@@ -100,9 +98,9 @@ res = an.run()
 #         TRANFORMER
 #*******************************
 
-transformer = YMLTransformer()
-r = transformer.transform(micro_model)
-pprint.pprint(r)
+# transformer = YMLTransformer()
+# r = transformer.transform(micro_model)
+# pprint.pprint(r)
 
 #*******************************
 #         OUTPUTTER
