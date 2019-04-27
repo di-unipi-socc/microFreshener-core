@@ -1,10 +1,10 @@
 
 from abc import ABCMeta, abstractmethod
-from .smell import NodeSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
+from .smell import NodeSmell, SingleLayerTeamSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
 from ..model.nodes import Service, Database, CommunicationPattern
 from ..loader.type import API_GATEWAY
 from ..model.template import MicroModel
-from ..model.groups import Edge
+from ..model.groups import Edge, Squad
 from typing import List
 
 from ..helper.decorator import visitor
@@ -16,7 +16,11 @@ class NodeSmellSniffer(metaclass=ABCMeta):
     def snif(self, node)->NodeSmell:
         pass
 
+
 class GroupSmellSniffer(metaclass=ABCMeta):
+
+    def __init__(self, micromodel: MicroModel):
+        self.micro_model = micromodel
 
     @abstractmethod
     def snif(self, group):
@@ -28,21 +32,17 @@ class EndpointBasedServiceInteractionSmellSniffer(NodeSmellSniffer):
     def __str__(self):
         return 'DirectInteraction({})'.format(super(NodeSmellSniffer, self).__str__())
 
-    # TODO: add decorator for sniffing only service node
     @visitor(Service)
     def snif(self, node):
-        bad_interactions = [up_rt for up_rt in node.up_run_time_requirements if isinstance(
-            up_rt.source, Service)]
-        if (bad_interactions):
-            return EndpointBasedServiceInteractionSmell(node, bad_interactions)
-        else:
-            return None
+        smell = EndpointBasedServiceInteractionSmell(node)
+        for up_rt in node.up_run_time_requirements:
+            if(isinstance(up_rt.source, Service)):
+                smell.addLinkCause(up_rt)
+        return smell
 
     @visitor(MicroModel)
     def snif(self, micro_model):
         print("visiting all the nodes in the graph")
-        # for all nodes in  graph
-        #  snif node
 
 
 class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
@@ -50,16 +50,21 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
     def __str__(self):
         return 'WobblyServiceInteractionSmellSniffer({})'.format(super(NodeSmellSniffer, self).__str__())
 
-    # TODO: add decorator for sniffing only service node
     @visitor(Service)
     def snif(self, node):
         # TODO: check also if there is a path from the node to a service node without a circuit breaker
-        bad_interactions = [rt for rt in node.run_time if (
-            isinstance(rt.target, Service)) and not rt.timedout]
-        if (bad_interactions):
-            return WobblyServiceInteractionSmell(node, bad_interactions)
-        else:
-            return None
+        smell = WobblyServiceInteractionSmell(node)
+        for rt in node.run_time:
+            if (isinstance(rt.target, Service) and not rt.timedout):
+                smell.addLinkCause(rt)
+        return smell
+
+        # bad_interactions = [rt for rt in node.run_time if (
+        #     isinstance(rt.target, Service)) and not rt.timedout]
+        # if (bad_interactions):
+        #     return WobblyServiceInteractionSmell(node, bad_interactions)
+        # else:
+        #     return None
 
     @visitor(MicroModel)
     def snif(self, micro_model):
@@ -75,16 +80,14 @@ class SharedPersistencySmellSniffer(NodeSmellSniffer):
 
     @visitor(Database)
     def snif(self, node):
-        if(len(set(node.incoming)) > 1):
-            return SharedPersistencySmell(node, list(node.incoming))
-        else:
-            return None
+        smell = SharedPersistencySmell(node)
+        for link in node.incoming:
+            smell.addLinkCause(link)
+        return smell
 
     @visitor(MicroModel)
     def snif(self, micro_model):
         print("visiting all the nodes in the graph")
-        # for all nodes in  graph
-        #  snif node
 
 
 class NoApiGatewaySmellSniffer(GroupSmellSniffer):
@@ -92,10 +95,12 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'NoApiGatewaySmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    # MAybe NoApiGatewaySmlle is a GroupSmell not a nodeSmell ?!!!
     def snif(self, group: Edge)->[NoApiGatewaySmell]:
-        nodes_with_smell = []
+        # nodes_with_smell = []
         foundNoApiGatewaySmells = []
+
+        smell = NoApiGatewaySmell(group)
+
         for node in group.members:
             if isinstance(node, CommunicationPattern) and node.concrete_type == API_GATEWAY:
                 pass  # do not consider API_gateway nodes.
@@ -109,8 +114,26 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
                         if(source.concrete_type == API_GATEWAY):
                             gw_is_found = True
                 if(not gw_is_found):
-                    nodes_with_smell.append(node)
-                    foundNoApiGatewaySmells.append(NoApiGatewaySmell(group, [node]))
-
-        # return NoApiGatewaySmell(group, nodes_with_smell)
+                    smell.addNodeCause(node)
+                    # nodes_with_smell.append(node)
+                    foundNoApiGatewaySmells.append(smell)
         return foundNoApiGatewaySmells
+
+
+class SingleLayerTeamSmellSniffer(GroupSmellSniffer):
+
+    def snif(self, group: Squad)->[SingleLayerTeamSmell]:
+        smell = SingleLayerTeamSmell(group)
+        for node in group.members:
+            for relationship in node.relationships:
+                source_node = relationship.source
+                target_node = relationship.target
+                source_squad = self.micro_model.squad_of(source_node)
+                target_squad = self.micro_model.squad_of(target_node)
+                if (isinstance(source_node, Service) and isinstance(target_node, Database)
+                        and source_squad != target_squad):
+                    smell.addLinkCause(relationship)
+        return smell
+
+    def __str__(self):
+        return 'SingleLayerTeamSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())

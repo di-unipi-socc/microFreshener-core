@@ -1,0 +1,186 @@
+2019-04-27 11:48:41,415 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 11:49:50,244 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 11:50:46,685 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 11:51:12,085 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 11:51:28,653 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 11:55:32,765 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 11:55:56,114 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:00:13,667 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:00:36,927 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:01:04,767 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:01:18,271 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:01:30,967 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:01:46,803 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:02:00,476 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:02:40,704 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:03:19,455 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:03:27,580 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:03:46,912 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 12:04:02,022 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 12:04:28,705 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 12:05:28,061 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 12:05:46,777 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 12:08:13,648 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 12:23:13,042 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:44:20,831 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:48:21,510 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:49:40,615 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:49:55,216 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:49:59,320 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:50:03,647 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:50:50,731 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:51:23,871 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:51:52,862 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:51:58,112 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:52:09,038 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:52:34,750 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:52:39,967 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:52:57,639 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:53:37,245 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 13:55:22,406 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:55:36,819 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:55:41,492 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 13:56:03,234 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:15:26,307 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:16:37,902 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:19:52,636 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:20:23,491 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:21:45,865 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:22:10,346 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:34:20,984 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:35:40,189 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:38:21,036 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:38:51,139 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:39:57,660 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:40:13,541 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:41:28,172 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:41:45,579 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:42:01,044 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:43:55,218 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:44:24,571 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:44:37,912 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 14:44:51,126 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:35:49,445 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:35:54,924 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:35:54,954 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fbe41a82f60>) added
+2019-04-27 17:35:54,954 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 17:35:54,955 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fbe41a82d68>) added
+2019-04-27 17:36:29,070 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:36:29,107 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f5e68201f60>) added
+2019-04-27 17:36:29,107 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 17:36:29,108 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f5e68201cc0>) added
+2019-04-27 17:36:44,486 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:36:44,523 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f897b46cd30>) added
+2019-04-27 17:36:44,523 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 17:36:44,524 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f897b46cf98>) added
+2019-04-27 17:36:44,525 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 17:36:44,526 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f897b46cf98>) added
+2019-04-27 17:48:20,251 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:48:37,669 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:49:23,927 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:50:21,505 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:52:30,038 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:54:33,408 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:55:20,403 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:56:16,224 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:56:44,608 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:57:22,284 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:57:49,746 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:58:50,188 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:59:33,917 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:59:53,071 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:59:53,102 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f215230bb00>) added
+2019-04-27 17:59:53,102 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 17:59:53,103 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f215230b9e8>) added
+2019-04-27 17:59:53,103 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 17:59:53,105 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f215230b7b8>) added
+2019-04-27 17:59:53,106 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 17:59:53,111 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:59:53,141 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:59:53,169 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 17:59:53,208 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:00:19,339 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:00:19,373 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f6ad8ee6a90>) added
+2019-04-27 18:00:19,373 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:00:19,374 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f6ad8ee6978>) added
+2019-04-27 18:00:19,374 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:00:19,376 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f6ad8ee6748>) added
+2019-04-27 18:00:19,377 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 18:00:19,385 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:00:19,426 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:00:19,454 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:00:19,488 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:01:54,484 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:01:54,511 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fa9b6d519e8>) added
+2019-04-27 18:01:54,511 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:01:54,512 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa9b6d51908>) added
+2019-04-27 18:01:54,512 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:01:54,513 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa9b6d51908>) added
+2019-04-27 18:01:54,514 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 18:01:54,519 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:01:54,550 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:01:54,578 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:01:54,613 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:17,358 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:17,386 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f1a75bd8ac8>) added
+2019-04-27 18:14:17,386 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:14:17,387 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1a75bd89b0>) added
+2019-04-27 18:14:17,387 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:14:17,388 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1a75bd89b0>) added
+2019-04-27 18:14:17,390 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 18:14:17,395 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:17,434 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:17,462 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:17,494 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:28,821 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:28,853 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f627e688a90>) added
+2019-04-27 18:14:28,853 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:14:28,853 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f627e688978>) added
+2019-04-27 18:14:28,854 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:14:28,854 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f627e688978>) added
+2019-04-27 18:14:28,855 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 18:14:28,859 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:28,890 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:28,921 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:14:28,955 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:09,694 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:09,731 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fa4cebb2b70>) added
+2019-04-27 18:20:09,732 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:09,732 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa4cebb2a58>) added
+2019-04-27 18:20:09,732 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:09,734 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa4cebb2630>) added
+2019-04-27 18:20:09,735 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
+2019-04-27 18:20:09,738 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:09,768 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:09,800 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:09,831 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:18,459 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:18,488 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f1e385e3c88>) added
+2019-04-27 18:20:18,488 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:18,489 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1e385e39b0>) added
+2019-04-27 18:20:18,489 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:18,490 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1e385e3b38>) added
+2019-04-27 18:20:31,452 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:20:31,489 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fa7db475a58>) added
+2019-04-27 18:20:31,490 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:31,490 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa7db475e48>) added
+2019-04-27 18:20:31,491 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:31,491 	 [INFO | analyser.py:35] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7fa7db475e48>) added
+2019-04-27 18:20:31,491 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:20:31,493 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa7db475be0>) added
+2019-04-27 18:21:14,416 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:21:14,444 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f8366f6cc88>) added
+2019-04-27 18:21:14,445 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:21:14,445 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f8366f6c9b0>) added
+2019-04-27 18:21:14,446 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:21:14,446 	 [INFO | analyser.py:35] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f8366f6c9b0>) added
+2019-04-27 18:21:14,446 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:21:14,447 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f8366f6ce48>) added
+2019-04-27 18:21:18,662 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-27 18:21:18,690 	 [INFO | analyser.py:35] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f9be0a61c88>) added
+2019-04-27 18:21:18,690 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:21:18,690 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f9be0a619b0>) added
+2019-04-27 18:21:18,691 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:21:18,691 	 [INFO | analyser.py:35] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f9be0a619b0>) added
+2019-04-27 18:21:18,692 	 [INFO | analyser.py:39] > Running analysis
+2019-04-27 18:21:18,692 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f9be0a61e48>) added

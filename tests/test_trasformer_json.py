@@ -37,6 +37,21 @@ class TestJSONTranformer(TestCase):
         rel_dict = self.tranformer._transform_relationship(link_to_rabbitmq[0])
         self.assertEqual(rel_dict["timeout"], False)
 
+    def test_squad_group(self): 
+        squad =  self.microtosca.get_group("team1")
+        squad_dict = self.tranformer._transform_group(squad)
+        self.assertEqual(squad_dict['name'], "team1")
+        self.assertEqual("type" in squad_dict, True)
+        self.assertEqual(squad_dict['type'], "squadgroup")
+
+        squad2 =  self.microtosca.get_group("team2")
+        squad_dict = self.tranformer._transform_group(squad2)
+        self.assertEqual('name' in squad_dict, True)
+        self.assertEqual(squad_dict['name'], "team2")
+        self.assertEqual("type" in squad_dict, True)
+        self.assertEqual(squad_dict['type'], "squadgroup")
+      
+
 
 
 

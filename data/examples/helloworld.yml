@@ -41,7 +41,14 @@ topology_template:
     edgenodes:
       type: micro.groups.Edge
       members: [ order, shipping, gateway]
-
+    
+    team1:
+      type: micro.groups.Squad
+      members: [shipping, rabbitmq]
+    
+    team2:
+      type: micro.groups.Squad
+      members: [order, order_db]
 
   relationship_templates:
     timedout:

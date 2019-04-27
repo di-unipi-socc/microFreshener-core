@@ -3,7 +3,7 @@ import json
 from ..model.template import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
-from ..model.groups import Edge
+from ..model.groups import Edge, Squad
 
 from ..loader.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
 
@@ -74,8 +74,12 @@ class JSONTransformer(object):
         g_dict['name'] = group.name
         if(isinstance(group, Edge)):
             g_dict['type'] = "edgegroup"
-            members = []
-            for member in group.members:
-                members.append(member.name)
-            g_dict['members'] = members
+        elif (isinstance(group, Squad)):
+            g_dict['type'] = "squadgroup"
+        else:
+            raise ValueError("Group type {} not recognized.".format(group))
+        members = []
+        for member in group.members:
+            members.append(member.name)
+        g_dict['members'] = members
         return g_dict

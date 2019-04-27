@@ -21,7 +21,7 @@
         {
             "name": "gateway",
             "type": "communicationpattern",
-            "ctype":"ApiGateway"
+            "ctype": "ApiGateway"
         }
     ],
     "links": [
@@ -80,6 +80,22 @@
                 "shipping",
                 "order",
                 "gateway"
+            ]
+        },
+        {
+            "name": "team1",
+            "type": "squadgroup",
+            "members": [
+                "shipping",
+                "rabbitmq"
+            ]
+        },
+        {
+            "name": "team2",
+            "type": "squadgroup",
+            "members": [
+                "order",
+                "order_db"
             ]
         }
     ]

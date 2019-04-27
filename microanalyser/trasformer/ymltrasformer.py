@@ -84,14 +84,20 @@ class YMLTransformer(object):
 
         requirements = []
         for rel in node.relationships:
-            d_rel = {}
-            if(isinstance(rel, DeploymentTimeInteraction)):
-                d_rel['deployment_time'] = rel.target.name
-            elif(isinstance(rel, RunTimeInteraction)):
-                d_rel['run_time'] = rel.target.name
-            else:
-                raise ValueError('{} relationship not recognized.'.format(rel))
-            requirements.append(d_rel)
+            requirements.append(self._transform_relationship(rel))
         if(requirements):
             d_node['requirements'] = requirements
         return d_node
+
+    def _transform_relationship(self, rel):
+        d_rel = {}
+        if(isinstance(rel, DeploymentTimeInteraction)):
+                d_rel['deployment_time'] = rel.target.name
+        elif(isinstance(rel, RunTimeInteraction)):
+            if(rel.timedout):
+                d_rel['run_time'] = { "node": rel.target.name, "relationship": "timedout"}
+            else:
+                d_rel['run_time'] = rel.target.name,
+        else:
+            raise ValueError('{} relationship not recognized.'.format(rel))
+        return d_rel

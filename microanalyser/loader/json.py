@@ -2,7 +2,7 @@
 import json
 from ..model.template import MicroModel
 from ..model.nodes import Service, Database, CommunicationPattern
-from ..model.groups import Edge
+from ..model.groups import Edge, Squad
 from ..logging import MyLogger
 from .iloader import Loader
 from .type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
@@ -73,6 +73,14 @@ class JSONLoader(Loader):
                         micro_model.add_group(edge)
                     elif (group_type == 'squadgroup'):
                         logger.debug("Adding Squad group".format(group_name))
+                        squad = Squad(group_name)
+                        for member_name in group['members']:
+                            member = micro_model.get_node_by_name(member_name)
+                            squad.add_member(member)
+                            logger.debug("Added {} to group:{}  name:{}".format(
+                                member_name, group_type, group_name))
+                        micro_model.add_group(squad)
+
                     else:
                         raise Exception(
                             "Group type {} is not recognized".format(group_type))

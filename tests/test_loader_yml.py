@@ -91,6 +91,13 @@ class TestYMLTrasformer(TestCase):
         rels = [link.source.name for link in rabbitmq.incoming_deployment_time]       
         self.assertCountEqual(rels, [])
     
+    def test_timedout_relationship(self):
+        order = self.microtosca["order"]
+        shipping = self.microtosca["shipping"]
+        link_to_shipping = [link for link in order.run_time if link.target == shipping] 
+        self.assertEqual(len(link_to_shipping), 1)  
+        self.assertTrue(link_to_shipping[0].timedout)  
+
     def test_edge_group(self):
         group = self.microtosca.get_group('edgenodes')
         self.assertEqual(group.name, "edgenodes")
@@ -103,9 +110,25 @@ class TestYMLTrasformer(TestCase):
         members = [m.name for m in group.members]
         self.assertCountEqual(members, ['shipping','order','gateway'])
 
-    def test_timedout_relationship(self):
-        order = self.microtosca["order"]
-        shipping = self.microtosca["shipping"]
-        link_to_shipping = [link for link in order.run_time if link.target == shipping] 
-        self.assertEqual(len(link_to_shipping), 1)  
-        self.assertTrue(link_to_shipping[0].timedout)  
+    def test_squad_group(self):
+        squad = self.microtosca.get_group('team1')
+        self.assertEqual(squad.name, "team1")
+        self.assertEqual(self.microtosca['shipping'] in squad, True)
+        self.assertEqual('shipping' in squad, True)
+        self.assertEqual(self.microtosca['rabbitmq'] in squad, True)
+        self.assertEqual('rabbitmq' in squad, True)
+        self.assertEqual(self.microtosca['order'] in squad, False)
+        self.assertEqual('order' in squad, False)
+        self.assertCountEqual([m.name for m in squad.members], ['shipping','rabbitmq'])
+
+        squad = self.microtosca.get_group('team2')
+        self.assertEqual(squad.name, "team2")
+        self.assertCountEqual([m.name for m in squad.members], [
+                              'order', 'order_db'])
+
+
+
+
+
+
+   
