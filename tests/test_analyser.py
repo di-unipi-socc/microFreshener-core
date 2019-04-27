@@ -42,4 +42,7 @@ class TestJSONLoader(TestCase):
         analyser.add_group_smell_sniffer(sltm)
         res = analyser.run()
         actual_res = res['groups'][0]['smells'][0]['links']
-        expected_res = [{'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}]
+        expected_res = [{'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}, {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}]
+        self.assertEqual(actual_res, expected_res)
+        self.assertEqual(res['groups'][0]['smells'][0]['nodes'], [])
+

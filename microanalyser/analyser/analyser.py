@@ -70,9 +70,11 @@ class MicroAnalyser(object):
                 if(gsmells):
                     if isinstance(gsmells, list):
                         for smell in gsmells:
+                           if(not smell.isEmpty()):
                             smells.append(smell.to_dict())
                     else:
-                        smells.append(gsmells.to_dict())
+                        if(not gsmells.isEmpty()):
+                            smells.append(gsmells.to_dict())
 
             if(smells):
                 agroup['smells'] = smells
