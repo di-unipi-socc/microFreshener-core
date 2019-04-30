@@ -1,0 +1,336 @@
+2019-04-30 10:33:22,256 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:33:22,285 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f3406c14f98>) added
+2019-04-30 10:40:27,491 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:40:27,520 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f84cae77e80>) added
+2019-04-30 10:40:27,520 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:40:27,521 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f84cae77e48>) added
+2019-04-30 10:40:27,521 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:40:27,521 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f84cae77e48>) added
+2019-04-30 10:40:27,521 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:40:27,522 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f84cae77cc0>) added
+2019-04-30 10:40:27,522 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:40:27,523 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f84cae77e10>) added
+2019-04-30 10:43:06,347 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:43:06,386 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f75aaecde80>) added
+2019-04-30 10:43:06,386 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:43:06,387 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f75aaecde48>) added
+2019-04-30 10:43:06,387 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:43:06,388 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f75aaecde48>) added
+2019-04-30 10:43:06,388 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:43:06,389 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f75aaecdcc0>) added
+2019-04-30 10:43:06,389 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:43:06,390 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f75aaecde10>) added
+2019-04-30 10:45:11,212 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:45:11,240 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f691e752e80>) added
+2019-04-30 10:45:11,240 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:45:11,241 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f691e752cf8>) added
+2019-04-30 10:45:11,241 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:45:11,242 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f691e752cf8>) added
+2019-04-30 10:45:11,242 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:45:11,243 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f691e752f28>) added
+2019-04-30 10:45:11,243 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:45:11,244 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f691e752dd8>) added
+2019-04-30 10:49:34,747 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:49:34,775 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f787aa55e80>) added
+2019-04-30 10:49:34,775 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:49:34,776 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f787aa55cf8>) added
+2019-04-30 10:49:34,776 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:49:34,777 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f787aa55cf8>) added
+2019-04-30 10:49:34,777 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:49:34,778 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f787aa55f28>) added
+2019-04-30 10:49:34,778 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:49:34,778 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f787aa55f28>) added
+2019-04-30 10:50:17,870 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:50:17,903 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff60d6dee80>) added
+2019-04-30 10:50:17,904 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:17,905 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff60d6decf8>) added
+2019-04-30 10:50:17,906 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:17,907 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7ff60d6decf8>) added
+2019-04-30 10:50:17,908 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:17,910 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff60d6def28>) added
+2019-04-30 10:50:17,910 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:17,910 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff60d6def28>) added
+2019-04-30 10:50:37,183 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:50:37,220 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f1fac2dee80>) added
+2019-04-30 10:50:37,221 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:37,222 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1fac2decf8>) added
+2019-04-30 10:50:37,223 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:37,224 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f1fac2decf8>) added
+2019-04-30 10:50:37,224 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:37,225 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f1fac2def28>) added
+2019-04-30 10:50:37,225 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:37,226 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1fac2def28>) added
+2019-04-30 10:50:43,068 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:50:43,101 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fc07fe13d68>) added
+2019-04-30 10:50:43,101 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fc07fe13f98>) added
+2019-04-30 10:50:43,102 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fc07fe13cf8>) added
+2019-04-30 10:50:43,102 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:43,102 	 [INFO | analyser.py:64] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fc07fe13f60>) fro node order_db
+2019-04-30 10:50:43,102 	 [INFO | analyser.py:64] > Ignored smellNone fro node order_db
+2019-04-30 10:50:55,258 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:50:55,287 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fe93dadad68>) added
+2019-04-30 10:50:55,287 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fe93dadaf98>) added
+2019-04-30 10:50:55,287 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:50:55,288 	 [INFO | analyser.py:64] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fe93dadac50>) fro node order_db
+2019-04-30 10:51:10,978 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:51:11,007 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fb7aef85cc0>) added
+2019-04-30 10:51:11,008 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fb7aef85dd8>) added
+2019-04-30 10:51:11,008 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fb7aef85d30>) added
+2019-04-30 10:51:11,008 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:51:11,009 	 [INFO | analyser.py:64] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fb7aef85eb8>) fro node order_db
+2019-04-30 10:51:11,009 	 [INFO | analyser.py:64] > Ignored smellNone fro node order_db
+2019-04-30 10:51:33,266 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:51:33,296 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fc01b575cc0>) added
+2019-04-30 10:51:33,296 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fc01b575dd8>) added
+2019-04-30 10:51:33,296 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:51:33,297 	 [INFO | analyser.py:64] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fc01b575fd0>) fro node order_db
+2019-04-30 10:54:56,485 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:54:56,512 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f5aa5d22d30>) added
+2019-04-30 10:54:56,512 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f5aa5d22f60>) added
+2019-04-30 10:54:56,513 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:54:56,513 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7f5aa5d22c18>) for node order_db
+2019-04-30 10:54:59,304 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:54:59,330 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fd9c8888f98>) added
+2019-04-30 10:54:59,331 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fd9c8888c88>) added
+2019-04-30 10:54:59,331 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:54:59,331 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fd9c8888cc0>) for node order_db
+2019-04-30 10:55:09,838 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:55:09,865 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f9ce3062d30>) added
+2019-04-30 10:55:09,866 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f9ce3062f60>) added
+2019-04-30 10:55:09,866 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:55:09,866 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7f9ce3062c18>) for node order_db
+2019-04-30 10:55:23,620 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:55:23,649 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fd3923bbcc0>) added
+2019-04-30 10:55:23,649 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fd3923bbdd8>) added
+2019-04-30 10:55:23,649 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fd3923bbd30>) added
+2019-04-30 10:55:23,649 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:55:23,650 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fd3923bbeb8>) for node order_db
+2019-04-30 10:55:23,650 	 [INFO | analyser.py:65] > Ignored smellNone for node order_db
+2019-04-30 10:56:13,373 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:56:13,410 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f4042e19cc0>) added
+2019-04-30 10:56:13,411 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f4042e19dd8>) added
+2019-04-30 10:56:13,411 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f4042e19d30>) added
+2019-04-30 10:56:13,411 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:56:13,412 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7f4042e19eb8>) for node order_db
+2019-04-30 10:56:13,412 	 [INFO | analyser.py:65] > Ignored smellNone for node order_db
+2019-04-30 10:56:38,803 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:56:38,832 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f884ef1acc0>) added
+2019-04-30 10:56:38,832 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f884ef1add8>) added
+2019-04-30 10:56:38,832 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f884ef1ad30>) added
+2019-04-30 10:56:38,833 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:56:38,833 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7f884ef1aeb8>) for node order_db
+2019-04-30 10:56:38,833 	 [INFO | analyser.py:65] > Ignored smellNone for node order_db
+2019-04-30 10:57:36,077 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:57:36,104 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f15f57d8cc0>) added
+2019-04-30 10:57:36,104 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f15f57d8dd8>) added
+2019-04-30 10:57:36,105 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f15f57d8d30>) added
+2019-04-30 10:57:36,105 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f15f57d8fd0>) added
+2019-04-30 10:57:36,105 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:57:36,105 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7f15f580e4a8>) for node order_db
+2019-04-30 10:57:36,105 	 [INFO | analyser.py:65] > Ignored smellNone for node order_db
+2019-04-30 10:57:40,384 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:57:40,419 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fa4133cfcc0>) added
+2019-04-30 10:57:40,419 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa4133cfdd8>) added
+2019-04-30 10:57:40,420 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fa4133cfd30>) added
+2019-04-30 10:57:40,420 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fa4133cffd0>) added
+2019-04-30 10:57:40,420 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:57:40,420 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7fa4134054a8>) for node order_db
+2019-04-30 10:57:40,420 	 [INFO | analyser.py:65] > Ignored smellNone for node order_db
+2019-04-30 10:58:03,545 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:58:03,582 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f84a0c19cc0>) added
+2019-04-30 10:58:03,583 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f84a0c19dd8>) added
+2019-04-30 10:58:03,583 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f84a0c19d30>) added
+2019-04-30 10:58:03,583 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f84a0c19fd0>) added
+2019-04-30 10:58:03,583 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:58:03,583 	 [INFO | analyser.py:65] > Ignored smellNone for node order_db
+2019-04-30 10:58:03,584 	 [INFO | analyser.py:65] > Ignored smellSharedPersistencySmell(<microanalyser.analyser.smell.SharedPersistencySmell object at 0x7f84a0c19eb8>) for node order_db
+2019-04-30 10:59:15,918 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 10:59:15,947 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fbeae8acd30>) added
+2019-04-30 10:59:15,948 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fbeae8acc18>) added
+2019-04-30 10:59:15,949 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fbeae8acc88>) added
+2019-04-30 10:59:15,949 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fbeae8accf8>) added
+2019-04-30 10:59:15,949 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 10:59:15,950 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7fbeae8ace80>) for node order
+2019-04-30 10:59:15,950 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:00:06,853 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:00:06,884 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f0494dd8d30>) added
+2019-04-30 11:00:06,885 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f0494dd8c18>) added
+2019-04-30 11:00:06,885 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f0494dd8c88>) added
+2019-04-30 11:00:06,886 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f0494dd8cf8>) added
+2019-04-30 11:00:06,886 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:00:27,233 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:00:27,263 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fb690524d68>) added
+2019-04-30 11:00:27,264 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fb690524da0>) added
+2019-04-30 11:00:27,265 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fb690524f98>) added
+2019-04-30 11:00:27,265 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fb690524e80>) added
+2019-04-30 11:00:27,266 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:01:01,276 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:01:01,313 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f0892041d68>) added
+2019-04-30 11:01:01,314 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f0892041da0>) added
+2019-04-30 11:01:01,315 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f0892041f98>) added
+2019-04-30 11:01:01,315 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f0892041e80>) added
+2019-04-30 11:01:01,315 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:01:11,943 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:01:11,970 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f3cd466bd68>) added
+2019-04-30 11:01:11,971 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f3cd466bda0>) added
+2019-04-30 11:01:11,971 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f3cd466bf98>) added
+2019-04-30 11:01:11,971 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f3cd466be80>) added
+2019-04-30 11:01:11,971 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:01:20,759 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:01:20,786 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fce9e998d68>) added
+2019-04-30 11:01:20,786 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fce9e998da0>) added
+2019-04-30 11:01:20,786 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fce9e998f98>) added
+2019-04-30 11:01:20,787 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fce9e998e80>) added
+2019-04-30 11:01:20,787 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:02:14,814 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:02:14,840 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fdc8dd8fd68>) added
+2019-04-30 11:02:14,840 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fdc8dd8fda0>) added
+2019-04-30 11:02:14,840 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fdc8dd8ff98>) added
+2019-04-30 11:02:14,841 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fdc8dd8fe80>) added
+2019-04-30 11:02:14,841 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:02:14,841 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7fdc8ddc5d68>) for node order
+2019-04-30 11:02:14,841 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:02:27,596 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:02:27,623 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f9ebaecdd68>) added
+2019-04-30 11:02:27,624 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f9ebaecdda0>) added
+2019-04-30 11:02:27,624 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f9ebaecdf98>) added
+2019-04-30 11:02:27,624 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f9ebaecde80>) added
+2019-04-30 11:02:27,624 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:02:27,625 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f9ebaf03d68>) for node order
+2019-04-30 11:02:27,625 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:03:32,339 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:03:32,374 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f8334470cc0>) added
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f8334470dd8>) added
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f8334470d30>) added
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f8334470fd0>) added
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f8334470eb8>) for node order
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:03:32,375 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:03:32,376 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f8334470eb8>) for node order
+2019-04-30 11:03:32,376 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:03:32,376 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f8334470eb8>) for node shipping
+2019-04-30 11:03:32,376 	 [INFO | analyser.py:65] > Ignored smellNone for node shipping
+2019-04-30 11:03:46,345 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:03:46,379 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f641344bcc0>) added
+2019-04-30 11:03:46,379 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f641344bdd8>) added
+2019-04-30 11:03:46,379 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f641344bd30>) added
+2019-04-30 11:03:46,380 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f641344bfd0>) added
+2019-04-30 11:03:46,380 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:03:46,380 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f641344beb8>) for node order
+2019-04-30 11:03:46,380 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:03:51,567 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:03:51,594 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f28c7e0dd68>) added
+2019-04-30 11:03:51,595 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f28c7e0df98>) added
+2019-04-30 11:03:51,595 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f28c7e0dcf8>) added
+2019-04-30 11:03:51,595 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f28c7e0dc50>) added
+2019-04-30 11:03:51,595 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:03:51,596 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f28c7e0ddd8>) for node order
+2019-04-30 11:03:51,596 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:04:06,256 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:04:06,283 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f5b60d08cc0>) added
+2019-04-30 11:04:06,283 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f5b60d08dd8>) added
+2019-04-30 11:04:06,283 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f5b60d08d30>) added
+2019-04-30 11:04:06,284 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f5b60d08fd0>) added
+2019-04-30 11:04:06,284 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:04:06,285 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f5b60d08eb8>) for node order
+2019-04-30 11:04:06,285 	 [INFO | analyser.py:65] > Ignored smellNone for node order
+2019-04-30 11:22:16,134 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:22:16,162 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f54aff0bd30>) added
+2019-04-30 11:22:16,163 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f54aff0bf60>) added
+2019-04-30 11:22:16,163 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f54aff0bcc0>) added
+2019-04-30 11:22:16,163 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f54aff0bc18>) added
+2019-04-30 11:22:16,163 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:22:59,021 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:22:59,049 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fa5c6df4d30>) added
+2019-04-30 11:22:59,049 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fa5c6df4c18>) added
+2019-04-30 11:22:59,050 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fa5c6df4c88>) added
+2019-04-30 11:22:59,050 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fa5c6df4cf8>) added
+2019-04-30 11:22:59,050 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa5c6df4f98>) added
+2019-04-30 11:22:59,050 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:23:13,671 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:23:13,698 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f38d545cd30>) added
+2019-04-30 11:23:13,698 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f38d545cf60>) added
+2019-04-30 11:23:13,699 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f38d545ccc0>) added
+2019-04-30 11:23:13,699 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f38d545cc18>) added
+2019-04-30 11:23:13,699 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f38d545cc88>) added
+2019-04-30 11:23:13,699 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:24:28,757 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:24:28,782 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f971974ed68>) added
+2019-04-30 11:24:28,783 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f971974ef98>) added
+2019-04-30 11:24:28,783 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f971974ecf8>) added
+2019-04-30 11:24:28,783 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f971974ec50>) added
+2019-04-30 11:24:28,783 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f971974ecc0>) added
+2019-04-30 11:24:28,784 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:24:41,789 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:24:41,816 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f2981fe1cc0>) added
+2019-04-30 11:24:41,816 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f2981fe1dd8>) added
+2019-04-30 11:24:41,817 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f2981fe1d30>) added
+2019-04-30 11:24:41,817 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f2981fe1fd0>) added
+2019-04-30 11:24:41,817 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f2981fe1e48>) added
+2019-04-30 11:24:41,817 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:25:56,779 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:25:56,810 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f45b12b9400>) added
+2019-04-30 11:25:56,811 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f45b12b9cf8>) added
+2019-04-30 11:25:56,811 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f45b12b9c50>) added
+2019-04-30 11:25:56,812 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f45b12b9c88>) added
+2019-04-30 11:25:56,812 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f45b12b9278>) added
+2019-04-30 11:25:56,812 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:26:19,988 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:26:20,016 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f8733c5a400>) added
+2019-04-30 11:26:20,016 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f8733c5acf8>) added
+2019-04-30 11:26:20,017 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f8733c5ac50>) added
+2019-04-30 11:26:20,017 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f8733c5ac88>) added
+2019-04-30 11:26:20,017 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f8733c5a278>) added
+2019-04-30 11:26:20,017 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:26:48,913 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:26:48,940 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f69fe9d0400>) added
+2019-04-30 11:26:48,940 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f69fe9d0cf8>) added
+2019-04-30 11:26:48,941 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f69fe9d0c50>) added
+2019-04-30 11:26:48,941 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f69fe9d0c88>) added
+2019-04-30 11:26:48,941 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f69fe9d0278>) added
+2019-04-30 11:26:48,941 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:26:48,942 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:26:48,942 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f69fe9d0198>) for node shipping
+2019-04-30 11:26:48,942 	 [INFO | analyser.py:65] > Ignored smellWobblyServiceInteractionSmell(<microanalyser.analyser.smell.WobblyServiceInteractionSmell object at 0x7f69fe9d0080>) for node shipping
+2019-04-30 11:26:48,942 	 [INFO | analyser.py:65] > Ignored smellNone for node shipping
+2019-04-30 11:26:55,175 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:26:55,203 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fa444724400>) added
+2019-04-30 11:26:55,203 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fa444724cf8>) added
+2019-04-30 11:26:55,203 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7fa444724c50>) added
+2019-04-30 11:26:55,203 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fa444724c88>) added
+2019-04-30 11:26:55,204 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa444724278>) added
+2019-04-30 11:26:55,204 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:27:47,197 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:27:47,224 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff37f67d3c8>) added
+2019-04-30 11:27:47,225 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff37f67dcc0>) added
+2019-04-30 11:27:47,225 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7ff37f67dc18>) added
+2019-04-30 11:27:47,225 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff37f67dc50>) added
+2019-04-30 11:27:47,225 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff37f67d240>) added
+2019-04-30 11:28:00,577 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:28:00,613 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f0070bbb3c8>) added
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f0070bbbcc0>) added
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f0070bbbc18>) added
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f0070bbbc50>) added
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f0070bbb240>) added
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f0070bbb2e8>) for node shipping
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:65] > Ignored smellWobblyServiceInteractionSmell(<microanalyser.analyser.smell.WobblyServiceInteractionSmell object at 0x7f0070bbb160>) for node shipping
+2019-04-30 11:28:00,614 	 [INFO | analyser.py:65] > Ignored smellNone for node shipping
+2019-04-30 11:28:07,958 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:28:07,995 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f870955e3c8>) added
+2019-04-30 11:28:07,995 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f870955ecc0>) added
+2019-04-30 11:28:07,996 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f870955ec18>) added
+2019-04-30 11:28:07,996 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f870955ec50>) added
+2019-04-30 11:28:07,996 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f870955e240>) added
+2019-04-30 11:28:07,996 	 [INFO | analyser.py:46] > Running analysis
+2019-04-30 11:28:07,996 	 [INFO | analyser.py:65] > Ignored smellEndpointBasedServiceInteractionSmell(<microanalyser.analyser.smell.EndpointBasedServiceInteractionSmell object at 0x7f870955e2e8>) for node shipping
+2019-04-30 11:28:07,997 	 [INFO | analyser.py:65] > Ignored smellWobblyServiceInteractionSmell(<microanalyser.analyser.smell.WobblyServiceInteractionSmell object at 0x7f870955e160>) for node shipping
+2019-04-30 11:28:07,997 	 [INFO | analyser.py:65] > Ignored smellNone for node shipping
+2019-04-30 11:28:13,642 	 [INFO | yml.py:20] > Loading YML file data/examples/helloworld.yml
+2019-04-30 11:28:13,669 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f6c77e803c8>) added
+2019-04-30 11:28:13,669 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f6c77e80cc0>) added
+2019-04-30 11:28:13,669 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f6c77e80c18>) added
+2019-04-30 11:28:13,669 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f6c77e80c50>) added
+2019-04-30 11:28:13,670 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f6c77e80240>) added
+2019-04-30 11:28:13,670 	 [INFO | analyser.py:46] > Running analysis

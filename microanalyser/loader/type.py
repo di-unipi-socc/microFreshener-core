@@ -6,6 +6,7 @@ DATABASE = 'micro.nodes.Database'
 COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 
 MESSAGE_BROKER = 'micro.nodes.MessageBroker'
+MESSAGE_ROUTER = 'micro.nodes.MessageRouter'
 CIRCUIT_BREAKER = 'micro.nodes.CircuitBreaker'
 API_GATEWAY="micro.nodes.ApiGateway"
 

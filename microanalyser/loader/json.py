@@ -5,7 +5,7 @@ from ..model.nodes import Service, Database, CommunicationPattern
 from ..model.groups import Edge, Squad
 from ..logging import MyLogger
 from .iloader import Loader
-from .type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
+from .type import API_GATEWAY, MESSAGE_BROKER, MESSAGE_ROUTER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 
 logger = MyLogger().get_logger()
 
@@ -26,12 +26,14 @@ class JSONLoader(Loader):
                 elif(type_node == 'communicationpattern'):
                     # logger.debug("Created Communication Pattern {}".format(name_node))
                     concrete_type_node = node['ctype']
-                    if( concrete_type_node == "MessageBroker"):
+                    if(concrete_type_node == "MessageBroker"):
                         el = CommunicationPattern(name_node, MESSAGE_BROKER)
                     elif (concrete_type_node == "ApiGateway"):
                         el = CommunicationPattern(name_node, API_GATEWAY)
                     elif concrete_type_node == "CircuitBreaker":
                         el = CommunicationPattern(name_node, CIRCUIT_BREAKER)
+                    elif concrete_type_node == "MessageRouter":
+                        el = CommunicationPattern(name_node, MESSAGE_ROUTER)
                     else:
                         raise Exception("concrete type {} is not recognized".format(concrete_type_node))
 

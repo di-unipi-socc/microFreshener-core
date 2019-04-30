@@ -4,7 +4,7 @@ from ..model.template import MicroModel
 from ..model.nodes import Service, Database, CommunicationPattern
 from ..model.groups import Squad, Edge
 from .iloader import Loader
-from .type import SERVICE, COMMUNICATION_PATTERN,DATABASE, API_GATEWAY, MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
+from .type import SERVICE, COMMUNICATION_PATTERN,DATABASE, API_GATEWAY, MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME, MESSAGE_ROUTER
 
 from ..logging import MyLogger
 
@@ -55,6 +55,8 @@ class YMLLoader(Loader):
                 el = CommunicationPattern(node_name, node_type)
             elif node_type == CIRCUIT_BREAKER:
                 el = CommunicationPattern(node_name, node_type)
+            elif concrete_type_node == MESSAGE_ROUTER:
+                el = CommunicationPattern(name_node, node_type)
             else:
                 raise ValueError("Node type {} not recognized ".format(node_type))
             self.micro_model.add_node(el) 

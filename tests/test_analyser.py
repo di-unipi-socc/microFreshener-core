@@ -22,11 +22,22 @@ class TestJSONLoader(TestCase):
         d = res['groups'][0]['smells'][0]['nodes']
         expected = ['order']
         self.assertEqual(d, expected)
+    
+    def test_WobblyServiceInteractionSniffer(self):
+        analyser = MicroAnalyser(self.micro_object)
+        analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
+        res = analyser.run()
+        # 
+        # actual_res = res['nodes'][0]['smells'][0]['links']
+        # expected_res = [{'source': 'order', 'target': 'shipping', 'type': 'runtime'}]
+        # self.assertEqual(actual_res, expected_res)
+
 
     def test_SharedPersistencySmellSniffer(self):
         analyser = MicroAnalyser(self.micro_object)
         analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         res = analyser.run()
+
         d = res['nodes'][0]['smells'][0]['links']
         my_res = [{'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}, {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}, {
             'source': 'order', 'target': 'order_db', 'type': 'runtime'}, {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}]

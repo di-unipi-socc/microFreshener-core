@@ -17,18 +17,25 @@ class MicroAnalyser(object):
         self.node_smell_sniffers: [NodeSmellSniffer] = []
         # list of GroupSmellSniffers to be executed for each group
         self.group_smell_sniffers: [GroupSmellSniffer] = []
+        # list of smell to be ignored for each node
         self.ignored_smells_for_node = {}
 
     def ignore_smell_for_node(self, node, smell):
-        if node not in self.ignored_smells_for_node:
-            self.ignored_smells_for_node[node] = [smell]
+        if node.name not in self.ignored_smells_for_node:
+            self.ignored_smells_for_node[node.name] = [smell]
         else:
-            self.ignored_smells_for_node[node].apped(smell)
+            self.ignored_smells_for_node[node.name].apped(smell)
+
+    def get_ignore_smells_for_node(self, node):
+        return self.ignored_smells_for_node.get(node.name, None)
 
     def add_node_smell_sniffer(self, sniffer):
         assert isinstance(sniffer, NodeSmellSniffer)
         logger.info("Node Sniffer {} added".format(sniffer))
         self.node_smell_sniffers.append(sniffer)
+
+    def get_node_smell_sniffer(self):
+        return self.node_smell_sniffers
 
     def add_group_smell_sniffer(self, sniffer):
         assert isinstance(sniffer, GroupSmellSniffer)
@@ -52,9 +59,10 @@ class MicroAnalyser(object):
                 anode['concrete_type'] = node.concrete_type
             smells = []
             for sniffer in self.node_smell_sniffers:
-                smell = sniffer.snif(node)
-                if(smell):
-                    smells.append(smell.to_dict())
+                #if self.get_ignore_smells_for_node(node) or sniffer not in self.get_ignore_smells_for_node(node):
+                    smell = sniffer.snif(node)
+                    if(smell and not smell.isEmpty()):
+                        smells.append(smell.to_dict())
             if(smells):  # add only nodes that has at least one smell
                 anode['smells'] = smells
                 nodes.append(anode)
@@ -70,8 +78,8 @@ class MicroAnalyser(object):
                 if(gsmells):
                     if isinstance(gsmells, list):
                         for smell in gsmells:
-                           if(not smell.isEmpty()):
-                            smells.append(smell.to_dict())
+                            if(not smell.isEmpty()):
+                                smells.append(smell.to_dict())
                     else:
                         if(not gsmells.isEmpty()):
                             smells.append(gsmells.to_dict())

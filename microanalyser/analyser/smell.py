@@ -28,7 +28,7 @@ class Smell(object):
                 "links": [interation.to_dict() for interation in self.getLinkCause()]}
 
     def isEmpty(self):
-        return len(self.getLinkCause()) == 0  and len(self.getNodeCause()) == 0
+        return len(self.getLinkCause()) == 0 and len(self.getNodeCause()) == 0
 
     def __hash__(self):
         return hash(self.name)
@@ -137,5 +137,7 @@ class SingleLayerTeamSmell(GroupSmell):
 
     def to_dict(self):
         sup_dict = super(SingleLayerTeamSmell, self).to_dict()
-        return {**sup_dict, **{"refactorings": [{
-            "name": "Move Database", "description": "Move the database to another team"}]}}
+        return {**sup_dict, **{"refactorings": [
+            {"name": "Move Database", "description": "Move the database to another team"},
+            {"name": "Move Service", "description": "Move the service to another team"},
+            {"name": "Add Data Manager Team", "description": "Move the database to another team"}]}}

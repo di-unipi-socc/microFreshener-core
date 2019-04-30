@@ -59,19 +59,9 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
                 smell.addLinkCause(rt)
         return smell
 
-        # bad_interactions = [rt for rt in node.run_time if (
-        #     isinstance(rt.target, Service)) and not rt.timedout]
-        # if (bad_interactions):
-        #     return WobblyServiceInteractionSmell(node, bad_interactions)
-        # else:
-        #     return None
-
     @visitor(MicroModel)
     def snif(self, micro_model):
         print("visiting al lthe nodes in the graph")
-        # for all nodes in  graph
-        #  snif node
-
 
 class SharedPersistencySmellSniffer(NodeSmellSniffer):
 
@@ -81,8 +71,9 @@ class SharedPersistencySmellSniffer(NodeSmellSniffer):
     @visitor(Database)
     def snif(self, node):
         smell = SharedPersistencySmell(node)
-        for link in node.incoming:
-            smell.addLinkCause(link)
+        if (len(node.incoming)>1):
+            for link in node.incoming:
+                smell.addLinkCause(link)
         return smell
 
     @visitor(MicroModel)
@@ -96,28 +87,26 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
         return 'NoApiGatewaySmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
     def snif(self, group: Edge)->[NoApiGatewaySmell]:
-        # nodes_with_smell = []
         foundNoApiGatewaySmells = []
+        if isinstance(group, Edge):
+            for node in group.members:
+                smell = NoApiGatewaySmell(group)
+                if isinstance(node, CommunicationPattern) and node.concrete_type == API_GATEWAY:
+                    pass  # do not consider API_gateway nodes.
+                else:
+                    gw_is_found = False
+                    # TODO: check if the node has not a "ignore once" or "ignore forever" flag.
+                    for up_relationship in node.incoming:
+                        source = up_relationship.source
+                        # check if the source node is in the same group
+                        if isinstance(source, CommunicationPattern) and source in group:
+                            if(source.concrete_type == API_GATEWAY):
+                                gw_is_found = True
+                    if(not gw_is_found):
+                        smell.addNodeCause(node)
 
-        smell = NoApiGatewaySmell(group)
-
-        for node in group.members:
-            if isinstance(node, CommunicationPattern) and node.concrete_type == API_GATEWAY:
-                pass  # do not consider API_gateway nodes.
-            else:
-                gw_is_found = False
-                # TODO: check if the node has not a "ignore once" or "ignore forever" flag.
-                for up_relationship in node.incoming:
-                    source = up_relationship.source
-                    # check if the source node is in the same group
-                    if isinstance(source, CommunicationPattern) and source in group:
-                        if(source.concrete_type == API_GATEWAY):
-                            gw_is_found = True
-                if(not gw_is_found):
-                    smell.addNodeCause(node)
-                    # nodes_with_smell.append(node)
-                    foundNoApiGatewaySmells.append(smell)
-        return foundNoApiGatewaySmells
+                        foundNoApiGatewaySmells.append(smell)
+            return foundNoApiGatewaySmells
 
 
 class SingleLayerTeamSmellSniffer(GroupSmellSniffer):
