@@ -10,7 +10,7 @@ group_types:
   # Nodes accessed by external client
   micro.groups.Edge:
     derived_from: tosca.groups.Root
-    members: [micro.nodes.Root]
+    members: [micro.nodes.Software] # [micro.nodes.Root]
   
 # relationship definitions
 relationship_types:
@@ -58,17 +58,17 @@ node_types:
   # Service node
   micro.nodes.Service:
     derived_from: micro.nodes.Software
-    requirements:
-      - run_time: 
-          capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Root
-          relationship: micro.relationships.InteractsWith
-      - deployment_time: 
-          capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Root
-          relationship: micro.relationships.InteractsWith
+    #requirements:
+    #  - run_time: 
+    #      capability: tosca.capabilities.Node
+    #      occurrences: [0, UNBOUNDED]
+    #      node: micro.nodes.Root
+    #      relationship: micro.relationships.InteractsWith
+    #  - deployment_time: 
+    #      capability: tosca.capabilities.Node
+    #      occurrences: [0, UNBOUNDED]
+    #      node: micro.nodes.Root
+    #      relationship: micro.relationships.InteractsWith
 
   # CommunicationPattern node
   micro.nodes.CommunicationPattern: 
@@ -99,7 +99,7 @@ node_types:
     derived_from: micro.nodes.CommunicationPattern
 
   micro.nodes.ApiGateway:
-    derived_from: micro.nodes.CommunicationPattern
+    derived_from: micro.nodes.MessageRouter # micro.nodes.CommunicationPattern
 
   micro.nodes.MessageBroker:
     derived_from: micro.nodes.CommunicationPattern
