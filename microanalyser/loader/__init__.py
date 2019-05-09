@@ -1,2 +1,2 @@
-from .yml import YMLLoader
-from .json import JSONLoader
+from .ymlloader import YMLLoader
+from .jsonloader import JSONLoader

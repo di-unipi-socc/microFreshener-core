@@ -7,6 +7,7 @@ from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from ..model.groups import RootGroup, Edge, Squad
 from ..loader.type import SERVICE, DATABASE, COMMUNICATION_PATTERN, EDGE, SQUAD, API_GATEWAY, CIRCUIT_BREAKER, MESSAGE_BROKER
+from .itransformer import Transformer
 
 
 class MyYAML(YAML):
@@ -20,7 +21,7 @@ class MyYAML(YAML):
             return stream.getvalue()
 
 
-class YMLTransformer(object):
+class YMLTransformer(Transformer):
 
     def __init__(self):
         self.yaml = MyYAML()
@@ -46,13 +47,14 @@ class YMLTransformer(object):
             groups[group.name] = self._group_to_dict(group)
         topology_template["groups"] = groups
 
-        topology_template['relationship_templates'] = self.build_timedout_relationship_template()
+        topology_template['relationship_templates'] = self.build_timedout_relationship_template(
+        )
 
         yml_dict['topology_template'] = topology_template
         return yml_dict
 
     def build_timedout_relationship_template(self):
-        return  {"timedout": {"type":"micro.relationships.InteractsWith", "properties":{"timeout": True}}}
+        return {"timedout": {"type": "micro.relationships.InteractsWith", "properties": {"timeout": True}}}
 
     def _get_metadata(self):
         d_metadata = dict(tosca_definitions_version="tosca_simple_yaml_1_0", description="",
@@ -98,10 +100,11 @@ class YMLTransformer(object):
     def _transform_relationship(self, rel):
         d_rel = {}
         if(isinstance(rel, DeploymentTimeInteraction)):
-                d_rel['deployment_time'] = rel.target.name
+            d_rel['deployment_time'] = rel.target.name
         elif(isinstance(rel, RunTimeInteraction)):
             if(rel.timedout):
-                d_rel['run_time'] = { "node": rel.target.name, "relationship": "timedout"}
+                d_rel['run_time'] = {
+                    "node": rel.target.name, "relationship": "timedout"}
             else:
                 d_rel['run_time'] = rel.target.name
         else:

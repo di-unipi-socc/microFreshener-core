@@ -7,18 +7,20 @@ from ..model.groups import Edge, Squad
 
 from ..loader.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
 
-class JSONTransformer(object):
+from .itransformer import Transformer
+
+class JSONTransformer(Transformer):
 
     def __init__(self):
         pass
 
     # Transform a microModel Oject to a Dicionary format.
     # @input:  microModel
-    # @return: JSON string
-    def transform(self, micro_model):
+    # @return: python dictionary
+    def transform(self, micro_model:MicroModel):
         return self.serialize(micro_model)
         # TODO: returns a JSON object instead of dict
-        # ATTENTIOn: in the restfule api the Response() object requires a dict that are than converted into json
+        # ATTENTION: in the restfule api the Response() object requires a dict that are than converted into json
         # return json.dumps(self.serialize(micro_model), ensure_ascii=False)
 
     def serialize(self, obj):

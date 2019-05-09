@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
 from ..model.template import MicroModel 
  
-class Trasnformer(ABC):
+class Transformer(ABC):
  
     @abstractmethod
-    def transform(self, model:MicroModel)->file:str
+    def transform(self, model:MicroModel)->str:
         pass
