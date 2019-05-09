@@ -3,20 +3,23 @@ tosca_definitions_version: tosca_simple_yaml_1_0
 description: Definition of the custom types of Micro TOSCA model
 
 group_types:
-  # Squad definition
-  micro.groups.Squad:
+  micro.groups.Root:
     derived_from: tosca.groups.Root
-    members: [micro.nodes.Root]
-  # Nodes accessed by external client
+    
+  # group type for partitioning the nodes of an applications over Team(s)
+  micro.groups.Team:
+    derived_from: micro.groups.Root
+    members: [ micro.nodes.Root ]
+  # group type for defining the Edge of an architecture
   micro.groups.Edge:
-    derived_from: tosca.groups.Root
-    members: [micro.nodes.Root]
+    derived_from: micro.groups.Root
+    members: [ micro.nodes.Service, micro.nodes.CommunicationPattern ] # databases cannot be in edge
   
-# relationship definitions
 relationship_types:
   micro.relationships.Root:
     derived_from: tosca.relationships.Root
   
+  # relationship type for modelling interactions 
   micro.relationships.InteractsWith:
     derived_from: micro.relationships.Root
     valid_target_types: [ micro.nodes.Root ]
@@ -24,82 +27,61 @@ relationship_types:
       timeout: 
         type: boolean
         default: false
-  
-  # micro.relationships.InteractsWithTimeout:
-  #   derived_from: micro.relationships.InteractsWith
-  #   valid_target_types: [ micro.nodes.Root ]
 
-# nodes definitions
 node_types:
-  # Root node
   micro.nodes.Root:
     derived_from: tosca.nodes.Root
     capabilities:
       feature:
         type: tosca.capabilities.Node
-        valid_source_types: [micro.nodes.Root]
-        occurrences: [0, UNBOUNDED]
+        valid_source_types: [ micro.nodes.Root ]
+        occurrences: [ 0, UNBOUNDED ]
  
-  # Software node
-  micro.nodes.Software:
+  # node type for representing services
+  micro.nodes.Service:
     derived_from: micro.nodes.Root
     requirements:
       - run_time: 
           capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
+          occurrences: [ 0, UNBOUNDED ]
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
-      - deployment_time: 
-          capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Root
-          relationship: micro.relationships.InteractsWith
+      #- deployment_time: 
+      #    capability: tosca.capabilities.Node
+      #    occurrences: [0, UNBOUNDED]
+      #    node: micro.nodes.Root
+      #    relationship: micro.relationships.InteractsWith
 
-  # Service node
-  micro.nodes.Service:
-    derived_from: micro.nodes.Software
-    requirements:
-      - run_time: 
-          capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Root
-          relationship: micro.relationships.InteractsWith
-      - deployment_time: 
-          capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Root
-          relationship: micro.relationships.InteractsWith
-
-  # CommunicationPattern node
+  # node type for representing communication patterns
   micro.nodes.CommunicationPattern: 
-    derived_from: micro.nodes.Software
+    derived_from: micro.nodes.Root
     requirements:
       - run_time:
           capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Software
+          occurrences: [ 0, UNBOUNDED ]
+          node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
-      - deployment_time:
-          capability: tosca.capabilities.Node
-          occurrences: [0, UNBOUNDED]
-          node: micro.nodes.Software
-          relationship: micro.relationships.InteractsWith
+      #- deployment_time:
+      #    capability: tosca.capabilities.Node
+      #    occurrences: [0, UNBOUNDED]
+      #    node: micro.nodes.Root
+      #    relationship: micro.relationships.InteractsWith
 
-  # Database node
+  # node type for representing databases
   micro.nodes.Database:
     derived_from: micro.nodes.Root
     capabilities:
       feature:
         type: tosca.capabilities.Node
-        valid_source_types: [micro.nodes.Service]
-        occurrences: [0, UNBOUNDED]
+        valid_source_types: [ micro.nodes.Service ] # communication patterns cannot interact with databases
+        occurrences: [ 0, UNBOUNDED ]
 
   #  Type of CommunicationPatterns
   micro.nodes.CircuitBreaker:
     derived_from: micro.nodes.CommunicationPattern
 
-  micro.nodes.ApiGateway:
-    derived_from: micro.nodes.CommunicationPattern
+  micro.nodes.APIGateway:
+    derived_from: micro.nodes.MessageRouter # micro.nodes.CommunicationPattern
 
   micro.nodes.MessageBroker:
     derived_from: micro.nodes.CommunicationPattern
