@@ -76,11 +76,16 @@ class YMLLoader(Loader):
                     elif isinstance(target_type, ruamel.yaml.comments.CommentedMap):
                         for key, value in target_type.items():
                             if(key =="relationship"):
+                                print(value)
                                 rel = self._get_relationship_by_name(value)
                                 is_timedout_interaction = self._get_relationship_property_value(rel,"timeout")
                             elif key=="node":
                                 target_node = self.micro_model[value]
+                            else:
+                                raise ValueError("Relationship {} not recognized ".format(key))
                         logger.debug("Adding Timeout relationship from {} to {}".format(source_node, target_node))
+                    else:
+                         raise ValueError("Target type {} of relatinoship {} not recognized ".format(target_type,req ))
                     if(interaction_type == RUN_TIME):  
                         source_node.add_run_time(target_node, with_timeout=is_timedout_interaction)
                     if(interaction_type == DEPLOYMENT_TIME):

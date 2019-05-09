@@ -18,7 +18,7 @@ topology_template:
             relationship:  timedout
         - deployment_time: order_db
         - deployment_time: shipping
-        
+
     rabbitmq:
       type: micro.nodes.MessageBroker
 
@@ -52,10 +52,6 @@ topology_template:
 
   relationship_templates:
     timedout:
-      type: micro.relationships.InteractsWith
-      properties:
-        timeout: true
-    timedout2:
       type: micro.relationships.InteractsWith
       properties:
         timeout: true

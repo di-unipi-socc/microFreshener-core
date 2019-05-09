@@ -13,7 +13,10 @@ class TestYMLTranformer(TestCase):
         loader = YMLLoader()
         self.microtosca = loader.load(file)
         self.tranformer = YMLTransformer()
-        
+    
+    def test_relationship_format(self):
+        pass
+
 
     def test_timedout_relationship(self):
         order = self.microtosca["order"]
