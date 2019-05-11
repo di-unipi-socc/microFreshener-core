@@ -3,12 +3,6 @@ Relationships module
 '''
 import six
 
-REQUIREMENTS = STORAGE, CONNECTION, DEPENDENCY, HOST =\
-    'storage', 'connection', 'dependency', 'host'
-
-CAPABILITIES = ENDPOINT, FEATURE, HOST, ATTACHMENT =\
-    'endpoint', 'feature', 'host', 'attachement'
-
 
 def _get_str_name(obj):
     return obj if isinstance(obj, six.string_types) else obj.name
@@ -20,17 +14,15 @@ def _get_str_full_name(obj):
 
 class Relationship(object):
 
-    def __init__(self, source, target, requirement=None, capability=None):
+    def __init__(self, source, target):
         self.source = source
         self.target = target
-        self.requirement = requirement
-        self.capability = capability
 
     def __repr__(self):
-        return 's={0.source},t={0.target},req={0.requirement},cap={0.capability}'.format(self)
+        return 's={0.source},t={0.target}'.format(self)
 
     def __eq__(self, other):
-        return self.source == other.source and self.target == other.target 
+        return self.source == other.source and self.target == other.target
 
     def __hash__(self):
         return hash(self.source)+hash(self.target)
@@ -41,16 +33,24 @@ class Relationship(object):
 
 class InteractsWith(Relationship):
 
-    def __init__(self, source, target, is_timedout=False, alias=None,
-                 requirement=CONNECTION, capability=ENDPOINT):
-        super(InteractsWith, self).__init__(
-            source, target, requirement, capability)
+    def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None):
+        super(InteractsWith, self).__init__(source, target)
         self.alias = alias
-        self.is_timedout = is_timedout
+        self.property_timeout = with_timeout
+        self.property_circuit_breaker = with_circuit_breaker
+        self.property_dynamic_discovery = with_dynamic_discovery
 
     @property
-    def timedout(self):
-        return self.is_timedout
+    def timeout(self):
+        return self.property_timeout
+
+    @property
+    def circuit_breaker(self):
+        return self.property_circuit_breaker
+
+    @property
+    def dynamic_discovery(self):
+        return self.property_dynamic_discovery
 
     @property
     def format(self):
@@ -72,10 +72,9 @@ class InteractsWith(Relationship):
 
 class DeploymentTimeInteraction(InteractsWith):
 
-    def __init__(self, source, target, is_timedout=False, alias=None,
-                 requirement=CONNECTION, capability=ENDPOINT):
+    def __init__(self, source, target, is_timedout=False, alias=None):
         super(DeploymentTimeInteraction, self).__init__(
-            source, target, is_timedout, alias, requirement, capability)
+            source, target, is_timedout, alias)
 
     def __str__(self):
         return 'DeploymentTimeInteraction({})'.format(super(InteractsWith, self).__str__())
@@ -88,13 +87,11 @@ class DeploymentTimeInteraction(InteractsWith):
         return {'source': self.source.name, 'target': self.target.name, "type": "deploymenttime"}
 
 
-
 class RunTimeInteraction(InteractsWith):
 
-    def __init__(self, source, target, is_timedout=False, alias=None,
-                 requirement=CONNECTION, capability=ENDPOINT):
+    def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None):
         super(RunTimeInteraction, self).__init__(
-            source, target, is_timedout, alias, requirement, capability)
+            source, target, with_timeout, with_circuit_breaker, with_dynamic_discovery, alias)
 
     def __str__(self):
         return 'RunTimeInteraction({})'.format(super(RunTimeInteraction, self).__str__())

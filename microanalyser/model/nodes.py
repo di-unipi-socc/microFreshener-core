@@ -7,21 +7,9 @@ from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
 
-def _add_to_map(d, k, v):
-    if d is None:
-        d[k] = v
-    return d
 
 
-def _add_to_list(l_name, i):
-    if l_name is None:
-        l_name = []
-    l_name.append(i)
-    return l_name
 
-
-def _str_obj(o):
-    return ', '.join(["{}: {}".format(k, v) for k, v in vars(o).items()])
 
 
 class Root(object):
@@ -50,7 +38,6 @@ class Root(object):
     @property
     def incoming_deployment_time(self):
         return self.up_deployment_time_requirements
-    
 
     def __str__(self):
         return self.name
@@ -61,11 +48,9 @@ class Root(object):
     def __hash__(self):
         return hash(self.name)
 
-    def get_str_obj(self):
-        _str_obj(self)
-
     def to_dict(self):
         return {'name': self.name}
+
 
 class Software(Root):
 
@@ -88,10 +73,12 @@ class Software(Root):
     def deployment_time(self):
         return (i.format for i in self._deployment_time)
 
-    def add_run_time(self, item, with_timeout=False):
+    def add_run_time(self, item, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False):
         logger.debug("{}: adding runtime link to {}".format(self, item))
         if not isinstance(item, RunTimeInteraction):
-            item = RunTimeInteraction(self, item, is_timedout=with_timeout)
+            item = RunTimeInteraction(self, item, with_timeout=with_timeout,
+                                      with_circuit_breaker=with_circuit_breaker, 
+                                      with_dynamic_discovery=with_dynamic_discovery)
         self._run_time.append(item)
         if not isinstance(item.target, str):
             item.target.up_run_time_requirements.append(item)
@@ -126,17 +113,12 @@ class Service(Software):
     def deployment_time(self):
         return self._deployment_time
 
-    def get_str_obj(self):
-        return '{}, {}'.format(
-            super(Service, self).__str__(), _str_obj(self)
-        )
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'service')
 
 
 class CommunicationPattern(Software):
-
 
     def __init__(self, name, ctype):
         super(CommunicationPattern, self).__init__(name)
@@ -163,11 +145,9 @@ class CommunicationPattern(Software):
     def concrete_type(self):
         return self.concretetype
 
-    def get_str_obj(self):
-        return '{}, {}'.format(super(CommunicationPattern, self), _str_obj(self))
-
     def __str__(self):
         return '{} ({})'.format(self.name, self.concrete_type)
+
 
 class Database(Root):
 
@@ -190,5 +170,3 @@ class Database(Root):
     def __str__(self):
         return '{} ({})'.format(self.name, 'database')
 
-    def get_str_obj(self):
-        return '{}, {}'.format(super(Database, self), _str_obj(self))

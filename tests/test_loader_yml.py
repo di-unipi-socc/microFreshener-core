@@ -96,8 +96,8 @@ class TestYMLTrasformer(TestCase):
         shipping = self.microtosca["shipping"]
         link_to_shipping = [link for link in order.run_time if link.target == shipping] 
         self.assertEqual(len(link_to_shipping), 1)  
-        self.assertTrue(link_to_shipping[0].timedout)  
-
+        self.assertTrue(link_to_shipping[0].timeout)  
+    
     def test_edge_group(self):
         group = self.microtosca.get_group('edgenodes')
         self.assertEqual(group.name, "edgenodes")
