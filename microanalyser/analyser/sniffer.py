@@ -2,7 +2,7 @@
 from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, SingleLayerTeamSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
 from ..model.nodes import Service, Database, CommunicationPattern
-from ..loader.type import API_GATEWAY
+from ..model.type import API_GATEWAY
 from ..model.template import MicroModel
 from ..model.groups import Edge, Squad
 from typing import List
@@ -55,7 +55,7 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
         # TODO: check also if there is a path from the node to a service node without a circuit breaker
         smell = WobblyServiceInteractionSmell(node)
         for rt in node.run_time:
-            if (isinstance(rt.target, Service) and not rt.timedout):
+            if (isinstance(rt.target, Service) and not rt.timeout):
                 smell.addLinkCause(rt)
         return smell
 

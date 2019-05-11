@@ -6,7 +6,7 @@ from ..model.groups import Squad
 from ..model.helper import get_type
 
 
-from ..type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
+from ..model.type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
 
 class YMLLoader(object):
 

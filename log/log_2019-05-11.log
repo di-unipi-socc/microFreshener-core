@@ -54,3 +54,94 @@
 2019-05-11 10:52:50,255 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
 2019-05-11 10:53:21,628 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
 2019-05-11 10:53:24,169 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 10:59:54,436 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 10:59:58,173 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/helloworld.json
+2019-05-11 11:00:00,402 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 11:00:06,314 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/helloworld.json
+2019-05-11 11:00:06,318 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 11:00:06,321 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 11:00:06,387 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 12:52:09,589 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:52:13,059 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/helloworld.json
+2019-05-11 12:52:43,378 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:52:43,416 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f06ce744e48>) added
+2019-05-11 12:52:43,416 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:43,417 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f06ce744d30>) added
+2019-05-11 12:52:43,417 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:43,418 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f06ce744d30>) added
+2019-05-11 12:52:43,418 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:43,419 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f06ce744cf8>) added
+2019-05-11 12:52:43,419 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:43,421 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f06ce744d68>) added
+2019-05-11 12:52:55,620 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:52:55,655 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f590f7c5dd8>) added
+2019-05-11 12:52:55,655 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:55,656 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f590f7c5cc0>) added
+2019-05-11 12:52:55,656 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:55,657 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f590f7c5cc0>) added
+2019-05-11 12:52:55,657 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:55,658 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f590f7c5c88>) added
+2019-05-11 12:52:55,658 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:52:55,660 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f590f7c5cf8>) added
+2019-05-11 12:53:18,456 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:53:18,500 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff939a3be48>) added
+2019-05-11 12:53:18,500 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:53:18,501 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff939a3bd30>) added
+2019-05-11 12:53:18,501 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:53:18,501 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7ff939a3bd30>) added
+2019-05-11 12:53:18,502 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:53:18,503 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff939a3bcf8>) added
+2019-05-11 12:53:18,503 	 [INFO | analyser.py:46] > Running analysis
+2019-05-11 12:53:18,504 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff939a3bcf8>) added
+2019-05-11 12:53:37,642 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:53:37,678 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff5cb4c4dd8>) added
+2019-05-11 12:53:37,679 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff5cb4c4cc0>) added
+2019-05-11 12:53:37,679 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7ff5cb4c4cc0>) added
+2019-05-11 12:53:37,681 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff5cb4c4c88>) added
+2019-05-11 12:53:37,682 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff5cb4c4c88>) added
+2019-05-11 12:53:50,328 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:53:50,369 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff59ca37b70>) added
+2019-05-11 12:53:50,369 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff59ca37a20>) added
+2019-05-11 12:53:50,369 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7ff59ca37be0>) added
+2019-05-11 12:53:50,369 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff59ca37b38>) added
+2019-05-11 12:53:50,370 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff59ca37a90>) added
+2019-05-11 12:55:03,608 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:55:03,654 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f760a7f91d0>) added
+2019-05-11 12:55:03,655 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f760a7f9128>) added
+2019-05-11 12:55:03,656 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f760a7f9eb8>) added
+2019-05-11 12:55:03,656 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f760a7f90b8>) added
+2019-05-11 12:55:03,657 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f760a7f9e48>) added
+2019-05-11 12:55:45,470 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:55:45,506 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f2b276a3128>) added
+2019-05-11 12:55:45,506 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f2b276a3f28>) added
+2019-05-11 12:55:45,506 	 [INFO | analyser.py:34] > Node Sniffer DirectInteraction(<microanalyser.analyser.sniffer.EndpointBasedServiceInteractionSmellSniffer object at 0x7f2b276a3e10>) added
+2019-05-11 12:55:45,507 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f2b276a3eb8>) added
+2019-05-11 12:55:45,507 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f2b276a31d0>) added
+2019-05-11 12:56:28,134 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 12:56:32,997 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 12:56:36,732 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/helloworld.json
+2019-05-11 12:56:38,791 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:56:46,545 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:59:26,861 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 12:59:45,130 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-11 13:05:02,374 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:05:19,111 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:05:28,985 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:05:45,468 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:06:14,331 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:06:20,304 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:07:01,514 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:07:06,384 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:07:11,150 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:07:20,293 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:07:41,853 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:08:30,979 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:08:39,817 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:09:07,723 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:09:29,834 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:10:23,757 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:11:00,253 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:11:48,856 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:12:34,204 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:13:26,061 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 13:13:31,039 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml

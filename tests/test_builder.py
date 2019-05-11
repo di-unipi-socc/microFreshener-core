@@ -26,7 +26,7 @@ class TestAnalyserBUilder(TestCase):
     def test_AddIgnoreSmellForNode(self):
         builder = AnalyserBuilder(self.micro_object)
         order = self.micro_object['order']
-        builder.ignore_smell_for_node(order, WobblyServiceInteractionSmell)
+        builder.ignore_smell_for_node(order, 4) #WobblyServiceInteractionSmell)
         analyser = builder.build()
         self.assertEqual(analyser.get_ignore_smells_for_node(order),[WobblyServiceInteractionSmell])
         
@@ -37,7 +37,7 @@ class TestAnalyserBUilder(TestCase):
         builder.add_smell(3)
         builder.add_smell(4)
         builder.add_smell(6)
-        builder.ignore_smell_for_node(shipping, EndpointBasedServiceInteractionSmellSniffer)
+        builder.ignore_smell_for_node(shipping, 3) #EndpointBasedServiceInteractionSmellSniffer)
         analyser = builder.build()
         res = analyser.run()
         self.assertTrue(shipping.name  not in [node['name'] for node in res['nodes']])

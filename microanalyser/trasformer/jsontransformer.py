@@ -5,7 +5,8 @@ from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from ..model.groups import Edge, Squad
 
-from ..loader.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
+from ..model.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
+from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
 
 from .itransformer import Transformer
 
@@ -62,7 +63,9 @@ class JSONTransformer(Transformer):
         nrel = {}
         nrel['target'] = relationship.target.name
         nrel['source'] = relationship.source.name
-        nrel['timeout'] = relationship.timedout
+        nrel[INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
+        nrel[INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
+        nrel[INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
         if(isinstance(relationship, DeploymentTimeInteraction)):
             nrel['type'] = 'deploymenttime'
         elif(isinstance(relationship, RunTimeInteraction)):

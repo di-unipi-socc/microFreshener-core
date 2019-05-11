@@ -6,7 +6,7 @@ from ..model.template import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern
 from ..model.groups import RootGroup, Edge, Squad
-from ..loader.type import SERVICE, DATABASE, COMMUNICATION_PATTERN, EDGE, SQUAD, API_GATEWAY, CIRCUIT_BREAKER, MESSAGE_BROKER
+from ..model.type import SERVICE, DATABASE, COMMUNICATION_PATTERN, EDGE, SQUAD, API_GATEWAY, CIRCUIT_BREAKER, MESSAGE_BROKER
 from .itransformer import Transformer
 
 

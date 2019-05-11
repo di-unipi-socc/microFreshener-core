@@ -43,7 +43,7 @@ class MicroAnalyser(object):
         self.group_smell_sniffers.append(sniffer)
 
     def run(self):
-        logger.info("Running analysis")
+        logger.debug("Running analysis")
         # Return a dictionary with two fields of types: ANodes:[], AGroups:[]
         result = {}
         nodes = []
