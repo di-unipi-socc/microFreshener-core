@@ -2,8 +2,7 @@ from unittest import TestCase
 
 from microanalyser.loader import YMLLoader
 
-
-class TestYMLTrasformer(TestCase):
+class TestYMLLoaderRelationship(TestCase):
 
     @classmethod
     def setUpClass(self):
@@ -28,7 +27,6 @@ class TestYMLTrasformer(TestCase):
         self.assertTrue(links_to_target[0].timeout)
         self.assertFalse(links_to_target[0].circuit_breaker)
         self.assertFalse(links_to_target[0].dynamic_discovery)
-    
         
     def test_relationship_c(self):
         source = self.microtosca["source"]

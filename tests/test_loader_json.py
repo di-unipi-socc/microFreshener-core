@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from microanalyser.loader.json import JSONLoader
+from microanalyser.loader.jsonloader import JSONLoader
 
 
 class TestJSONLoader(TestCase):
@@ -98,7 +98,7 @@ class TestJSONLoader(TestCase):
         link_to_shipping = [
             link for link in order.run_time if link.target == shipping]
         self.assertEqual(len(link_to_shipping), 1)
-        self.assertTrue(link_to_shipping[0].timedout)
+        self.assertTrue(link_to_shipping[0].timeout)
 
     def test_edge_group(self):
         group = self.microtosca_template.get_group('edgenodes')

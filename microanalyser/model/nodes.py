@@ -8,10 +8,6 @@ from ..logging import MyLogger
 logger = MyLogger().get_logger()
 
 
-
-
-
-
 class Root(object):
 
     def __init__(self, name):
@@ -83,10 +79,12 @@ class Software(Root):
         if not isinstance(item.target, str):
             item.target.up_run_time_requirements.append(item)
 
-    def add_deployment_time(self, item, with_timeout=False):
+    def add_deployment_time(self, item, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False):
         logger.debug("{}: adding deployment link to {}".format(self, item))
         if not isinstance(item, DeploymentTimeInteraction):
-            item = DeploymentTimeInteraction(self, item, with_timeout)
+            item = DeploymentTimeInteraction(self, item, with_timeout=with_timeout,
+                                      with_circuit_breaker=with_circuit_breaker, 
+                                      with_dynamic_discovery=with_dynamic_discovery)
         self._deployment_time.append(item)
         if not isinstance(item.target, str):
             item.target.up_deployment_time_requirements.append(item)

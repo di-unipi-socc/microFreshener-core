@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microanalyser.loader import YMLLoader 
 
-class TestYMLTrasformer(TestCase):
+class TestYMLLoader(TestCase):
 
     @classmethod
     def setUpClass(self):

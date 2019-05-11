@@ -1,0 +1,95 @@
+{
+  "name": "hello-world",
+  "nodes": [
+    {
+      "name": "source",
+      "type": "service"
+    },
+    {
+      "name": "target",
+      "type": "service"
+    },
+    {
+      "name": "target_t",
+      "type": "service"
+    },
+    {
+      "name": "target_c",
+      "type": "service"
+    },
+    {
+      "name": "target_d",
+      "type": "service"
+    },
+    {
+      "name": "target_tc",
+      "type": "service"
+    },
+    {
+      "name": "target_td",
+      "type": "service"
+    },
+    {
+      "name": "target_cd",
+      "type": "service"
+    },
+    {
+      "name": "target_tcd",
+      "type": "service"
+    }
+  ],
+  "links": [
+    {
+      "source": "source",
+      "target": "target",
+      "type": "runtime"
+    },
+    {
+      "source": "source",
+      "target": "target_t",
+      "type": "runtime",
+      "timeout": true
+    },
+    {
+      "source": "source",
+      "target": "target_c",
+      "type": "runtime",
+      "circuit_breaker": true
+    },
+    {
+      "source": "source",
+      "target": "target_d",
+      "type": "runtime",
+      "dynamic_discovery": true
+    },
+    {
+      "source": "source",
+      "target": "target_tc",
+      "type": "runtime",
+      "timeout": true,
+      "circuit_breaker": true
+    },
+    {
+      "source": "source",
+      "target": "target_td",
+      "type": "runtime",
+      "timeout": true,
+      "dynamic_discovery": true
+    },
+    {
+      "source": "source",
+      "target": "target_cd",
+      "type": "runtime",
+      "circuit_breaker": true,
+      "dynamic_discovery": true
+    },
+    {
+      "source": "source",
+      "target": "target_tcd",
+      "type": "runtime",
+      "timeout": true,
+      "circuit_breaker": true,
+      "dynamic_discovery": true
+    }
+  ]
+}
