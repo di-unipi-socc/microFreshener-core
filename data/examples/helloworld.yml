@@ -13,9 +13,7 @@ topology_template:
       requirements:
         - run_time: order_db
         - run_time: rabbitmq
-        - run_time: 
-            node: shipping
-            relationship: t
+        - run_time: shipping
         - deployment_time: order_db
         - deployment_time: shipping
 

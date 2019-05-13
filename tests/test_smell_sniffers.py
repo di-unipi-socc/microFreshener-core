@@ -9,8 +9,6 @@ class TestAnalyser(TestCase):
 
     @classmethod
     def setUpClass(self):
-        # file = 'data/examples/helloworld.json'
-        # loader = JSONLoader()
         file = 'data/examples/helloworld.yml'
         loader = YMLLoader()
         self.micro_model = loader.load(file)
@@ -34,7 +32,7 @@ class TestAnalyser(TestCase):
         self.assertEqual(smell.isEmpty(), True)
         # TODO: ADd a service node for ahaving a Wobbly service ineraction
         # the order to shipping interaction now has a timedout interaction
-        
+
         # self.assertEqual(smell.node, order)
         # self.assertEqual(len(smell.caused_by), 1)
         # self.assertEqual(
@@ -47,7 +45,8 @@ class TestAnalyser(TestCase):
         ws = SharedPersistencySmellSniffer()
         smell = ws.snif(orderdb)
         self.assertEqual(len(smell.getLinkCause()), 4)
-        sources = [interaction.source.name for interaction in smell.getLinkCause()]
+        sources = [
+            interaction.source.name for interaction in smell.getLinkCause()]
         self.assertCountEqual(
             sources,  ['shipping', 'order', 'shipping', 'order'])
 
@@ -65,7 +64,7 @@ class TestAnalyser(TestCase):
         team1 = self.micro_model.get_group("team1")
         sltm = SingleLayerTeamSmellSniffer(self.micro_model)
         smell = sltm.snif(team1)
-        links =  smell.getLinkCause()
+        links = smell.getLinkCause()
         self.assertEqual(len(links), 2)
         self.assertIsInstance(links[0], RunTimeInteraction)
         self.assertEqual(links[0].source, self.micro_model['shipping'])
@@ -73,6 +72,3 @@ class TestAnalyser(TestCase):
         self.assertIsInstance(links[1], DeploymentTimeInteraction)
         self.assertEqual(links[1].source, self.micro_model['shipping'])
         self.assertEqual(links[1].target, self.micro_model['order_db'])
-
-
-

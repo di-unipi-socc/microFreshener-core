@@ -69,6 +69,9 @@ class InteractsWith(Relationship):
     def to_dict(self):
         return {'source': str(self.source), 'target': str(self.target)}
 
+    def __eq__(self, other):
+        return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout  and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
+
 
 class DeploymentTimeInteraction(InteractsWith):
 

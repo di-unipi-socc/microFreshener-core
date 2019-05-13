@@ -1,9 +1,8 @@
 tosca_definitions_version: tosca_simple_yaml_1_1
 
-description: For testing all the relationship with properties
+description: For testing the EndpointBased Service Interaction smell
 
 imports:
-  # - tosker: https://di-unipi-socc.github.io/tosker-types/tosker.yaml
   - micro: ../../data/micro-tosca-types.yml
 
 topology_template:
@@ -50,34 +49,55 @@ topology_template:
     target_tcd:
       type: micro.nodes.Service
 
-    # multiple links with differnet properties  with same source and same taget
-    source_same:
+    # test multi incoming links 
+    source1: 
       type: micro.nodes.Service
       requirements:
-        - run_time: target_same
+        - run_time: target_multi
+    source2:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: target_multi
+    target_multi: 
+      type: micro.nodes.Service
+    
+    # for testing composite incoming links (with and without timeout)
+    source3: 
+      type: micro.nodes.Service
+      requirements:
+        - run_time: target_composite
         - run_time:
-            node: target_same
+            node: target_composite
+            relationship: t
+    source4:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target_composite
             relationship: t
         - run_time:
-            node: target_same
+            node: target_composite
+            relationship: tc
+    source5:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target_composite
             relationship: c
         - run_time:
-            node: target_same
-            relationship: d
-        - run_time:
-            node: target_same
-            relationship: tc
-        - run_time:
-            node: target_same
-            relationship: td
-        - run_time:
-            node: target_same
-            relationship: cd
-        - run_time:
-            node: target_same
+            node: target_composite
             relationship: tcd
-    target_same:
+    source6:
       type: micro.nodes.Service
+      requirements:
+        - run_time: target_composite
+        - run_time:
+            node: target_composite
+            relationship: tcd
+    target_composite: 
+      type: micro.nodes.Service
+    
+
   relationship_templates:
     t:
       type: micro.relationships.InteractsWith

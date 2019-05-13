@@ -30,13 +30,13 @@ class GroupSmellSniffer(metaclass=ABCMeta):
 class EndpointBasedServiceInteractionSmellSniffer(NodeSmellSniffer):
 
     def __str__(self):
-        return 'DirectInteraction({})'.format(super(NodeSmellSniffer, self).__str__())
+        return 'EndpointBasedServiceInteractionSniffer({})'.format(super(NodeSmellSniffer, self).__str__())
 
     @visitor(Service)
     def snif(self, node):
         smell = EndpointBasedServiceInteractionSmell(node)
         for up_rt in node.up_run_time_requirements:
-            if(isinstance(up_rt.source, Service)):
+            if(isinstance(up_rt.source, Service)) and up_rt.timeout == False:
                 smell.addLinkCause(up_rt)
         return smell
 

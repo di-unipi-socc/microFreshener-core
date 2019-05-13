@@ -9,13 +9,10 @@ class TestJSONTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        # file = 'data/examples/helloworld.json' 
-        # loader = JSONLoader()
         file = 'data/examples/helloworld.yml'
         self.loader = YMLLoader()
         self.microtosca = self.loader.load(file)
         self.tranformer = JSONTransformer()
-        
 
     def test_dictionary_groups(self):
         edgeGroup = self.microtosca.get_group('edgenodes')

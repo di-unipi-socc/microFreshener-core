@@ -10,77 +10,71 @@ class TestYMLLoaderRelationship(TestCase):
         self.loader = YMLLoader()
         self.microtosca = self.loader.load(file)
 
-    def test_relationship_empty_(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertFalse(links_to_target[0].timeout)
-        self.assertFalse(links_to_target[0].circuit_breaker)
-        self.assertFalse(links_to_target[0].dynamic_discovery)
+    def test_relationship_empty(self):
+        link = self._load_relationship_from_source_to_target("source", "target")
+        self.assertFalse(link.timeout)
+        self.assertFalse(link.circuit_breaker)
+        self.assertFalse(link.dynamic_discovery)
     
     def test_relationship_t(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_t"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertTrue(links_to_target[0].timeout)
-        self.assertFalse(links_to_target[0].circuit_breaker)
-        self.assertFalse(links_to_target[0].dynamic_discovery)
+        link = self._load_relationship_from_source_to_target("source", "target_t")
+        self.assertTrue(link.timeout)
+        self.assertFalse(link.circuit_breaker)
+        self.assertFalse(link.dynamic_discovery)
         
     def test_relationship_c(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_c"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertFalse(links_to_target[0].timeout)
-        self.assertTrue(links_to_target[0].circuit_breaker)
-        self.assertFalse(links_to_target[0].dynamic_discovery)
+        link = self._load_relationship_from_source_to_target("source", "target_c")
+        self.assertFalse(link.timeout)
+        self.assertTrue(link.circuit_breaker)
+        self.assertFalse(link.dynamic_discovery)
     
     def test_relationship_d(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_d"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertFalse(links_to_target[0].timeout)
-        self.assertFalse(links_to_target[0].circuit_breaker)
-        self.assertTrue(links_to_target[0].dynamic_discovery)
+        link = self._load_relationship_from_source_to_target("source", "target_d")
+        self.assertFalse(link.timeout)
+        self.assertFalse(link.circuit_breaker)
+        self.assertTrue(link.dynamic_discovery)
     
     def test_relationship_tc(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_tc"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertTrue(links_to_target[0].timeout)
-        self.assertTrue(links_to_target[0].circuit_breaker)
-        self.assertFalse(links_to_target[0].dynamic_discovery)
+        link = self._load_relationship_from_source_to_target("source", "target_tc")
+        self.assertTrue(link.timeout)
+        self.assertTrue(link.circuit_breaker)
+        self.assertFalse(link.dynamic_discovery)
     
     def test_relationship_td(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_td"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertTrue(links_to_target[0].timeout)
-        self.assertFalse(links_to_target[0].circuit_breaker)
-        self.assertTrue(links_to_target[0].dynamic_discovery)
+        link = self._load_relationship_from_source_to_target("source", "target_td")
+        self.assertTrue(link.timeout)
+        self.assertFalse(link.circuit_breaker)
+        self.assertTrue(link.dynamic_discovery)
     
     def test_relationship_cd(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_cd"]
-        links_to_target = [link for link in source.run_time if link.target == target]
-        self.assertEqual(len(links_to_target), 1)
-        self.assertFalse(links_to_target[0].timeout)
-        self.assertTrue(links_to_target[0].circuit_breaker)
-        self.assertTrue(links_to_target[0].dynamic_discovery)
+        link = self._load_relationship_from_source_to_target("source", "target_cd")
+        self.assertFalse(link.timeout)
+        self.assertTrue(link.circuit_breaker)
+        self.assertTrue(link.dynamic_discovery)
     
     def test_relationship_tcd(self):
-        source = self.microtosca["source"]
-        target = self.microtosca["target_tcd"]
+        link = self._load_relationship_from_source_to_target("source", "target_tcd")
+        self.assertTrue(link.timeout)
+        self.assertTrue(link.circuit_breaker)
+        self.assertTrue(link.dynamic_discovery)
+
+    def test_multiple_relatsionship(self):
+        source = self.microtosca["source_same"]
+        target = self.microtosca["target_same"]
+        links_to_target = [link for link in source.run_time if link.target == target]
+        self.assertEqual(len(links_to_target), 8)
+        self.assertFalse(links_to_target[0] == links_to_target[1])
+        self.assertTrue(links_to_target[0] == links_to_target[0])
+
+
+    def _load_relationship_from_source_to_target(self, source_name, target_name):
+        source = self.microtosca[source_name]
+        target = self.microtosca[target_name]
         links_to_target = [link for link in source.run_time if link.target == target]
         self.assertEqual(len(links_to_target), 1)
-        self.assertTrue(links_to_target[0].timeout)
-        self.assertTrue(links_to_target[0].circuit_breaker)
-        self.assertTrue(links_to_target[0].dynamic_discovery)
-    
+        return links_to_target[0]
 
+
+
+    
 

@@ -145,3 +145,11 @@
 2019-05-11 13:12:34,204 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
 2019-05-11 13:13:26,061 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
 2019-05-11 13:13:31,039 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 14:15:21,160 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 16:56:48,861 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 16:57:23,760 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 16:58:07,119 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 16:58:31,370 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 16:59:36,828 	 [INFO | jsonloader.py:17] > Loading JSON file: data/examples/test_relationship.json
+2019-05-11 17:01:00,042 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_relationship.yml
+2019-05-11 17:02:02,944 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
