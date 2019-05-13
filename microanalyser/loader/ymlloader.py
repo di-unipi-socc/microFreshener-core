@@ -65,8 +65,8 @@ class YMLLoader(Loader):
                 el = CommunicationPattern(node_name, node_type)
             elif node_type == CIRCUIT_BREAKER:
                 el = CommunicationPattern(node_name, node_type)
-            elif concrete_type_node == MESSAGE_ROUTER:
-                el = CommunicationPattern(name_node, node_type)
+            elif node_type == MESSAGE_ROUTER:
+                el = CommunicationPattern(node_name, node_type)
             else:
                 raise ValueError(
                     "Node type {} not recognized ".format(node_type))

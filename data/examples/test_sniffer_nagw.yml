@@ -1,0 +1,28 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+
+description: For testing the No Api Gateway Smell
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    sr:
+      type: micro.nodes.Service
+    db:
+      type: micro.nodes.Database
+    mr:
+      type: micro.nodes.MessageRouter
+    mb:
+      type: micro.nodes.MessageBroker
+    mr1:
+      type: micro.nodes.MessageRouter
+
+  groups:
+    edgenodes:
+      type: micro.groups.Edge
+      members: [sr, db, mr, mb]
+
+    edgenodes1:
+      type: micro.groups.Edge
+      members: [mr, mr1, db]

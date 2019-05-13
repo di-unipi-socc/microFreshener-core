@@ -28,7 +28,8 @@ class TestAnalyserBUilder(TestCase):
         order = self.micro_object['order']
         builder.ignore_smell_for_node(order, 4) #WobblyServiceInteractionSmell)
         analyser = builder.build()
-        self.assertEqual(analyser.get_ignore_smells_for_node(order),[WobblyServiceInteractionSmell])
+        self.assertTrue(len(analyser.get_ignore_smells_for_node(order)),1)
+        self.assertIsInstance(analyser.get_ignore_smells_for_node(order)[0], WobblyServiceInteractionSmell)
         
     def test_IgnoredSmellAnalysis(self):
         builder = AnalyserBuilder(self.micro_object)

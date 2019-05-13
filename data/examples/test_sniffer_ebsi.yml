@@ -97,6 +97,16 @@ topology_template:
     target_composite: 
       type: micro.nodes.Service
     
+    # for testing EBSI do not occur in database, cmmunication pattern
+    source7:
+      type: micro.nodes.Service
+      requirements:
+       - run_time: db
+       - run_time: cp
+    db:
+      type: micro.nodes.Database
+    cp:
+      type: micro.nodes.MessageBroker
 
   relationship_templates:
     t:

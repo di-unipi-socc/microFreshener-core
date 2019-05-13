@@ -55,7 +55,6 @@ class GroupSmell(Smell):
     def group(self):
         return self._group
 
-
 class EndpointBasedServiceInteractionSmell(NodeSmell):
     name: str = "EndpointBasedServiceInteractionSmell"
 
@@ -111,11 +110,11 @@ class SharedPersistencySmell(NodeSmell):
             {"name": "Add Data Manager", "description": " Add Data manager"}]}}
 
 
-class NoApiGatewaySmell(GroupSmell):
+class NoApiGatewaySmell(NodeSmell):
     name: str = "NoApiGateway"
 
-    def __init__(self, group):
-        super(NoApiGatewaySmell, self).__init__(self.name, group)
+    def __init__(self, node):
+        super(NoApiGatewaySmell, self).__init__(self.name, node)
 
     def __str__(self):
         return 'NoApiGateway({})'.format(super(NoApiGatewaySmell, self).__str__())

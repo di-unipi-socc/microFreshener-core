@@ -1,5 +1,5 @@
 import six
-from .nodes import Root
+from .nodes import Root, Database
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -14,10 +14,9 @@ class RootGroup(object):
     @property
     def members(self):
         return [v for k, v in self._members.items()]
-    
+
     def to_dict(self):
         return {"name": self.name, "nodes": [node.name in self.members]}
-
 
     def add_member(self, member):
         self._members[member.name] = member
@@ -59,6 +58,9 @@ class Edge(RootGroup):
     def __init__(self, name):
         super(Edge, self).__init__(name)
 
+    def add_member(self, member):
+        if(not isinstance(member, Database)):
+            super(Edge, self).add_member(member)
+
     def __str__(self):
         return '{} ({})'.format(self.name, 'edge')
-

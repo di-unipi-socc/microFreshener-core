@@ -52,6 +52,5 @@ class AnalyserBuilder(object):
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
         
-        
     def build(self):
         return self.analyser

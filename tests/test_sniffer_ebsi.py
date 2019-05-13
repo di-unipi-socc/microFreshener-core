@@ -74,3 +74,12 @@ class TestEBSE(TestCase):
         self.assertEqual(smell.getLinkCause()[0].source, self.micro_model["source3"])
         self.assertEqual(smell.getLinkCause()[1].source, self.micro_model["source5"])
         self.assertEqual(smell.getLinkCause()[2].source, self.micro_model["source6"])
+    
+    def test_no_esbi_at_database_communicatiopattern(self):
+        db = self.micro_model["db"]
+        cp = self.micro_model["cp"]
+        smell = self.ebsiSniffer.snif(db)
+        self.assertTrue(smell is None)
+        smell = self.ebsiSniffer.snif(cp)
+        self.assertTrue(smell is None)
+

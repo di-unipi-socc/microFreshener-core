@@ -7,7 +7,7 @@ def readme():
 
 
 setup(name='microanalyser',
-      version='0.1',
+      version='1.1',
       description='',
       long_description=readme(),
       url='',

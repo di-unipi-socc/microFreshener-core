@@ -72,7 +72,6 @@ class InteractsWith(Relationship):
     def __eq__(self, other):
         return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout  and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
 
-
 class DeploymentTimeInteraction(InteractsWith):
 
     def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None):

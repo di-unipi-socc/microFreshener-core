@@ -31,7 +31,7 @@ class MicroAnalyser(object):
 
     def add_node_smell_sniffer(self, sniffer):
         assert isinstance(sniffer, NodeSmellSniffer)
-        logger.info("Node Sniffer {} added".format(sniffer))
+        logger.debug("Node Sniffer {} added".format(sniffer))
         self.node_smell_sniffers.append(sniffer)
 
     def get_node_smell_sniffer(self):
@@ -76,6 +76,7 @@ class MicroAnalyser(object):
             for gsniffer in self.group_smell_sniffers:
                 gsmells = gsniffer.snif(group)
                 if(gsmells):
+                    # NoApiGatewaysmellSniffer returns a list of node-based noApiGatewaySmellSniffer 
                     if isinstance(gsmells, list):
                         for smell in gsmells:
                             if(not smell.isEmpty()):
@@ -83,7 +84,6 @@ class MicroAnalyser(object):
                     else:
                         if(not gsmells.isEmpty()):
                             smells.append(gsmells.to_dict())
-
             if(smells):
                 agroup['smells'] = smells
                 groups.append(agroup)
