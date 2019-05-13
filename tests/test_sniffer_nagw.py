@@ -5,7 +5,7 @@ from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer
 from microanalyser.model.groups import Edge
 
 
-class TestEBSE(TestCase):
+class TestNoApiGatewaySmell(TestCase):
 
     @classmethod
     def setUpClass(self):

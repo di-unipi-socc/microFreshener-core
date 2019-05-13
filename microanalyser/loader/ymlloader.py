@@ -69,7 +69,7 @@ class YMLLoader(Loader):
                 el = CommunicationPattern(node_name, node_type)
             else:
                 raise ValueError(
-                    "Node type {} not recognized ".format(node_type))
+                    "Node type {} not recognized {}".format(node_type, commented_map))
             self.micro_model.add_node(el)
 
     def _add_relationships(self):

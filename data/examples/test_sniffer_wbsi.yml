@@ -1,0 +1,144 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+
+description: For testing the Wobbly Service Interaction Smell
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    target:
+      type: micro.nodes.Service
+    source:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: target
+    source_t:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: t
+    source_c:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: c
+    source_d:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: d
+    source_tc:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: tc
+    source_td:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: td
+    source_cd:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: cd
+    source_tcd:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: target
+            relationship: tcd
+    
+    # test wsbi from service to  message router 
+    source_mr:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: mr
+    source_mr_t:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: t
+    source_mr_c:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: c
+    source_mr_d:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: d
+    source_mr_tc:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: tc
+    source_mr_td:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: td
+    source_mr_cd:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: cd
+    source_mr_tcd:
+      type: micro.nodes.Service
+      requirements:
+        - run_time:
+            node: mr
+            relationship: tcd
+    mr:
+      type: micro.nodes.MessageRouter
+      requirements:
+        - run_time: mr
+
+  relationship_templates:
+    t: # with Timeout
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+    c: # with circuit breaker
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+    d:
+      type: micro.relationships.InteractsWith
+      properties:
+        dynamic_discovery: true
+    tc:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+    td:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        dynamic_discovery: true
+    cd:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+        dynamic_discovery: true
+    tcd:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+        dynamic_discovery: true
