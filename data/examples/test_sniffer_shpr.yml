@@ -1,0 +1,25 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+
+description: For testing the Shared Persistency Smell
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    s1:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: db
+    s2:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: db 
+    s3:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: db
+    db:
+      type: micro.nodes.Database
+    db1:
+      type: micro.nodes.Database

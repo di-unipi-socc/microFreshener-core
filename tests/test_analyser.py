@@ -3,7 +3,7 @@ from unittest import TestCase
 from microanalyser.loader import YMLLoader
 from microanalyser.analyser import MicroAnalyser
 
-from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamSmellSniffer
+from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 
 class TestJSONLoader(TestCase):
@@ -49,7 +49,7 @@ class TestJSONLoader(TestCase):
 
     def test_SingleLayerTeamSniffer(self):
         analyser = MicroAnalyser(self.micro_object)
-        sltm = SingleLayerTeamSmellSniffer(self.micro_object)
+        sltm = CrossTeamDataManagementSmellSniffer(self.micro_object)
         analyser.add_group_smell_sniffer(sltm)
         res = analyser.run()
         actual_res = res['groups'][0]['smells'][0]['links']

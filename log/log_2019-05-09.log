@@ -3,7 +3,7 @@
 2019-05-09 11:43:32,356 	 [INFO | analyser.py:46] > Running analysis
 2019-05-09 11:43:32,356 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7feee9ccad30>) added
 2019-05-09 11:43:32,356 	 [INFO | analyser.py:46] > Running analysis
-2019-05-09 11:43:32,357 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7feee9ccad30>) added
+2019-05-09 11:43:32,357 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7feee9ccad30>) added
 2019-05-09 11:43:32,357 	 [INFO | analyser.py:46] > Running analysis
 2019-05-09 11:43:32,357 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7feee9cca518>) added
 2019-05-09 11:43:32,358 	 [INFO | analyser.py:46] > Running analysis

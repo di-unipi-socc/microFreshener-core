@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microanalyser.loader import YMLLoader
 from microanalyser.model.relationships import RunTimeInteraction, DeploymentTimeInteraction
-from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamSmellSniffer
+from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 
 class TestAnalyser(TestCase):
@@ -55,14 +55,14 @@ class TestAnalyser(TestCase):
         group = self.micro_model.get_group("edgenodes")
         nags = NoApiGatewaySmellSniffer(self.micro_model)
         smells = nags.snif(group)
-        self.assertEqual(len(smells), 1)
+        self.assertEqual(len(smells), 2)
         smell = smells[0]
         nodes = [node.name for node in smell.getNodeCause()]
         self.assertCountEqual(nodes, ['order'])
 
     def test_SingleLayerTeamSmell(self):
         team1 = self.micro_model.get_group("team1")
-        sltm = SingleLayerTeamSmellSniffer(self.micro_model)
+        sltm = CrossTeamDataManagementSmellSniffer(self.micro_model)
         smell = sltm.snif(team1)
         links = smell.getLinkCause()
         self.assertEqual(len(links), 2)

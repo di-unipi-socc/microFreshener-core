@@ -5,7 +5,7 @@
 2019-04-30 10:40:27,520 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:40:27,521 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f84cae77e48>) added
 2019-04-30 10:40:27,521 	 [INFO | analyser.py:46] > Running analysis
-2019-04-30 10:40:27,521 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f84cae77e48>) added
+2019-04-30 10:40:27,521 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7f84cae77e48>) added
 2019-04-30 10:40:27,521 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:40:27,522 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f84cae77cc0>) added
 2019-04-30 10:40:27,522 	 [INFO | analyser.py:46] > Running analysis
@@ -15,7 +15,7 @@
 2019-04-30 10:43:06,386 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:43:06,387 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f75aaecde48>) added
 2019-04-30 10:43:06,387 	 [INFO | analyser.py:46] > Running analysis
-2019-04-30 10:43:06,388 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f75aaecde48>) added
+2019-04-30 10:43:06,388 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7f75aaecde48>) added
 2019-04-30 10:43:06,388 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:43:06,389 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f75aaecdcc0>) added
 2019-04-30 10:43:06,389 	 [INFO | analyser.py:46] > Running analysis
@@ -25,7 +25,7 @@
 2019-04-30 10:45:11,240 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:45:11,241 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f691e752cf8>) added
 2019-04-30 10:45:11,241 	 [INFO | analyser.py:46] > Running analysis
-2019-04-30 10:45:11,242 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f691e752cf8>) added
+2019-04-30 10:45:11,242 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7f691e752cf8>) added
 2019-04-30 10:45:11,242 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:45:11,243 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f691e752f28>) added
 2019-04-30 10:45:11,243 	 [INFO | analyser.py:46] > Running analysis
@@ -35,7 +35,7 @@
 2019-04-30 10:49:34,775 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:49:34,776 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f787aa55cf8>) added
 2019-04-30 10:49:34,776 	 [INFO | analyser.py:46] > Running analysis
-2019-04-30 10:49:34,777 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f787aa55cf8>) added
+2019-04-30 10:49:34,777 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7f787aa55cf8>) added
 2019-04-30 10:49:34,777 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:49:34,778 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f787aa55f28>) added
 2019-04-30 10:49:34,778 	 [INFO | analyser.py:46] > Running analysis
@@ -45,7 +45,7 @@
 2019-04-30 10:50:17,904 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:50:17,905 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff60d6decf8>) added
 2019-04-30 10:50:17,906 	 [INFO | analyser.py:46] > Running analysis
-2019-04-30 10:50:17,907 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7ff60d6decf8>) added
+2019-04-30 10:50:17,907 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7ff60d6decf8>) added
 2019-04-30 10:50:17,908 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:50:17,910 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff60d6def28>) added
 2019-04-30 10:50:17,910 	 [INFO | analyser.py:46] > Running analysis
@@ -55,7 +55,7 @@
 2019-04-30 10:50:37,221 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:50:37,222 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f1fac2decf8>) added
 2019-04-30 10:50:37,223 	 [INFO | analyser.py:46] > Running analysis
-2019-04-30 10:50:37,224 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f1fac2decf8>) added
+2019-04-30 10:50:37,224 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7f1fac2decf8>) added
 2019-04-30 10:50:37,224 	 [INFO | analyser.py:46] > Running analysis
 2019-04-30 10:50:37,225 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7f1fac2def28>) added
 2019-04-30 10:50:37,225 	 [INFO | analyser.py:46] > Running analysis

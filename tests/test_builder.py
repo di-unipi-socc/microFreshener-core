@@ -4,7 +4,7 @@ from unittest import TestCase
 from microanalyser.loader import YMLLoader
 from microanalyser.analyser.builder import AnalyserBuilder
 from microanalyser.analyser.smell import WobblyServiceInteractionSmell
-from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamSmellSniffer
+from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 
 class TestAnalyserBUilder(TestCase):

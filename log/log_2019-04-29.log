@@ -3,7 +3,7 @@
 2019-04-29 18:15:43,210 	 [INFO | analyser.py:39] > Running analysis
 2019-04-29 18:15:43,211 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa2f7edca90>) added
 2019-04-29 18:15:43,212 	 [INFO | analyser.py:39] > Running analysis
-2019-04-29 18:15:43,213 	 [INFO | analyser.py:35] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7fa2f7edca90>) added
+2019-04-29 18:15:43,213 	 [INFO | analyser.py:35] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7fa2f7edca90>) added
 2019-04-29 18:15:43,213 	 [INFO | analyser.py:39] > Running analysis
 2019-04-29 18:15:43,214 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fa2f7edc978>) added
 2019-04-29 18:15:43,215 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json
@@ -16,7 +16,7 @@
 2019-04-29 18:35:47,265 	 [INFO | analyser.py:39] > Running analysis
 2019-04-29 18:35:47,266 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f44633f6a90>) added
 2019-04-29 18:35:47,266 	 [INFO | analyser.py:39] > Running analysis
-2019-04-29 18:35:47,267 	 [INFO | analyser.py:35] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7f44633f6a90>) added
+2019-04-29 18:35:47,267 	 [INFO | analyser.py:35] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7f44633f6a90>) added
 2019-04-29 18:35:47,267 	 [INFO | analyser.py:39] > Running analysis
 2019-04-29 18:35:47,268 	 [INFO | analyser.py:30] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7f44633f6978>) added
 2019-04-29 18:35:47,269 	 [INFO | json.py:16] > Loading JSON file: data/examples/helloworld.json

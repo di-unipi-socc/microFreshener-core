@@ -1,0 +1,41 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+
+description: For testing the Cross Team Data Managment
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    s1:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: db1
+        - run_time: db2
+        - run_time: db3
+    s2:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: db2
+        - run_time: db3
+    s3:
+      type: micro.nodes.Service
+      requirements:
+        - run_time: db3
+    db1:
+      type: micro.nodes.Database
+    db2:
+      type: micro.nodes.Database
+    db3:
+      type: micro.nodes.Database
+
+  groups:
+    team1:
+      type: micro.groups.Squad
+      members: [s1, db1]
+    team2:
+      type: micro.groups.Squad
+      members: [s2, db2]
+    team3:
+      type: micro.groups.Squad
+      members: [s3, db3]

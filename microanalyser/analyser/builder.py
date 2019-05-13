@@ -1,5 +1,5 @@
 from .analyser import MicroAnalyser
-from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamSmellSniffer
+from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 from .constant import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY
 
@@ -27,7 +27,7 @@ class AnalyserBuilder(object):
             self.analyser.add_node_smell_sniffer(
                 SharedPersistencySmellSniffer())
         elif (smell == 7):  # SINGLE LAYER TEAM
-            self.analyser.add_group_smell_sniffer(SingleLayerTeamSmellSniffer(self.micro_model))
+            self.analyser.add_group_smell_sniffer(CrossTeamDataManagementSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
@@ -47,7 +47,7 @@ class AnalyserBuilder(object):
             self.analyser.add_node_smell_sniffer(
                 SharedPersistencySmellSniffer())
         elif (smell == 7):  # SINGLE LAYER TEAM
-            self.analyser.add_group_smell_sniffer(SingleLayerTeamSmellSniffer(self.micro_model))
+            self.analyser.add_group_smell_sniffer(CrossTeamDataManagementSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self

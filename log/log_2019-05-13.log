@@ -55,7 +55,7 @@
 2019-05-13 16:04:00,997 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
 2019-05-13 16:04:01,040 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fee25483ef0>) added
 2019-05-13 16:04:01,041 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fee25483d30>) added
-2019-05-13 16:04:01,042 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7fee25483d30>) added
+2019-05-13 16:04:01,042 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7fee25483d30>) added
 2019-05-13 16:04:01,043 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7fee25483dd8>) added
 2019-05-13 16:04:01,043 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7fee25483dd8>) added
 2019-05-13 16:04:01,044 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
@@ -76,7 +76,7 @@
 2019-05-13 16:04:16,047 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
 2019-05-13 16:04:16,087 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff950dc1e10>) added
 2019-05-13 16:04:16,087 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff950dc1c50>) added
-2019-05-13 16:04:16,088 	 [INFO | analyser.py:42] > Group Sniffer SingleLayerTeamSmellSniffer(<microanalyser.analyser.sniffer.SingleLayerTeamSmellSniffer object at 0x7ff950dc1c50>) added
+2019-05-13 16:04:16,088 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagement(<microanalyser.analyser.sniffer.CrossTeamDataManagement object at 0x7ff950dc1c50>) added
 2019-05-13 16:04:16,089 	 [INFO | analyser.py:34] > Node Sniffer WobblyServiceInteractionSmellSniffer(<microanalyser.analyser.sniffer.WobblyServiceInteractionSmellSniffer object at 0x7ff950dc1cc0>) added
 2019-05-13 16:04:16,089 	 [INFO | analyser.py:34] > Node Sniffer SharedPersistencySmellSniffer(<microanalyser.analyser.sniffer.SharedPersistencySmellSniffer object at 0x7ff950dc1cc0>) added
 2019-05-13 16:04:21,266 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
@@ -163,3 +163,24 @@
 2019-05-13 18:26:08,406 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_wbsi.yml
 2019-05-13 18:26:25,196 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_wbsi.yml
 2019-05-13 18:27:07,274 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-13 18:50:04,956 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-13 18:50:10,479 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-13 18:53:26,554 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-13 18:53:37,593 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-13 18:54:37,682 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-13 18:57:54,102 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-13 19:02:55,909 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-13 19:04:41,444 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-13 19:04:52,543 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/helloworld.yml
+2019-05-13 19:15:40,913 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:16:52,995 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:17:34,549 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:19:36,546 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:19:57,209 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:20:09,371 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:42:05,273 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:42:27,416 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:42:47,926 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 19:44:07,059 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 20:05:18,388 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-13 20:05:43,847 	 [INFO | ymlloader.py:22] > Loading YML file data/examples/test_sniffer_ctdm.yml

@@ -95,7 +95,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
                 foundNoApiGatewaySmells.append(smell)
         return foundNoApiGatewaySmells
 
-class SingleLayerTeamSmellSniffer(GroupSmellSniffer):
+class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
 
     def snif(self, group: Squad)->SingleLayerTeamSmell:
         smell=SingleLayerTeamSmell(group)
@@ -111,4 +111,4 @@ class SingleLayerTeamSmellSniffer(GroupSmellSniffer):
         return smell
 
     def __str__(self):
-        return 'SingleLayerTeamSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+        return 'CrossTeamDataManagementSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
