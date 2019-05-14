@@ -1,0 +1,23 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+description: For testing loading the nodes
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    my_service:
+      type: micro.nodes.Service
+    
+    my_messagebroker:
+      type: micro.nodes.MessageBroker
+    
+    my_messagerouter:
+      type: micro.nodes.MessageRouter
+
+    my_database:
+      type: micro.nodes.Database
+    
+    my_communicationpattern:
+      type: micro.nodes.CommunicationPattern

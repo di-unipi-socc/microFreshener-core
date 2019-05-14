@@ -5,6 +5,7 @@ import six
 from .nodes import Root, Service, Database, CommunicationPattern
 from .relationships import DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Squad, Edge
+from ..errors import MicroToscaError
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -73,15 +74,12 @@ class MicroModel:
         self._groups[group.name] = group
         logger.debug("Added group {}".format(group))
   
-   # TODO: it can be removed after having removed the id as the key in the dictionary of nodes in add_node() method
     def get_node_by_name(self, name):
         for node in self.nodes:
             if node.name == name:
                 return node
         return None
   
-    # TODO: it can be removed after having removed the id as the key in the dictionary of nodes in add_node() method
-    # because the node are found by theri name model['name]
     def findByName(self, n):
         for key, node in self._nodes.items():    # for name, age in dictionary.iteritems():  (for Python 2.x)
             if (node.name == n):

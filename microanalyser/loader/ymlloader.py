@@ -1,11 +1,14 @@
 import ruamel.yaml
 from pathlib import Path
 from ..model.template import MicroModel
-from ..model.nodes import Service, Database, CommunicationPattern
+from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Squad, Edge
 from .iloader import Loader
-from ..model.type import SERVICE, COMMUNICATION_PATTERN, DATABASE, API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME, MESSAGE_ROUTER
+from ..model.type import SERVICE, COMMUNICATION_PATTERN, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
+from ..model.type import SQUAD, EDGE
+from ..model.type import INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from ..errors import ImporterError
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -35,8 +38,7 @@ class YMLLoader(Loader):
         if name in self.relationship_templates:
             return self.relationship_templates[name]
         else:
-            raise ValueError(
-                "{} relationship template does not exist".format(name))
+            raise ImporterError(f"Relationship template  {name} does not exist")
 
     def _get_relationship_property_values(self, relationship):
         is_timeout = False
@@ -59,17 +61,14 @@ class YMLLoader(Loader):
                 el = Service(node_name)
             elif node_type == DATABASE:
                 el = Database(node_name)
-            elif node_type == MESSAGE_BROKER:  # TODO: derived from CommunicationPattern
-                el = CommunicationPattern(node_name, node_type)
-            elif node_type == API_GATEWAY:
-                el = CommunicationPattern(node_name, node_type)
-            elif node_type == CIRCUIT_BREAKER:
-                el = CommunicationPattern(node_name, node_type)
+            elif node_type == MESSAGE_BROKER:
+                el = MessageBroker(node_name)
             elif node_type == MESSAGE_ROUTER:
-                el = CommunicationPattern(node_name, node_type)
+                el = MessageRouter(node_name)
+            elif node_type == COMMUNICATION_PATTERN:
+                raise ImporterError(f"The node type {COMMUNICATION_PATTERN} cannot be istantiated.")
             else:
-                raise ValueError(
-                    "Node type {} not recognized {}".format(node_type, commented_map))
+                raise ImporterError(f"The node type {node_type} not recognized.")
             self.micro_model.add_node(el)
 
     def _add_relationships(self):

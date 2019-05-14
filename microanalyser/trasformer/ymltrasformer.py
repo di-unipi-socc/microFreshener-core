@@ -102,7 +102,7 @@ class YMLTransformer(Transformer):
         if(isinstance(rel, DeploymentTimeInteraction)):
             d_rel['deployment_time'] = rel.target.name
         elif(isinstance(rel, RunTimeInteraction)):
-            if(rel.timedout):
+            if(rel.timeout):
                 d_rel['run_time'] = {
                     "node": rel.target.name, "relationship": "timedout"}
             else:

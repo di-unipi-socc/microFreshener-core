@@ -47,7 +47,6 @@ class Root(object):
     def to_dict(self):
         return {'name': self.name}
 
-
 class Software(Root):
 
     def __init__(self, name):
@@ -89,7 +88,6 @@ class Software(Root):
         if not isinstance(item.target, str):
             item.target.up_deployment_time_requirements.append(item)
 
-
 class Service(Software):
 
     def __init__(self, name):
@@ -115,14 +113,12 @@ class Service(Software):
     def __str__(self):
         return '{} ({})'.format(self.name, 'service')
 
-
 class CommunicationPattern(Software):
 
-    def __init__(self, name, ctype):
+    def __init__(self, name, short_name="CP"):
         super(CommunicationPattern, self).__init__(name)
 
-        self.concretetype = ctype  # 'MessageBrocker, CircuitBreaker', 'ApiGateway'
-
+        self.short_name = short_name
         # requirements
         self._run_time = []
         self._deployment_time = []
@@ -139,13 +135,21 @@ class CommunicationPattern(Software):
     def deployment_time(self):
         return self._deployment_time
 
-    @property
-    def concrete_type(self):
-        return self.concretetype
-
     def __str__(self):
-        return '{} ({})'.format(self.name, self.concrete_type)
+        return '{} ({})'.format(self.name, self.short_name)
 
+class MessageBroker(CommunicationPattern):
+
+    def __init__(self, name):
+          super(MessageBroker, self).__init__(name, "MB")
+    
+    def __str__(self):
+        return '{} ({})'.format(self.name, self.short_name)
+
+class MessageRouter(CommunicationPattern):
+
+    def __init__(self, name):
+          super(MessageRouter, self).__init__(name, "MR")
 
 class Database(Root):
 

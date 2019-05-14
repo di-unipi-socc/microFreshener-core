@@ -1,7 +1,7 @@
 
 from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, SingleLayerTeamSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
-from ..model.nodes import Service, Database, CommunicationPattern
+from ..model.nodes import Service, Database, CommunicationPattern, MessageRouter
 from ..model.type import MESSAGE_ROUTER
 from ..model.template import MicroModel
 from ..model.groups import Edge, Squad
@@ -54,7 +54,7 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
     def snif(self, node):
         smell = WobblyServiceInteractionSmell(node)
         for rt in node.run_time:
-            if (rt.timeout == False and rt.circuit_breaker == False and (isinstance(rt.target, Service) or (isinstance(rt.target, CommunicationPattern) and rt.target.concrete_type == MESSAGE_ROUTER))):
+            if (rt.timeout == False and rt.circuit_breaker == False and (isinstance(rt.target, Service) or isinstance(rt.target, MessageRouter))):
                 smell.addLinkCause(rt)
         return smell
 
@@ -89,7 +89,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
     def snif(self, group: Edge)->[NoApiGatewaySmell]:
         foundNoApiGatewaySmells=[]
         for node in group.members:
-            if not isinstance(node, CommunicationPattern) or (isinstance(node, CommunicationPattern) and node.concrete_type != MESSAGE_ROUTER):
+            if not isinstance(node, MessageRouter):
                 smell=NoApiGatewaySmell(node)
                 smell.addNodeCause(node)
                 foundNoApiGatewaySmells.append(smell)

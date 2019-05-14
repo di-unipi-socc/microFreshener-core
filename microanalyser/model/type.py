@@ -3,8 +3,8 @@
 # MICROTOSCA NODE TYPES
 SERVICE = 'micro.nodes.Service'
 DATABASE = 'micro.nodes.Database'
-COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 
+COMMUNICATION_PATTERN = 'micro.nodes.CommunicationPattern'
 MESSAGE_BROKER = 'micro.nodes.MessageBroker'
 MESSAGE_ROUTER = 'micro.nodes.MessageRouter'
 

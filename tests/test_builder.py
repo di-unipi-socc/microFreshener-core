@@ -1,6 +1,5 @@
 from unittest import TestCase
 
-
 from microanalyser.loader import YMLLoader
 from microanalyser.analyser.builder import AnalyserBuilder
 from microanalyser.analyser.smell import WobblyServiceInteractionSmell
@@ -29,7 +28,7 @@ class TestAnalyserBUilder(TestCase):
         builder.ignore_smell_for_node(order, 4) #WobblyServiceInteractionSmell)
         analyser = builder.build()
         self.assertTrue(len(analyser.get_ignore_smells_for_node(order)),1)
-        self.assertIsInstance(analyser.get_ignore_smells_for_node(order)[0], WobblyServiceInteractionSmell)
+        self.assertIsInstance(analyser.get_ignore_smells_for_node(order)[0], WobblyServiceInteractionSmellSniffer)
         
     def test_IgnoredSmellAnalysis(self):
         builder = AnalyserBuilder(self.micro_object)
