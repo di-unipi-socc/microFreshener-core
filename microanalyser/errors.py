@@ -25,3 +25,6 @@ class MicroToscaError(MicroSmellerError):
 
     def __init__(self, message):
         self.message = message
+
+class JSONExporterError(MicroSmellerError):
+    pass

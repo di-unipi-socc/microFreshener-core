@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from microanalyser.loader import JSONLoader, YMLLoader
+from microanalyser.loader import JSONLoader
 from microanalyser.trasformer import JSONTransformer
 from microanalyser.model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY,INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
@@ -9,8 +9,8 @@ class TestJSONTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_relationship.yml'
-        self.loader = YMLLoader()
+        file = 'data/examples/test_relationship.json'
+        self.loader = JSONLoader()
         self.microtosca = self.loader.load(file)
         self.tranformer = JSONTransformer()
 

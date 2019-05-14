@@ -1,13 +1,14 @@
 
 import json
 from ..model.template import MicroModel
-from ..model.nodes import Service, Database, CommunicationPattern
+from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Squad
 from ..logging import MyLogger
 from .iloader import Loader
 from ..model.type import API_GATEWAY, MESSAGE_BROKER, MESSAGE_ROUTER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 from ..model.type  import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
+from ..errors import ImporterError
 logger = MyLogger().get_logger()
 
 
@@ -30,45 +31,35 @@ class JSONLoader(Loader):
             if(type_node == 'service'):
                 # logger.debug("Created service {}".format(name_node))
                 el = Service(name_node)
-            elif(type_node == 'communicationpattern'):
-                # logger.debug("Created Communication Pattern {}".format(name_node))
-                concrete_type_node = node['ctype']
-                if(concrete_type_node == "MessageBroker"):
-                    el = CommunicationPattern(name_node, MESSAGE_BROKER)
-                elif (concrete_type_node == "ApiGateway"):
-                    el = CommunicationPattern(name_node, API_GATEWAY)
-                elif concrete_type_node == "CircuitBreaker":
-                    el = CommunicationPattern(name_node, CIRCUIT_BREAKER)
-                elif concrete_type_node == "MessageRouter":
-                    el = CommunicationPattern(name_node, MESSAGE_ROUTER)
-                else:
-                    raise Exception(
-                        "concrete type {} is not recognized".format(concrete_type_node))
-
+            elif(type_node == 'messagebroker'):
+                el = MessageBroker(name_node)
+            elif(type_node == "messagerouter"):
+                el = MessageRouter(name_node)
             elif(type_node == 'database'):
                 # logger.debug("Created Database {}".format(name_node))
                 el = Database(name_node)
             else:
-                raise Exception(
+                raise ImporterError(
                     "{} Node type is not recognized".format(type_node))
             self.micro_model.add_node(el)
 
     def _load_links(self, json_data):
-        for link in json_data['links']:
-            ltype = link['type']
-            source = self.micro_model[link['source']]
-            target = self.micro_model[link['target']]
-            (is_timeout, is_circuit_breaker,
-             is_dynamic_discovery) = self._get_links_properties(link)
-            if(ltype == 'runtime'):
-                source.add_run_time(target, is_timeout,
-                                    is_circuit_breaker, is_dynamic_discovery)
-            elif (ltype == 'deploymenttime'):
-                source.add_deployment_time(
-                    target, is_timeout, is_circuit_breaker, is_dynamic_discovery)
-            else:
-                raise Exception(
-                    "Link type {} is not recognized".format(ltype))
+        if("links") in json_data:
+            for link in json_data['links']:
+                ltype = link['type']
+                source = self.micro_model[link['source']]
+                target = self.micro_model[link['target']]
+                (is_timeout, is_circuit_breaker,
+                is_dynamic_discovery) = self._get_links_properties(link)
+                if(ltype == 'runtime'):
+                    source.add_run_time(target, is_timeout,
+                                        is_circuit_breaker, is_dynamic_discovery)
+                elif (ltype == 'deploymenttime'):
+                    source.add_deployment_time(
+                        target, is_timeout, is_circuit_breaker, is_dynamic_discovery)
+                else:
+                    raise ImporterError(
+                        "Link type {} is not recognized".format(ltype))
 
     def _get_links_properties(self, link_json):
         is_timeout = False
@@ -105,5 +96,5 @@ class JSONLoader(Loader):
                             member_name, group_type, group_name))
                     self.micro_model.add_group(squad)
                 else:
-                    raise ValueError(
+                    raise ImporterError(
                         "Group {} is not a valid type".format(group_type))

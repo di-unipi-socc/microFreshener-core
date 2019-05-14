@@ -31,7 +31,7 @@ topology_template:
       type: micro.nodes.Database
     
     gateway:
-      type: micro.nodes.ApiGateway
+      type: micro.nodes.MessageRouter
       requirements:
         - run_time: shipping
   
@@ -58,7 +58,6 @@ topology_template:
       type: micro.relationships.InteractsWith
       properties:
         circuit_breaker: true
-    
     d:
       type: micro.relationships.InteractsWith
       properties:

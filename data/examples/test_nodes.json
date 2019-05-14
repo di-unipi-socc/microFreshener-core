@@ -1,0 +1,21 @@
+{
+    "name": "test-nodes",
+    "nodes": [
+        {
+            "name": "my_service",
+            "type": "service"
+        },
+        {
+            "name": "my_database",
+            "type": "database"
+        },
+        {
+            "name": "my_messagebroker",
+            "type": "messagebroker"
+        },
+        {
+            "name": "my_messagerouter",
+            "type": "messagerouter"
+        }
+    ]
+  }

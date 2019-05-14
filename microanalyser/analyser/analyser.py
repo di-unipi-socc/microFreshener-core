@@ -1,5 +1,5 @@
 
-from ..model.nodes import Service, Database, CommunicationPattern
+from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..analyser.sniffer import NodeSmellSniffer, GroupSmellSniffer
 from ..logging import MyLogger
 
@@ -54,9 +54,13 @@ class MicroAnalyser(object):
                 anode["type"] = "software"
             if(isinstance(node, Database)):
                 anode["type"] = "database"
-            if(isinstance(node, CommunicationPattern)):
+            if(isinstance(node, MessageBroker)):
                 anode["type"] = "communicationpattern"
-                anode['concrete_type'] = node.concrete_type
+                anode['concrete_type'] = "messageBroker" # TODO: remove concrete type
+            if(isinstance(node, MessageRouter)):
+                anode["type"] = "communicationpattern"
+                anode['concrete_type'] = "messageRouter"  # TODO: remove concrete type
+            
             smells = []
             for sniffer in self.node_smell_sniffers:
                 #if self.get_ignore_smells_for_node(node) or sniffer not in self.get_ignore_smells_for_node(node):

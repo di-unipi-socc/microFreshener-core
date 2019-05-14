@@ -2,12 +2,12 @@ import json
 
 from ..model.template import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
-from ..model.nodes import Root, Service, Database, CommunicationPattern
+from ..model.nodes import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Squad
 
 from ..model.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
 from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
-
+from ..errors import JSONExporterError
 from .itransformer import Transformer
 
 class JSONTransformer(Transformer):
@@ -27,37 +27,32 @@ class JSONTransformer(Transformer):
     def serialize(self, obj):
         d = {}
         if (isinstance(obj, MicroModel)):
-            d["name"] = obj.name  # name of the models
+            d["name"] = obj.name # name of the models
             d['nodes'] = []      # nodes
             d['links'] = []      # links
-            d['groups'] = []
-            for n in obj.nodes:
-                ndict = {}
-                ndict['name'] = n.name
-                if(isinstance(n, Service)):
-                    ndict['type'] = "service"
-                elif(isinstance(n, Database)):
-                    ndict['type'] = "database"
-                elif(isinstance(n, CommunicationPattern)):
-                    ndict['type'] = "communicationpattern"
-                    if(n.concrete_type == API_GATEWAY ):
-                        ndict['ctype'] = "ApiGateway"
-                    elif  (n.concrete_type == MESSAGE_BROKER ):
-                        ndict['ctype'] = "MessageBroker"
-                    elif  (n.concrete_type == CIRCUIT_BREAKERI ):
-                        ndict['ctype'] = "CircuitBreaker"
-                    else:
-                        raise ValueError("Concrete type {} not recognized".format(n.concrete_type))
-                else:
-                    # TODO throw an excpetion ?? Node not found
-                    ndict['type'] = None
-                d['nodes'].append(ndict)
-
+            d['groups'] = []     # groups
+            for node in obj.nodes:
+                d['nodes'].append(self._transform_node(node))
                 for rel in n.relationships:
                     d['links'].append(self._transform_relationship(rel))
             for group in obj.groups:
                 d['groups'].append(self._transform_group(group))
         return d
+
+    def _transform_node(self, node):
+        dict_node = {}
+        dict_node['name'] = node.name
+        if(isinstance(node, Service)):
+            dict_node['type'] = "service"
+        elif(isinstance(node, Database)):
+            dict_node['type'] = "database"
+        elif(isinstance(node, MessageBroker)):
+            dict_node['type'] = "messagebroker"
+        elif(isinstance(node, MessageRouter)):
+            dict_node['type'] = "messagerouter"
+        else:
+            raise JSONExporterError(f"Node {n} not recognized")
+        return dict_node
 
     def _transform_relationship(self, relationship):
         nrel = {}
