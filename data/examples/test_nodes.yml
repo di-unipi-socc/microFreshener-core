@@ -19,5 +19,5 @@ topology_template:
     my_database:
       type: micro.nodes.Database
     
-    my_communicationpattern:
-      type: micro.nodes.CommunicationPattern
+    # my_communicationpattern:
+    #   type: micro.nodes.CommunicationPattern

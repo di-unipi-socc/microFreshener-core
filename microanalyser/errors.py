@@ -15,7 +15,9 @@ class ImporterError(MicroSmellerError):
 
     def __init__(self, message):
         self.message = message
-    
+
+class ExporterError(MicroSmellerError):
+    pass
 class MicroToscaError(MicroSmellerError):
     """Exception raised for errors in the Importer module.
 
@@ -26,5 +28,3 @@ class MicroToscaError(MicroSmellerError):
     def __init__(self, message):
         self.message = message
 
-class JSONExporterError(MicroSmellerError):
-    pass

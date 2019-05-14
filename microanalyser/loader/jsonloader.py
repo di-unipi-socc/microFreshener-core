@@ -42,13 +42,17 @@ class JSONLoader(Loader):
                 raise ImporterError(
                     "{} Node type is not recognized".format(type_node))
             self.micro_model.add_node(el)
+            logger.info(f"Added node {el.name}")
+
 
     def _load_links(self, json_data):
         if("links") in json_data:
             for link in json_data['links']:
+                logger.info(f"link: {link}")
                 ltype = link['type']
                 source = self.micro_model[link['source']]
                 target = self.micro_model[link['target']]
+                
                 (is_timeout, is_circuit_breaker,
                 is_dynamic_discovery) = self._get_links_properties(link)
                 if(ltype == 'runtime'):
@@ -60,6 +64,7 @@ class JSONLoader(Loader):
                 else:
                     raise ImporterError(
                         "Link type {} is not recognized".format(ltype))
+                logger.debug(f"Added link from {source} to {target}")
 
     def _get_links_properties(self, link_json):
         is_timeout = False

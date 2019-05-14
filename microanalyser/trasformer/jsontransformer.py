@@ -7,7 +7,7 @@ from ..model.groups import Edge, Squad
 
 from ..model.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
 from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
-from ..errors import JSONExporterError
+from ..errors import ExporterError
 from .itransformer import Transformer
 
 class JSONTransformer(Transformer):
@@ -33,7 +33,7 @@ class JSONTransformer(Transformer):
             d['groups'] = []     # groups
             for node in obj.nodes:
                 d['nodes'].append(self._transform_node(node))
-                for rel in n.relationships:
+                for rel in node.relationships:
                     d['links'].append(self._transform_relationship(rel))
             for group in obj.groups:
                 d['groups'].append(self._transform_group(group))
@@ -51,7 +51,7 @@ class JSONTransformer(Transformer):
         elif(isinstance(node, MessageRouter)):
             dict_node['type'] = "messagerouter"
         else:
-            raise JSONExporterError(f"Node {n} not recognized")
+            raise ExporterError(f"Node {n} not recognized")
         return dict_node
 
     def _transform_relationship(self, relationship):
@@ -66,7 +66,7 @@ class JSONTransformer(Transformer):
         elif(isinstance(relationship, RunTimeInteraction)):
             nrel['type'] = 'runtime'
         else:
-            raise ValueError("{} Relationship not recognized.".format(relationship))
+            raise ExporterError("{} Relationship not recognized.".format(relationship))
         return nrel
 
     def _transform_group(self, group):
@@ -77,7 +77,7 @@ class JSONTransformer(Transformer):
         elif (isinstance(group, Squad)):
             g_dict['type'] = "squadgroup"
         else:
-            raise ValueError("Group type {} not recognized.".format(group))
+            raise ExporterError("Group type {} not recognized.".format(group))
         members = []
         for member in group.members:
             members.append(member.name)
