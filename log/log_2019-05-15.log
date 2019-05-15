@@ -21,3 +21,26 @@
 2019-05-15 17:33:48,564 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_nodes.yml
 2019-05-15 17:33:48,579 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_relationship.yml
 2019-05-15 17:33:48,648 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_relationship.yml
+2019-05-15 18:15:47,582 	 [INFO | ymlimporter.py:28] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 18:15:47,654 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fad1c7aff60>) added
+2019-05-15 18:15:47,655 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7fad1c7af198>) added
+2019-05-15 18:15:47,657 	 [INFO | ymlimporter.py:28] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 18:15:47,724 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_sniffer_ctdm.yml
+2019-05-15 18:15:47,762 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_sniffer_ebsi.yml
+2019-05-15 18:15:47,874 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_sniffer_nagw.yml
+2019-05-15 18:15:47,898 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_sniffer_shpr.yml
+2019-05-15 18:15:47,920 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_sniffer_wbsi.yml
+2019-05-15 18:15:48,037 	 [INFO | ymlimporter.py:28] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 18:15:48,101 	 [INFO | jsonimporter.py:20] > Loading JSON file: data/tests/test_nodes.json
+2019-05-15 18:15:48,103 	 [INFO | jsonimporter.py:20] > Loading JSON file: data/tests/test_relationship.json
+2019-05-15 18:15:48,106 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_groups.yml
+2019-05-15 18:15:48,140 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_nodes.yml
+2019-05-15 18:15:48,158 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_relationship.yml
+2019-05-15 18:15:48,253 	 [INFO | jsonimporter.py:20] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 18:15:48,257 	 [INFO | jsonimporter.py:20] > Loading JSON file: data/tests/test_nodes.json
+2019-05-15 18:15:48,258 	 [INFO | jsonimporter.py:20] > Loading JSON file: data/tests/test_relationship.json
+2019-05-15 18:15:48,261 	 [INFO | ymlimporter.py:28] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 18:15:48,330 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_groups.yml
+2019-05-15 18:15:48,363 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_nodes.yml
+2019-05-15 18:15:48,378 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_relationship.yml
+2019-05-15 18:15:48,468 	 [INFO | ymlimporter.py:28] > Loading YML file: data/tests/test_relationship.yml

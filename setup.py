@@ -1,5 +1,9 @@
 from setuptools import setup
 
+with open('HISTORY.rst') as history_file:
+    history = history_file.read()
+
+exec(open('microanalyser/__init__.py').read())
 
 def readme():
     with open('README.rst') as f:
@@ -7,14 +11,15 @@ def readme():
 
 
 setup(name='microanalyser',
-      version='1.1',
-      description='',
-      long_description=readme(),
+      version=__version__,
+      description='Read a MicroTOSCA model of a microservice-based architecture and discover architectural smells',
+      long_description=readme() + '\n\n' + history,
       url='',
       include_package_data=True,
-      author='Davide Neri',
-      author_email='davide.neri@di.unipi.it',
+      author=__author__,
+      author_email=__email__,
       license='MIT',
+      keywords='microservice TOSCA smells refactorings',
       packages=['microanalyser'],
       install_requires=[
           'ruamel.yaml','tosca-parser'
