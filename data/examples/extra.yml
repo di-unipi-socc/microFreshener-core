@@ -1,0 +1,129 @@
+tosca_definitions_version: micro_tosca_yaml_1.1
+description: extra-riot
+imports:
+- micro: https://di-unipi-socc.github.io/microTOSCA/1.1/microTOSCA.yaml
+topology_template:
+  node_templates:
+    Brk1:
+      type: micro.nodes.MessageBroker
+    Brk2:
+      type: micro.nodes.MessageBroker
+      requirements:
+      - run_time: Jtl
+    Jtl:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: Brk1
+    Tlg:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: Brk1
+      - run_time: InfDB
+    InfDB:
+      type: micro.nodes.Database
+    Chr:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: InfDB
+    Inf:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: InfDB
+      - run_time: Kpc
+    Kpc:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: InfDB
+      - run_time: InfUp
+    Dsh:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: Chr
+      - run_time: Cnf
+    Cnf:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: Inf
+      - run_time: FltDB
+    InfUp:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: CldAdm
+    FltDB:
+      type: micro.nodes.Database
+    GUI:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: Dsh
+      - run_time: Cnf
+      - run_time: Kpr
+      - run_time: CldAdm
+    Kpr:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: KprDB
+      - run_time: NsqDB
+      - run_time: CldAdm
+      - run_time: SftMngDB
+    KprDB:
+      type: micro.nodes.Database
+    NsqDB:
+      type: micro.nodes.Database
+    CldAdm:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: CldAdmDB
+      - run_time: Ans
+      - run_time: SftDB
+    CldAdmDB:
+      type: micro.nodes.Database
+    SftDB:
+      type: micro.nodes.Database
+    Ans:
+      type: micro.nodes.Service
+      requirements:
+      - run_time: Tlg
+    SftMngDB:
+      type: micro.nodes.Database
+  groups:
+    edgenodes:
+      type: micro.groups.Edge
+      members:
+      - Brk2
+      - Brk1
+      - Kpr
+      - CldAdm
+  relationship_templates:
+    t:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+    c:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+    d:
+      type: micro.relationships.InteractsWith
+      properties:
+        dynamic_discovery: true
+    tc:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+    td:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        dynamic_discovery: true
+    cd:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+        dynamic_discovery: true
+    tcd:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+        dynamic_discovery: true

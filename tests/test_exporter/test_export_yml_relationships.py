@@ -63,6 +63,7 @@ class TestJSONTranformer(TestCase):
         self.assertEqual(len(link_to_target), 1)
         rel_dict = self.exporter._transform_relationship(link_to_target[0])
         return rel_dict
+    
 
     def test_build_relationship_templates_t(self):
         rel = self.exporter.build_relationship_templates()
@@ -81,7 +82,6 @@ class TestJSONTranformer(TestCase):
         self.assertDictEqual(rel[YML_RELATIONSHIP_C], {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True}})
         self.assertTrue(MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY not in rel[YML_RELATIONSHIP_T])
         self.assertTrue(MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY not in rel[YML_RELATIONSHIP_T])
-
 
     def test_build_relationship_templates_tc(self):
         rel = self.exporter.build_relationship_templates()

@@ -57,6 +57,7 @@ class TestJSONLoaderRelationship(TestCase):
         self.assertTrue(link.timeout)
         self.assertTrue(link.circuit_breaker)
         self.assertTrue(link.dynamic_discovery)
+    
 
     def _load_relationship_from_source_to_target(self, source_name, target_name):
         source = self.microtosca[source_name]

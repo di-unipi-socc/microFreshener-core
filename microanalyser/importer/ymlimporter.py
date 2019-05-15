@@ -9,6 +9,8 @@ from ..model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from .ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
+from .ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
+from .ymltype import YML_RELATIONSHIP_TEMPLATE
 from ..errors import ImporterError
 from ..logging import MyLogger
 
@@ -35,11 +37,14 @@ class YMLImporter(Importer):
     def _parse_relationship_templates(self):
         return self.micro_yml.get('topology_template').get('relationship_templates')
 
-    def _get_relationship_by_name(self, name):
-        if name in self.relationship_templates:
-            return self.relationship_templates[name]
+    def _get_relationship_template_by_name(self, name):
+        if name in YML_RELATIONSHIP_TEMPLATE:
+            if name in self.relationship_templates:
+                return self.relationship_templates[name]
+            else:
+                raise ImporterError(f"Relationship template  {name} does not exist")
         else:
-            raise ImporterError(f"Relationship template  {name} does not exist")
+            raise ImporterError(f"Relationship template {name} is not a valid relationship template.")
 
     def _get_relationship_property_values(self, relationship):
         is_timeout = False
@@ -88,7 +93,7 @@ class YMLImporter(Importer):
                     elif isinstance(target_type, ruamel.yaml.comments.CommentedMap):
                         for key, value in target_type.items():
                             if(key == "relationship"):
-                                rel = self._get_relationship_by_name(value)
+                                rel = self._get_relationship_template_by_name(value)
                                 (is_timeout, is_circuit_breaker,
                                  is_dynamic_discovery) = self._get_relationship_property_values(rel)
                             elif key == "node":
