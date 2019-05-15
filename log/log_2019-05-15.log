@@ -1,0 +1,549 @@
+2019-05-15 11:36:36,164 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:36:36,202 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f58014ff748>) added
+2019-05-15 11:36:36,203 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f58014ff470>) added
+2019-05-15 11:36:58,978 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:36:59,017 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f63ce5c0748>) added
+2019-05-15 11:36:59,018 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f63ce5c0470>) added
+2019-05-15 11:37:04,700 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:37:04,740 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f8f2de89748>) added
+2019-05-15 11:37:04,741 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f8f2de89470>) added
+2019-05-15 11:37:46,484 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:37:46,518 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:37:46,590 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:37:46,604 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:37:46,617 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:37:56,652 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:37:56,678 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:37:56,743 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:37:56,757 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:37:56,774 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:38:17,981 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:38:18,007 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:38:18,076 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:38:18,097 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:38:18,116 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:38:48,955 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:38:48,995 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7fdb3b5229b0>) added
+2019-05-15 11:38:48,997 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7fdb3b522860>) added
+2019-05-15 11:38:49,000 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:38:49,027 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:38:49,113 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:38:49,133 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:38:49,150 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:44:35,579 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 11:44:35,579 	 [INFO | jsonloader.py:45] > Added node shipping
+2019-05-15 11:44:35,580 	 [INFO | jsonloader.py:45] > Added node order_db
+2019-05-15 11:44:35,580 	 [INFO | jsonloader.py:45] > Added node order
+2019-05-15 11:44:35,580 	 [INFO | jsonloader.py:45] > Added node rabbitmq
+2019-05-15 11:44:35,580 	 [INFO | jsonloader.py:45] > Added node gateway
+2019-05-15 11:44:35,581 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 11:44:35,581 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 11:44:35,581 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 11:44:35,581 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:44:35,581 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 11:44:35,582 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 11:44:35,582 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'deploymenttime'}
+2019-05-15 11:44:35,582 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 11:44:35,582 	 [INFO | jsonloader.py:51] > link: {'source': 'gateway', 'target': 'shipping', 'type': 'runtime'}
+2019-05-15 11:44:35,585 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:44:35,585 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:44:35,586 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:44:35,586 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:44:35,586 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:44:35,587 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:44:35,588 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:44:35,588 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:44:35,588 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:44:35,588 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:44:35,588 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:44:35,588 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:44:35,589 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:44:35,590 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:44:35,590 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:44:35,590 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:44:35,590 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:44:35,592 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:44:35,636 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:44:35,644 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 11:45:09,349 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:45:09,398 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:45:09,399 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:45:09,399 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:45:09,399 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:45:09,399 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:45:09,401 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:45:09,401 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:45:09,401 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:45:09,401 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:45:09,402 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:45:09,403 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:45:09,403 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:45:09,403 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:45:09,403 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:45:09,404 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:45:09,404 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:45:09,404 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:45:09,407 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:45:09,457 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:45:09,468 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 11:45:29,562 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:45:29,602 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff70ce51c88>) added
+2019-05-15 11:45:29,603 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7ff70ce51d68>) added
+2019-05-15 11:45:29,606 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:45:29,649 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7ff70cdf96d8>) added
+2019-05-15 11:45:29,651 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:45:29,674 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:45:29,738 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:45:29,752 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:45:29,766 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:46:40,958 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:46:41,001 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f8c62a89e10>) added
+2019-05-15 11:46:41,003 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f8c62a89d30>) added
+2019-05-15 11:46:41,007 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:46:41,044 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:46:41,144 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:46:41,168 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:46:41,184 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:47:07,506 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:47:07,553 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f6fe8690c88>) added
+2019-05-15 11:47:07,554 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f6fe8690d68>) added
+2019-05-15 11:47:07,556 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:47:07,578 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:47:07,651 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:47:07,667 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:47:07,683 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:47:31,094 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:47:31,137 	 [INFO | analyser.py:42] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f33c5451c88>) added
+2019-05-15 11:47:31,139 	 [INFO | analyser.py:42] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f33c5451d68>) added
+2019-05-15 11:47:31,141 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:47:31,189 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ctdm.yml
+2019-05-15 11:47:31,211 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_ebsi.yml
+2019-05-15 11:47:31,279 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_nagw.yml
+2019-05-15 11:47:31,297 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_shpr.yml
+2019-05-15 11:47:31,308 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_sniffer_wbsi.yml
+2019-05-15 11:48:56,333 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 11:48:56,334 	 [INFO | jsonloader.py:45] > Added node shipping
+2019-05-15 11:48:56,334 	 [INFO | jsonloader.py:45] > Added node order_db
+2019-05-15 11:48:56,334 	 [INFO | jsonloader.py:45] > Added node order
+2019-05-15 11:48:56,334 	 [INFO | jsonloader.py:45] > Added node rabbitmq
+2019-05-15 11:48:56,335 	 [INFO | jsonloader.py:45] > Added node gateway
+2019-05-15 11:48:56,335 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 11:48:56,335 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 11:48:56,335 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 11:48:56,335 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:48:56,336 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 11:48:56,336 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 11:48:56,336 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'deploymenttime'}
+2019-05-15 11:48:56,336 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 11:48:56,336 	 [INFO | jsonloader.py:51] > link: {'source': 'gateway', 'target': 'shipping', 'type': 'runtime'}
+2019-05-15 11:48:56,340 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:48:56,340 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:48:56,340 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:48:56,341 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:48:56,341 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:48:56,342 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:48:56,342 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:48:56,343 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:48:56,343 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:48:56,343 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:48:56,343 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:48:56,343 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:48:56,343 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:48:56,344 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:48:56,344 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:48:56,344 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:48:56,344 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:48:56,344 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:48:56,344 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:48:56,345 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:48:56,345 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:48:56,345 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:48:56,345 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:48:56,348 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:48:56,397 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:48:56,405 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 11:49:50,224 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:49:50,265 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:49:50,266 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:49:50,266 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:49:50,266 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:49:50,267 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:49:50,268 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:49:50,269 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:49:50,269 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:49:50,269 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:49:50,270 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:49:50,270 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:49:50,270 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:49:50,270 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:49:50,270 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:49:50,270 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:49:50,271 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:49:50,271 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:49:50,271 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:49:50,271 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:49:50,271 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:49:50,272 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:49:50,272 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:49:50,272 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:49:50,275 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:49:50,322 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:49:50,334 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 11:53:51,452 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 11:53:51,453 	 [INFO | jsonloader.py:45] > Added node shipping
+2019-05-15 11:53:51,453 	 [INFO | jsonloader.py:45] > Added node order_db
+2019-05-15 11:53:51,453 	 [INFO | jsonloader.py:45] > Added node order
+2019-05-15 11:53:51,453 	 [INFO | jsonloader.py:45] > Added node rabbitmq
+2019-05-15 11:53:51,454 	 [INFO | jsonloader.py:45] > Added node gateway
+2019-05-15 11:53:51,454 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 11:53:51,454 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 11:53:51,454 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 11:53:51,454 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:53:51,455 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 11:53:51,455 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 11:53:51,455 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'deploymenttime'}
+2019-05-15 11:53:51,455 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 11:53:51,455 	 [INFO | jsonloader.py:51] > link: {'source': 'gateway', 'target': 'shipping', 'type': 'runtime'}
+2019-05-15 11:53:51,459 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:53:51,460 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:53:51,460 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:53:51,460 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:53:51,460 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:53:51,461 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:53:51,462 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:53:51,462 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:53:51,462 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:53:51,462 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:53:51,463 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:53:51,464 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:53:51,464 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:53:51,464 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:53:51,464 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:53:51,464 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:53:51,465 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:53:51,467 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:53:51,509 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:53:51,517 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 11:54:11,291 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:54:11,331 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:54:11,333 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:54:11,333 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:54:11,334 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:54:11,335 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:54:11,337 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:54:11,337 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:54:11,337 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:54:11,338 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:54:11,338 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:54:11,338 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:54:11,338 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:54:11,338 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:54:11,338 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:54:11,339 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:54:11,339 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:54:11,339 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:54:11,339 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:54:11,339 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:54:11,340 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:54:11,340 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:54:11,340 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:54:11,340 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:54:11,342 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:54:11,382 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:54:11,393 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 11:59:28,960 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:59:29,009 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 11:59:29,010 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 11:59:29,010 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 11:59:29,010 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 11:59:29,010 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 11:59:29,012 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 11:59:29,012 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 11:59:29,012 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 11:59:29,013 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 11:59:29,014 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 11:59:29,014 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 11:59:29,014 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 11:59:29,014 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 11:59:29,014 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 11:59:29,015 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:59:29,015 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 11:59:29,017 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 11:59:29,058 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 11:59:29,069 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:00:21,139 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:00:21,182 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:00:21,183 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 12:00:21,183 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 12:00:21,183 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 12:00:21,184 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 12:00:21,187 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:00:21,187 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 12:00:21,188 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 12:00:21,188 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 12:00:21,188 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 12:00:21,188 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 12:00:21,189 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 12:00:21,189 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 12:00:21,189 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 12:00:21,189 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 12:00:21,189 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:00:21,190 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:00:21,190 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:00:21,190 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:00:21,190 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:00:21,190 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:00:21,191 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:00:21,191 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:00:21,193 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:00:21,239 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:00:21,255 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:01:32,749 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:01:32,785 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:01:32,786 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 12:01:32,786 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 12:01:32,786 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 12:01:32,787 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 12:01:32,788 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:01:32,789 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 12:01:32,789 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 12:01:32,789 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 12:01:32,789 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 12:01:32,789 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 12:01:32,789 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 12:01:32,790 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 12:01:32,790 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 12:01:32,790 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 12:01:32,790 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:01:32,790 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:01:32,790 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:01:32,791 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:01:32,791 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:01:32,791 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:01:32,791 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:01:32,791 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:01:32,793 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:01:32,840 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:01:32,849 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:22:04,216 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:22:04,257 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:22:04,257 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 12:22:04,258 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 12:22:04,258 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 12:22:04,258 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 12:22:04,260 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:22:04,260 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 12:22:04,260 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 12:22:04,261 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 12:22:04,262 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:22:04,262 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:22:04,262 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:22:04,262 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:22:04,262 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:22:04,263 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:22:04,263 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:22:04,263 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:22:04,266 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:22:04,306 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:22:04,314 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:22:08,022 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 12:22:08,023 	 [INFO | jsonloader.py:45] > Added node shipping
+2019-05-15 12:22:08,023 	 [INFO | jsonloader.py:45] > Added node order_db
+2019-05-15 12:22:08,023 	 [INFO | jsonloader.py:45] > Added node order
+2019-05-15 12:22:08,023 	 [INFO | jsonloader.py:45] > Added node rabbitmq
+2019-05-15 12:22:08,024 	 [INFO | jsonloader.py:45] > Added node gateway
+2019-05-15 12:22:08,024 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 12:22:08,024 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 12:22:08,024 	 [INFO | jsonloader.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 12:22:08,024 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:22:08,025 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 12:22:08,025 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 12:22:08,025 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'deploymenttime'}
+2019-05-15 12:22:08,025 	 [INFO | jsonloader.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 12:22:08,026 	 [INFO | jsonloader.py:51] > link: {'source': 'gateway', 'target': 'shipping', 'type': 'runtime'}
+2019-05-15 12:22:08,031 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:22:08,031 	 [INFO | jsonloader.py:45] > Added node my_service
+2019-05-15 12:22:08,031 	 [INFO | jsonloader.py:45] > Added node my_database
+2019-05-15 12:22:08,031 	 [INFO | jsonloader.py:45] > Added node my_messagebroker
+2019-05-15 12:22:08,032 	 [INFO | jsonloader.py:45] > Added node my_messagerouter
+2019-05-15 12:22:08,033 	 [INFO | jsonloader.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:22:08,034 	 [INFO | jsonloader.py:45] > Added node source
+2019-05-15 12:22:08,034 	 [INFO | jsonloader.py:45] > Added node target
+2019-05-15 12:22:08,034 	 [INFO | jsonloader.py:45] > Added node target_t
+2019-05-15 12:22:08,034 	 [INFO | jsonloader.py:45] > Added node target_c
+2019-05-15 12:22:08,034 	 [INFO | jsonloader.py:45] > Added node target_d
+2019-05-15 12:22:08,035 	 [INFO | jsonloader.py:45] > Added node target_tc
+2019-05-15 12:22:08,035 	 [INFO | jsonloader.py:45] > Added node target_td
+2019-05-15 12:22:08,035 	 [INFO | jsonloader.py:45] > Added node target_cd
+2019-05-15 12:22:08,035 	 [INFO | jsonloader.py:45] > Added node target_tcd
+2019-05-15 12:22:08,035 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:22:08,036 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:22:08,036 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:22:08,036 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:22:08,036 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:22:08,036 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:22:08,037 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:22:08,037 	 [INFO | jsonloader.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:22:08,040 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:22:08,087 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:22:08,095 	 [INFO | ymlloader.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:27:26,405 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 12:27:26,408 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:27:26,409 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:27:26,410 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:27:26,411 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:27:26,412 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:47:59,552 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 12:47:59,554 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:47:59,555 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:47:59,557 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:47:59,558 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:47:59,559 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:49:19,101 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 12:49:19,102 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:49:19,103 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:49:19,105 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:49:19,176 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:49:19,188 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:49:32,875 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 12:49:32,876 	 [INFO | jsonimporter.py:45] > Added node shipping
+2019-05-15 12:49:32,876 	 [INFO | jsonimporter.py:45] > Added node order_db
+2019-05-15 12:49:32,876 	 [INFO | jsonimporter.py:45] > Added node order
+2019-05-15 12:49:32,876 	 [INFO | jsonimporter.py:45] > Added node rabbitmq
+2019-05-15 12:49:32,877 	 [INFO | jsonimporter.py:45] > Added node gateway
+2019-05-15 12:49:32,877 	 [INFO | jsonimporter.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 12:49:32,877 	 [INFO | jsonimporter.py:51] > link: {'source': 'shipping', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 12:49:32,877 	 [INFO | jsonimporter.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 12:49:32,877 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:49:32,878 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 12:49:32,878 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 12:49:32,878 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'deploymenttime'}
+2019-05-15 12:49:32,878 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 12:49:32,878 	 [INFO | jsonimporter.py:51] > link: {'source': 'gateway', 'target': 'shipping', 'type': 'runtime'}
+2019-05-15 12:49:32,882 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:49:32,882 	 [INFO | jsonimporter.py:45] > Added node my_service
+2019-05-15 12:49:32,883 	 [INFO | jsonimporter.py:45] > Added node my_database
+2019-05-15 12:49:32,883 	 [INFO | jsonimporter.py:45] > Added node my_messagebroker
+2019-05-15 12:49:32,883 	 [INFO | jsonimporter.py:45] > Added node my_messagerouter
+2019-05-15 12:49:32,884 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:49:32,885 	 [INFO | jsonimporter.py:45] > Added node source
+2019-05-15 12:49:32,885 	 [INFO | jsonimporter.py:45] > Added node target
+2019-05-15 12:49:32,885 	 [INFO | jsonimporter.py:45] > Added node target_t
+2019-05-15 12:49:32,885 	 [INFO | jsonimporter.py:45] > Added node target_c
+2019-05-15 12:49:32,886 	 [INFO | jsonimporter.py:45] > Added node target_d
+2019-05-15 12:49:32,886 	 [INFO | jsonimporter.py:45] > Added node target_tc
+2019-05-15 12:49:32,886 	 [INFO | jsonimporter.py:45] > Added node target_td
+2019-05-15 12:49:32,886 	 [INFO | jsonimporter.py:45] > Added node target_cd
+2019-05-15 12:49:32,886 	 [INFO | jsonimporter.py:45] > Added node target_tcd
+2019-05-15 12:49:32,886 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:49:32,887 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:49:32,887 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:49:32,887 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:49:32,887 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:49:32,887 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:49:32,888 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:49:32,888 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:49:32,890 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:49:32,936 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:49:32,945 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:50:07,626 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:50:07,667 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:50:07,667 	 [INFO | jsonimporter.py:45] > Added node my_service
+2019-05-15 12:50:07,667 	 [INFO | jsonimporter.py:45] > Added node my_database
+2019-05-15 12:50:07,668 	 [INFO | jsonimporter.py:45] > Added node my_messagebroker
+2019-05-15 12:50:07,668 	 [INFO | jsonimporter.py:45] > Added node my_messagerouter
+2019-05-15 12:50:07,669 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:50:07,670 	 [INFO | jsonimporter.py:45] > Added node source
+2019-05-15 12:50:07,670 	 [INFO | jsonimporter.py:45] > Added node target
+2019-05-15 12:50:07,670 	 [INFO | jsonimporter.py:45] > Added node target_t
+2019-05-15 12:50:07,670 	 [INFO | jsonimporter.py:45] > Added node target_c
+2019-05-15 12:50:07,671 	 [INFO | jsonimporter.py:45] > Added node target_d
+2019-05-15 12:50:07,671 	 [INFO | jsonimporter.py:45] > Added node target_tc
+2019-05-15 12:50:07,671 	 [INFO | jsonimporter.py:45] > Added node target_td
+2019-05-15 12:50:07,671 	 [INFO | jsonimporter.py:45] > Added node target_cd
+2019-05-15 12:50:07,671 	 [INFO | jsonimporter.py:45] > Added node target_tcd
+2019-05-15 12:50:07,672 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:50:07,672 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:50:07,672 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:50:07,672 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:50:07,672 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:50:07,673 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:50:07,673 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:50:07,673 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:50:07,675 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:50:07,716 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:50:07,725 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:50:07,787 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:50:07,802 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml
+2019-05-15 12:56:59,740 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 12:56:59,740 	 [INFO | jsonimporter.py:45] > Added node shipping
+2019-05-15 12:56:59,741 	 [INFO | jsonimporter.py:45] > Added node order_db
+2019-05-15 12:56:59,741 	 [INFO | jsonimporter.py:45] > Added node order
+2019-05-15 12:56:59,741 	 [INFO | jsonimporter.py:45] > Added node rabbitmq
+2019-05-15 12:56:59,741 	 [INFO | jsonimporter.py:45] > Added node gateway
+2019-05-15 12:56:59,742 	 [INFO | jsonimporter.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 12:56:59,742 	 [INFO | jsonimporter.py:51] > link: {'source': 'shipping', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 12:56:59,742 	 [INFO | jsonimporter.py:51] > link: {'source': 'shipping', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 12:56:59,742 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:56:59,743 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'runtime'}
+2019-05-15 12:56:59,743 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'rabbitmq', 'type': 'runtime'}
+2019-05-15 12:56:59,743 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'shipping', 'type': 'deploymenttime'}
+2019-05-15 12:56:59,743 	 [INFO | jsonimporter.py:51] > link: {'source': 'order', 'target': 'order_db', 'type': 'deploymenttime'}
+2019-05-15 12:56:59,744 	 [INFO | jsonimporter.py:51] > link: {'source': 'gateway', 'target': 'shipping', 'type': 'runtime'}
+2019-05-15 12:56:59,748 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 12:56:59,748 	 [INFO | jsonimporter.py:45] > Added node my_service
+2019-05-15 12:56:59,749 	 [INFO | jsonimporter.py:45] > Added node my_database
+2019-05-15 12:56:59,749 	 [INFO | jsonimporter.py:45] > Added node my_messagebroker
+2019-05-15 12:56:59,749 	 [INFO | jsonimporter.py:45] > Added node my_messagerouter
+2019-05-15 12:56:59,750 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 12:56:59,751 	 [INFO | jsonimporter.py:45] > Added node source
+2019-05-15 12:56:59,751 	 [INFO | jsonimporter.py:45] > Added node target
+2019-05-15 12:56:59,751 	 [INFO | jsonimporter.py:45] > Added node target_t
+2019-05-15 12:56:59,751 	 [INFO | jsonimporter.py:45] > Added node target_c
+2019-05-15 12:56:59,752 	 [INFO | jsonimporter.py:45] > Added node target_d
+2019-05-15 12:56:59,752 	 [INFO | jsonimporter.py:45] > Added node target_tc
+2019-05-15 12:56:59,752 	 [INFO | jsonimporter.py:45] > Added node target_td
+2019-05-15 12:56:59,752 	 [INFO | jsonimporter.py:45] > Added node target_cd
+2019-05-15 12:56:59,752 	 [INFO | jsonimporter.py:45] > Added node target_tcd
+2019-05-15 12:56:59,752 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target', 'type': 'runtime'}
+2019-05-15 12:56:59,753 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_t', 'type': 'runtime', 'timeout': True}
+2019-05-15 12:56:59,753 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_c', 'type': 'runtime', 'circuit_breaker': True}
+2019-05-15 12:56:59,753 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_d', 'type': 'runtime', 'dynamic_discovery': True}
+2019-05-15 12:56:59,753 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_tc', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True}
+2019-05-15 12:56:59,754 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_td', 'type': 'runtime', 'timeout': True, 'dynamic_discovery': True}
+2019-05-15 12:56:59,754 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_cd', 'type': 'runtime', 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:56:59,754 	 [INFO | jsonimporter.py:51] > link: {'source': 'source', 'target': 'target_tcd', 'type': 'runtime', 'timeout': True, 'circuit_breaker': True, 'dynamic_discovery': True}
+2019-05-15 12:56:59,757 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/helloworld.yml
+2019-05-15 12:56:59,802 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_nodes.yml
+2019-05-15 12:56:59,811 	 [INFO | ymlimporter.py:25] > Loading YML file data/examples/test_relationship.yml

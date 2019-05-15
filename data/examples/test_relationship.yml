@@ -50,7 +50,7 @@ topology_template:
     target_tcd:
       type: micro.nodes.Service
 
-    # multiple links with differnet properties  with same source and same taget
+    # multiple links with differnet properties with same source and same taget
     source_same:
       type: micro.nodes.Service
       requirements:
@@ -87,7 +87,6 @@ topology_template:
       type: micro.relationships.InteractsWith
       properties:
         circuit_breaker: true
-
     d:
       type: micro.relationships.InteractsWith
       properties:
@@ -109,7 +108,6 @@ topology_template:
       properties:
         circuit_breaker: true
         dynamic_discovery: true
-
     tcd:
       type: micro.relationships.InteractsWith
       properties:

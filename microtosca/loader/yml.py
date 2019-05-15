@@ -8,16 +8,16 @@ from ..model.helper import get_type
 
 from ..model.type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
 
-class YMLLoader(object):
+class YMLImporter(object):
 
     def __init__(self):
         pass # self.microtosca_template = micro_tosca_template
     
-    def load(self, path_to_yml):
+    def Import(self, path_to_yml):
         yaml = ruamel.yaml.YAML() # default  type='rt' 
     
         microtosca_template = MicroModel('micro.tosca')
-        micro_yml = yaml.load(Path(path_to_yml))
+        micro_yml = yaml.Import(Path(path_to_yml))
         nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
 
         for node_name, commented_map in nodes_ruamel.items():

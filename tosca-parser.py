@@ -13,11 +13,11 @@ from microanalyser.model.relationships import InteractsWith
 from microanalyser.model.template import MicroModel
 from microanalyser.analyser.analyser import MicroAnalyser
 
-from microanalyser.loader import YMLLoader
-from microanalyser.loader import JSONLoader
+from microanalyser.importer import YMLImporter
+from microanalyser.importer import JSONImporter
 
-from microanalyser.trasformer import JSONTransformer
-from microanalyser.trasformer import YMLTransformer
+from microanalyser.exporter import JSONExporter
+from microanalyser.exporter import YMLExporter
 
 from microanalyser.analyser.builder import AnalyserBuilder
 from microanalyser.analyser.analyser import MicroAnalyser
@@ -48,12 +48,12 @@ if tosca.version:
 #         LOADER: yml, json
 #*******************************
 # Yml loader
-loader = YMLLoader()
-micro_model = loader.load(path_to_yml)
+loader = YMLImporter()
+micro_model = loader.Import(path_to_yml)
 
 #JSON loader
-# loader = JSONLoader()
-# micro_model = loader.load(path_to_json)
+# loader = JSONImporter()
+# micro_model = loader.Import(path_to_json)
 
 #********************************
 #         MICRO MODEL
@@ -98,8 +98,8 @@ pprint.pprint(res)
 #         TRANFORMER
 #*******************************
 
-# transformer = YMLTransformer()
-# r = transformer.transform(micro_model)
+# transformer = YMLExporter()
+# r = transformer.Export(micro_model)
 # pprint.pprint(r)
 
 #*******************************
