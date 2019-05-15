@@ -1906,3 +1906,14 @@
 2019-05-15 14:47:57,785 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_groups.yml
 2019-05-15 14:47:57,806 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_nodes.yml
 2019-05-15 14:47:57,815 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:04:59,723 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:09:24,072 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:09:46,459 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:12:03,434 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:12:13,374 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:12:38,670 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:13:00,240 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:16:20,913 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:16:32,112 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:16:35,963 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 16:18:16,607 	 [INFO | ymlimporter.py:26] > Loading YML file: data/examples/test_relationship.yml

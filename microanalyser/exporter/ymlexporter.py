@@ -6,10 +6,11 @@ from ..model import MicroToscaModel
 from ..model  import RunTimeInteraction, DeploymentTimeInteraction
 from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import RootGroup, Edge, Team
-from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
 from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model.type import  MICROTOSCA_GROUPS_EDGE, MICROTOSCA_GROUPS_TEAM
 from ..importer.ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
+from ..importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
 from .iexporter import Exporter
 from ..errors import ExporterError
 
@@ -51,13 +52,21 @@ class YMLExporter(Exporter):
             groups[group.name] = self._transform_group(group)
         topology_template["groups"] = groups
 
-        topology_template['relationship_templates'] = self.build_timedout_relationship_template()
+        topology_template['relationship_templates'] = self.build_relationship_templates()
 
         yml_dict['topology_template'] = topology_template
         return yml_dict
 
-    def build_timedout_relationship_template(self):
-        return {"timedout": {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True}}}
+    def build_relationship_templates(self):
+        rel_templ = {}
+        rel_templ[YML_RELATIONSHIP_T] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True}}
+        rel_templ[YML_RELATIONSHIP_C] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True}}
+        rel_templ[YML_RELATIONSHIP_D] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY: True}}
+        rel_templ[YML_RELATIONSHIP_TC] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True}}
+        rel_templ[YML_RELATIONSHIP_TD] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY: True}}
+        rel_templ[YML_RELATIONSHIP_CD] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY: True}}
+        rel_templ[YML_RELATIONSHIP_TCD] = {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY: True}}
+        return rel_templ
 
     def _get_metadata(self):
         d_metadata = dict(tosca_definitions_version="tosca_simple_yaml_1_0", description="",
