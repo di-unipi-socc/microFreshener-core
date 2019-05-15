@@ -3,8 +3,8 @@ from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, SingleLayerTeamSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
 from ..model.nodes import Service, Database, CommunicationPattern, MessageRouter
 from ..model.type import MESSAGE_ROUTER
-from ..model.template import MicroModel
-from ..model.groups import Edge, Squad
+from ..model import MicroModel
+from ..model.groups import Edge, Team
 from typing import List
 
 from ..helper.decorator import visitor
@@ -97,7 +97,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
 
 class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
 
-    def snif(self, group: Squad)->SingleLayerTeamSmell:
+    def snif(self, group: Team)->SingleLayerTeamSmell:
         smell=SingleLayerTeamSmell(group)
         for node in group.members:
             for relationship in node.relationships:

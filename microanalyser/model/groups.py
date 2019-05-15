@@ -44,10 +44,10 @@ class RootGroup(object):
         return hash(self.name)
 
 
-class Squad(RootGroup):
+class Team(RootGroup):
 
     def __init__(self, name):
-        super(Squad, self).__init__(name)
+        super(Team, self).__init__(name)
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'squad')

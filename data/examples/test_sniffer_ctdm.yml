@@ -31,11 +31,11 @@ topology_template:
 
   groups:
     team1:
-      type: micro.groups.Squad
+      type: micro.groups.Team
       members: [s1, db1]
     team2:
-      type: micro.groups.Squad
+      type: micro.groups.Team
       members: [s2, db2]
     team3:
-      type: micro.groups.Squad
+      type: micro.groups.Team
       members: [s3, db3]

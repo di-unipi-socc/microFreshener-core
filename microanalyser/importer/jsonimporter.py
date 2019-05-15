@@ -1,11 +1,11 @@
 
 import json
-from ..model.template import MicroModel
+from ..model import MicroModel
 from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
-from ..model.groups import Edge, Squad
+from ..model.groups import Edge, Team
 from ..logging import MyLogger
 from .iimporter import Importer
-from ..model.type import API_GATEWAY, MESSAGE_BROKER, MESSAGE_ROUTER, CIRCUIT_BREAKER, SQUAD, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
+from ..model.type import API_GATEWAY, MESSAGE_BROKER, MESSAGE_ROUTER, CIRCUIT_BREAKER, TEAM, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 from ..model.type  import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
 from ..errors import ImporterError
@@ -42,17 +42,15 @@ class JSONImporter(Importer):
                 raise ImporterError(
                     "{} Node type is not recognized".format(type_node))
             self.micro_model.add_node(el)
-            logger.info(f"Added node {el.name}")
-
+            logger.debug(f"Added node {el.name}")
 
     def _load_links(self, json_data):
         if("links") in json_data:
             for link in json_data['links']:
-                logger.info(f"link: {link}")
+                logger.debug(f"link: {link}")
                 ltype = link['type']
                 source = self.micro_model[link['source']]
                 target = self.micro_model[link['target']]
-                
                 (is_timeout, is_circuit_breaker,
                 is_dynamic_discovery) = self._get_links_properties(link)
                 if(ltype == 'runtime'):
@@ -92,8 +90,8 @@ class JSONImporter(Importer):
                             member_name, group_type, group_name))
                     self.micro_model.add_group(edge)
                 elif (group_type == 'squadgroup'):
-                    logger.debug("Adding Squad group".format(group_name))
-                    squad = Squad(group_name)
+                    logger.debug("Adding Team group".format(group_name))
+                    squad = Team(group_name)
                     for member_name in group['members']:
                         member = self.micro_model.get_node_by_name(member_name)
                         squad.add_member(member)

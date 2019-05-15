@@ -10,7 +10,7 @@ from toscaparser.tosca_template import ToscaTemplate
 
 from microanalyser.model.nodes import Service, Database, CommunicationPattern
 from microanalyser.model.relationships import InteractsWith
-from microanalyser.model.template import MicroModel
+from microanalyser.model.microtosca import MicroModel
 from microanalyser.analyser.analyser import MicroAnalyser
 
 from microanalyser.importer import YMLImporter

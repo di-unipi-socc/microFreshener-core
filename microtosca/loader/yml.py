@@ -1,12 +1,12 @@
 import ruamel.yaml
 from pathlib import Path
-from ..model.template import MicroModel
+from ..model import MicroModel
 from ..model.nodes import Service, Database, CommunicationPattern
-from ..model.groups import Squad
+from ..model.groups import Team
 from ..model.helper import get_type
 
 
-from ..model.type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, SQUAD
+from ..model.type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, TEAM
 
 class YMLImporter(object):
 
@@ -34,7 +34,7 @@ class YMLImporter(object):
 
         for (group_name, ordered_dict) in groups_ruamel.items():
             group_type = get_type(ordered_dict)
-            if group_type == SQUAD:
-                squad = Squad.from_yaml(group_name, ordered_dict)
+            if group_type == TEAM:
+                squad = Team.from_yaml(group_name, ordered_dict)
             microtosca_template.add_group(squad)
         return microtosca_template

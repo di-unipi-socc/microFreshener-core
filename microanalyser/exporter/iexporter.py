@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from ..model.template import MicroModel 
+from ..model import MicroModel 
  
 class Exporter(ABC):
  

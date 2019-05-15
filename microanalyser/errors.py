@@ -18,6 +18,7 @@ class ImporterError(MicroSmellerError):
 
 class ExporterError(MicroSmellerError):
     pass
+    
 class MicroToscaError(MicroSmellerError):
     """Exception raised for errors in the Importer module.
 

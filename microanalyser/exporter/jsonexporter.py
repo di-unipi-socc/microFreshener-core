@@ -1,9 +1,9 @@
 import json
 
-from ..model.template import MicroModel
+from ..model import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
-from ..model.groups import Edge, Squad
+from ..model.groups import Edge, Team
 
 from ..model.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
 from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
@@ -74,7 +74,7 @@ class JSONExporter(Exporter):
         g_dict['name'] = group.name
         if(isinstance(group, Edge)):
             g_dict['type'] = "edgegroup"
-        elif (isinstance(group, Squad)):
+        elif (isinstance(group, Team)):
             g_dict['type'] = "squadgroup"
         else:
             raise ExporterError("Group type {} not recognized.".format(group))

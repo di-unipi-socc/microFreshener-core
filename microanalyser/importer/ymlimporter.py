@@ -1,11 +1,11 @@
 import ruamel.yaml
 from pathlib import Path
-from ..model.template import MicroModel
+from ..model import MicroModel
 from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
-from ..model.groups import Squad, Edge
+from ..model.groups import Team, Edge
 from .iimporter import Importer
 from ..model.type import SERVICE, COMMUNICATION_PATTERN, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
-from ..model.type import SQUAD, EDGE
+from ..model.type import TEAM, EDGE
 from ..model.type import INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
 from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from ..errors import ImporterError
@@ -22,7 +22,7 @@ class YMLImporter(Importer):
     def Import(self, path_to_yml)->MicroModel:
         self.micro_model = MicroModel('micro.tosca')
         yaml = ruamel.yaml.YAML()  # default  type='rt'
-        logger.info("Loading YML file {}".format(path_to_yml))
+        logger.info("Loading YML file: {}".format(path_to_yml))
         self.micro_yml = yaml.load(Path(path_to_yml))
 
         self.relationship_templates = self._parse_relationship_templates()
@@ -110,8 +110,8 @@ class YMLImporter(Importer):
             groups_ruamel = self.micro_yml.get('topology_template').get('groups')
             for (group_name, ordered_dict) in groups_ruamel.items():
                 group_type = self.get_type(ordered_dict)
-                if group_type == SQUAD:
-                    group = Squad(group_name)
+                if group_type == TEAM:
+                    group = Team(group_name)
                     for member in self.get_members(ordered_dict):
                         group.add_member(self.micro_model[member])
                 if group_type == EDGE:

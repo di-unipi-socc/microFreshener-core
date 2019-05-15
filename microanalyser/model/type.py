@@ -21,7 +21,7 @@ RUN_TIME = "run_time"
 DEPLOYMENT_TIME = "deployment_time"
 
 # MICROTOSCA GROUP TYPES
-SQUAD = 'micro.groups.Squad'
+TEAM = 'micro.groups.Team'
 EDGE = 'micro.groups.Edge'
 
 

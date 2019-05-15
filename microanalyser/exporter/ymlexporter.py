@@ -2,12 +2,12 @@ import sys
 from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
 
-from ..model.template import MicroModel
+from ..model import MicroModel
 from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
 from ..model.nodes import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
-from ..model.groups import RootGroup, Edge, Squad
+from ..model.groups import RootGroup, Edge, Team
 from ..model.type import SERVICE, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
-from ..model.type import  EDGE, SQUAD
+from ..model.type import  EDGE, TEAM
 from .iexporter import Exporter
 from ..errors import ExporterError
 
@@ -67,8 +67,8 @@ class YMLExporter(Exporter):
         group_type = ""
         if (isinstance(group, Edge)):
             group_type = EDGE
-        elif (isinstance(group, Squad)):
-            group_type = SQUAD
+        elif (isinstance(group, Team)):
+            group_type = TEAM
         else:
             raise ExporterError("{} group not recognized".format(group))
         d_group['type'] = group_type

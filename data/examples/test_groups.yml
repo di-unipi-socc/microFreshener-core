@@ -1,0 +1,46 @@
+tosca_definitions_version: tosca_simple_yaml_1_0
+
+description: For testing loading the nodes
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    s1:
+      type: micro.nodes.Service
+    
+    mb1:
+      type: micro.nodes.MessageBroker
+    
+    s2:
+      type: micro.nodes.Service
+
+    mr2:
+      type: micro.nodes.MessageRouter
+
+    db2:
+      type: micro.nodes.Database
+    
+    s3:
+      type: micro.nodes.Service
+    
+    db3:
+      type: micro.nodes.Database
+    
+  groups:
+    edgenodes:
+      type: micro.groups.Edge
+      members: [ s1, mr2, s3, db3]
+    
+    team1:
+      type: micro.groups.Team
+      members: [s1, mb1]
+    
+    team2:
+      type: micro.groups.Team
+      members: [s2, mr2, db2]
+    
+    team3:
+      type: micro.groups.Team
+      members: [s3, db3]

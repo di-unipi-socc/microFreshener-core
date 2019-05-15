@@ -4,7 +4,7 @@ MicroModelTemplate module
 import six
 from .nodes import Root, Service, Database, CommunicationPattern
 from .relationships import DeploymentTimeInteraction, RunTimeInteraction
-from .groups import Squad, Edge
+from .groups import Team, Edge
 from ..errors import MicroToscaError
 from ..logging import MyLogger
 
@@ -40,7 +40,7 @@ class MicroModel:
 
     @property
     def squads(self):
-        return (v for k, v in self._groups.items() if isinstance(v, Squad))
+        return (v for k, v in self._groups.items() if isinstance(v, Team))
     
     @property
     def edges(self):
