@@ -5,8 +5,8 @@ from ..model import Service, Database, CommunicationPattern, MessageBroker, Mess
 from ..model.groups import Edge, Team
 from ..logging import MyLogger
 from .iimporter import Importer
-from ..model.type import API_GATEWAY, MESSAGE_BROKER, MESSAGE_ROUTER, CIRCUIT_BREAKER, TEAM, EDGE, INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
-from ..model.type  import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
+from ..model.type  import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
 from ..errors import ImporterError
 logger = MyLogger().get_logger()
@@ -68,12 +68,12 @@ class JSONImporter(Importer):
         is_timeout = False
         is_circuit_breaker = False
         is_dynamic_discovery = False
-        if INTERACT_WITH_TIMEOUT_PROPERTY in link_json:
-            is_timeout = link_json[INTERACT_WITH_TIMEOUT_PROPERTY]
-        if INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY in link_json:
-            is_circuit_breaker = link_json[INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY]
-        if INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY in link_json:
-            is_dynamic_discovery = link_json[INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY]
+        if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY in link_json:
+            is_timeout = link_json[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY]
+        if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY in link_json:
+            is_circuit_breaker = link_json[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY]
+        if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY in link_json:
+            is_dynamic_discovery = link_json[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY]
         return (is_timeout, is_circuit_breaker, is_dynamic_discovery)
 
     def _load_groups(self, json_data):

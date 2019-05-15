@@ -26,7 +26,7 @@ class AnalyserBuilder(object):
         elif (smell == 6):  # SHARED PERSITENCY
             self.analyser.add_node_smell_sniffer(
                 SharedPersistencySmellSniffer())
-        elif (smell == 7):  # SINGLE LAYER TEAM
+        elif (smell == 7):  # SINGLE LAYER MICROTOSCA_GROUPS_TEAM
             self.analyser.add_group_smell_sniffer(CrossTeamDataManagementSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
@@ -46,7 +46,7 @@ class AnalyserBuilder(object):
         elif (smell == 6):  # SHARED PERSITENCY
             self.analyser.add_node_smell_sniffer(
                 SharedPersistencySmellSniffer())
-        elif (smell == 7):  # SINGLE LAYER TEAM
+        elif (smell == 7):  # SINGLE LAYER MICROTOSCA_GROUPS_TEAM
             self.analyser.add_group_smell_sniffer(CrossTeamDataManagementSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))

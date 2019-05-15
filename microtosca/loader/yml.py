@@ -6,7 +6,7 @@ from ..model.groups import Team
 from ..model.helper import get_type
 
 
-from ..model.type import SERVICE, COMMUNICATION_PATTERN,DATABASE,MESSAGE_BROKER,CIRCUIT_BREAKER, TEAM
+from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_COMMUNICATIONPATTERN,MICROTOSCA_NODES_DATABASE,MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_GROUPS_TEAM
 
 class YMLImporter(object):
 
@@ -22,11 +22,11 @@ class YMLImporter(object):
 
         for node_name, commented_map in nodes_ruamel.items():
             node_type = get_type(commented_map)
-            if node_type == SERVICE:
+            if node_type == MICROTOSCA_NODES_SERVICE:
                 el = Service.from_yaml(node_name,commented_map)
-            if node_type == MESSAGE_BROKER: #TODO: derived from CommunicationPattern
+            if node_type == MICROTOSCA_NODES_MESSAGE_BROKER: #TODO: derived from CommunicationPattern
                 el = CommunicationPattern.from_yaml(node_name,node_type,commented_map)
-            if node_type == DATABASE:
+            if node_type == MICROTOSCA_NODES_DATABASE:
                 el = Database.from_yaml(node_name,commented_map)
             microtosca_template.add_node(el)
             
@@ -34,7 +34,7 @@ class YMLImporter(object):
 
         for (group_name, ordered_dict) in groups_ruamel.items():
             group_type = get_type(ordered_dict)
-            if group_type == TEAM:
+            if group_type == MICROTOSCA_GROUPS_TEAM:
                 squad = Team.from_yaml(group_name, ordered_dict)
             microtosca_template.add_group(squad)
         return microtosca_template

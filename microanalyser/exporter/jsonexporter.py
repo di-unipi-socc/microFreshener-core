@@ -5,8 +5,8 @@ from ..model  import RunTimeInteraction, DeploymentTimeInteraction
 from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
 
-from ..model.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
-from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
+from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
 from ..errors import ExporterError
 from .iexporter import Exporter
 
@@ -18,7 +18,7 @@ class JSONExporter(Exporter):
     # Transform a microModel Oject to a Dicionary format.
     # @input:  microModel
     # @return: python dictionary
-    def Export(self, micro_model:MicroToscaModel):
+    def Export(self, micro_model:MicroToscaModel)->str:
         return self.serialize(micro_model)
         # TODO: returns a JSON object instead of dict
         # ATTENTION: in the restfule api the Response() object requires a dict that are than converted into json
@@ -58,9 +58,9 @@ class JSONExporter(Exporter):
         nrel = {}
         nrel['target'] = relationship.target.name
         nrel['source'] = relationship.source.name
-        nrel[INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
-        nrel[INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
-        nrel[INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
+        nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
+        nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
+        nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
         if(isinstance(relationship, DeploymentTimeInteraction)):
             nrel['type'] = 'deploymenttime'
         elif(isinstance(relationship, RunTimeInteraction)):

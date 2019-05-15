@@ -4,10 +4,10 @@ from ..model import MicroToscaModel
 from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Team, Edge
 from .iimporter import Importer
-from ..model.type import SERVICE, COMMUNICATION_PATTERN, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
-from ..model.type import TEAM, EDGE
-from ..model.type import INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
-from ..model.type import INTERACT_WITH_TIMEOUT_PROPERTY, INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_COMMUNICATIONPATTERN, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
+from ..model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, RUN_TIME, DEPLOYMENT_TIME
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from ..errors import ImporterError
 from ..logging import MyLogger
 
@@ -44,12 +44,12 @@ class YMLImporter(Importer):
         is_timeout = False
         is_circuit_breaker = False
         is_dynamic_discovery = False
-        if INTERACT_WITH_TIMEOUT_PROPERTY in relationship['properties']:
-            is_timeout = relationship['properties'][INTERACT_WITH_TIMEOUT_PROPERTY]
-        if INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY in relationship['properties']:
-            is_circuit_breaker = relationship['properties'][INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY]
-        if INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY in relationship['properties']:
-            is_dynamic_discovery = relationship['properties'][INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY]
+        if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY in relationship['properties']:
+            is_timeout = relationship['properties'][MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY]
+        if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY in relationship['properties']:
+            is_circuit_breaker = relationship['properties'][MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY]
+        if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY in relationship['properties']:
+            is_dynamic_discovery = relationship['properties'][MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY]
         return (is_timeout, is_circuit_breaker, is_dynamic_discovery)
 
     def _add_nodes(self):
@@ -57,16 +57,16 @@ class YMLImporter(Importer):
             'topology_template').get('node_templates')
         for node_name, commented_map in nodes_ruamel.items():
             node_type = self.get_type(commented_map)
-            if node_type == SERVICE:
+            if node_type == MICROTOSCA_NODES_SERVICE:
                 el = Service(node_name)
-            elif node_type == DATABASE:
+            elif node_type == MICROTOSCA_NODES_DATABASE:
                 el = Database(node_name)
-            elif node_type == MESSAGE_BROKER:
+            elif node_type == MICROTOSCA_NODES_MESSAGE_BROKER:
                 el = MessageBroker(node_name)
-            elif node_type == MESSAGE_ROUTER:
+            elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER:
                 el = MessageRouter(node_name)
-            elif node_type == COMMUNICATION_PATTERN:
-                raise ImporterError(f"The node type {COMMUNICATION_PATTERN} cannot be istantiated.")
+            elif node_type == MICROTOSCA_NODES_COMMUNICATIONPATTERN:
+                raise ImporterError(f"The node type {MICROTOSCA_NODES_COMMUNICATIONPATTERN} cannot be istantiated.")
             else:
                 raise ImporterError(f"The node type {node_type} not recognized.")
             self.micro_model.add_node(el)
@@ -110,11 +110,11 @@ class YMLImporter(Importer):
             groups_ruamel = self.micro_yml.get('topology_template').get('groups')
             for (group_name, ordered_dict) in groups_ruamel.items():
                 group_type = self.get_type(ordered_dict)
-                if group_type == TEAM:
+                if group_type == MICROTOSCA_GROUPS_TEAM:
                     group = Team(group_name)
                     for member in self.get_members(ordered_dict):
                         group.add_member(self.micro_model[member])
-                if group_type == EDGE:
+                if group_type == MICROTOSCA_GROUPS_EDGE:
                     group = Edge(group_name)
                     for member in self.get_members(ordered_dict):
                         group.add_member(self.micro_model[member])

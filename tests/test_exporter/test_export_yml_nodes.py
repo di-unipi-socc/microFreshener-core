@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microanalyser.importer import YMLImporter
 from microanalyser.exporter import YMLExporter
-from microanalyser.model.type import SERVICE, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
+from microanalyser.model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
 
 
 class TestYMLTranformer(TestCase):
@@ -17,19 +17,19 @@ class TestYMLTranformer(TestCase):
     def test_transform_service(self):
         service = self.microtosca["my_service"]
         dict_service = self.tranformer._transform_node_template(service)
-        self.assertEqual(dict_service["type"], SERVICE)
+        self.assertEqual(dict_service["type"], MICROTOSCA_NODES_SERVICE)
 
     def test_transform_database(self):
         db = self.microtosca['my_database']
         dict_db = self.tranformer._transform_node_template(db)
-        self.assertEqual(dict_db["type"], DATABASE)
+        self.assertEqual(dict_db["type"], MICROTOSCA_NODES_DATABASE)
 
     def test_transform_messagebroker(self):
         mb = self.microtosca['my_messagebroker']
         dict_mb = self.tranformer._transform_node_template(mb)
-        self.assertEqual(dict_mb["type"], MESSAGE_BROKER)
+        self.assertEqual(dict_mb["type"], MICROTOSCA_NODES_MESSAGE_BROKER)
 
     def test_transform_router(self):
         mr = self.microtosca['my_messagerouter']
         dict_mr = self.tranformer._transform_node_template(mr)
-        self.assertEqual(dict_mr["type"], MESSAGE_ROUTER)
+        self.assertEqual(dict_mr["type"], MICROTOSCA_NODES_MESSAGE_ROUTER)

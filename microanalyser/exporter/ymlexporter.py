@@ -6,8 +6,8 @@ from ..model import MicroToscaModel
 from ..model  import RunTimeInteraction, DeploymentTimeInteraction
 from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import RootGroup, Edge, Team
-from ..model.type import SERVICE, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
-from ..model.type import  EDGE, TEAM
+from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
+from ..model.type import  MICROTOSCA_GROUPS_EDGE, MICROTOSCA_GROUPS_TEAM
 from .iexporter import Exporter
 from ..errors import ExporterError
 
@@ -66,9 +66,9 @@ class YMLExporter(Exporter):
         d_group = {}
         group_type = ""
         if (isinstance(group, Edge)):
-            group_type = EDGE
+            group_type = MICROTOSCA_GROUPS_EDGE
         elif (isinstance(group, Team)):
-            group_type = TEAM
+            group_type = MICROTOSCA_GROUPS_TEAM
         else:
             raise ExporterError("{} group not recognized".format(group))
         d_group['type'] = group_type
@@ -83,13 +83,13 @@ class YMLExporter(Exporter):
         d_node = {}
         node_type = ""
         if(isinstance(node, Service)):
-            node_type = SERVICE
+            node_type = MICROTOSCA_NODES_SERVICE
         elif(isinstance(node, Database)):
-            node_type = DATABASE
+            node_type = MICROTOSCA_NODES_DATABASE
         elif(isinstance(node, MessageBroker)):
-            node_type = MESSAGE_BROKER
+            node_type = MICROTOSCA_NODES_MESSAGE_BROKER
         elif(isinstance(node, MessageRouter)):
-            node_type = MESSAGE_ROUTER
+            node_type = MICROTOSCA_NODES_MESSAGE_ROUTER
         else:
             raise ExporterError(f"Node {node} not recognized")
         d_node['type'] = node_type

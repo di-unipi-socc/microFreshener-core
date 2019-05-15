@@ -2,7 +2,7 @@
 from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, SingleLayerTeamSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
 from ..model import Service, Database, CommunicationPattern, MessageRouter
-from ..model.type import MESSAGE_ROUTER
+from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model import MicroToscaModel
 from ..model.groups import Edge, Team
 from typing import List
