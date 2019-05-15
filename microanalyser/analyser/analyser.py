@@ -1,5 +1,5 @@
 
-from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..analyser.sniffer import NodeSmellSniffer, GroupSmellSniffer
 from ..logging import MyLogger
 

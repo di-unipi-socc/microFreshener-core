@@ -2,9 +2,9 @@ import sys
 from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
 
-from ..model import MicroModel
-from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
-from ..model.nodes import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import MicroToscaModel
+from ..model  import RunTimeInteraction, DeploymentTimeInteraction
+from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import RootGroup, Edge, Team
 from ..model.type import SERVICE, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
 from ..model.type import  EDGE, TEAM
@@ -30,7 +30,7 @@ class YMLExporter(Exporter):
     # Export a microModel Oject to YML format
     # @params:  microModel
     # @return:  string
-    def Export(self, micro_model: MicroModel):
+    def Export(self, micro_model: MicroToscaModel):
         return self.yaml.dump(self._to_dict(micro_model))
 
     def _to_dict(self, micro_model):

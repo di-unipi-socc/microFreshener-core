@@ -1,7 +1,7 @@
 import ruamel.yaml
 from pathlib import Path
-from ..model import MicroModel
-from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import MicroToscaModel
+from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Team, Edge
 from .iimporter import Importer
 from ..model.type import SERVICE, COMMUNICATION_PATTERN, DATABASE, MESSAGE_BROKER, MESSAGE_ROUTER
@@ -19,8 +19,8 @@ class YMLImporter(Importer):
     def __init__(self):
         self.micro_model = None
 
-    def Import(self, path_to_yml)->MicroModel:
-        self.micro_model = MicroModel('micro.tosca')
+    def Import(self, path_to_yml)->MicroToscaModel:
+        self.micro_model = MicroToscaModel('micro.tosca')
         yaml = ruamel.yaml.YAML()  # default  type='rt'
         logger.info("Loading YML file: {}".format(path_to_yml))
         self.micro_yml = yaml.load(Path(path_to_yml))

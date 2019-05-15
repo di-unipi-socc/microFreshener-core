@@ -1,8 +1,8 @@
 import json
 
-from ..model import MicroModel
-from ..model.relationships import RunTimeInteraction, DeploymentTimeInteraction
-from ..model.nodes import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import MicroToscaModel
+from ..model  import RunTimeInteraction, DeploymentTimeInteraction
+from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
 
 from ..model.type import API_GATEWAY, MESSAGE_BROKER, CIRCUIT_BREAKER
@@ -18,7 +18,7 @@ class JSONExporter(Exporter):
     # Transform a microModel Oject to a Dicionary format.
     # @input:  microModel
     # @return: python dictionary
-    def Export(self, micro_model:MicroModel):
+    def Export(self, micro_model:MicroToscaModel):
         return self.serialize(micro_model)
         # TODO: returns a JSON object instead of dict
         # ATTENTION: in the restfule api the Response() object requires a dict that are than converted into json
@@ -26,7 +26,7 @@ class JSONExporter(Exporter):
 
     def serialize(self, obj):
         d = {}
-        if (isinstance(obj, MicroModel)):
+        if (isinstance(obj, MicroToscaModel)):
             d["name"] = obj.name # name of the models
             d['nodes'] = []      # nodes
             d['links'] = []      # links

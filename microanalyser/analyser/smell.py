@@ -1,6 +1,6 @@
 from typing import List
-from ..model.nodes import Root
-from ..model.relationships import Relationship
+from ..model import Root
+from ..model  import Relationship
 
 
 class Smell(object):

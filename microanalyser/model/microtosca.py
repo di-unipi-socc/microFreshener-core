@@ -10,8 +10,7 @@ from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
 
-
-class MicroModel:
+class MicroToscaModel:
 
     def __init__(self, name):
         self._nodes = {}

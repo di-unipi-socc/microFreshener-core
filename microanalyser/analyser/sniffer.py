@@ -1,9 +1,9 @@
 
 from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, SingleLayerTeamSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
-from ..model.nodes import Service, Database, CommunicationPattern, MessageRouter
+from ..model import Service, Database, CommunicationPattern, MessageRouter
 from ..model.type import MESSAGE_ROUTER
-from ..model import MicroModel
+from ..model import MicroToscaModel
 from ..model.groups import Edge, Team
 from typing import List
 
@@ -19,7 +19,7 @@ class NodeSmellSniffer(metaclass=ABCMeta):
 
 class GroupSmellSniffer(metaclass=ABCMeta):
 
-    def __init__(self, micromodel: MicroModel):
+    def __init__(self, micromodel: MicroToscaModel):
         self.micro_model = micromodel
 
     @abstractmethod
@@ -40,7 +40,7 @@ class EndpointBasedServiceInteractionSmellSniffer(NodeSmellSniffer):
                 smell.addLinkCause(up_rt)
         return smell
 
-    @visitor(MicroModel)
+    @visitor(MicroToscaModel)
     def snif(self, micro_model):
         print("visiting all the nodes in the graph")
 
@@ -58,7 +58,7 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
                 smell.addLinkCause(rt)
         return smell
 
-    @visitor(MicroModel)
+    @visitor(MicroToscaModel)
     def snif(self, micro_model):
         print("visiting al lthe nodes in the graph")
 
@@ -75,7 +75,7 @@ class SharedPersistencySmellSniffer(NodeSmellSniffer):
                 smell.addLinkCause(link)
         return smell
 
-    @visitor(MicroModel)
+    @visitor(MicroToscaModel)
     def snif(self, micro_model):
         print("visiting all the nodes in the graph")
 

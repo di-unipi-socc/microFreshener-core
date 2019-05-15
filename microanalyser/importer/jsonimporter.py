@@ -1,7 +1,7 @@
 
 import json
-from ..model import MicroModel
-from ..model.nodes import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import MicroToscaModel
+from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
 from ..logging import MyLogger
 from .iimporter import Importer
@@ -14,11 +14,11 @@ logger = MyLogger().get_logger()
 
 class JSONImporter(Importer):
 
-    def Import(self, path_to_json)->MicroModel:
+    def Import(self, path_to_json)->MicroToscaModel:
         logger.info("Loading JSON file: {}".format(path_to_json))
         with open(path_to_json) as f:
             data = json.load(f)
-            self.micro_model = MicroModel(data['name'])
+            self.micro_model = MicroToscaModel(data['name'])
             self._load_nodes(data)
             self._load_links(data)
             self._load_groups(data)

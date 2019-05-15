@@ -1,7 +1,7 @@
 import ruamel.yaml
 from pathlib import Path
-from ..model import MicroModel
-from ..model.nodes import Service, Database, CommunicationPattern
+from ..model import MicroToscaModel
+from ..model import Service, Database, CommunicationPattern
 from ..model.groups import Team
 from ..model.helper import get_type
 
@@ -16,7 +16,7 @@ class YMLImporter(object):
     def Import(self, path_to_yml):
         yaml = ruamel.yaml.YAML() # default  type='rt' 
     
-        microtosca_template = MicroModel('micro.tosca')
+        microtosca_template = MicroToscaModel('micro.tosca')
         micro_yml = yaml.Import(Path(path_to_yml))
         nodes_ruamel = micro_yml.get('topology_template').get('node_templates')
 

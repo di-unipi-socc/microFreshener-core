@@ -8,9 +8,9 @@ import os
 from toscaparser.common.exception import ValidationError
 from toscaparser.tosca_template import ToscaTemplate
 
-from microanalyser.model.nodes import Service, Database, CommunicationPattern
-from microanalyser.model.relationships import InteractsWith
-from microanalyser.model.microtosca import MicroModel
+from microanalyser.model import Service, Database, CommunicationPattern
+from microanalyser.model  import InteractsWith
+from microanalyser.model.microtosca import MicroToscaModel
 from microanalyser.analyser.analyser import MicroAnalyser
 
 from microanalyser.importer import YMLImporter

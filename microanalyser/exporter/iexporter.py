@@ -1,8 +1,8 @@
 from abc import ABC, abstractmethod
-from ..model import MicroModel 
+from ..model import MicroToscaModel 
  
 class Exporter(ABC):
  
     @abstractmethod
-    def Export(self, model:MicroModel)->str:
+    def Export(self, model:MicroToscaModel)->str:
         pass
