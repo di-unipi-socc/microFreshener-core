@@ -27,10 +27,10 @@ from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellS
 
 import pprint
 
-example = 'data/examples/helloworld_squads.yml'
-json_ex = 'data/examples/helloworld.json'
-yml_ex = 'data/examples/helloworld.yml'
-# path_refactored = '/home/dido/code/micro-tosca/data/examples/helloworld.refactored.yml'
+example = 'data/testshelloworld_squads.yml'
+json_ex = 'data/testshelloworld.json'
+yml_ex = 'data/testshelloworld.yml'
+# path_refactored = '/home/dido/code/micro-tosca/data/testshelloworld.refactored.yml'
 
 path_to_yml = os.path.join(os.path.dirname(os.path.realpath(__file__)), yml_ex)
 path_to_json= os.path.join(os.path.dirname(os.path.realpath(__file__)), json_ex )

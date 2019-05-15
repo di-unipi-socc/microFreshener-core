@@ -9,7 +9,7 @@ class TestCrossTeamDataManagementSmell(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_sniffer_ctdm.yml'
+        file = 'data/tests/test_sniffer_ctdm.yml'
         loader = YMLImporter()
         self.micro_model = loader.Import(file)
         self.ctdmSniffer = CrossTeamDataManagementSmellSniffer(

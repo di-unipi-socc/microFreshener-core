@@ -8,7 +8,7 @@ class TestYMLTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_groups.yml'
+        file = 'data/tests/test_groups.yml'
         importer = YMLImporter()
         self.microtosca = importer.Import(file)
         self.exporter = YMLExporter()

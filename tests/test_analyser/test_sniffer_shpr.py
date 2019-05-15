@@ -9,7 +9,7 @@ class TestWobblyserviceInteractionSmell(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_sniffer_shpr.yml'
+        file = 'data/tests/test_sniffer_shpr.yml'
         loader = YMLImporter()
         self.micro_model = loader.Import(file)
         self.shprSniffer = SharedPersistencySmellSniffer()

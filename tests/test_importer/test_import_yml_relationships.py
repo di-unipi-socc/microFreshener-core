@@ -9,7 +9,7 @@ class TestYMLLoaderRelationship(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_relationship.yml'
+        file = 'data/tests/test_relationship.yml'
         self.importer = YMLImporter()
         self.microtosca = self.importer.Import(file)
 

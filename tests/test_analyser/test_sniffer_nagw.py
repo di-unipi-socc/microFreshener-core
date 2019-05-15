@@ -9,7 +9,7 @@ class TestNoApiGatewaySmell(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_sniffer_nagw.yml'
+        file = 'data/tests/test_sniffer_nagw.yml'
         loader = YMLImporter()
         self.micro_model = loader.Import(file)
         self.apgwSniffer = NoApiGatewaySmellSniffer(self.micro_model)

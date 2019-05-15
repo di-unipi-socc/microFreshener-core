@@ -6,7 +6,7 @@ class TestYMLloaderNodes(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_groups.yml'
+        file = 'data/tests/test_groups.yml'
         self.importer = YMLImporter()
         self.microtosca = self.importer.Import(file)
 

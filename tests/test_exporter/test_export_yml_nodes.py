@@ -9,7 +9,7 @@ class TestYMLTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_nodes.yml'
+        file = 'data/tests/test_nodes.yml'
         loader = YMLImporter()
         self.microtosca = loader.Import(file)
         self.tranformer = YMLExporter()

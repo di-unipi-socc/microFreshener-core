@@ -9,7 +9,7 @@ class TestJSONTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_relationship.json'
+        file = 'data/tests/test_relationship.json'
         self.importer = JSONImporter()
         self.microtosca = self.importer.Import(file)
         self.tranformer = JSONExporter()
@@ -71,7 +71,6 @@ class TestJSONTranformer(TestCase):
         self.assertEqual(len(link_to_target), 1)
         rel_dict = self.tranformer._transform_relationship(link_to_target[0])
         return rel_dict
-
 
 
 

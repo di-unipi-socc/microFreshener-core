@@ -7,7 +7,7 @@ class TestEBSE(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/test_sniffer_ebsi.yml'
+        file = 'data/tests/test_sniffer_ebsi.yml'
         loader = YMLImporter()
         self.micro_model = loader.Import(file)
         self.ebsiSniffer = EndpointBasedServiceInteractionSmellSniffer()
