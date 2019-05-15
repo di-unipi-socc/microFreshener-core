@@ -1,5 +1,6 @@
 # python
 venv*/
+log/
 __pycache__/
 *.pyc
 
