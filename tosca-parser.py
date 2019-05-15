@@ -19,7 +19,7 @@ from microanalyser.importer import JSONImporter
 from microanalyser.exporter import JSONExporter
 from microanalyser.exporter import YMLExporter
 
-from microanalyser.analyser.builder import AnalyserBuilder
+from microanalyser.analyser.builder import MicroToscaAnalyserBuilder
 from microanalyser.analyser.analyser import MicroToscaAnalyser
 
 from microanalyser.analyser.constant import INDEPENDENT_DEPLOYABILITY

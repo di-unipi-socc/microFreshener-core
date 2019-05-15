@@ -1,6 +1,6 @@
 import unittest
 from microanalyser.importer import YMLImporter
-from microanalyser.analyser.builder import AnalyserBuilder
+from microanalyser.analyser.builder import MicroToscaAnalyserBuilder
 from microanalyser.analyser.smell import WobblyServiceInteractionSmell
 from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
@@ -15,7 +15,7 @@ class TestAnalyserBUilder(unittest.TestCase):
     
     @unittest.skip("demonstrating skipping")
     def test_AddSmellSniffer(self):
-        builder = AnalyserBuilder(self.micro_object)
+        builder = MicroToscaAnalyserBuilder(self.micro_object)
         builder.add_smell(4)
         analyser = builder.build()
         sniffers = analyser.get_node_smell_sniffer()
@@ -24,7 +24,7 @@ class TestAnalyserBUilder(unittest.TestCase):
 
     @unittest.skip("demonstrating skipping")
     def test_AddIgnoreSmellForNode(self):
-        builder = AnalyserBuilder(self.micro_object)
+        builder = MicroToscaAnalyserBuilder(self.micro_object)
         order = self.micro_object['order']
         builder.ignore_smell_for_node(order, 4) #WobblyServiceInteractionSmell)
         analyser = builder.build()
@@ -33,7 +33,7 @@ class TestAnalyserBUilder(unittest.TestCase):
 
     @unittest.skip("demonstrating skipping")    
     def test_IgnoredSmellAnalysis(self):
-        builder = AnalyserBuilder(self.micro_object)
+        builder = MicroToscaAnalyserBuilder(self.micro_object)
         shipping = self.micro_object['shipping']
         builder.add_smell(2)
         builder.add_smell(3)

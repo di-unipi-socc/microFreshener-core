@@ -4,7 +4,7 @@ from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySm
 from .constant import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY
 
 
-class AnalyserBuilder(object):
+class MicroToscaAnalyserBuilder(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model

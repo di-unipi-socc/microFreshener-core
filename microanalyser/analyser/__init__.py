@@ -1,3 +1,3 @@
 from .analyser import MicroToscaAnalyser
-
+from .builder import MicroToscaAnalyserBuilder
 from .sniffer import NoApiGatewaySmellSniffer, SharedPersistencySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer

@@ -5,8 +5,9 @@ from ..model import Service, Database, CommunicationPattern, MessageBroker, Mess
 from ..model.groups import Edge, Team
 from ..logging import MyLogger
 from .iimporter import Importer
-from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, DEPLOYMENT_TIME
+from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from ..model.type  import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from .jsontype import JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
 
 from ..errors import ImporterError
 logger = MyLogger().get_logger()
@@ -28,14 +29,14 @@ class JSONImporter(Importer):
         for node in json_data['nodes']:
             type_node = node['type']
             name_node = node['name']
-            if(type_node == 'service'):
+            if(type_node == JSON_NODE_SERVICE):
                 # logger.debug("Created service {}".format(name_node))
                 el = Service(name_node)
-            elif(type_node == 'messagebroker'):
+            elif(type_node == JSON_NODE_MESSAGE_BROKER):
                 el = MessageBroker(name_node)
-            elif(type_node == "messagerouter"):
+            elif(type_node == JSON_NODE_MESSAGE_ROUTER):
                 el = MessageRouter(name_node)
-            elif(type_node == 'database'):
+            elif(type_node == JSON_NODE_DATABASE):
                 # logger.debug("Created Database {}".format(name_node))
                 el = Database(name_node)
             else:
@@ -53,10 +54,10 @@ class JSONImporter(Importer):
                 target = self.micro_model[link['target']]
                 (is_timeout, is_circuit_breaker,
                 is_dynamic_discovery) = self._get_links_properties(link)
-                if(ltype == 'runtime'):
+                if(ltype == JSON_RUN_TIME):
                     source.add_run_time(target, is_timeout,
                                         is_circuit_breaker, is_dynamic_discovery)
-                elif (ltype == 'deploymenttime'):
+                elif (ltype == JSON_DEPLOYMENT_TIME):
                     source.add_deployment_time(
                         target, is_timeout, is_circuit_breaker, is_dynamic_discovery)
                 else:

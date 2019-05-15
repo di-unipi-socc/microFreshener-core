@@ -80,8 +80,7 @@ class YMLExporter(Exporter):
         return d_group
 
     def _transform_node_template(self, node: Root):
-        # {"order":{"type":"micro.nodes.Service", "requirements":[{YML_RUN_TIME: "order_db"}]}}
-        node_templates = dict()
+        node_templates = {}
         d_node = {}
         node_type = ""
         if(isinstance(node, Service)):

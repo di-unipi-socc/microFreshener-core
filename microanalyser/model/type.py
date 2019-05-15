@@ -18,10 +18,6 @@ MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY = "dynamic_disc
 MICROTOSCA_GROUPS_TEAM = 'micro.groups.Team'
 MICROTOSCA_GROUPS_EDGE = 'micro.groups.Edge'
 
-# Relationship instance name
-YML_RUN_TIME = "run_time"
-# runtime (on json)
-DEPLOYMENT_TIME = "deployment_time"
 
 
 

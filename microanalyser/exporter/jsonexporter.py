@@ -9,6 +9,8 @@ from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
 from ..errors import ExporterError
 from .iexporter import Exporter
+from ..importer.jsontype import JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER, JSON_NODE_SERVICE
+from ..importer.jsontype import JSON_DEPLOYMENT_TIME, JSON_RUN_TIME
 
 class JSONExporter(Exporter):
 
@@ -43,13 +45,13 @@ class JSONExporter(Exporter):
         dict_node = {}
         dict_node['name'] = node.name
         if(isinstance(node, Service)):
-            dict_node['type'] = "service"
+            dict_node['type'] = JSON_NODE_SERVICE
         elif(isinstance(node, Database)):
-            dict_node['type'] = "database"
+            dict_node['type'] = JSON_NODE_DATABASE
         elif(isinstance(node, MessageBroker)):
-            dict_node['type'] = "messagebroker"
+            dict_node['type'] = JSON_NODE_MESSAGE_BROKER
         elif(isinstance(node, MessageRouter)):
-            dict_node['type'] = "messagerouter"
+            dict_node['type'] = JSON_NODE_MESSAGE_ROUTER
         else:
             raise ExporterError(f"Node {n} not recognized")
         return dict_node
@@ -62,9 +64,9 @@ class JSONExporter(Exporter):
         nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
         nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
         if(isinstance(relationship, DeploymentTimeInteraction)):
-            nrel['type'] = 'deploymenttime'
+            nrel['type'] = JSON_DEPLOYMENT_TIME
         elif(isinstance(relationship, RunTimeInteraction)):
-            nrel['type'] = 'runtime'
+            nrel['type'] = JSON_RUN_TIME
         else:
             raise ExporterError("{} Relationship not recognized.".format(relationship))
         return nrel

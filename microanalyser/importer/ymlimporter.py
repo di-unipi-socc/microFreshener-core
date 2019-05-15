@@ -6,8 +6,9 @@ from ..model.groups import Team, Edge
 from .iimporter import Importer
 from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_COMMUNICATIONPATTERN, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
-from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, YML_RUN_TIME, DEPLOYMENT_TIME
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from .ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
 from ..errors import ImporterError
 from ..logging import MyLogger
 
@@ -93,15 +94,15 @@ class YMLImporter(Importer):
                             elif key == "node":
                                 target_node = self.micro_model[value]
                             else:
-                                raise ValueError(
+                                raise ImporterError(
                                     "Relationship {} not recognized ".format(key))
                     else:
-                        raise ValueError(
+                        raise ImporterError(
                             "Target type {} of relatinoship {} not recognized ".format(target_type, req))
                     if(interaction_type == YML_RUN_TIME):
                         source_node.add_run_time(
                             target_node, is_timeout, is_circuit_breaker, is_dynamic_discovery)
-                    if(interaction_type == DEPLOYMENT_TIME):
+                    if(interaction_type == YML_DEPLOYMENT_TIME):
                         source_node.add_deployment_time(
                             target_node, with_timeout=is_timeout)
 
