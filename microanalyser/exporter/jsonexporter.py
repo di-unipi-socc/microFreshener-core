@@ -11,6 +11,7 @@ from ..errors import ExporterError
 from .iexporter import Exporter
 from ..importer.jsontype import JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER, JSON_NODE_SERVICE
 from ..importer.jsontype import JSON_DEPLOYMENT_TIME, JSON_RUN_TIME
+from ..importer.jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
 
 class JSONExporter(Exporter):
 
@@ -75,9 +76,9 @@ class JSONExporter(Exporter):
         g_dict = {}
         g_dict['name'] = group.name
         if(isinstance(group, Edge)):
-            g_dict['type'] = "edgegroup"
+            g_dict['type'] = JSON_GROUPS_EDGE
         elif (isinstance(group, Team)):
-            g_dict['type'] = "squadgroup"
+            g_dict['type'] = JSON_GROUPS_TEAM
         else:
             raise ExporterError("Group type {} not recognized.".format(group))
         members = []

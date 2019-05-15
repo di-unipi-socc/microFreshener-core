@@ -8,6 +8,7 @@ from .iimporter import Importer
 from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from ..model.type  import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from .jsontype import JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
+from .jsontype import  JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
 
 from ..errors import ImporterError
 logger = MyLogger().get_logger()
@@ -37,7 +38,6 @@ class JSONImporter(Importer):
             elif(type_node == JSON_NODE_MESSAGE_ROUTER):
                 el = MessageRouter(name_node)
             elif(type_node == JSON_NODE_DATABASE):
-                # logger.debug("Created Database {}".format(name_node))
                 el = Database(name_node)
             else:
                 raise ImporterError(
@@ -82,7 +82,7 @@ class JSONImporter(Importer):
             for group in json_data['groups']:
                 group_type = group['type']
                 group_name = group['name']
-                if(group_type == 'edgegroup'):
+                if(group_type == JSON_GROUPS_EDGE):
                     edge = Edge(group_name)
                     for member_name in group['members']:
                         member = self.micro_model.get_node_by_name(member_name)
@@ -90,7 +90,7 @@ class JSONImporter(Importer):
                         logger.debug("Added {} to group:{}  name:{}".format(
                             member_name, group_type, group_name))
                     self.micro_model.add_group(edge)
-                elif (group_type == 'squadgroup'):
+                elif (group_type == JSON_GROUPS_TEAM):
                     logger.debug("Adding Team group".format(group_name))
                     squad = Team(group_name)
                     for member_name in group['members']:

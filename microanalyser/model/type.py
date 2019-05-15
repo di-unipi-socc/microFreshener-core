@@ -19,5 +19,3 @@ MICROTOSCA_GROUPS_TEAM = 'micro.groups.Team'
 MICROTOSCA_GROUPS_EDGE = 'micro.groups.Edge'
 
 
-
-

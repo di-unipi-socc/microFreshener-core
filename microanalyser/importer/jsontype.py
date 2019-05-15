@@ -8,3 +8,5 @@ JSON_NODE_SERVICE= "service"
 JSON_NODE_MESSAGE_BROKER = "messagebroker"
 JSON_NODE_MESSAGE_ROUTER = "messagerouter"
 
+JSON_GROUPS_EDGE = "edgegroup"
+JSON_GROUPS_TEAM = "squadgroup"
