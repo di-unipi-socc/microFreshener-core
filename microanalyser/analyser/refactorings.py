@@ -4,7 +4,7 @@ REFACTORINGS = WRONG_CUT, SHARED_PERSISTENCY, DEPLOYMENT_INTERACTION, DIRECT_INT
 
 from antipatterns import SharedPersistency
 
-# NOT USED OBJECTS CLASS !!!!
+# NOT USED  CLASS !!!!
 
 class Refactoring(object):
 

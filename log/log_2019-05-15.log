@@ -1186,3 +1186,134 @@
 2019-05-15 13:58:08,965 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
 2019-05-15 13:58:08,990 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
 2019-05-15 13:58:09,004 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:02:12,805 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:02:12,848 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f06a687fdd8>) added
+2019-05-15 14:02:12,849 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f06a687fc88>) added
+2019-05-15 14:02:12,851 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:02:12,897 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ctdm.yml
+2019-05-15 14:02:12,924 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ebsi.yml
+2019-05-15 14:02:12,983 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_nagw.yml
+2019-05-15 14:02:12,996 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_shpr.yml
+2019-05-15 14:02:13,008 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_wbsi.yml
+2019-05-15 14:02:13,068 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:02:13,103 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:02:13,106 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:02:13,110 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:02:13,153 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:02:13,173 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:02:13,185 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:02:13,241 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 14:02:13,242 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:02:13,244 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:02:13,246 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:02:13,285 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:02:13,306 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:02:13,318 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:07:14,150 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:07:14,194 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f3f0e007dd8>) added
+2019-05-15 14:07:14,195 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f3f0e007c88>) added
+2019-05-15 14:07:14,197 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:07:14,239 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ctdm.yml
+2019-05-15 14:07:14,266 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ebsi.yml
+2019-05-15 14:07:14,339 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_nagw.yml
+2019-05-15 14:07:14,355 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_shpr.yml
+2019-05-15 14:07:14,367 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_wbsi.yml
+2019-05-15 14:07:14,434 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:07:14,471 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:07:14,473 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:07:14,475 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:07:14,522 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:07:14,549 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:07:14,561 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:07:14,623 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 14:07:14,626 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:07:14,628 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:07:14,630 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:07:14,677 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:07:14,695 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:07:14,704 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:08:36,089 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:08:36,127 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f70f2727ba8>) added
+2019-05-15 14:08:36,127 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f70f2727a20>) added
+2019-05-15 14:08:36,129 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:08:36,167 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ctdm.yml
+2019-05-15 14:08:36,188 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ebsi.yml
+2019-05-15 14:08:36,247 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_nagw.yml
+2019-05-15 14:08:36,268 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_shpr.yml
+2019-05-15 14:08:36,279 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_wbsi.yml
+2019-05-15 14:08:36,337 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:08:36,374 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:08:36,377 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:08:36,379 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:08:36,418 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:08:36,438 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:08:36,448 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:08:36,507 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 14:08:36,512 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:08:36,513 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:08:36,515 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:08:36,555 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:08:36,575 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:08:36,584 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:10:24,057 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:10:24,095 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f3243f88da0>) added
+2019-05-15 14:10:24,096 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f3243f88cf8>) added
+2019-05-15 14:10:24,099 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:10:24,147 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ctdm.yml
+2019-05-15 14:10:24,169 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ebsi.yml
+2019-05-15 14:10:24,233 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_nagw.yml
+2019-05-15 14:10:24,254 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_shpr.yml
+2019-05-15 14:10:24,264 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_wbsi.yml
+2019-05-15 14:10:24,342 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 14:10:24,346 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:10:24,348 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:10:24,351 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:10:24,392 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:10:24,418 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:10:24,434 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:11:08,841 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:08,882 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f886d6e9c88>) added
+2019-05-15 14:11:08,884 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f886d6e9b00>) added
+2019-05-15 14:11:08,886 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:08,931 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ctdm.yml
+2019-05-15 14:11:08,955 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ebsi.yml
+2019-05-15 14:11:09,023 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_nagw.yml
+2019-05-15 14:11:09,037 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_shpr.yml
+2019-05-15 14:11:09,052 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_wbsi.yml
+2019-05-15 14:11:09,130 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:09,177 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:11:09,179 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:11:09,182 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:09,228 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:11:09,249 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:11:09,260 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:11:09,314 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 14:11:09,319 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:11:09,320 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:11:09,325 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:09,369 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:11:09,391 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:11:09,402 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:11:53,495 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:53,541 	 [INFO | analyser.py:41] > Group Sniffer NoApiGatewaySmellSniffer(<microanalyser.analyser.sniffer.NoApiGatewaySmellSniffer object at 0x7f72f339bc88>) added
+2019-05-15 14:11:53,542 	 [INFO | analyser.py:41] > Group Sniffer CrossTeamDataManagementSmellSniffer(<microanalyser.analyser.sniffer.CrossTeamDataManagementSmellSniffer object at 0x7f72f339bb00>) added
+2019-05-15 14:11:53,544 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:53,590 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ctdm.yml
+2019-05-15 14:11:53,609 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_ebsi.yml
+2019-05-15 14:11:53,670 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_nagw.yml
+2019-05-15 14:11:53,682 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_shpr.yml
+2019-05-15 14:11:53,695 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_sniffer_wbsi.yml
+2019-05-15 14:11:53,758 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:53,793 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:11:53,795 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:11:53,798 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:53,836 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:11:53,857 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:11:53,865 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml
+2019-05-15 14:11:53,918 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/helloworld.json
+2019-05-15 14:11:53,922 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_nodes.json
+2019-05-15 14:11:53,924 	 [INFO | jsonimporter.py:18] > Loading JSON file: data/examples/test_relationship.json
+2019-05-15 14:11:53,926 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/helloworld.yml
+2019-05-15 14:11:53,973 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_groups.yml
+2019-05-15 14:11:54,002 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_nodes.yml
+2019-05-15 14:11:54,013 	 [INFO | ymlimporter.py:25] > Loading YML file: data/examples/test_relationship.yml

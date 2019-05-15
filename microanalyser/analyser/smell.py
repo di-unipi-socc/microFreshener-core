@@ -1,6 +1,6 @@
 from typing import List
 from ..model import Root
-from ..model  import Relationship
+from ..model import Relationship
 
 
 class Smell(object):
@@ -55,6 +55,7 @@ class GroupSmell(Smell):
     def group(self):
         return self._group
 
+
 class EndpointBasedServiceInteractionSmell(NodeSmell):
     name: str = "EndpointBasedServiceInteractionSmell"
 
@@ -91,7 +92,6 @@ class WobblyServiceInteractionSmell(NodeSmell):
             {"name": "Add Circuit Breaker", "description": " Add Circuit breaker"},
             {"name": "Use Timeouts", "description": "Use timeouts"}]}}
 
-
 class SharedPersistencySmell(NodeSmell):
     name: str = "SharedPersistencySmell"
 
@@ -109,7 +109,6 @@ class SharedPersistencySmell(NodeSmell):
             {"name": "Split Database", "description": "Split the database."},
             {"name": "Add Data Manager", "description": " Add Data manager"}]}}
 
-
 class NoApiGatewaySmell(NodeSmell):
     name: str = "NoApiGateway"
 
@@ -123,7 +122,6 @@ class NoApiGatewaySmell(NodeSmell):
         sup_dict = super(NoApiGatewaySmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [{
             "name": "Add Api Gateway", "description": "Add an Api Gateway between the external user"}]}}
-
 
 class SingleLayerTeamSmell(GroupSmell):
     name: str = "SingleLayerTeam"
