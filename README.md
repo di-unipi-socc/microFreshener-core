@@ -1,4 +1,4 @@
-# MicroAnalyser core
+# MicroToscaAnalyser core
 Core module of microAnalyser.
 
 

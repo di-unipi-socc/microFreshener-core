@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from microanalyser.importer import YMLImporter
-from microanalyser.analyser import MicroAnalyser
+from microanalyser.analyser import MicroToscaAnalyser
 
 from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
@@ -15,7 +15,7 @@ class TestAnalyser(TestCase):
         self.micro_object = loader.Import(file)
 
     def test_NoApiGatewaySmellSniffer(self):
-        analyser = MicroAnalyser(self.micro_object)
+        analyser = MicroToscaAnalyser(self.micro_object)
         analyser.add_group_smell_sniffer(
             NoApiGatewaySmellSniffer(self.micro_object))
         res = analyser.run()
@@ -24,7 +24,7 @@ class TestAnalyser(TestCase):
         self.assertEqual(d, expected)
     
     def test_WobblyServiceInteractionSniffer(self):
-        analyser = MicroAnalyser(self.micro_object)
+        analyser = MicroToscaAnalyser(self.micro_object)
         analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
         res = analyser.run()
         # 
@@ -34,7 +34,7 @@ class TestAnalyser(TestCase):
 
 
     def test_SharedPersistencySmellSniffer(self):
-        analyser = MicroAnalyser(self.micro_object)
+        analyser = MicroToscaAnalyser(self.micro_object)
         analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         res = analyser.run()
 
@@ -44,11 +44,11 @@ class TestAnalyser(TestCase):
         self.assertEqual(d, my_res)
 
     def test_ignored_smell(self):
-        analyser = MicroAnalyser(self.micro_object)
+        analyser = MicroToscaAnalyser(self.micro_object)
         analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
 
     def test_SingleLayerTeamSniffer(self):
-        analyser = MicroAnalyser(self.micro_object)
+        analyser = MicroToscaAnalyser(self.micro_object)
         sltm = CrossTeamDataManagementSmellSniffer(self.micro_object)
         analyser.add_group_smell_sniffer(sltm)
         res = analyser.run()

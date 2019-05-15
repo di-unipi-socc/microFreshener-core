@@ -11,7 +11,7 @@ from toscaparser.tosca_template import ToscaTemplate
 from microanalyser.model import Service, Database, CommunicationPattern
 from microanalyser.model  import InteractsWith
 from microanalyser.model.microtosca import MicroToscaModel
-from microanalyser.analyser.analyser import MicroAnalyser
+from microanalyser.analyser.analyser import MicroToscaAnalyser
 
 from microanalyser.importer import YMLImporter
 from microanalyser.importer import JSONImporter
@@ -20,7 +20,7 @@ from microanalyser.exporter import JSONExporter
 from microanalyser.exporter import YMLExporter
 
 from microanalyser.analyser.builder import AnalyserBuilder
-from microanalyser.analyser.analyser import MicroAnalyser
+from microanalyser.analyser.analyser import MicroToscaAnalyser
 
 from microanalyser.analyser.constant import INDEPENDENT_DEPLOYABILITY
 from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
@@ -71,7 +71,7 @@ micro_model = loader.Import(path_to_yml)
 #                        ANALYSER
 #*************************************************************
 
-an = MicroAnalyser(micro_model)
+an = MicroToscaAnalyser(micro_model)
 an.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
 an.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
 # an.add_node_smell_sniffer(SharedPersistencySmellSniffer())

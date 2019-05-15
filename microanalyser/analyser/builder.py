@@ -1,4 +1,4 @@
-from .analyser import MicroAnalyser
+from .analyser import MicroToscaAnalyser
 from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 from .constant import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY
@@ -8,7 +8,7 @@ class AnalyserBuilder(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
-        self.analyser = MicroAnalyser(micro_model)
+        self.analyser = MicroToscaAnalyser(micro_model)
 
     def add_smell(self, smell: int):
         if(smell == 1):     # Multiple services in the same container

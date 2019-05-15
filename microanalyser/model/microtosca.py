@@ -1,5 +1,5 @@
 '''
-MicroModelTemplate module
+MicroModelModel module
 '''
 import six
 from .nodes import Root, Service, Database, CommunicationPattern
@@ -80,12 +80,11 @@ class MicroToscaModel:
         return None
   
     def findByName(self, n):
-        for key, node in self._nodes.items():    # for name, age in dictionary.iteritems():  (for Python 2.x)
+        for key, node in self._nodes.items(): 
             if (node.name == n):
                 return node
         return None
 
-    # return a node by its id
     def __getitem__(self, name):
         return self._nodes.get(name, None)
 

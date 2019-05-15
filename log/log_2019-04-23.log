@@ -247,39 +247,39 @@
 2019-04-23 13:22:49,768 	 [INFO | yml.py:71] > Adding relationship from shipping (service) to order_db (database)
 2019-04-23 13:22:49,768 	 [INFO | yml.py:71] > Adding relationship from shipping (service) to order_db (database)
 2019-04-23 13:22:49,768 	 [INFO | yml.py:71] > Adding relationship from gateway (micro.nodes.ApiGateway) to shipping (service)
-2019-04-23 13:24:19,992 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:25:02,544 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:25:12,301 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:26:24,134 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:26:40,665 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:27:08,452 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:27:31,642 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:28:18,189 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
-2019-04-23 13:28:50,237 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:24:19,992 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:25:02,544 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:25:12,301 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:26:24,134 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:26:40,665 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:27:08,452 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:27:31,642 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:28:18,189 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
+2019-04-23 13:28:50,237 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:28:50,262 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:32:01,226 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:32:01,226 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:32:01,255 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:32:13,934 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:32:13,934 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:32:13,961 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:32:33,482 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:32:33,482 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:32:33,507 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:32:51,454 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:32:51,454 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:32:51,480 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:33:05,675 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:33:05,675 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:33:05,699 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:34:53,731 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:34:53,731 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:34:53,758 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:39:33,991 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:39:33,991 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:39:34,016 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:40:26,680 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:40:26,680 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:40:26,706 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:40:32,015 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:40:32,015 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:40:32,045 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:41:02,442 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:41:02,442 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:41:02,473 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:42:04,051 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:42:04,051 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:42:04,076 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:42:45,779 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:42:45,779 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:42:45,819 	 [INFO | analyser.py:34] > Running analysis
-2019-04-23 13:43:11,721 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroAnalyser/data/examples/helloworld.yml
+2019-04-23 13:43:11,721 	 [INFO | yml.py:20] > Loading YML file /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.yml
 2019-04-23 13:43:11,748 	 [INFO | analyser.py:34] > Running analysis

@@ -5,11 +5,10 @@ from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
 
-
 from microanalyser.analyser.smell import WobblyServiceInteractionSmell, EndpointBasedServiceInteractionSmell
 
 
-class MicroAnalyser(object):
+class MicroToscaAnalyser(object):
 
     def __init__(self, micro_model):
         self.micro_model = micro_model
@@ -56,17 +55,19 @@ class MicroAnalyser(object):
                 anode["type"] = "database"
             if(isinstance(node, MessageBroker)):
                 anode["type"] = "communicationpattern"
-                anode['concrete_type'] = "messageBroker" # TODO: remove concrete type
+                # TODO: remove concrete type
+                anode['concrete_type'] = "messageBroker"
             if(isinstance(node, MessageRouter)):
                 anode["type"] = "communicationpattern"
-                anode['concrete_type'] = "messageRouter"  # TODO: remove concrete type
-            
+                # TODO: remove concrete type
+                anode['concrete_type'] = "messageRouter"
+
             smells = []
             for sniffer in self.node_smell_sniffers:
-                #if self.get_ignore_smells_for_node(node) or sniffer not in self.get_ignore_smells_for_node(node):
-                    smell = sniffer.snif(node)
-                    if(smell and not smell.isEmpty()):
-                        smells.append(smell.to_dict())
+                # if self.get_ignore_smells_for_node(node) or sniffer not in self.get_ignore_smells_for_node(node):
+                smell = sniffer.snif(node)
+                if(smell and not smell.isEmpty()):
+                    smells.append(smell.to_dict())
             if(smells):  # add only nodes that has at least one smell
                 anode['smells'] = smells
                 nodes.append(anode)
@@ -80,7 +81,7 @@ class MicroAnalyser(object):
             for gsniffer in self.group_smell_sniffers:
                 gsmells = gsniffer.snif(group)
                 if(gsmells):
-                    # NoApiGatewaysmellSniffer returns a list of node-based noApiGatewaySmellSniffer 
+                    # NoApiGatewaysmellSniffer returns a list of node-based noApiGatewaySmellSniffer
                     if isinstance(gsmells, list):
                         for smell in gsmells:
                             if(not smell.isEmpty()):

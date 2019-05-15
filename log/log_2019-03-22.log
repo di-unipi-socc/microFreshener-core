@@ -9,4 +9,4 @@
 2019-03-22 16:36:06,714 	 [INFO | json.py:13] > Loading JSON file: data/examples/helloworld.json
 2019-03-22 16:36:35,285 	 [INFO | json.py:13] > Loading JSON file: data/examples/helloworld.json
 2019-03-22 17:09:29,567 	 [INFO | json.py:13] > Loading JSON file: data/examples/helloworld.json
-2019-03-22 17:34:56,342 	 [INFO | json.py:13] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/helloworld.json
+2019-03-22 17:34:56,342 	 [INFO | json.py:13] > Loading JSON file: /home/dido/code/MicroToscaAnalyser/data/examples/helloworld.json

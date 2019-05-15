@@ -1,1 +1,1 @@
-from .analyser import MicroAnalyser
+from .analyser import MicroToscaAnalyser

@@ -1,4 +1,4 @@
-2019-02-28 14:42:17,971 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroAnalyser/data/examples/hello-world-ok.json
+2019-02-28 14:42:17,971 	 [INFO | json.py:18] > Loading JSON file: /home/dido/code/MicroToscaAnalyser/data/examples/hello-world-ok.json
 2019-02-28 14:42:17,972 	 [DEBUG | template.py:83] > shipping (service): Added node
 2019-02-28 14:42:17,972 	 [DEBUG | template.py:83] > orderdb (database): Added node
 2019-02-28 14:42:17,972 	 [DEBUG | template.py:83] > order (service): Added node
