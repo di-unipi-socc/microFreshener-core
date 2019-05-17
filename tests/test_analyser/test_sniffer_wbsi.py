@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from microanalyser.importer import YMLImporter
 from microanalyser.analyser.sniffer import WobblyServiceInteractionSmellSniffer
+from microanalyser.analyser.smell import WobblyServiceInteractionSmell
 from microanalyser.model.groups import Edge
 
 
@@ -17,6 +18,7 @@ class TestWobblyserviceInteractionSmell(TestCase):
     def test_wbsi(self):
         source = self.micro_model["source"]
         smell = self.wbsiSniffer.snif(source)
+        self.assertIsInstance(smell, WobblyServiceInteractionSmell)
         self.assertFalse(smell.isEmpty())
         self.assertEqual(len(smell.getLinkCause()), 1)
         self.assertEqual(smell.getLinkCause()[0].target, self.micro_model["target"])
@@ -25,6 +27,7 @@ class TestWobblyserviceInteractionSmell(TestCase):
     def test_wbsi_with_c(self):
         source = self.micro_model["source_c"]
         smell = self.wbsiSniffer.snif(source)
+        self.assertIsInstance(smell, WobblyServiceInteractionSmell)
         self.assertTrue(smell.isEmpty())
         self.assertEqual(len(smell.getLinkCause()), 0)
         self.assertEqual(len(smell.getNodeCause()), 0)

@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from microanalyser.importer import YMLImporter
 from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer
+from microanalyser.analyser.smell import NoApiGatewaySmell
 from microanalyser.model.groups import Edge
 
 
@@ -19,6 +20,8 @@ class TestNoApiGatewaySmell(TestCase):
         self.assertIsInstance(edge, Edge)
         self.assertEqual(len(edge.members), 3)
         smells = self.apgwSniffer.snif(edge)
+        for smell in smells: 
+            self.assertIsInstance(smell,NoApiGatewaySmell)
         self.assertEqual(len(smells), 2)
 
     def test_no_apgw(self):

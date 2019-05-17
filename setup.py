@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup,  find_packages
 
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
@@ -16,6 +16,7 @@ setup(name='microanalyser',
       long_description=readme() + '\n\n' + history,
       url='',
       include_package_data=True,
+      packages=find_packages(exclude=['tests']),
       author=__author__,
       author_email=__email__,
       license='MIT',

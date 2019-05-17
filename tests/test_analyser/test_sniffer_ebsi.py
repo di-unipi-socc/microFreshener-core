@@ -1,6 +1,7 @@
 from unittest import TestCase
 from microanalyser.importer import YMLImporter
 from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer
+from microanalyser.analyser.smell import EndpointBasedServiceInteractionSmell
 
 
 class TestEBSE(TestCase):
@@ -15,6 +16,7 @@ class TestEBSE(TestCase):
     def test_ebsi_source(self):
         source = self.micro_model["source"]
         smell = self.ebsiSniffer.snif(source)
+        self.assertIsInstance(smell, EndpointBasedServiceInteractionSmell)
         self.assertTrue(smell.isEmpty())
 
     def test_ebsi_target(self):

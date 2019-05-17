@@ -1,0 +1,5 @@
+SMELLS_NAME = SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SHARED_PERSITENCY, SMELL_NO_API_GATEWAY, SMELL_CROSS_TEAM_DATA_MANAGEMENT=\
+            "Endpoint-based-service-interaction", "Wobbly-service-interaction", "Shared-persistency", "No-api-gateway", "Cross-team-data-management"
+
+REFACTORING_NAMES = REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP =\
+             'Add-service-discovery', 'Add-message-router',  'Add-message-broker', 'Add-circuit-breaker', "Use-timeout", "Merge-service", "Split-database", "Add-data-manager", "Add-api-gateway", "Add-data-team-data-manager", "Change-database-ownership","Change-service-ownership"

@@ -2,6 +2,7 @@ from unittest import TestCase
 
 from microanalyser.importer import YMLImporter
 from microanalyser.analyser.sniffer import CrossTeamDataManagementSmellSniffer
+from microanalyser.analyser.smell import CrossTeamDataManagementSmell
 from microanalyser.model.groups import Edge
 
 
@@ -18,6 +19,7 @@ class TestCrossTeamDataManagementSmell(TestCase):
     def test_ctdm(self):
         team1 = self.micro_model.get_group("team1")
         smell = self.ctdmSniffer.snif(team1)
+        self.assertIsInstance(smell, CrossTeamDataManagementSmell)
         self.assertFalse(smell.isEmpty())
         self.assertEqual(len(smell.getLinkCause()),  2)
 

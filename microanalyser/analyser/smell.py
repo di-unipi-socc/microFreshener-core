@@ -1,8 +1,8 @@
 from typing import List
 from ..model import Root
 from ..model import Relationship
-
-
+from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSITENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_CROSS_TEAM_DATA_MANAGEMENT
+from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP
 class Smell(object):
 
     def __init__(self, name):
@@ -57,7 +57,7 @@ class GroupSmell(Smell):
 
 
 class EndpointBasedServiceInteractionSmell(NodeSmell):
-    name: str = "EndpointBasedServiceInteractionSmell"
+    name: str = SMELL_ENDPOINT_BASED_SERVICE_INTERACTION
 
     def __init__(self, node):
         super(EndpointBasedServiceInteractionSmell,
@@ -69,15 +69,14 @@ class EndpointBasedServiceInteractionSmell(NodeSmell):
     def to_dict(self):
         sup_dict = super(EndpointBasedServiceInteractionSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": "Add Service Discovery",
-                "description": "Add Service discovery"},
-            {"name": "Add Message Router", "description": "Add a message router"},
-            {"name": "Add Message Broker", "description": " Add message broker"}
+            {"name": REFACTORING_ADD_SERVICE_DISCOVERY, "description": "Add Service discovery"},
+            {"name": REFACTORING_ADD_MESSAGE_ROUTER, "description": "Add a message router"},
+            {"name": REFACTORING_ADD_MESSAGE_BROKER, "description": " Add message broker"}
         ]}}
 
 
 class WobblyServiceInteractionSmell(NodeSmell):
-    name: str = "WobblyServiceInteractionSmell"
+    name: str = SMELL_WOBBLY_SERVICE_INTERACTION_SMELL
 
     def __init__(self, node):
         super(WobblyServiceInteractionSmell, self).__init__(self.name, node)
@@ -88,12 +87,12 @@ class WobblyServiceInteractionSmell(NodeSmell):
     def to_dict(self):
         sup_dict = super(WobblyServiceInteractionSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": "Add Message Broker", "description": "Add Message broker"},
-            {"name": "Add Circuit Breaker", "description": " Add Circuit breaker"},
-            {"name": "Use Timeouts", "description": "Use timeouts"}]}}
+            {"name": REFACTORING_ADD_MESSAGE_BROKER, "description": "Add Message broker"},
+            {"name": REFACTORING_ADD_CIRCUIT_BREAKER, "description": " Add Circuit breaker"},
+            {"name": REFACTORING_USE_TIMEOUT, "description": "Use timeouts in the interaction"}]}}
 
 class SharedPersistencySmell(NodeSmell):
-    name: str = "SharedPersistencySmell"
+    name: str = SMELL_SHARED_PERSITENCY
 
     def __init__(self, node):
         super(SharedPersistencySmell, self).__init__(self.name, node)
@@ -104,13 +103,12 @@ class SharedPersistencySmell(NodeSmell):
     def to_dict(self):
         sup_dict = super(SharedPersistencySmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": "Merge services",
-                "description": "Merge services accesing the same database"},
-            {"name": "Split Database", "description": "Split the database."},
-            {"name": "Add Data Manager", "description": " Add Data manager"}]}}
+            {"name": REFACTORING_MERGE_SERVICES,"description": "Merge services accesing the same database"},
+            {"name": REFACTORING_SPLIT_DATABASE, "description": "Split the database."},
+            {"name": REFACTORING_ADD_DATA_MANAGER, "description": " Add Data manager"}]}}
 
 class NoApiGatewaySmell(NodeSmell):
-    name: str = "NoApiGateway"
+    name: str = SMELL_NO_API_GATEWAY
 
     def __init__(self, node):
         super(NoApiGatewaySmell, self).__init__(self.name, node)
@@ -121,20 +119,21 @@ class NoApiGatewaySmell(NodeSmell):
     def to_dict(self):
         sup_dict = super(NoApiGatewaySmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [{
-            "name": "Add Api Gateway", "description": "Add an Api Gateway between the external user"}]}}
+            "name": REFACTORING_ADD_API_GATEWAY, "description": "Add an Api Gateway between the external user"}]}}
 
-class SingleLayerTeamSmell(GroupSmell):
-    name: str = "SingleLayerTeam"
+class CrossTeamDataManagementSmell(GroupSmell):
+    name: str = SMELL_CROSS_TEAM_DATA_MANAGEMENT
 
     def __init__(self, group):
-        super(SingleLayerTeamSmell, self).__init__(self.name, group)
+        super(CrossTeamDataManagementSmell, self).__init__(self.name, group)
 
     def __str__(self):
-        return 'SingleLayerTeam({})'.format(super(SingleLayerTeamSmell, self).__str__())
+        return 'CrossTeamDataManagement({})'.format(super(CrossTeamDataManagementSmell, self).__str__())
 
     def to_dict(self):
-        sup_dict = super(SingleLayerTeamSmell, self).to_dict()
+        sup_dict = super(CrossTeamDataManagementSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": "Move Database", "description": "Move the database to another team"},
-            {"name": "Move Service", "description": "Move the service to another team"},
-            {"name": "Add Data Manager Team", "description": "Move the database to another team"}]}}
+            {"name": REFACTORING_ADD_TEAM_DATA_MANAGER, "description": "Move the database to another team"},
+            {"name": REFACTORING_CHANGE_DATABASE_OWENRSHIP, "description": "Move the database to another team"},
+            {"name": REFACTORING_CHANGE_SERVICE_OWENRSHIP, "description": "Move the service to another team"},
+            ]}}
