@@ -21,7 +21,6 @@ setup(name='microanalyser',
       author_email=__email__,
       license='MIT',
       keywords='microservice TOSCA smells refactorings',
-      packages=['microanalyser'],
       install_requires=[
           'ruamel.yaml','tosca-parser'
       ],

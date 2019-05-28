@@ -8,12 +8,11 @@ topology_template:
       type: micro.nodes.MessageBroker
     Brk2:
       type: micro.nodes.MessageBroker
-      requirements:
-      - run_time: Jtl
     Jtl:
       type: micro.nodes.Service
       requirements:
       - run_time: Brk1
+      - run_time: Brk2
     Tlg:
       type: micro.nodes.Service
       requirements:
