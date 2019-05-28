@@ -54,11 +54,15 @@ topology_template:
     s4:
       type: micro.nodes.Service
       requirements:
-        - run_time: s6
+        - run_time:
+            node: s6
+            relationship: td
     s5:
       type: micro.nodes.Service
       requirements:
-        - run_time: s2
+        - run_time:
+            node: s2
+            relationship: td
     s6:
       type: micro.nodes.Service
       requirements:
