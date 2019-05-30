@@ -1,4 +1,4 @@
-"""Top-level package for micro-tosca."""
+"""Top-level package for microfreshner"""
 
 __author__ = """Davide neri"""
 __email__ = 'davide.neri@di.unipi.it'

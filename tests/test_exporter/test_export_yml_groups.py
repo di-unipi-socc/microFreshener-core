@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.exporter import YMLExporter
-from microanalyser.model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.exporter import YMLExporter
+from microfreshener.core.model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
 
 class TestYMLTranformer(TestCase):
 

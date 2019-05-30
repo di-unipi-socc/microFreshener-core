@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.analyser.sniffer import WobblyServiceInteractionSmellSniffer
-from microanalyser.analyser.smell import WobblyServiceInteractionSmell
-from microanalyser.model.groups import Edge
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.analyser.sniffer import WobblyServiceInteractionSmellSniffer
+from microfreshener.core.analyser.smell import WobblyServiceInteractionSmell
+from microfreshener.core.model.groups import Edge
 
 
 class TestWobblyserviceInteractionSmell(TestCase):

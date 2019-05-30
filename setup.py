@@ -3,14 +3,13 @@ from setuptools import setup,  find_packages
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-exec(open('microanalyser/__init__.py').read())
+exec(open('microfreshener.core/__init__.py').read())
 
 def readme():
     with open('README.rst') as f:
         return f.read()
 
-
-setup(name='microanalyser',
+setup(name='microfreshener.core',
       version=__version__,
       description='Read a MicroTOSCA model of a microservice-based architecture and discover architectural smells',
       long_description=readme() + '\n\n' + history,
@@ -33,7 +32,7 @@ setup(name='microanalyser',
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'microanalyserm=microanalyser.command_line:main',
+            'microfreshener=microfreshener.core.command_line:main',
         ],
     },
 )

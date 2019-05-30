@@ -1,8 +1,8 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.exporter import YMLExporter
-from microanalyser.model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.exporter import YMLExporter
+from microfreshener.core.model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
 
 
 class TestYMLTranformer(TestCase):

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from microanalyser.importer import JSONImporter
+from microfreshener.core.importer import JSONImporter
 
 class TestJSONLoaderRelationship(TestCase):
 

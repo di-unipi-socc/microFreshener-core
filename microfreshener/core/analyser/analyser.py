@@ -5,7 +5,7 @@ from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
 
-from microanalyser.analyser.smell import WobblyServiceInteractionSmell, EndpointBasedServiceInteractionSmell
+from microfreshener.core.analyser.smell import WobblyServiceInteractionSmell, EndpointBasedServiceInteractionSmell
 
 
 class MicroToscaAnalyser(object):

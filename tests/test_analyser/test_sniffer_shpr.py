@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.analyser.sniffer import SharedPersistencySmellSniffer
-from microanalyser.analyser.smell import SharedPersistencySmell
-from microanalyser.model.groups import Edge
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.analyser.sniffer import SharedPersistencySmellSniffer
+from microfreshener.core.analyser.smell import SharedPersistencySmell
+from microfreshener.core.model.groups import Edge
 
 
 class TestWobblyserviceInteractionSmell(TestCase):
@@ -30,5 +30,7 @@ class TestWobblyserviceInteractionSmell(TestCase):
         self.assertEqual(len(smell.getLinkCause()), 0)
         self.assertEqual(len(smell.getNodeCause()), 0)
 
-
-        
+    def test_shpr_service_to_database(self):
+        database = self.micro_model["db2"]
+        smell = self.shprSniffer.snif(database)
+        self.assertTrue(smell.isEmpty())

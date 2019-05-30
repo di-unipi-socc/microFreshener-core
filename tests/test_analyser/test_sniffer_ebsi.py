@@ -1,7 +1,7 @@
 from unittest import TestCase
-from microanalyser.importer import YMLImporter
-from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer
-from microanalyser.analyser.smell import EndpointBasedServiceInteractionSmell
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer
+from microfreshener.core.analyser.smell import EndpointBasedServiceInteractionSmell
 
 
 class TestEBSE(TestCase):
@@ -31,12 +31,20 @@ class TestEBSE(TestCase):
     def test_ebsi_with_t(self):
         target = self.micro_model["target_t"]
         smell = self.ebsiSniffer.snif(target)
-        self.assertTrue(smell.isEmpty())
+        self.assertFalse(smell.isEmpty())
+        self.assertEqual(len(smell.getLinkCause()), 1)
+        self.assertEqual(len(smell.getNodeCause()), 0)
+        self.assertEqual(smell.getLinkCause()[
+                         0].source, self.micro_model["source"])
 
     def test_ebsi_with_tc(self):
         target = self.micro_model["target_tc"]
         smell = self.ebsiSniffer.snif(target)
-        self.assertTrue(smell.isEmpty())
+        self.assertFalse(smell.isEmpty())
+        self.assertEqual(len(smell.getLinkCause()), 1)
+        self.assertEqual(len(smell.getNodeCause()), 0)
+        self.assertEqual(smell.getLinkCause()[
+                         0].source, self.micro_model["source"])
 
     def test_ebsi_with_td(self):
         target = self.micro_model["target_td"]
@@ -52,16 +60,20 @@ class TestEBSE(TestCase):
         target = self.micro_model["target_c"]
         smell = self.ebsiSniffer.snif(target)
         self.assertFalse(smell.isEmpty())
+        self.assertEqual(len(smell.getLinkCause()), 1)
+        self.assertEqual(len(smell.getNodeCause()), 0)
+        self.assertEqual(smell.getLinkCause()[
+                         0].source, self.micro_model["source"])
 
     def test_esbi_with_d(self):
         target = self.micro_model["target_d"]
         smell = self.ebsiSniffer.snif(target)
-        self.assertFalse(smell.isEmpty())
+        self.assertTrue(smell.isEmpty())
 
     def test_esbi_with_cd(self):
         target = self.micro_model["target_cd"]
         smell = self.ebsiSniffer.snif(target)
-        self.assertFalse(smell.isEmpty())
+        self.assertTrue(smell.isEmpty())
 
     def test_esbi_with_multi_links(self):
         target = self.micro_model["target_multi"]
@@ -78,14 +90,20 @@ class TestEBSE(TestCase):
         target = self.micro_model["target_composite"]
         smell = self.ebsiSniffer.snif(target)
         self.assertFalse(smell.isEmpty())
-        self.assertEqual(len(smell.getLinkCause()), 3)
+        self.assertEqual(len(smell.getLinkCause()), 6)
         self.assertEqual(len(smell.getNodeCause()), 0)
         self.assertEqual(smell.getLinkCause()[
                          0].source, self.micro_model["source3"])
         self.assertEqual(smell.getLinkCause()[
-                         1].source, self.micro_model["source5"])
+                         1].source, self.micro_model["source3"])
         self.assertEqual(smell.getLinkCause()[
-                         2].source, self.micro_model["source6"])
+                         2].source, self.micro_model["source4"])
+        self.assertEqual(smell.getLinkCause()[
+                         3].source, self.micro_model["source4"])
+        self.assertEqual(smell.getLinkCause()[
+                        4].source, self.micro_model["source5"])
+        self.assertEqual(smell.getLinkCause()[
+                        5].source, self.micro_model["source6"])
 
     def test_no_esbi_at_database_communicatiopattern(self):
         db = self.micro_model["db"]

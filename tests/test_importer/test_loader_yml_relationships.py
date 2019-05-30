@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
+from microfreshener.core.importer import YMLImporter
 
 class TestYMLLoaderRelationship(TestCase):
 

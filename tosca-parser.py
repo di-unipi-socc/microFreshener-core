@@ -8,22 +8,22 @@ import os
 from toscaparser.common.exception import ValidationError
 from toscaparser.tosca_template import ToscaTemplate
 
-from microanalyser.model import Service, Database, CommunicationPattern
-from microanalyser.model  import InteractsWith
-from microanalyser.model.microtosca import MicroToscaModel
-from microanalyser.analyser.analyser import MicroToscaAnalyser
+from microfreshener.core.model import Service, Database, CommunicationPattern
+from microfreshener.core.model  import InteractsWith
+from microfreshener.core.model.microtosca import MicroToscaModel
+from microfreshener.core.analyser.analyser import MicroToscaAnalyser
 
-from microanalyser.importer import YMLImporter
-from microanalyser.importer import JSONImporter
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.importer import JSONImporter
 
-from microanalyser.exporter import JSONExporter
-from microanalyser.exporter import YMLExporter
+from microfreshener.core.exporter import JSONExporter
+from microfreshener.core.exporter import YMLExporter
 
-from microanalyser.analyser.builder import MicroToscaAnalyserBuilder
-from microanalyser.analyser.analyser import MicroToscaAnalyser
+from microfreshener.core.analyser.builder import MicroToscaAnalyserBuilder
+from microfreshener.core.analyser.analyser import MicroToscaAnalyser
 
-from microanalyser.analyser.constant import INDEPENDENT_DEPLOYABILITY
-from microanalyser.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
+from microfreshener.core.analyser.constant import INDEPENDENT_DEPLOYABILITY
+from microfreshener.core.analyser.sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer
 
 import pprint
 

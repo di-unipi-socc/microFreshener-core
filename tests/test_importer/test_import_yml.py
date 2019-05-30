@@ -1,12 +1,12 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter 
+from microfreshener.core.importer import YMLImporter 
 
 class TestYMLLoader(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld.yml'
+        file = 'data/examples/hello-world/helloworld.yml'
         self.importer = YMLImporter()
         self.microtosca = self.importer.Import(file)
 

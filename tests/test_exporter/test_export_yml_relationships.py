@@ -1,11 +1,11 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.exporter import YMLExporter
-from microanalyser.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
-from microanalyser.importer.ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
-from microanalyser.importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
-from microanalyser.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY,MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.exporter import YMLExporter
+from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
+from microfreshener.core.importer.ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
+from microfreshener.core.importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
+from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY,MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
 class TestJSONTranformer(TestCase):
 

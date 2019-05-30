@@ -1,16 +1,16 @@
 from unittest import TestCase
 
-from microanalyser.importer import JSONImporter, YMLImporter
-from microanalyser.exporter import JSONExporter
+from microfreshener.core.importer import JSONImporter, YMLImporter
+from microfreshener.core.exporter import JSONExporter
 
-from microanalyser.importer.jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
+from microfreshener.core.importer.jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
 
 
 class TestJSONTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld.yml'
+        file = 'data/examples/hello-world/helloworld.yml'
         self.importer = YMLImporter()
         self.microtosca = self.importer.Import(file)
         self.tranformer = JSONExporter()

@@ -1,16 +1,16 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.analyser import MicroToscaAnalyser
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.analyser import MicroToscaAnalyser
 
-from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 
 class TestAnalyser(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld.yml'
+        file = 'data/examples/hello-world/helloworld.yml'
         loader = YMLImporter()
         self.micro_object = loader.Import(file)
 

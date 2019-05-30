@@ -1,15 +1,15 @@
 import unittest
-from microanalyser.importer import YMLImporter
-from microanalyser.analyser.builder import MicroToscaAnalyserBuilder
-from microanalyser.analyser.smell import WobblyServiceInteractionSmell
-from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.analyser.builder import MicroToscaAnalyserBuilder
+from microfreshener.core.analyser.smell import WobblyServiceInteractionSmell
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
 
 
 class TestAnalyserBUilder(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld.yml'
+        file = 'data/examples/hello-world/helloworld.yml'
         loader = YMLImporter()
         self.micro_object = loader.Import(file)
     

@@ -1,6 +1,6 @@
 from unittest import TestCase
-from microanalyser.importer import YMLImporter
-from microanalyser.model import Team, Edge
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.model import Team, Edge
 
 class TestYMLloaderNodes(TestCase):
 

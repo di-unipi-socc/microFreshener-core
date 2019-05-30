@@ -1,9 +1,9 @@
 from unittest import TestCase
 
-from microanalyser.importer import YMLImporter
-from microanalyser.analyser.sniffer import NoApiGatewaySmellSniffer
-from microanalyser.analyser.smell import NoApiGatewaySmell
-from microanalyser.model.groups import Edge
+from microfreshener.core.importer import YMLImporter
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer
+from microfreshener.core.analyser.smell import NoApiGatewaySmell
+from microfreshener.core.model.groups import Edge
 
 
 class TestNoApiGatewaySmell(TestCase):

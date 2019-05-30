@@ -1,13 +1,13 @@
 from unittest import TestCase
 
-from microanalyser.importer.jsonimporter import JSONImporter
+from microfreshener.core.importer.jsonimporter import JSONImporter
 
 
 class TestJSONLoader(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/examples/helloworld.json'
+        file = 'data/examples/hello-world/helloworld.json'
         loader = JSONImporter()
         self.microtosca_template = loader.Import(file)
 
