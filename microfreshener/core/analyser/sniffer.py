@@ -70,10 +70,11 @@ class SharedPersistencySmellSniffer(NodeSmellSniffer):
         return 'SharedPersistencySmellSniffer({})'.format(super(NodeSmellSniffer, self).__str__())
 
     @visitor(Database)
-    def snif(self, node)->SharedPersistencySmell:
-        smell = SharedPersistencySmell(node)
-        if (len(node.incoming) > 1): # check if the incoming source are different
-            for link in node.incoming:
+    def snif(self, database)->SharedPersistencySmell:
+        smell = SharedPersistencySmell(database)
+        nodes = set(link.source for link in database.incoming)
+        if (len(nodes) > 1):
+            for link in database.incoming:
                 smell.addLinkCause(link)
         return smell
 
