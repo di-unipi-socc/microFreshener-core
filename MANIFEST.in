@@ -1,4 +1,8 @@
 include README.rst
+include HISTORY.rst
+include DESCRIPTION.rst
+include LICENSE
+
 
 recursive-include tests *
 recursive-exclude * __pycache__

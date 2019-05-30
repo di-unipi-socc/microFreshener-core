@@ -3,13 +3,13 @@ from setuptools import setup,  find_packages
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-exec(open('microfreshener.core/__init__.py').read())
+exec(open('microfreshener/__init__.py').read())
 
 def readme():
     with open('README.rst') as f:
         return f.read()
 
-setup(name='microfreshener.core',
+setup(name='microfreshener-core',
       version=__version__,
       description='Read a MicroTOSCA model of a microservice-based architecture and discover architectural smells',
       long_description=readme() + '\n\n' + history,
