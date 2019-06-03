@@ -32,7 +32,7 @@ setup(name='microfreshener-core',
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
         'console_scripts': [
-            'microfreshener=microfreshener.core.command_line:main',
+            'microfreshener=microfreshener.command_line:main',
         ],
     },
 )

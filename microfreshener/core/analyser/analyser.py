@@ -30,7 +30,7 @@ class MicroToscaAnalyser(object):
 
     def add_node_smell_sniffer(self, sniffer):
         assert isinstance(sniffer, NodeSmellSniffer)
-        logger.debug("Node Sniffer {} added".format(sniffer))
+        logger.info("Node Sniffer {} added".format(sniffer))
         self.node_smell_sniffers.append(sniffer)
 
     def get_node_smell_sniffer(self):
