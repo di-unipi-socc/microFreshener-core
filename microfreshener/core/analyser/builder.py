@@ -10,6 +10,9 @@ class MicroToscaAnalyserBuilder(object):
         self.micro_model = micro_model
         self.analyser = MicroToscaAnalyser(micro_model)
 
+    
+  
+
     def add_smell(self, smell: int):
         if(smell == 1):     # Multiple services in the same container
             pass
@@ -52,6 +55,13 @@ class MicroToscaAnalyserBuilder(object):
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
         
-        
+    def add_all(self):
+        self.analyser.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
+        self.analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
+        self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
+        self.analyser.add_group_smell_sniffer(CrossTeamDataManagementSmellSniffer(self.micro_model))
+        self.analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer(self.micro_model))
+        return self
+
     def build(self):
         return self.analyser
