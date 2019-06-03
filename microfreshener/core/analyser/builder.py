@@ -55,7 +55,7 @@ class MicroToscaAnalyserBuilder(object):
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
         
-    def add_all(self):
+    def add_all_sniffers(self):
         self.analyser.add_node_smell_sniffer(EndpointBasedServiceInteractionSmellSniffer())
         self.analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
         self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
