@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter
-from microfreshener.core.model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 
 class TestYMLImporterNodes(TestCase):
 
@@ -18,7 +18,7 @@ class TestYMLImporterNodes(TestCase):
     
     def test_database(self):
         db = self.microtosca['my_database']
-        self.assertIsInstance(db, Database)
+        self.assertIsInstance(db, Datastore)
         self.assertEqual(db.name, "my_database")
     
     def test_messagebroker(self):

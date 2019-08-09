@@ -2,7 +2,7 @@
 
 # MicroTOSCA node types
 MICROTOSCA_NODES_SERVICE = 'micro.nodes.Service'
-MICROTOSCA_NODES_DATABASE = 'micro.nodes.Database'
+MICROTOSCA_NODES_DATABASE = 'micro.nodes.Datastore'
 
 MICROTOSCA_NODES_COMMUNICATIONPATTERN = 'micro.nodes.CommunicationPattern'
 MICROTOSCA_NODES_MESSAGE_BROKER = 'micro.nodes.MessageBroker'

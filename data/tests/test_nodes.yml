@@ -17,7 +17,7 @@ topology_template:
       type: micro.nodes.MessageRouter
 
     my_database:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     
     # my_communicationpattern:
     #   type: micro.nodes.CommunicationPattern

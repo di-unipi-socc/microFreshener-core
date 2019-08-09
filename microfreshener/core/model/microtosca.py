@@ -2,7 +2,7 @@
 MicroModelModel module
 '''
 import six
-from .nodes import Root, Service, Database, CommunicationPattern, MessageRouter
+from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter
 from .relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Team, Edge
 from ..errors import MicroToscaModelError
@@ -28,7 +28,7 @@ class MicroToscaModel:
 
     @property
     def databases(self):
-        return (v for k, v in self._nodes.items() if isinstance(v, Database))
+        return (v for k, v in self._nodes.items() if isinstance(v, Datastore))
 
     @property
     def communicationPatterns(self):

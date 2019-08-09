@@ -59,7 +59,7 @@ node_types:
     derived_from: micro.nodes.Root
 
   # node type for representing databases
-  micro.nodes.Database:
+  micro.nodes.Datastore:
     derived_from: micro.nodes.Root
     capabilities:
       feature:

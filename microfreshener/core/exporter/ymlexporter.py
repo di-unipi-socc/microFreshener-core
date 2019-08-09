@@ -4,7 +4,7 @@ from ruamel.yaml.compat import StringIO
 
 from ..model import MicroToscaModel
 from ..model  import InteractsWith
-from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Root, Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import RootGroup, Edge, Team
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
 from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
@@ -94,7 +94,7 @@ class YMLExporter(Exporter):
         node_type = ""
         if(isinstance(node, Service)):
             node_type = MICROTOSCA_NODES_SERVICE
-        elif(isinstance(node, Database)):
+        elif(isinstance(node, Datastore)):
             node_type = MICROTOSCA_NODES_DATABASE
         elif(isinstance(node, MessageBroker)):
             node_type = MICROTOSCA_NODES_MESSAGE_BROKER

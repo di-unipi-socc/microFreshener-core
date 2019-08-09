@@ -27,5 +27,5 @@ class TestYMLImporterGroups(TestCase):
     
     def test_edge(self):
         edge = self.microtosca.get_group("edgenodes")
-        self.assertEqual(len(edge.members), 3) #  Database node cannot be into an Edge group
+        self.assertEqual(len(edge.members), 3) #  Datastore node cannot be into an Edge group
         self.assertIsInstance(edge, Edge)

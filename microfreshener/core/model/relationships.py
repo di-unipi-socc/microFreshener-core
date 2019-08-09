@@ -41,7 +41,7 @@ class InteractsWith(Relationship):
 
     def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None):
         # TODO circular depenceics
-        from .nodes import  Service, Database, CommunicationPattern, MessageRouter
+        from .nodes import  Service, Datastore, CommunicationPattern, MessageRouter
         if(isinstance(source, Service) or isinstance(source, MessageRouter)):
             super(InteractsWith, self).__init__(source, target)
             self.alias = alias

@@ -99,12 +99,12 @@ class MessageRouter(CommunicationPattern):
     def __init__(self, name):
         super(MessageRouter, self).__init__(name, "MR")
 
-class Database(Root):
+class Datastore(Root):
 
     def __init__(self, name):
-        super(Database, self).__init__(name)
+        super(Datastore, self).__init__(name)
 
     def __str__(self):
-        return '{} ({})'.format(self.name, 'database')
+        return '{} ({})'.format(self.name, 'Datastore')
 
 

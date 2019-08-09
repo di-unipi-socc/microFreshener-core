@@ -1,7 +1,7 @@
 
 import json
 from ..model import MicroToscaModel
-from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
 from ..model.relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 
@@ -49,7 +49,7 @@ class JSONImporter(Importer):
         elif(type_node == JSON_NODE_MESSAGE_ROUTER):
             el = MessageRouter(name_node)
         elif(type_node == JSON_NODE_DATABASE):
-            el = Database(name_node)
+            el = Datastore(name_node)
         else:
             raise ImporterError(
                 "{} Node type is not recognized".format(type_node))

@@ -16,21 +16,21 @@ class TestSharedPersitence(TestCase):
         self.shprSniffer = SharedPersistencySmellSniffer()
 
     def test_shpr(self):
-        database = self.micro_model["db"]
-        smell = self.shprSniffer.snif(database)
+        Datastore = self.micro_model["db"]
+        smell = self.shprSniffer.snif(Datastore)
         self.assertIsInstance(smell, SharedPersistencySmell)
         self.assertFalse(smell.isEmpty())
         self.assertEqual(len(smell.getLinkCause()), 3)
         self.assertEqual(len(smell.getNodeCause()), 0)
     
     def test_shpr_database(self):
-        database = self.micro_model["db1"]
-        smell = self.shprSniffer.snif(database)
+        Datastore = self.micro_model["db1"]
+        smell = self.shprSniffer.snif(Datastore)
         self.assertTrue(smell.isEmpty())
         self.assertEqual(len(smell.getLinkCause()), 0)
         self.assertEqual(len(smell.getNodeCause()), 0)
 
     def test_shpr_service_to_database(self):
-        database = self.micro_model["db2"]
-        smell = self.shprSniffer.snif(database)
+        Datastore = self.micro_model["db2"]
+        smell = self.shprSniffer.snif(Datastore)
         self.assertTrue(smell.isEmpty())

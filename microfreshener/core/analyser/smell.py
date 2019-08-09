@@ -103,8 +103,8 @@ class SharedPersistencySmell(NodeSmell):
     def to_dict(self):
         sup_dict = super(SharedPersistencySmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": REFACTORING_MERGE_SERVICES,"description": "Merge services accesing the same database"},
-            {"name": REFACTORING_SPLIT_DATABASE, "description": "Split the database."},
+            {"name": REFACTORING_MERGE_SERVICES,"description": "Merge services accesing the same Datastore"},
+            {"name": REFACTORING_SPLIT_DATABASE, "description": "Split the Datastore."},
             {"name": REFACTORING_ADD_DATA_MANAGER, "description": " Add Data manager"}]}}
 
 class NoApiGatewaySmell(NodeSmell):
@@ -133,7 +133,7 @@ class CrossTeamDataManagementSmell(GroupSmell):
     def to_dict(self):
         sup_dict = super(CrossTeamDataManagementSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": REFACTORING_ADD_TEAM_DATA_MANAGER, "description": "Move the database to another team"},
-            {"name": REFACTORING_CHANGE_DATABASE_OWENRSHIP, "description": "Move the database to another team"},
+            {"name": REFACTORING_ADD_TEAM_DATA_MANAGER, "description": "Move the Datastore to another team"},
+            {"name": REFACTORING_CHANGE_DATABASE_OWENRSHIP, "description": "Move the Datastore to another team"},
             {"name": REFACTORING_CHANGE_SERVICE_OWENRSHIP, "description": "Move the service to another team"},
             ]}}

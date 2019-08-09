@@ -1,5 +1,5 @@
 
-from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 from ..analyser.sniffer import NodeSmellSniffer, GroupSmellSniffer
 from ..logging import MyLogger
 
@@ -51,8 +51,8 @@ class MicroToscaAnalyser(object):
             anode = {'name': node.name}
             if(isinstance(node, Service)):
                 anode["type"] = "software"
-            if(isinstance(node, Database)):
-                anode["type"] = "database"
+            if(isinstance(node, Datastore)):
+                anode["type"] = "Datastore"
             if(isinstance(node, MessageBroker)):
                 anode["type"] = "communicationpattern"
                 # TODO: remove concrete type

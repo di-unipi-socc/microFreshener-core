@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter 
-from microfreshener.core.model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 
 class TestYMLImporter(TestCase):
 

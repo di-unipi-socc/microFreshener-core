@@ -12,7 +12,7 @@ topology_template:
     sr2:
       type: micro.nodes.Service
     db:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     mr:
       type: micro.nodes.MessageRouter
     mb:

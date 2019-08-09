@@ -1,7 +1,7 @@
 import ruamel.yaml
 from pathlib import Path
 from ..model import MicroToscaModel
-from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Team, Edge
 from .iimporter import Importer
 from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_COMMUNICATIONPATTERN, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
@@ -69,7 +69,7 @@ class YMLImporter(Importer):
             if node_type == MICROTOSCA_NODES_SERVICE:
                 el = Service(node_name)
             elif node_type == MICROTOSCA_NODES_DATABASE:
-                el = Database(node_name)
+                el = Datastore(node_name)
             elif node_type == MICROTOSCA_NODES_MESSAGE_BROKER:
                 el = MessageBroker(node_name)
             elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER:

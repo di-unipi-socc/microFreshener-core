@@ -20,13 +20,13 @@ topology_template:
       type: micro.nodes.MessageRouter
 
     db2:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     
     s3:
       type: micro.nodes.Service
     
     db3:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     
   groups:
     edgenodes:

@@ -32,12 +32,12 @@ topology_template:
             node: db2
             relationship: t
     db:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     db1:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     
     db2:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     
   relationship_templates:
     t:

@@ -2,7 +2,7 @@ import json
 
 from ..model import MicroToscaModel
 from ..model  import RunTimeInteraction, DeploymentTimeInteraction, InteractsWith
-from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Root, Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
 
 from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER
@@ -47,7 +47,7 @@ class JSONExporter(Exporter):
         dict_node['name'] = node.name
         if(isinstance(node, Service)):
             dict_node['type'] = JSON_NODE_SERVICE
-        elif(isinstance(node, Database)):
+        elif(isinstance(node, Datastore)):
             dict_node['type'] = JSON_NODE_DATABASE
         elif(isinstance(node, MessageBroker)):
             dict_node['type'] = JSON_NODE_MESSAGE_BROKER

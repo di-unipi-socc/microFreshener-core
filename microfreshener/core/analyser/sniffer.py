@@ -1,7 +1,7 @@
 
 from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, CrossTeamDataManagementSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
-from ..model import Service, Database, CommunicationPattern, MessageRouter
+from ..model import Service, Datastore, CommunicationPattern, MessageRouter
 from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model import MicroToscaModel
 from ..model.groups import Edge, Team
@@ -69,12 +69,12 @@ class SharedPersistencySmellSniffer(NodeSmellSniffer):
     def __str__(self):
         return 'SharedPersistencySmellSniffer({})'.format(super(NodeSmellSniffer, self).__str__())
 
-    @visitor(Database)
-    def snif(self, database)->SharedPersistencySmell:
-        smell = SharedPersistencySmell(database)
-        nodes = set(link.source for link in database.incoming_interactions)
+    @visitor(Datastore)
+    def snif(self, Datastore)->SharedPersistencySmell:
+        smell = SharedPersistencySmell(Datastore)
+        nodes = set(link.source for link in Datastore.incoming_interactions)
         if (len(nodes) > 1):
-            for link in database.incoming_interactions:
+            for link in Datastore.incoming_interactions:
                 smell.addLinkCause(link)
         return smell
 
@@ -109,7 +109,7 @@ class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
                 target_node = relationship.target
                 source_squad = self.micro_model.squad_of(source_node)
                 target_squad = self.micro_model.squad_of(target_node)
-                if (isinstance(source_node, Service) and isinstance(target_node, Database)
+                if (isinstance(source_node, Service) and isinstance(target_node, Datastore)
                         and source_squad != target_squad):
                     smell.addLinkCause(relationship)
         return smell

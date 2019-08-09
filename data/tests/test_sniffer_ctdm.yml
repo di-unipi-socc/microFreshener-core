@@ -23,11 +23,11 @@ topology_template:
       requirements:
         - interaction: db3
     db1:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     db2:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
     db3:
-      type: micro.nodes.Database
+      type: micro.nodes.Datastore
 
   groups:
     team1:

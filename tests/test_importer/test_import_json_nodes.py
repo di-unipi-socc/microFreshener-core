@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microfreshener.core.importer import JSONImporter
 from microfreshener.core.errors import ImporterError
-from microfreshener.core.model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
+from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 from microfreshener.core.importer.jsontype import JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
 
 
@@ -21,7 +21,7 @@ class TestJSONImporterNodes(TestCase):
 
     def test_database(self):
         db = self.microtosca['my_database']
-        self.assertIsInstance(db, Database)
+        self.assertIsInstance(db, Datastore)
         self.assertEqual(db.name, "my_database")
 
     def test_messagebroker(self):
@@ -53,7 +53,7 @@ class TestJSONImporterNodes(TestCase):
     def test_load_node_database(self):
         node = self.importer.load_node_from_json(
             {"type": JSON_NODE_DATABASE, "name": "provadb"})
-        self.assertIsInstance(node, Database)
+        self.assertIsInstance(node, Datastore)
         self.assertEqual(node.name, "provadb")
 
     def test_load_node_message_broker(self):

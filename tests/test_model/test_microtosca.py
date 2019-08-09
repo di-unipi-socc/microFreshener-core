@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from microfreshener.core.model.microtosca import MicroToscaModel
-from microfreshener.core.model.nodes import Service, Database, MessageBroker, MessageRouter
+from microfreshener.core.model.nodes import Service, Datastore, MessageBroker, MessageRouter
 from microfreshener.core.errors import MicroToscaModelError
 
 

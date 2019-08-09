@@ -1,5 +1,5 @@
 import six
-from .nodes import Root, Database
+from .nodes import Root, Datastore
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -59,7 +59,7 @@ class Edge(RootGroup):
         super(Edge, self).__init__(name)
 
     def add_member(self, member):
-        if(not isinstance(member, Database)):
+        if(not isinstance(member, Datastore)):
             super(Edge, self).add_member(member)
 
     def __str__(self):

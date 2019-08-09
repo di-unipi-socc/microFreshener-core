@@ -8,7 +8,7 @@ import os
 from toscaparser.common.exception import ValidationError
 from toscaparser.tosca_template import ToscaTemplate
 
-from microfreshener.core.model import Service, Database, CommunicationPattern
+from microfreshener.core.model import Service, Datastore, CommunicationPattern
 from microfreshener.core.model  import InteractsWith
 from microfreshener.core.model.microtosca import MicroToscaModel
 from microfreshener.core.analyser.analyser import MicroToscaAnalyser
