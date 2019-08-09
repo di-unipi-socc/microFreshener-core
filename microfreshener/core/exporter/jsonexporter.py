@@ -1,7 +1,7 @@
 import json
 
 from ..model import MicroToscaModel
-from ..model  import RunTimeInteraction, DeploymentTimeInteraction
+from ..model  import RunTimeInteraction, DeploymentTimeInteraction, InteractsWith
 from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
 
@@ -35,14 +35,14 @@ class JSONExporter(Exporter):
             d['links'] = []      # links
             d['groups'] = []     # groups
             for node in obj.nodes:
-                d['nodes'].append(self._transform_node(node))
+                d['nodes'].append(self.transform_node_to_json(node))
                 for rel in node.relationships:
                     d['links'].append(self._transform_relationship(rel))
             for group in obj.groups:
                 d['groups'].append(self._transform_group(group))
         return d
 
-    def _transform_node(self, node):
+    def transform_node_to_json(self, node):
         dict_node = {}
         dict_node['name'] = node.name
         if(isinstance(node, Service)):
@@ -57,6 +57,7 @@ class JSONExporter(Exporter):
             raise ExporterError(f"Node {n} not recognized")
         return dict_node
 
+
     def _transform_relationship(self, relationship):
         nrel = {}
         nrel['target'] = relationship.target.name
@@ -67,6 +68,9 @@ class JSONExporter(Exporter):
         if(isinstance(relationship, DeploymentTimeInteraction)):
             nrel['type'] = JSON_DEPLOYMENT_TIME
         elif(isinstance(relationship, RunTimeInteraction)):
+            nrel['type'] = JSON_RUN_TIME
+        ## TODO: change type json to interact with
+        elif(isinstance(relationship, InteractsWith)):
             nrel['type'] = JSON_RUN_TIME
         else:
             raise ExporterError("{} Relationship not recognized.".format(relationship))

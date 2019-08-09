@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter 
 
-class TestYMLLoader(TestCase):
+class TestYMLImporter(TestCase):
 
     @classmethod
     def setUpClass(self):

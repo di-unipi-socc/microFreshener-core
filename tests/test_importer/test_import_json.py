@@ -3,7 +3,7 @@ from unittest import TestCase
 from microfreshener.core.importer.jsonimporter import JSONImporter
 
 
-class TestJSONLoader(TestCase):
+class TestJSONImporter(TestCase):
 
     @classmethod
     def setUpClass(self):

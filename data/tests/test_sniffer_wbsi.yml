@@ -56,7 +56,7 @@ topology_template:
             node: target
             relationship: tcd
     
-    # test wsbi from service to  message router 
+    # test wsbi from service to message router 
     source_mr:
       type: micro.nodes.Service
       requirements:
@@ -103,10 +103,11 @@ topology_template:
         - run_time:
             node: mr
             relationship: tcd
+    # from message router to Service
     mr:
       type: micro.nodes.MessageRouter
       requirements:
-        - run_time: mr
+        - run_time: target
 
   relationship_templates:
     t: # with Timeout

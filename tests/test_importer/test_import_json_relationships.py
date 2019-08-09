@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microfreshener.core.importer import JSONImporter
 
-class TestJSONLoaderRelationship(TestCase):
+class TestJSONImporterRelationship(TestCase):
 
     @classmethod
     def setUpClass(self):
@@ -58,7 +58,6 @@ class TestJSONLoaderRelationship(TestCase):
         self.assertTrue(link.circuit_breaker)
         self.assertTrue(link.dynamic_discovery)
     
-
     def _load_relationship_from_source_to_target(self, source_name, target_name):
         source = self.microtosca[source_name]
         target = self.microtosca[target_name]

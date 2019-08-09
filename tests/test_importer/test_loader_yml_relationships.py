@@ -2,7 +2,7 @@ from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter
 
-class TestYMLLoaderRelationship(TestCase):
+class TestYMLImporterRelationship(TestCase):
 
     @classmethod
     def setUpClass(self):

@@ -5,7 +5,7 @@ from microfreshener.core.importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIO
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from microfreshener.core.errors import ImporterError
-class TestYMLLoaderRelationship(TestCase):
+class TestYMLImporterRelationship(TestCase):
 
     @classmethod
     def setUpClass(self):
@@ -74,28 +74,28 @@ class TestYMLLoaderRelationship(TestCase):
         self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True}})
  
     def test_get_relationship_template_c(self):
-            rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_C)
-            self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True}})
+        rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_C)
+        self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True}})
     
     def test_get_relationship_template_d(self):
-            rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_D)
-            self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY: True}})
+        rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_D)
+        self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY: True}})
     
     def test_get_relationship_template_tc(self):
-            rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_TC)
-            self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY:True}})
-    
+        rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_TC)
+        self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY:True}})
+
     def test_get_relationship_template_td(self):
-            rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_TD)
-            self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY:True}})
+        rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_TD)
+        self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY:True}})
     
     def test_get_relationship_template_cd(self):
-            rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_CD)
-            self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY:True}})
+        rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_CD)
+        self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY:True}})
     
     def test_get_relationship_template_tcd(self):
-            rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_TCD)
-            self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY:True}})
+        rel = self.importer._get_relationship_template_by_name(YML_RELATIONSHIP_TCD)
+        self.assertDictEqual(rel, {"type": MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, "properties": {MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY: True, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY:True}})
     
     def test_get_relationship_template_raise(self):
         with self.assertRaises(ImporterError):

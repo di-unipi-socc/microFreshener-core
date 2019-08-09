@@ -2,13 +2,14 @@
 MicroModelModel module
 '''
 import six
-from .nodes import Root, Service, Database, CommunicationPattern
-from .relationships import DeploymentTimeInteraction, RunTimeInteraction
+from .nodes import Root, Service, Database, CommunicationPattern, MessageRouter
+from .relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Team, Edge
-from ..errors import MicroToscaError
+from ..errors import MicroToscaModelError
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
+
 
 class MicroToscaModel:
 
@@ -40,14 +41,14 @@ class MicroToscaModel:
     @property
     def squads(self):
         return (v for k, v in self._groups.items() if isinstance(v, Team))
-    
+
     @property
     def edges(self):
         return (v for k, v in self._groups.items() if isinstance(v, Edge))
 
     def get_squad(self, name):
         return self._groups.get(name, None)
-    
+
     def get_group(self, name):
         return self._groups.get(name, None)
 
@@ -62,6 +63,12 @@ class MicroToscaModel:
         self._nodes[node.name] = node
         logger.debug("Added node {}".format(node))
 
+    # deprecated
+    def add_relationship_interactWith(self, relationship):
+        source_node = relationship.source
+        source_node.add_interactwith(relationship)
+        logger.debug(f"Added relationship from {relationship.source} to {relationship.target}")
+
     def delete_node(self, node):
         for rel in node.relationships:
             rel.target.remove_incoming_relationship(
@@ -72,21 +79,26 @@ class MicroToscaModel:
     def add_group(self, group):
         self._groups[group.name] = group
         logger.debug("Added group {}".format(group))
-  
+
     def get_node_by_name(self, name):
         for node in self.nodes:
             if node.name == name:
                 return node
         return None
-  
+
     def findByName(self, n):
-        for key, node in self._nodes.items(): 
+        for key, node in self._nodes.items():
             if (node.name == n):
                 return node
         return None
 
     def __getitem__(self, name):
-        return self._nodes.get(name, None)
+        node = self._nodes.get(name, None)
+        if node is None:
+            raise MicroToscaModelError(f"Node not found")
+        else:
+            return node
+        # return self._nodes.get(name, None)
 
     def __contains__(self, item):
         if isinstance(item, six.string_types):
@@ -97,4 +109,3 @@ class MicroToscaModel:
 
     def __str__(self):
         return ', '.join((i.name for i in self.nodes))
-

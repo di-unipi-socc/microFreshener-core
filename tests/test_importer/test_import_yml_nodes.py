@@ -3,7 +3,7 @@ from unittest import TestCase
 from microfreshener.core.importer import YMLImporter
 from microfreshener.core.model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 
-class TestYMLloaderNodes(TestCase):
+class TestYMLImporterNodes(TestCase):
 
     @classmethod
     def setUpClass(self):

@@ -3,6 +3,7 @@ Relationships module
 '''
 import six
 
+from ..errors import MicroToscaModelError, SelfLoopMicroToscaModelError
 
 def _get_str_name(obj):
     return obj if isinstance(obj, six.string_types) else obj.name
@@ -15,8 +16,12 @@ def _get_str_full_name(obj):
 class Relationship(object):
 
     def __init__(self, source, target):
-        self.source = source
-        self.target = target
+        if(source != target):
+            self.source = source
+            self.target = target
+        else:
+            raise SelfLoopMicroToscaModelError(
+                f"Self loop relationship are not allowed in MicroTosca. Trying to add relationship from {source} to {target}")
 
     def __repr__(self):
         return 's={0.source},t={0.target}'.format(self)
@@ -34,11 +39,16 @@ class Relationship(object):
 class InteractsWith(Relationship):
 
     def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None):
-        super(InteractsWith, self).__init__(source, target)
-        self.alias = alias
-        self.property_timeout = with_timeout
-        self.property_circuit_breaker = with_circuit_breaker
-        self.property_dynamic_discovery = with_dynamic_discovery
+        # TODO circular depenceics
+        from .nodes import  Service, Database, CommunicationPattern, MessageRouter
+        if(isinstance(source, Service) or isinstance(source, MessageRouter)):
+            super(InteractsWith, self).__init__(source, target)
+            self.alias = alias
+            self.property_timeout = with_timeout
+            self.property_circuit_breaker = with_circuit_breaker
+            self.property_dynamic_discovery = with_dynamic_discovery
+        else:
+            raise  MicroToscaModelError(f"InteractWith relationship cannot be created from {source} to {target}. {type(source).__name__}")
 
     @property
     def timeout(self):
@@ -70,7 +80,8 @@ class InteractsWith(Relationship):
         return {'source': str(self.source), 'target': str(self.target)}
 
     def __eq__(self, other):
-        return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout  and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
+        return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
+
 
 class DeploymentTimeInteraction(InteractsWith):
 

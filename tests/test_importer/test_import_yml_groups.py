@@ -2,7 +2,7 @@ from unittest import TestCase
 from microfreshener.core.importer import YMLImporter
 from microfreshener.core.model import Team, Edge
 
-class TestYMLloaderNodes(TestCase):
+class TestYMLImporterGroups(TestCase):
 
     @classmethod
     def setUpClass(self):

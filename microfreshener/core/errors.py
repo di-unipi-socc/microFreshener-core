@@ -1,12 +1,12 @@
-class MicroSmellerError(Exception):
+class MicroFreshenerError(Exception):
     """
     A base class from which all other exceptions inherit.
-    If you want to catch all errors that the MicroSmeller might raise,
+    If you want to catch all errors that the MicroFreshener might raise,
     catch this base exception.
     """
 
 
-class ImporterError(MicroSmellerError):
+class ImporterError(MicroFreshenerError):
     """Exception raised for errors in the Importer module.
 
     Attributes:
@@ -16,11 +16,16 @@ class ImporterError(MicroSmellerError):
     def __init__(self, message):
         self.message = message
 
-class ExporterError(MicroSmellerError):
+class ExporterError(MicroFreshenerError):
+    """Exception raised for errors in the Exporter module.
+
+    Attributes:
+        message -- explanation of the error
+    """
     pass
     
-class MicroToscaError(MicroSmellerError):
-    """Exception raised for errors in the Importer module.
+class MicroToscaModelError(MicroFreshenerError):
+    """Exception raised for errors in the MicroToscaModel module.
 
     Attributes:
         message -- explanation of the error
@@ -29,3 +34,13 @@ class MicroToscaError(MicroSmellerError):
     def __init__(self, message):
         self.message = message
 
+
+class SelfLoopMicroToscaModelError(MicroToscaModelError):
+    """Exception raised for sel loop rlationship
+
+    Attributes:
+        message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        super(SelfLoopMicroToscaModelError, self).__init__(message)

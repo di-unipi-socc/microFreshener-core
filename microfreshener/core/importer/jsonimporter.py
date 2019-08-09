@@ -3,12 +3,14 @@ import json
 from ..model import MicroToscaModel
 from ..model import Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import Edge, Team
+from ..model.relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
+
 from ..logging import MyLogger
 from .iimporter import Importer
-from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
-from ..model.type  import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
-from .jsontype import JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
-from .jsontype import  JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
+from ..model.type import MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
+from .jsontype import JSON_RELATIONSHIP_INTERACT_WITH, JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
+from .jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
 
 from ..errors import ImporterError
 logger = MyLogger().get_logger()
@@ -27,33 +29,47 @@ class JSONImporter(Importer):
             return self.micro_model
 
     def _load_nodes(self, json_data):
-        for node in json_data['nodes']:
-            type_node = node['type']
-            name_node = node['name']
-            if(type_node == JSON_NODE_SERVICE):
-                # logger.debug("Created service {}".format(name_node))
-                el = Service(name_node)
-            elif(type_node == JSON_NODE_MESSAGE_BROKER):
-                el = MessageBroker(name_node)
-            elif(type_node == JSON_NODE_MESSAGE_ROUTER):
-                el = MessageRouter(name_node)
-            elif(type_node == JSON_NODE_DATABASE):
-                el = Database(name_node)
-            else:
-                raise ImporterError(
-                    "{} Node type is not recognized".format(type_node))
-            self.micro_model.add_node(el)
-            logger.debug(f"Added node {el.name}")
+        for jnode in json_data['nodes']:
+            node = self.load_node_from_json(jnode)
+            self.micro_model.add_node(node)
+            logger.debug(f"Added node {node.name}")
+
+    def load_node_from_json(self, json_node):
+        if "type" not in json_node:
+            raise ImporterError(f"Attribute 'type' in missing in {json_node}")
+        type_node = json_node['type']
+        if "name" not in json_node:
+            raise ImporterError(f"Attribute 'name' in missing in {json_node}")
+        name_node = json_node['name']
+        if(type_node == JSON_NODE_SERVICE):
+            # logger.debug("Created service {}".format(name_node))
+            el = Service(name_node)
+        elif(type_node == JSON_NODE_MESSAGE_BROKER):
+            el = MessageBroker(name_node)
+        elif(type_node == JSON_NODE_MESSAGE_ROUTER):
+            el = MessageRouter(name_node)
+        elif(type_node == JSON_NODE_DATABASE):
+            el = Database(name_node)
+        else:
+            raise ImporterError(
+                "{} Node type is not recognized".format(type_node))
+        return el
 
     def _load_links(self, json_data):
         if("links") in json_data:
             for link in json_data['links']:
-                logger.debug(f"link: {link}")
+                # rel = self.load_link_from_json(link)
+                # if( isinstance(rel, RunTimeInteraction))
+                #     self.micro_model.add_relationship_interactWith(rel)
+                # else:
+                #     self.
+                # logger.debug(f"Added realtionship {rel}")
+                
                 ltype = link['type']
                 source = self.micro_model[link['source']]
                 target = self.micro_model[link['target']]
                 (is_timeout, is_circuit_breaker,
-                is_dynamic_discovery) = self._get_links_properties(link)
+                 is_dynamic_discovery) = self._get_links_properties(link)
                 if(ltype == JSON_RUN_TIME):
                     source.add_run_time(target, is_timeout,
                                         is_circuit_breaker, is_dynamic_discovery)
@@ -64,6 +80,32 @@ class JSONImporter(Importer):
                     raise ImporterError(
                         "Link type {} is not recognized".format(ltype))
                 logger.debug(f"Added link from {source} to {target}")
+
+    def load_link_from_json(self, link_json):
+        if "type" not in link_json:
+            raise ImporterError(f"Attribute 'type' in missing in {link_json}")
+        type_node = link_json['type']
+        if "source" not in link_json:
+            raise ImporterError(f"Attribute 'source' in missing in {link_json}")
+        source_node = self.micro_model[link_json['source']]
+        if "target" not in link_json:
+            raise ImporterError(f"Attribute 'target' in missing in {link_json}")
+        target_node = self.micro_model[link_json['target']]
+        (is_timeout, is_circuit_breaker, is_dynamic_discovery) = self._get_links_properties(link_json)
+        # TODO; remove  runtime and deployment time and use InteractWITH
+        # if(type_node == JSON_RELATIONSHIP_INTERACT_WITH):
+        if(type_node == JSON_RUN_TIME):
+            return RunTimeInteraction(source_node, target_node, with_timeout=is_timeout,
+                                         with_circuit_breaker=is_circuit_breaker, with_dynamic_discovery=is_dynamic_discovery)
+            # return InteractsWith(source_node, target_node, with_timeout=is_timeout,
+                                        #  with_circuit_breaker=is_circuit_breaker, with_dynamic_discovery=is_dynamic_discovery)
+        elif (type_node == JSON_DEPLOYMENT_TIME):
+            return DeploymentTimeInteraction(source_node, target_node, with_timeout=is_timeout,
+                                         with_circuit_breaker=is_circuit_breaker, with_dynamic_discovery=is_dynamic_discovery)
+        else:
+            raise ImporterError(f"Link type {type_node} not recognized")
+
+        
 
     def _get_links_properties(self, link_json):
         is_timeout = False
