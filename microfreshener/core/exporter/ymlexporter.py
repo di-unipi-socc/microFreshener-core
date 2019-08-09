@@ -9,7 +9,7 @@ from ..model.groups import RootGroup, Edge, Team
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
 from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model.type import  MICROTOSCA_GROUPS_EDGE, MICROTOSCA_GROUPS_TEAM
-from ..importer.ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
+from ..importer.ymltype import  YML_INTERACTION
 from ..importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
 from .iexporter import Exporter
 from ..errors import ExporterError
@@ -116,21 +116,21 @@ class YMLExporter(Exporter):
         d_rel = {}
         if(isinstance(rel, InteractsWith)):
             if(rel.timeout and not rel.circuit_breaker and not rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_T}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_T}
             elif(not rel.timeout and rel.circuit_breaker and not rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_C}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_C}
             elif(not rel.timeout and  not rel.circuit_breaker and rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_D}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_D}
             elif(rel.timeout and rel.circuit_breaker and not rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TC}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TC}
             elif(rel.timeout and not rel.circuit_breaker and rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TD}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TD}
             elif(not rel.timeout and rel.circuit_breaker and rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_CD}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_CD}
             elif(rel.timeout and rel.circuit_breaker and rel.dynamic_discovery):
-                d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TCD}
+                d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TCD}
             else:
-                d_rel[YML_RUN_TIME] = rel.target.name
+                d_rel[YML_INTERACTION] = rel.target.name
         else:
             raise ExporterError('{} relationship not recognized.'.format(rel))
         return d_rel
