@@ -13,59 +13,57 @@ class Root(object):
     def __init__(self, name):
         self.name = name
 
-       
-
         # reverse requirements (deprecated)
         self.up_deployment_time_requirements = []
         self.up_run_time_requirements = []
 
-        #  # relationships of a node 
-        # self._outcoming_relationships = []
-        # self._incoming_relationships = []
+         # relationships of a node 
+        self._outcoming_relationships = []
+        self._incoming_relationships = []
     
-    # ###### NEW relationships
-    # def add_outcoming_relationship(self, relationship):
-    #     self._outcoming_relationships.append(relationship)
+    ###### NEW relationships
+    def add_outcoming_relationship(self, relationship):
+        self._outcoming_relationships.append(relationship)
     
-    # def add_incoming_relationship(self, relationship):
-    #     self._incoming_relationships.append(relationship)
+    def add_incoming_relationship(self, relationship):
+        self._incoming_relationships.append(relationship)
 
-    # @property
-    # def incoming(self):
-    #     return self._incoming_relationships
+    @property
+    def incoming(self):
+        return self._incoming_relationships
 
-    # @property
-    # def incoming_run_time(self):
-    #     return [rel for rel in self._incoming_relationships if isinstance(rel, RunTimeInteraction))]
+    @property
+    def incoming_run_time(self):
+        return [rel for rel in self._incoming_relationships if isinstance(rel, RunTimeInteraction))]
 
-    # @property
-    # def incoming_deployment_time(self):
-    #     return [rel for rel in self._incoming_relationships if isinstance(rel, DeploymentTimeInteraction))
+    @property
+    def incoming_deployment_time(self):
+        return [rel for rel in self._incoming_relationships if isinstance(rel, DeploymentTimeInteraction))
 
-    # def remove_incoming_relationship(self, relationship):
-    #     if relationship in self._incoming_relationships:
-    #         self._incoming_relationships.remove(relationship)
+    def remove_incoming_relationship(self, relationship):
+        if relationship in self._incoming_relationships:
+            self._incoming_relationships.remove(relationship)
 
 
     #### END new relatinshis
 
-    def remove_incoming_relationship(self, relationship):
-        if isinstance(relationship, RunTimeInteraction) and relationship in self.up_run_time_requirements:
-            self.up_run_time_requirements.remove(relationship)
-        if isinstance(relationship, DeploymentTimeInteraction) and relationship in self.up_deployment_time_requirements:
-            self.up_deployment_time_requirements.remove(relationship)
+    # def remove_incoming_relationship(self, relationship):
+    #     if isinstance(relationship, RunTimeInteraction) and relationship in self.up_run_time_requirements:
+    #         self.up_run_time_requirements.remove(relationship)
+    #     if isinstance(relationship, DeploymentTimeInteraction) and relationship in self.up_deployment_time_requirements:
+    #         self.up_deployment_time_requirements.remove(relationship)
 
-    @property
-    def incoming(self):
-        return self.up_deployment_time_requirements + self.up_run_time_requirements
+    # @property
+    # def incoming(self):
+    #     return self.up_deployment_time_requirements + self.up_run_time_requirements
 
-    @property
-    def incoming_run_time(self):
-        return self.up_run_time_requirements
+    # @property
+    # def incoming_run_time(self):
+    #     return self.up_run_time_requirements
 
-    @property
-    def incoming_deployment_time(self):
-        return self.up_deployment_time_requirements
+    # @property
+    # def incoming_deployment_time(self):
+    #     return self.up_deployment_time_requirements
 
     def __str__(self):
         return self.name
