@@ -58,54 +58,41 @@ class JSONImporter(Importer):
     def _load_links(self, json_data):
         if("links") in json_data:
             for link in json_data['links']:
-                # rel = self.load_link_from_json(link)
-                # if( isinstance(rel, RunTimeInteraction))
-                #     self.micro_model.add_relationship_interactWith(rel)
-                # else:
-                #     self.
-                # logger.debug(f"Added realtionship {rel}")
-                
-                ltype = link['type']
-                source = self.micro_model[link['source']]
-                target = self.micro_model[link['target']]
-                (is_timeout, is_circuit_breaker,
-                 is_dynamic_discovery) = self._get_links_properties(link)
-                if(ltype == JSON_RUN_TIME):
-                    source.add_run_time(target, is_timeout,
-                                        is_circuit_breaker, is_dynamic_discovery)
-                elif (ltype == JSON_DEPLOYMENT_TIME):
-                    source.add_deployment_time(
-                        target, is_timeout, is_circuit_breaker, is_dynamic_discovery)
+                (relation, source, target) = self.load_type_source_target_from_json(link)
+                if(relation == JSON_RELATIONSHIP_INTERACT_WITH):
+                    (with_timeout, with_circuit_breaker, with_dynamic_discovery) = self._get_links_properties(link)
+                    source.add_interaction(target, with_timeout, with_circuit_breaker, with_dynamic_discovery)
                 else:
-                    raise ImporterError(
-                        "Link type {} is not recognized".format(ltype))
-                logger.debug(f"Added link from {source} to {target}")
+                    raise ImporterError(f"Link type {relation} not recognized")
+                # ltype = link['type']
+                # source = self.micro_model[link['source']]
+                # target = self.micro_model[link['target']]
+                # (is_timeout, is_circuit_breaker,
+                #  is_dynamic_discovery) = self._get_links_properties(link)
+                # if(ltype == JSON_RUN_TIME):
+                #     source.add_run_time(target, is_timeout,
+                #                         is_circuit_breaker, is_dynamic_discovery)
+                # elif (ltype == JSON_DEPLOYMENT_TIME):
+                #     source.add_deployment_time(
+                #         target, is_timeout, is_circuit_breaker, is_dynamic_discovery)
+                # else:
+                #     raise ImporterError(
+                #         "Link type {} is not recognized".format(ltype))
+                # logger.debug(f"Added link from {source} to {target}")
 
-    def load_link_from_json(self, link_json):
+    def load_type_source_target_from_json(self, link_json):
         if "type" not in link_json:
             raise ImporterError(f"Attribute 'type' in missing in {link_json}")
-        type_node = link_json['type']
+        type_requirement = link_json['type']
         if "source" not in link_json:
-            raise ImporterError(f"Attribute 'source' in missing in {link_json}")
+            raise ImporterError(
+                f"Attribute 'source' in missing in {link_json}")
         source_node = self.micro_model[link_json['source']]
         if "target" not in link_json:
-            raise ImporterError(f"Attribute 'target' in missing in {link_json}")
+            raise ImporterError(
+                f"Attribute 'target' in missing in {link_json}")
         target_node = self.micro_model[link_json['target']]
-        (is_timeout, is_circuit_breaker, is_dynamic_discovery) = self._get_links_properties(link_json)
-        # TODO; remove  runtime and deployment time and use InteractWITH
-        # if(type_node == JSON_RELATIONSHIP_INTERACT_WITH):
-        if(type_node == JSON_RUN_TIME):
-            return RunTimeInteraction(source_node, target_node, with_timeout=is_timeout,
-                                         with_circuit_breaker=is_circuit_breaker, with_dynamic_discovery=is_dynamic_discovery)
-            # return InteractsWith(source_node, target_node, with_timeout=is_timeout,
-                                        #  with_circuit_breaker=is_circuit_breaker, with_dynamic_discovery=is_dynamic_discovery)
-        elif (type_node == JSON_DEPLOYMENT_TIME):
-            return DeploymentTimeInteraction(source_node, target_node, with_timeout=is_timeout,
-                                         with_circuit_breaker=is_circuit_breaker, with_dynamic_discovery=is_dynamic_discovery)
-        else:
-            raise ImporterError(f"Link type {type_node} not recognized")
-
-        
+        return (type_requirement, source_node, target_node)
 
     def _get_links_properties(self, link_json):
         is_timeout = False

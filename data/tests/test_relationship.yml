@@ -11,26 +11,26 @@ topology_template:
     source:
       type: micro.nodes.Service
       requirements:
-        - run_time: target
-        - run_time:
+        - interaction: target
+        - interaction:
             node: target_t
             relationship: t
-        - run_time:
+        - interaction:
             node: target_c
             relationship: c
-        - run_time:
+        - interaction:
             node: target_d
             relationship: d
-        - run_time:
+        - interaction:
             node: target_tc
             relationship: tc
-        - run_time:
+        - interaction:
             node: target_td
             relationship: td
-        - run_time:
+        - interaction:
             node: target_cd
             relationship: cd
-        - run_time:
+        - interaction:
             node: target_tcd
             relationship: tcd
     target:
@@ -54,26 +54,26 @@ topology_template:
     source_same:
       type: micro.nodes.Service
       requirements:
-        - run_time: target_same
-        - run_time:
+        - interaction: target_same
+        - interaction:
             node: target_same
             relationship: t
-        - run_time:
+        - interaction:
             node: target_same
             relationship: c
-        - run_time:
+        - interaction:
             node: target_same
             relationship: d
-        - run_time:
+        - interaction:
             node: target_same
             relationship: tc
-        - run_time:
+        - interaction:
             node: target_same
             relationship: td
-        - run_time:
+        - interaction:
             node: target_same
             relationship: cd
-        - run_time:
+        - interaction:
             node: target_same
             relationship: tcd
     target_same:

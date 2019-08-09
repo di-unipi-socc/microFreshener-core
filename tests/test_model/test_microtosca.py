@@ -15,7 +15,7 @@ class TestMicroTosca(TestCase):
     
     def test_get_node_error(self):
         with self.assertRaises(MicroToscaModelError):        
-            self.microtosca['notexistingnode']
+            self.microtosca['gerNotExistingNode']
 
     def test_add_service_node(self):
         self.service_name = "s1"

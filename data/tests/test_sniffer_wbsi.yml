@@ -12,47 +12,47 @@ topology_template:
     source:
       type: micro.nodes.Service
       requirements:
-        - run_time: target
+        - interaction: target
     source_t:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: t
     source_c:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: c
     source_d:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: d
     source_tc:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: tc
     source_td:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: td
     source_cd:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: cd
     source_tcd:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target
             relationship: tcd
     
@@ -60,54 +60,54 @@ topology_template:
     source_mr:
       type: micro.nodes.Service
       requirements:
-        - run_time: mr
+        - interaction: mr
     source_mr_t:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: t
     source_mr_c:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: c
     source_mr_d:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: d
     source_mr_tc:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: tc
     source_mr_td:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: td
     source_mr_cd:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: cd
     source_mr_tcd:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: mr
             relationship: tcd
     # from message router to Service
     mr:
       type: micro.nodes.MessageRouter
       requirements:
-        - run_time: target
+        - interaction: target
 
   relationship_templates:
     t: # with Timeout

@@ -3,7 +3,7 @@ from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
 
 from ..model import MicroToscaModel
-from ..model  import RunTimeInteraction, DeploymentTimeInteraction
+from ..model  import InteractsWith
 from ..model import Root, Service, Database, CommunicationPattern, MessageBroker, MessageRouter
 from ..model.groups import RootGroup, Edge, Team
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
@@ -106,7 +106,7 @@ class YMLExporter(Exporter):
         d_node['type'] = node_type
 
         requirements = []
-        for rel in node.relationships:
+        for rel in node.interactions:
             requirements.append(self._transform_relationship(rel))
         if(requirements):
             d_node['requirements'] = requirements
@@ -114,9 +114,7 @@ class YMLExporter(Exporter):
 
     def _transform_relationship(self, rel):
         d_rel = {}
-        if(isinstance(rel, DeploymentTimeInteraction)):
-            d_rel[YML_DEPLOYMENT_TIME] = rel.target.name
-        elif(isinstance(rel, RunTimeInteraction)):
+        if(isinstance(rel, InteractsWith)):
             if(rel.timeout and not rel.circuit_breaker and not rel.dynamic_discovery):
                 d_rel[YML_RUN_TIME] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_T}
             elif(not rel.timeout and rel.circuit_breaker and not rel.dynamic_discovery):

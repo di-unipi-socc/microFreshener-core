@@ -6,7 +6,7 @@ from microfreshener.core.analyser.smell import SharedPersistencySmell
 from microfreshener.core.model.groups import Edge
 
 
-class TestWobblyserviceInteractionSmell(TestCase):
+class TestSharedPersitence(TestCase):
 
     @classmethod
     def setUpClass(self):

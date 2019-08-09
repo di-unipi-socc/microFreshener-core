@@ -37,8 +37,11 @@ class TestJSONImporterNodes(TestCase):
     def load_test_exceptions(self):
         with self.assertRaises(ImporterError):
             self.importer.load_node_from_json({"notype": JSON_NODE_SERVICE, "name": "prova"})
+        with self.assertRaises(ImporterError):
             self.importer.load_node_from_json({"type": JSON_NODE_SERVICE, "noname": "prova"})
+        with self.assertRaises(ImporterError):
             self.importer.load_node_from_json({"notype": JSON_NODE_SERVICE, "noname": "prova"})
+        with self.assertRaises(ImporterError):
             self.importer.load_node_from_json({})
 
     def test_load_node_service(self):

@@ -4,6 +4,7 @@ from microfreshener.core.importer import JSONImporter
 
 class TestJSONImporterRelationship(TestCase):
 
+
     @classmethod
     def setUpClass(self):
         file = 'data/tests/test_relationship.json'
@@ -61,7 +62,7 @@ class TestJSONImporterRelationship(TestCase):
     def _load_relationship_from_source_to_target(self, source_name, target_name):
         source = self.microtosca[source_name]
         target = self.microtosca[target_name]
-        links_to_target = [link for link in source.run_time if link.target == target]
+        links_to_target = [link for link in source.interactions if link.target == target]
         self.assertEqual(len(links_to_target), 1)
         return links_to_target[0]
 

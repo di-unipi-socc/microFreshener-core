@@ -25,49 +25,39 @@
     "links": [
         {
             "source": "shipping",
-            "target": "order_db",
-            "type": "runtime"
-        },
-        {
-            "source": "shipping",
             "target": "rabbitmq",
-            "type": "runtime"
+            "type": "interaction"
         },
         {
             "source": "shipping",
             "target": "order_db",
-            "type": "deploymenttime"
+            "type": "interaction"
         },
         {
             "source": "order",
             "target": "shipping",
-            "type": "runtime",
+            "type": "interaction",
             "timeout": true
         },
         {
             "source": "order",
             "target": "order_db",
-            "type": "runtime"
+            "type": "interaction"
         },
         {
             "source": "order",
             "target": "rabbitmq",
-            "type": "runtime"
+            "type": "interaction"
         },
         {
             "source": "order",
             "target": "shipping",
-            "type": "deploymenttime"
-        },
-        {
-            "source": "order",
-            "target": "order_db",
-            "type": "deploymenttime"
+            "type": "interaction"
         },
         {
             "source": "gateway",
             "target": "shipping",
-            "type": "runtime"
+            "type": "interaction"
         }
     ],
     "groups": [

@@ -36,7 +36,7 @@ class EndpointBasedServiceInteractionSmellSniffer(NodeSmellSniffer):
     @visitor(Service)
     def snif(self, node):
         smell = EndpointBasedServiceInteractionSmell(node)
-        for up_rt in node.up_run_time_requirements:
+        for up_rt in node.incoming_interactions:
             if(isinstance(up_rt.source, Service)) and up_rt.dynamic_discovery == False:
                 smell.addLinkCause(up_rt)
         return smell
@@ -54,7 +54,7 @@ class WobblyServiceInteractionSmellSniffer(NodeSmellSniffer):
     @visitor(Service)
     def snif(self, node):
         smell = WobblyServiceInteractionSmell(node)
-        for rt in node.run_time:
+        for rt in node.interactions:
             if ((isinstance(rt.target, Service) or isinstance(rt.target, MessageRouter)) and rt.circuit_breaker == False and rt.timeout == False):
                 smell.addLinkCause(rt)
         return smell
@@ -72,9 +72,9 @@ class SharedPersistencySmellSniffer(NodeSmellSniffer):
     @visitor(Database)
     def snif(self, database)->SharedPersistencySmell:
         smell = SharedPersistencySmell(database)
-        nodes = set(link.source for link in database.incoming)
+        nodes = set(link.source for link in database.incoming_interactions)
         if (len(nodes) > 1):
-            for link in database.incoming:
+            for link in database.incoming_interactions:
                 smell.addLinkCause(link)
         return smell
 
@@ -104,7 +104,7 @@ class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
     def snif(self, group: Team)->CrossTeamDataManagementSmell:
         smell = CrossTeamDataManagementSmell(group)
         for node in group.members:
-            for relationship in node.relationships:
+            for relationship in node.interactions:
                 source_node = relationship.source
                 target_node = relationship.target
                 source_squad = self.micro_model.squad_of(source_node)

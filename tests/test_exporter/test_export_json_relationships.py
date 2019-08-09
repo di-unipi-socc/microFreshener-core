@@ -67,7 +67,7 @@ class TestJSONTranformer(TestCase):
         source = self.microtosca[source_name]
         target = self.microtosca[target_name]
         link_to_target = [
-            link for link in source.run_time if link.target == target]
+            link for link in source.interactions if link.target == target]
         self.assertEqual(len(link_to_target), 1)
         rel_dict = self.tranformer._transform_relationship(link_to_target[0])
         return rel_dict

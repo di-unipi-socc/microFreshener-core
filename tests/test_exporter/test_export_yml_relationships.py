@@ -7,7 +7,7 @@ from microfreshener.core.importer.ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TI
 from microfreshener.core.importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY,MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
-class TestJSONTranformer(TestCase):
+class TestYmlExporterRelationships(TestCase):
 
     @classmethod
     def setUpClass(self):
@@ -59,11 +59,12 @@ class TestJSONTranformer(TestCase):
         source = self.microtosca[source_name]
         target = self.microtosca[target_name]
         link_to_target = [
-            link for link in source.run_time if link.target == target]
+            link for link in source.interactions if link.target == target]
         self.assertEqual(len(link_to_target), 1)
         rel_dict = self.exporter._transform_relationship(link_to_target[0])
         return rel_dict
     
+
 
     def test_build_relationship_templates_t(self):
         rel = self.exporter.build_relationship_templates()

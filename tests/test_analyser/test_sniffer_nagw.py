@@ -21,7 +21,16 @@ class TestNoApiGatewaySmell(TestCase):
         self.assertEqual(len(edge.members), 3)
         smells = self.apgwSniffer.snif(edge)
         for smell in smells: 
-            self.assertIsInstance(smell,NoApiGatewaySmell)
+            self.assertIsInstance(smell, NoApiGatewaySmell)
+        self.assertEqual(len(smells), 2)
+    
+    def test_yes_apgw2(self):
+        edge = self.micro_model.get_group("edgenodes2")
+        self.assertIsInstance(edge, Edge)
+        self.assertEqual(len(edge.members), 3)
+        smells = self.apgwSniffer.snif(edge)
+        for smell in smells: 
+            self.assertIsInstance(smell, NoApiGatewaySmell)
         self.assertEqual(len(smells), 2)
 
     def test_no_apgw(self):

@@ -63,12 +63,6 @@ class MicroToscaModel:
         self._nodes[node.name] = node
         logger.debug("Added node {}".format(node))
 
-    # deprecated
-    def add_relationship_interactWith(self, relationship):
-        source_node = relationship.source
-        source_node.add_interactwith(relationship)
-        logger.debug(f"Added relationship from {relationship.source} to {relationship.target}")
-
     def delete_node(self, node):
         for rel in node.relationships:
             rel.target.remove_incoming_relationship(
@@ -95,7 +89,7 @@ class MicroToscaModel:
     def __getitem__(self, name):
         node = self._nodes.get(name, None)
         if node is None:
-            raise MicroToscaModelError(f"Node not found")
+            raise MicroToscaModelError(f"Node {name} doe not exist")
         else:
             return node
         # return self._nodes.get(name, None)

@@ -10,26 +10,26 @@ topology_template:
     source:
       type: micro.nodes.Service
       requirements:
-        - run_time: target
-        - run_time:
+        - interaction: target
+        - interaction:
             node: target_t
             relationship: t
-        - run_time:
+        - interaction:
             node: target_c
             relationship: c
-        - run_time:
+        - interaction:
             node: target_d
             relationship: d
-        - run_time:
+        - interaction:
             node: target_tc
             relationship: tc
-        - run_time:
+        - interaction:
             node: target_td
             relationship: td
-        - run_time:
+        - interaction:
             node: target_cd
             relationship: cd
-        - run_time:
+        - interaction:
             node: target_tcd
             relationship: tcd
     target:
@@ -53,11 +53,11 @@ topology_template:
     source1: 
       type: micro.nodes.Service
       requirements:
-        - run_time: target_multi
+        - interaction: target_multi
     source2:
       type: micro.nodes.Service
       requirements:
-        - run_time: target_multi
+        - interaction: target_multi
     target_multi: 
       type: micro.nodes.Service
     
@@ -65,33 +65,33 @@ topology_template:
     source3: 
       type: micro.nodes.Service
       requirements:
-        - run_time: target_composite
-        - run_time:
+        - interaction: target_composite
+        - interaction:
             node: target_composite
             relationship: t
     source4:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target_composite
             relationship: t
-        - run_time:
+        - interaction:
             node: target_composite
             relationship: tc
     source5:
       type: micro.nodes.Service
       requirements:
-        - run_time:
+        - interaction:
             node: target_composite
             relationship: c
-        - run_time:
+        - interaction:
             node: target_composite
             relationship: tcd
     source6:
       type: micro.nodes.Service
       requirements:
-        - run_time: target_composite
-        - run_time:
+        - interaction: target_composite
+        - interaction:
             node: target_composite
             relationship: tcd
     target_composite: 
@@ -101,8 +101,8 @@ topology_template:
     source7:
       type: micro.nodes.Service
       requirements:
-       - run_time: db
-       - run_time: cp
+       - interaction: db
+       - interaction: cp
     db:
       type: micro.nodes.Database
     cp:

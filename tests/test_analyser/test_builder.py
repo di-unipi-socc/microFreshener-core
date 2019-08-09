@@ -13,7 +13,6 @@ class TestAnalyserBUilder(unittest.TestCase):
         loader = YMLImporter()
         self.micro_object = loader.Import(file)
     
-    @unittest.skip("demonstrating skipping")
     def test_AddSmellSniffer(self):
         builder = MicroToscaAnalyserBuilder(self.micro_object)
         builder.add_smell(4)
@@ -22,7 +21,7 @@ class TestAnalyserBUilder(unittest.TestCase):
         self.assertEqual(len(sniffers), 1)
         self.assertIsInstance(sniffers[0], WobblyServiceInteractionSmellSniffer)
 
-    @unittest.skip("demonstrating skipping")
+    @unittest.skip("ignore smell functionality is not implemented")
     def test_AddIgnoreSmellForNode(self):
         builder = MicroToscaAnalyserBuilder(self.micro_object)
         order = self.micro_object['order']
@@ -31,7 +30,7 @@ class TestAnalyserBUilder(unittest.TestCase):
         self.assertTrue(len(analyser.get_ignore_smells_for_node(order)),1)
         self.assertIsInstance(analyser.get_ignore_smells_for_node(order)[0], WobblyServiceInteractionSmellSniffer)
 
-    @unittest.skip("demonstrating skipping")    
+    @unittest.skip("ignore smell functionality is not implemented")   
     def test_IgnoredSmellAnalysis(self):
         builder = MicroToscaAnalyserBuilder(self.micro_object)
         shipping = self.micro_object['shipping']

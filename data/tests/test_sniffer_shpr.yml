@@ -11,24 +11,24 @@ topology_template:
     s1:
       type: micro.nodes.Service
       requirements:
-        - run_time: db
+        - interaction: db
     s2:
       type: micro.nodes.Service
       requirements:
-        - run_time: db 
+        - interaction: db 
     s3:
       type: micro.nodes.Service
       requirements:
-        - run_time: db
+        - interaction: db
         
     s4:
       type: micro.nodes.Service
       requirements:
-        - run_time: db2
-        - run_time:
+        - interaction: db2
+        - interaction:
             node: db2
             relationship: t
-        - run_time:
+        - interaction:
             node: db2
             relationship: t
     db:

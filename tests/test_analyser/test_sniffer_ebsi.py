@@ -4,7 +4,8 @@ from microfreshener.core.analyser.sniffer import EndpointBasedServiceInteraction
 from microfreshener.core.analyser.smell import EndpointBasedServiceInteractionSmell
 
 
-class TestEBSE(TestCase):
+class TestEndpointBasedServiceInteraction(TestCase):
+    
 
     @classmethod
     def setUpClass(self):

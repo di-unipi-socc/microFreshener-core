@@ -27,59 +27,53 @@ class TestModelRelationships(TestCase):
         source_node = self.microtosca[self.service_name]
         rel = InteractsWith(source_node, self.microtosca[self.database_name])
         self.assertEqual(rel.source, source_node)
+        self.assertIsInstance(rel.source, Service)
         self.assertEqual(rel.target, self.microtosca[self.database_name])
+        self.assertIsInstance(rel.target, Database)
 
-    def test_add_interactwith_from_service(self):
+    def test_add_interaction_from_service(self):
         source = self.microtosca[self.service_name]
         target = self.microtosca[self.database_name]
-        rel = InteractsWith(source, target)
-        self.microtosca.add_relationship_interactWith(rel)
-        self.assertEqual(len(source.relationships), 1)
-        self.assertIn(rel, source.relationships)
-        self.assertIn(rel, target.incoming)
+        rel = source.add_interaction(target)
+        self.assertEqual(len(source.interactions), 1)
+        self.assertIn(rel, source.interactions)
+        self.assertIn(rel, target.incoming_interactions)
 
-    def test_add_interactwith_from_messagerouter(self):
+    def test_add_interaction_from_messagerouter(self):
         source = self.microtosca[self.messagerouter_name]
         target = self.microtosca[self.service_name]
-        rel = InteractsWith(source, target)
-        self.microtosca.add_relationship_interactWith(rel)
-        self.assertEqual(len(source.relationships), 1)
-        self.assertIn(rel, source.relationships)
-        self.assertIn(rel, target.incoming)
+        rel = source.add_interaction(target)
+        self.assertEqual(len(source.interactions), 1)
+        self.assertIn(rel, source.interactions)
+        self.assertIn(rel, target.incoming_interactions)
 
-    def test_add_interactwith_database_error(self):
+    def test_add_interaction_database_error(self):
+        # test that database cannot be a source of the interactiwth interaction
         source = self.microtosca[self.database_name]
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.service_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
+            source.add_interaction(target)
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.messagebroker_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
+            source.add_interaction(target)
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.messagerouter_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
-
-    def test_add_interactwith_messagebroker_error(self):
+            source.add_interaction(target)
+           
+    def test_add_interaction_messagebroker_error(self):
         source = self.microtosca[self.messagebroker_name]
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.service_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
+            source.add_interaction(target)
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.messagerouter_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
+            source.add_interaction(target)
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.database_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
+            source.add_interaction(target)
 
-    def test_add_interactwith_selfloop_error(self):
+    def test_add_interaction_selfloop_error(self):
         with self.assertRaises(SelfLoopMicroToscaModelError):
             source = self.microtosca[self.service_name]
             target = self.microtosca[self.service_name]
-            self.microtosca.add_relationship_interactWith(
-                InteractsWith(source, target))
+            source.add_interaction(target)

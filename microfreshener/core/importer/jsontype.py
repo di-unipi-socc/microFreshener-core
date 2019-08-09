@@ -1,6 +1,6 @@
 # Relationship instance name
 
-JSON_RELATIONSHIP_INTERACT_WITH = "interactwith"
+JSON_RELATIONSHIP_INTERACT_WITH = "interaction"
 JSON_RUN_TIME = "runtime"
 JSON_DEPLOYMENT_TIME = "deploymenttime"
 

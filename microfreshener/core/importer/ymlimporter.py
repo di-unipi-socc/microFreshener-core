@@ -8,10 +8,10 @@ from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_COMMUNICATIO
 from ..model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
-from .ymltype import YML_RUN_TIME, YML_DEPLOYMENT_TIME
+from .ymltype import YML_INTERACTION
 from .ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
 from .ymltype import YML_RELATIONSHIP_TEMPLATE
-from ..errors import ImporterError
+from ..errors import YMLImporterError
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
@@ -42,9 +42,11 @@ class YMLImporter(Importer):
             if name in self.relationship_templates:
                 return self.relationship_templates[name]
             else:
-                raise ImporterError(f"Relationship template  {name} does not exist")
+                raise YMLImporterError(
+                    f"Relationship template  {name} does not exist")
         else:
-            raise ImporterError(f"Relationship template {name} is not a valid relationship template.")
+            raise YMLImporterError(
+                f"Relationship template {name} is not a valid relationship template.")
 
     def _get_relationship_property_values(self, relationship):
         is_timeout = False
@@ -55,7 +57,8 @@ class YMLImporter(Importer):
         if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY in relationship['properties']:
             is_circuit_breaker = relationship['properties'][MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY]
         if MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY in relationship['properties']:
-            is_dynamic_discovery = relationship['properties'][MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY]
+            is_dynamic_discovery = relationship['properties'][
+                MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY]
         return (is_timeout, is_circuit_breaker, is_dynamic_discovery)
 
     def _add_nodes(self):
@@ -72,9 +75,11 @@ class YMLImporter(Importer):
             elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER:
                 el = MessageRouter(node_name)
             elif node_type == MICROTOSCA_NODES_COMMUNICATIONPATTERN:
-                raise ImporterError(f"The node type {MICROTOSCA_NODES_COMMUNICATIONPATTERN} cannot be istantiated.")
+                raise YMLImporterError(
+                    f"The node type {MICROTOSCA_NODES_COMMUNICATIONPATTERN} cannot be istantiated.")
             else:
-                raise ImporterError(f"The node type {node_type} not recognized.")
+                raise YMLImporterError(
+                    f"The node type {node_type} not recognized.")
             self.micro_model.add_node(el)
 
     def _add_relationships(self):
@@ -93,27 +98,29 @@ class YMLImporter(Importer):
                     elif isinstance(target_type, ruamel.yaml.comments.CommentedMap):
                         for key, value in target_type.items():
                             if(key == "relationship"):
-                                rel = self._get_relationship_template_by_name(value)
+                                rel = self._get_relationship_template_by_name(
+                                    value)
                                 (is_timeout, is_circuit_breaker,
                                  is_dynamic_discovery) = self._get_relationship_property_values(rel)
                             elif key == "node":
                                 target_node = self.micro_model[value]
                             else:
-                                raise ImporterError(
+                                raise YMLImporterError(
                                     "Relationship {} not recognized ".format(key))
                     else:
-                        raise ImporterError(
+                        raise YMLImporterError(
                             "Target type {} of relatinoship {} not recognized ".format(target_type, req))
-                    if(interaction_type == YML_RUN_TIME):
-                        source_node.add_run_time(
+                    if(interaction_type == YML_INTERACTION):
+                        source_node.add_interaction(
                             target_node, is_timeout, is_circuit_breaker, is_dynamic_discovery)
-                    if(interaction_type == YML_DEPLOYMENT_TIME):
-                        source_node.add_deployment_time(
-                            target_node, with_timeout=is_timeout)
+                    else:
+                        raise YMLImporterError(
+                            f"Type of interaction {interaction_type} not recognied")
 
     def _add_groups(self):
         if 'groups' in self.micro_yml.get('topology_template'):
-            groups_ruamel = self.micro_yml.get('topology_template').get('groups')
+            groups_ruamel = self.micro_yml.get(
+                'topology_template').get('groups')
             for (group_name, ordered_dict) in groups_ruamel.items():
                 group_type = self.get_type(ordered_dict)
                 if group_type == MICROTOSCA_GROUPS_TEAM:

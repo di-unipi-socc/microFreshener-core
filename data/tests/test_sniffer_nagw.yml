@@ -9,6 +9,8 @@ topology_template:
   node_templates:
     sr:
       type: micro.nodes.Service
+    sr2:
+      type: micro.nodes.Service
     db:
       type: micro.nodes.Database
     mr:
@@ -26,3 +28,7 @@ topology_template:
     edgenodes1:
       type: micro.groups.Edge
       members: [mr, mr1, db]
+    
+    edgenodes2:
+      type: micro.groups.Edge
+      members: [sr, sr2, mr]

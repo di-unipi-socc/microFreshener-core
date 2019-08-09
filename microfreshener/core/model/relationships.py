@@ -33,7 +33,8 @@ class Relationship(object):
         return hash(self.source)+hash(self.target)
 
     def to_dict(self):
-        return {'source': str(self.source), 'target': str(self.target)}
+        # return {'source': str(self.source), 'target': str(self.target)}
+        return {'source': self.source.name, 'target': self.target.name}
 
 
 class InteractsWith(Relationship):
@@ -76,12 +77,12 @@ class InteractsWith(Relationship):
     def __repr__(self):
         return 'InteractsWith({})'.format(super(InteractsWith, self).__repr__())
 
-    def to_dict(self):
-        return {'source': str(self.source), 'target': str(self.target)}
-
     def __eq__(self, other):
         return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
 
+    def to_dict(self):
+        # return {'source': str(self.source), 'target': str(self.target)}
+        return {'source': self.source.name, 'target': self.target.name, "type": "interaction"}
 
 class DeploymentTimeInteraction(InteractsWith):
 

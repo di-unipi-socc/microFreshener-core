@@ -10,18 +10,18 @@ topology_template:
     s1:
       type: micro.nodes.Service
       requirements:
-        - run_time: db1
-        - run_time: db2
-        - run_time: db3
+        - interaction: db1
+        - interaction: db2
+        - interaction: db3
     s2:
       type: micro.nodes.Service
       requirements:
-        - run_time: db2
-        - run_time: db3
+        - interaction: db2
+        - interaction: db3
     s3:
       type: micro.nodes.Service
       requirements:
-        - run_time: db3
+        - interaction: db3
     db1:
       type: micro.nodes.Database
     db2:

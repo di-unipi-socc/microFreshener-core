@@ -42,51 +42,51 @@
     {
       "source": "source",
       "target": "target",
-      "type": "runtime"
+      "type": "interaction"
     },
     {
       "source": "source",
       "target": "target_t",
-      "type": "runtime",
+      "type": "interaction",
       "timeout": true
     },
     {
       "source": "source",
       "target": "target_c",
-      "type": "runtime",
+      "type": "interaction",
       "circuit_breaker": true
     },
     {
       "source": "source",
       "target": "target_d",
-      "type": "runtime",
+      "type": "interaction",
       "dynamic_discovery": true
     },
     {
       "source": "source",
       "target": "target_tc",
-      "type": "runtime",
+      "type": "interaction",
       "timeout": true,
       "circuit_breaker": true
     },
     {
       "source": "source",
       "target": "target_td",
-      "type": "runtime",
+      "type": "interaction",
       "timeout": true,
       "dynamic_discovery": true
     },
     {
       "source": "source",
       "target": "target_cd",
-      "type": "runtime",
+      "type": "interaction",
       "circuit_breaker": true,
       "dynamic_discovery": true
     },
     {
       "source": "source",
       "target": "target_tcd",
-      "type": "runtime",
+      "type": "interaction",
       "timeout": true,
       "circuit_breaker": true,
       "dynamic_discovery": true

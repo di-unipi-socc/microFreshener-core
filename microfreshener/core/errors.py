@@ -16,6 +16,10 @@ class ImporterError(MicroFreshenerError):
     def __init__(self, message):
         self.message = message
 
+class YMLImporterError(ImporterError):
+
+    def __init__(self, message):
+           super(YMLImporterError, self).__init__(message)
 class ExporterError(MicroFreshenerError):
     """Exception raised for errors in the Exporter module.
 
