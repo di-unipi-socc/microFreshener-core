@@ -24,7 +24,6 @@ class MyYAML(YAML):
         if inefficient:
             return stream.getvalue()
 
-
 class YMLExporter(Exporter):
 
     def __init__(self):
