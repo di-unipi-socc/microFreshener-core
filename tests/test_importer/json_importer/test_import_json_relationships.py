@@ -46,9 +46,9 @@ class TestJSONImporterRelationships(TestCase):
         self.assertIsInstance(interaction.source, Service)
         self.assertIsInstance(interaction.target, Datastore)
 
-    def test_load_link_from_json(self):
+    def test_import_link_from_json(self):
         link  =  self.json_data['links'][3]
-        interaction = self.importer.load_link_from_json(link)
+        interaction = self.importer.import_link_from_json(link)
         self.assertIsInstance(interaction, InteractsWith)
         self.assertIn(interaction, interaction.source.interactions)
         self.assertIn(interaction, interaction.target.incoming_interactions)

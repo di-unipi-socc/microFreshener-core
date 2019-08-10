@@ -66,9 +66,9 @@ class JSONImporter(Importer):
     def _load_links(self, json_data):
         if("links" in json_data):
             for link in json_data['links']:
-                self.load_link_from_json(link)
+                self.import_link_from_json(link)
 
-    def load_link_from_json(self, link_json):
+    def import_link_from_json(self, link_json):
         type_rel = self.load_type_relationship_from_json(link_json)
         if(type_rel == JSON_RELATIONSHIP_INTERACT_WITH):
             interaction = self.load_interaction_from_json(link_json)

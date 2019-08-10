@@ -37,7 +37,7 @@ class JSONExporter(Exporter):
             for node in obj.nodes:
                 d['nodes'].append(self.transform_node_to_json(node))
                 for rel in node.interactions:
-                    d['links'].append(self._transform_relationship(rel))
+                    d['links'].append(self.export_link_to_json(rel))
             for group in obj.groups:
                 d['groups'].append(self._transform_group(group))
         return d
@@ -58,18 +58,13 @@ class JSONExporter(Exporter):
         return dict_node
 
 
-    def _transform_relationship(self, relationship):
+    def export_link_to_json(self, relationship):
         nrel = {}
         nrel['target'] = relationship.target.name
         nrel['source'] = relationship.source.name
         nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
         nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
         nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
-        # if(isinstance(relationship, DeploymentTimeInteraction)):
-        #     nrel['type'] = JSON_DEPLOYMENT_TIME
-        # elif(isinstance(relationship, RunTimeInteraction)):
-        #     nrel['type'] = JSON_RUN_TIME
-        ## TODO: change type json to interact with
         if(isinstance(relationship, InteractsWith)):
             nrel['type'] = JSON_RELATIONSHIP_INTERACT_WITH
         else:
