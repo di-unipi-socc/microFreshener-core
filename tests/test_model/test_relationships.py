@@ -28,8 +28,17 @@ class TestModelRelationships(TestCase):
         rel = InteractsWith(source_node, self.microtosca[self.database_name])
         self.assertEqual(rel.source, source_node)
         self.assertIsInstance(rel.source, Service)
-        self.assertEqual(rel.target, self.microtosca[self.database_name])
         self.assertIsInstance(rel.target, Datastore)
+        self.assertEqual(rel.target, self.microtosca[self.database_name])
+
+    def test_add_interaction_interactwith(self):
+        source_node = self.microtosca[self.service_name]
+        target_node = self.microtosca[self.messagerouter_name]
+
+        interaction = InteractsWith(source_node, target_node)
+        source_node.add_interaction(interaction)
+        self.assertIn(interaction, source_node.interactions)
+        self.assertIn(interaction, target_node.incoming_interactions)
 
     def test_add_interaction_from_service(self):
         source = self.microtosca[self.service_name]
@@ -59,7 +68,7 @@ class TestModelRelationships(TestCase):
         with self.assertRaises(MicroToscaModelError):
             target = self.microtosca[self.messagerouter_name]
             source.add_interaction(target)
-           
+
     def test_add_interaction_messagebroker_error(self):
         source = self.microtosca[self.messagebroker_name]
         with self.assertRaises(MicroToscaModelError):

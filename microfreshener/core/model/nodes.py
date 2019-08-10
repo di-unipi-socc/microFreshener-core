@@ -36,7 +36,10 @@ class Root(object):
             item = InteractsWith(self, item, with_timeout=with_timeout,
                                     with_circuit_breaker=with_circuit_breaker,
                                     with_dynamic_discovery=with_dynamic_discovery)
-        self._interactions.append(item)
+        if (item not in self._interactions):
+            self._interactions.append(item)
+        else:
+            raise MicroToscaModelError(f"Interaction {item} from {self} to {item.target} already exist")
         if not isinstance(item.target, str):
             item.target.add_incoming_interaction(item)
         return item

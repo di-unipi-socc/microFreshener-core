@@ -52,7 +52,7 @@ class MicroToscaAnalyser(object):
             if(isinstance(node, Service)):
                 anode["type"] = "software"
             if(isinstance(node, Datastore)):
-                anode["type"] = "Datastore"
+                anode["type"] = "datastore"
             if(isinstance(node, MessageBroker)):
                 anode["type"] = "communicationpattern"
                 # TODO: remove concrete type

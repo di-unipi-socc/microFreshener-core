@@ -1,16 +1,19 @@
 from unittest import TestCase
 
 from microfreshener.core.importer import JSONImporter
+from microfreshener.core.errors import ImporterError
+from microfreshener.core.model.relationships import InteractsWith
+from microfreshener.core.model.nodes import Service, Datastore
 
-class TestJSONImporterRelationship(TestCase):
+class TestJSONImporterRelationshipProperties(TestCase):
 
 
     @classmethod
     def setUpClass(self):
-        file = 'data/tests/test_relationship.json'
+        self.file = 'data/tests/test_relationships_properties.json'
         self.importer = JSONImporter()
-        self.microtosca = self.importer.Import(file)
-
+        self.microtosca = self.importer.Import(self.file)
+    
     def test_relationship_empty_(self):
         link = self._load_relationship_from_source_to_target("source", "target")
         self.assertFalse(link.timeout)

@@ -11,7 +11,7 @@ class TestYmlExporterRelationships(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/tests/test_relationship.yml'
+        file = 'data/tests/test_relationships_properties.yml'
         importer = YMLImporter()
         self.microtosca = importer.Import(file)
         self.exporter = YMLExporter()

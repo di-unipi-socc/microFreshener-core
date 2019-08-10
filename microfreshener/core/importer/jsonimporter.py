@@ -22,11 +22,19 @@ class JSONImporter(Importer):
         logger.info("Loading JSON file: {}".format(path_to_json))
         with open(path_to_json) as f:
             data = json.load(f)
-            self.micro_model = MicroToscaModel(data['name'])
+            self._load_microtosca(data)
             self._load_nodes(data)
             self._load_links(data)
             self._load_groups(data)
             return self.micro_model
+
+    def load_json(self, path_to_json):
+        with open(path_to_json) as f:
+            data = json.load(f)
+            return data
+    
+    def _load_microtosca(self, data_json):
+        self.micro_model = MicroToscaModel(data_json['name'])
 
     def _load_nodes(self, json_data):
         for jnode in json_data['nodes']:
@@ -52,47 +60,64 @@ class JSONImporter(Importer):
             el = Datastore(name_node)
         else:
             raise ImporterError(
-                "{} Node type is not recognized".format(type_node))
+                "Node type {}  not recognized".format(type_node))
         return el
 
     def _load_links(self, json_data):
-        if("links") in json_data:
+        if("links" in json_data):
             for link in json_data['links']:
-                (relation, source, target) = self.load_type_source_target_from_json(link)
-                if(relation == JSON_RELATIONSHIP_INTERACT_WITH):
-                    (with_timeout, with_circuit_breaker, with_dynamic_discovery) = self._get_links_properties(link)
-                    source.add_interaction(target, with_timeout, with_circuit_breaker, with_dynamic_discovery)
-                else:
-                    raise ImporterError(f"Link type {relation} not recognized")
-                # ltype = link['type']
-                # source = self.micro_model[link['source']]
-                # target = self.micro_model[link['target']]
-                # (is_timeout, is_circuit_breaker,
-                #  is_dynamic_discovery) = self._get_links_properties(link)
-                # if(ltype == JSON_RUN_TIME):
-                #     source.add_run_time(target, is_timeout,
-                #                         is_circuit_breaker, is_dynamic_discovery)
-                # elif (ltype == JSON_DEPLOYMENT_TIME):
-                #     source.add_deployment_time(
-                #         target, is_timeout, is_circuit_breaker, is_dynamic_discovery)
-                # else:
-                #     raise ImporterError(
-                #         "Link type {} is not recognized".format(ltype))
-                # logger.debug(f"Added link from {source} to {target}")
+                self.load_link_from_json(link)
 
-    def load_type_source_target_from_json(self, link_json):
-        if "type" not in link_json:
-            raise ImporterError(f"Attribute 'type' in missing in {link_json}")
-        type_requirement = link_json['type']
+    def load_link_from_json(self, link_json):
+        type_rel = self.load_type_relationship_from_json(link_json)
+        if(type_rel == JSON_RELATIONSHIP_INTERACT_WITH):
+            interaction = self.load_interaction_from_json(link_json)
+            source = self.load_source_node_from_json(link_json)
+            return source.add_interaction(interaction)
+        else:
+            raise ImporterError(f"Link type {type_rel} not recognized")
+
+    def load_interaction_from_json(self, link_json):
+        source_node = self.load_source_node_from_json(link_json)
+        target_node = self.load_target_node_from_json(link_json)
+        (with_timeout, with_circuit_breaker,
+         with_dynamic_discovery) = self._get_links_properties(link_json)
+        return InteractsWith(source_node, target_node, with_timeout, with_circuit_breaker,
+                             with_dynamic_discovery)
+
+    def load_source_node_from_json(self, link_json):
         if "source" not in link_json:
             raise ImporterError(
                 f"Attribute 'source' in missing in {link_json}")
         source_node = self.micro_model[link_json['source']]
+        return source_node
+
+    def load_target_node_from_json(self, link_json):
         if "target" not in link_json:
             raise ImporterError(
                 f"Attribute 'target' in missing in {link_json}")
         target_node = self.micro_model[link_json['target']]
-        return (type_requirement, source_node, target_node)
+        return target_node
+
+    def load_type_relationship_from_json(self, link_json):
+        if "type" not in link_json:
+            raise ImporterError(f"Attribute 'type' in missing in {link_json}")
+        type_requirement = link_json['type']
+        return type_requirement
+
+    # def load_type_source_target_from_json(self, link_json):
+    #     if "type" not in link_json:
+    #         raise ImporterError(f"Attribute 'type' in missing in {link_json}")
+    #     type_requirement = link_json['type']
+    #     if "source" not in link_json:
+    #         raise ImporterError(
+    #             f"Attribute 'source' in missing in {link_json}")
+    #     source_node = self.micro_model[link_json['source']]
+    #     if "target" not in link_json:
+    #         raise ImporterError(
+    #             f"Attribute 'target' in missing in {link_json}")
+    #     target_node = self.micro_model[link_json['target']]
+    #     return (type_requirement, source_node, target_node)
 
     def _get_links_properties(self, link_json):
         is_timeout = False

@@ -7,7 +7,7 @@
         },
         {
             "name": "my_database",
-            "type": "Datastore"
+            "type": "datastore"
         },
         {
             "name": "my_messagebroker",

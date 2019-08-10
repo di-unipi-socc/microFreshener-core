@@ -9,7 +9,7 @@ class TestJSONTranformer(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/tests/test_relationship.json'
+        file = 'data/tests/test_relationships_properties.json'
         self.importer = JSONImporter()
         self.microtosca = self.importer.Import(file)
         self.tranformer = JSONExporter()

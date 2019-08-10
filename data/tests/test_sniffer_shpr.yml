@@ -27,7 +27,7 @@ topology_template:
         - interaction: db2
         - interaction:
             node: db2
-            relationship: t
+            relationship: c
         - interaction:
             node: db2
             relationship: t

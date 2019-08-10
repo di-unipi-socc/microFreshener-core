@@ -1,0 +1,43 @@
+{
+  "name": "test-relationships",
+  "nodes": [
+    {
+      "name": "s1",
+      "type": "service"
+    },
+    {
+      "name": "s2",
+      "type": "service"
+    },
+    {
+      "name": "db",
+      "type": "datastore"
+    },
+    {
+      "name": "mr",
+      "type": "messagerouter"
+    }
+  ],
+  "links": [
+    {
+      "source": "s1",
+      "target": "s2",
+      "type": "interaction"
+    },
+    {
+      "nosource": "s1",
+      "notarget": "s2",
+      "type": "interaction"
+    },
+    {
+      "source": "s1",
+      "target": "db",
+      "type": "interaction"
+    },
+    {
+      "source": "s1",
+      "target": "mr",
+      "type": "interaction"
+    }
+  ]
+}
