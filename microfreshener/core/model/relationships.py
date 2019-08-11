@@ -2,6 +2,8 @@
 Relationships module
 '''
 import six
+import uuid 
+  
 
 from ..errors import MicroToscaModelError, SelfLoopMicroToscaModelError
 
@@ -19,6 +21,7 @@ class Relationship(object):
         if(source != target):
             self.source = source
             self.target = target
+            self.id = uuid.uuid4()
         else:
             raise SelfLoopMicroToscaModelError(
                 f"Self loop relationship are not allowed in MicroTosca. Trying to add relationship from {source} to {target}")
@@ -27,7 +30,9 @@ class Relationship(object):
         return 's={0.source},t={0.target}'.format(self)
 
     def __eq__(self, other):
-        return self.source == other.source and self.target == other.target
+        # return self.source == other.source and self.target == other.target
+        return self.id == other.id
+
 
     def __hash__(self):
         return hash(self.source)+hash(self.target)
@@ -77,8 +82,8 @@ class InteractsWith(Relationship):
     def __repr__(self):
         return 'InteractsWith({})'.format(super(InteractsWith, self).__repr__())
 
-    def __eq__(self, other):
-        return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
+    # def __eq__(self, other):
+    #     return super(InteractsWith, self).__eq__(other) and self.timeout == other.timeout and self.circuit_breaker == other.circuit_breaker and self.dynamic_discovery == other.dynamic_discovery
 
     def to_dict(self):
         # return {'source': str(self.source), 'target': str(self.target)}

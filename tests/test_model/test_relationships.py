@@ -1,5 +1,6 @@
 from unittest import TestCase
 
+import uuid
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from microfreshener.core.model.microtosca import MicroToscaModel
 from microfreshener.core.model.nodes import Service, Datastore, MessageBroker, MessageRouter
@@ -26,15 +27,15 @@ class TestModelRelationships(TestCase):
     def test_create_interactWith(self):
         source_node = self.microtosca[self.service_name]
         rel = InteractsWith(source_node, self.microtosca[self.database_name])
+        self.assertIsInstance(rel.id, uuid.UUID)
         self.assertEqual(rel.source, source_node)
         self.assertIsInstance(rel.source, Service)
         self.assertIsInstance(rel.target, Datastore)
         self.assertEqual(rel.target, self.microtosca[self.database_name])
 
-    def test_add_interaction_interactwith(self):
+    def test_add_interaction_with_interactwith(self):
         source_node = self.microtosca[self.service_name]
         target_node = self.microtosca[self.messagerouter_name]
-
         interaction = InteractsWith(source_node, target_node)
         source_node.add_interaction(interaction)
         self.assertIn(interaction, source_node.interactions)
@@ -55,6 +56,35 @@ class TestModelRelationships(TestCase):
         self.assertEqual(len(source.interactions), 1)
         self.assertIn(rel, source.interactions)
         self.assertIn(rel, target.incoming_interactions)
+
+    def test_get_relationship(self):
+        source = self.microtosca[self.messagerouter_name]
+        target = self.microtosca[self.database_name]
+        rel = source.add_interaction(target)
+        expected = self.microtosca.get_relationship(rel.id)
+        self.assertEqual(rel, expected)
+        self.assertIn(expected, source.interactions)
+        self.assertIn(expected, target.incoming_interactions)
+    
+    def test_remove_interacion_from_node(self):
+        source = self.microtosca[self.service_name]
+        target = self.microtosca[self.messagebroker_name]
+        rel = source.add_interaction(target)
+        self.assertIn(rel, source.interactions)
+        self.assertIn(rel, target.incoming_interactions)
+        source.remove_interaction(rel)
+        self.assertNotIn(rel, source.interactions)
+        self.assertNotIn(rel, target.incoming_interactions)
+    
+    def test_remove_incoming_interacion_from_node(self):
+        source = self.microtosca[self.service_name]
+        target = self.microtosca[self.messagebroker_name]
+        rel = source.add_interaction(target)
+        self.assertIn(rel, source.interactions)
+        self.assertIn(rel, target.incoming_interactions)
+        target.remove_incoming_interaction(rel)
+        self.assertNotIn(rel, target.incoming_interactions)
+        self.assertIn(rel, source.interactions)
 
     def test_add_interaction_database_error(self):
         # test that Datastore cannot be a source of the interactiwth interaction

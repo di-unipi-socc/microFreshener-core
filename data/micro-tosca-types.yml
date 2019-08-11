@@ -67,7 +67,7 @@ node_types:
         valid_source_types: [ micro.nodes.Service ] # communication patterns cannot interact with databases
         occurrences: [ 0, UNBOUNDED ]
 
-  #  Type of CommunicationPatterns
+  #  Type of communication_patterns
   micro.nodes.MessageBroker:
     derived_from: micro.nodes.CommunicationPattern
 

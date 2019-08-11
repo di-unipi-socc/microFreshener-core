@@ -12,19 +12,111 @@ class TestMicroTosca(TestCase):
     def setUpClass(self):
         self.name = "prova-model"
         self.microtosca = MicroToscaModel(self.name)
-    
-    def test_get_node_error(self):
-        with self.assertRaises(MicroToscaModelError):        
-            self.microtosca['gerNotExistingNode']
+        self.service_name = "s1"
+        self.db_name = "db"
+        self.mr_name = "message_router"
+        self.mb_name = "message_broker"
 
     def test_add_service_node(self):
-        self.service_name = "s1"
         s = Service(self.service_name)
         self.microtosca.add_node(s)
+        self.assertTrue( s in self.microtosca)
         self.assertEqual(s, self.microtosca[self.service_name])
-    
+        self.assertIsInstance(self.microtosca[self.service_name], Service)
+        self.assertIn(s, self.microtosca.services)
+
     def test_add_database_node(self):
-        self.db_name = "db"
-        db = Service(self.db_name)
+        db = Datastore(self.db_name)
         self.microtosca.add_node(db)
+        self.assertTrue(db in self.microtosca)
         self.assertEqual(db, self.microtosca[self.db_name])
+        self.assertIsInstance(self.microtosca[self.db_name], Datastore)
+        self.assertIn(db, self.microtosca.datastores)
+
+    def test_add_mb_node(self):
+        mb = MessageBroker(self.mb_name)
+        self.microtosca.add_node(mb)
+        self.assertTrue(mb in self.microtosca)
+        self.assertEqual(mb, self.microtosca[self.mb_name])
+        self.assertIsInstance(self.microtosca[self.mb_name], MessageBroker)
+        self.assertIn(mb, self.microtosca.communication_patterns)
+        self.assertIn(mb, self.microtosca.message_brokers)
+
+    def test_add_mr_node(self):
+        mr = MessageRouter(self.mr_name)
+        self.microtosca.add_node(mr)
+        self.assertTrue(mr in self.microtosca)
+        self.assertEqual(mr, self.microtosca[self.mr_name])
+        self.assertIsInstance(self.microtosca[self.mr_name], MessageRouter)
+        self.assertIn(mr, self.microtosca.communication_patterns)
+        self.assertIn(mr, self.microtosca.message_routers)
+
+    def test_get_node(self):
+        self.assertEqual(
+            self.microtosca[self.service_name].name, self.service_name)
+        self.assertIsInstance(self.microtosca[self.service_name], Service)
+        self.assertEqual(self.microtosca[self.db_name].name, self.db_name)
+        self.assertIsInstance(self.microtosca[self.db_name], Datastore)
+        self.assertEqual(self.microtosca[self.mb_name].name, self.mb_name)
+        self.assertIsInstance(self.microtosca[self.mb_name], MessageBroker)
+        self.assertEqual(self.microtosca[self.mr_name].name, self.mr_name)
+        self.assertIsInstance(self.microtosca[self.mr_name], MessageRouter)
+
+    def test_get_node_error(self):
+        with self.assertRaises(MicroToscaModelError):
+            self.microtosca['getNotExistingNode']
+
+    def test_add_relationship(self):
+        rel = self._add_relationship("servizio1", "servizio2")
+        self.assertIsInstance(rel.source, Service)
+        self.assertIsInstance(rel.target, Service)
+        self.assertIn(rel, self.microtosca["servizio1"].interactions)
+        self.assertIn(rel, self.microtosca["servizio2"].incoming_interactions)
+
+    def test_get_relationship(self):
+        rel = self._add_relationship("servizio3", "servizio4")
+        exp_rel = self.microtosca.get_relationship(rel.id)
+        self.assertEqual(rel, exp_rel)
+        self.assertEqual(rel.source, exp_rel.source)
+        self.assertEqual(rel.target, exp_rel.target)
+
+    def test_remove_relationship(self):
+        rel = self._add_relationship("servizio5", "servizio6")
+        self.microtosca.delete_relationship(rel)
+        self.assertNotIn(rel, self.microtosca["servizio5"].interactions)
+        self.assertNotIn(
+            rel, self.microtosca["servizio6"].incoming_interactions)
+
+    def _add_relationship(self, source_name, target_name):
+        s = self.microtosca.add_node(Service(source_name))
+        t = self.microtosca.add_node(Service(target_name))
+        return s.add_interaction(t)
+
+    def test_delete_node(self):
+        nodo = self.microtosca.add_node(Service("prova"))
+        self.assertIn(nodo, self.microtosca.services)
+        self.microtosca.delete_node(nodo)
+        self.assertNotIn(nodo, self.microtosca.services)
+
+    def test_delete_node_remove_interactions(self):
+        first = self.microtosca.add_node(Service("first"))
+        second = self.microtosca.add_node(Service("second"))
+        third = self.microtosca.add_node(Service("third"))
+        first_second = first.add_interaction(second)
+        second_third = second.add_interaction(third)
+        first_third = first.add_interaction(third)
+        self.microtosca.delete_node(second)
+        self.assertNotIn(second, self.microtosca.nodes)
+        self.assertNotIn(first_second, second.incoming_interactions)
+        self.assertNotIn(second_third, third.incoming_interactions)
+        self.assertIn(first_third, third.incoming_interactions)
+        self.assertIn(first_third, first.interactions)
+
+
+
+
+
+
+
+
+

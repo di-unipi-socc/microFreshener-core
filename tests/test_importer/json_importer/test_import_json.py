@@ -21,13 +21,13 @@ class TestJSONImporter(TestCase):
         self.assertEqual(len(list(self.microtosca_template.services)), 2)
 
     def test_get_database(self):
-        self.assertEqual(len(list(self.microtosca_template.databases)), 1)
+        self.assertEqual(len(list(self.microtosca_template.datastores)), 1)
       
     def test_get_mb(self):
-        self.assertEqual(len(list(self.microtosca_template.databases)), 1)  
+        self.assertEqual(len(list(self.microtosca_template.datastores)), 1)  
 
     def test_get_mr(self):
-        self.assertEqual(len(list(self.microtosca_template.databases)), 1)  
+        self.assertEqual(len(list(self.microtosca_template.datastores)), 1)  
 
     def test_shipping_interactions(self):
         shipping = self.microtosca_template["shipping"]

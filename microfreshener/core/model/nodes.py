@@ -29,6 +29,9 @@ class Root(object):
     def incoming_interactions(self):
         return self.up_interactions
     
+    def add_incoming_interaction(self, interaction):
+        self.up_interactions.append(interaction)
+    
     # Add a interactWith interaction from source node to target node.
     # Only Service and MessagRoouter can be source of a relation (checkd in the InteractWith costructor)
     def add_interaction(self, item, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False):
@@ -43,13 +46,15 @@ class Root(object):
         if not isinstance(item.target, str):
             item.target.add_incoming_interaction(item)
         return item
-   
-    def add_incoming_interaction(self, interaction):
-        self.up_interactions.append(interaction)
+    
+    def remove_interaction(self, interaction):
+        if interaction in self._interactions:
+            self._interactions.remove(interaction)
+        interaction.target.remove_incoming_interaction(interaction)
 
-    def remove_incoming_relationship(self, relationship):
-        if  relationship in self.up_interactions:
-            self.up_interactions.remove(relationship)
+    def remove_incoming_interaction(self, interaction):
+        if interaction in self.up_interactions:
+            self.up_interactions.remove(interaction)
 
     def __str__(self):
         return self.name

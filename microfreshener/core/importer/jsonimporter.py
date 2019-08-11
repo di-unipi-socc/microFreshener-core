@@ -139,7 +139,7 @@ class JSONImporter(Importer):
                 if(group_type == JSON_GROUPS_EDGE):
                     edge = Edge(group_name)
                     for member_name in group['members']:
-                        member = self.micro_model.get_node_by_name(member_name)
+                        member = self.micro_model[member_name]
                         edge.add_member(member)
                         logger.debug("Added {} to group:{}  name:{}".format(
                             member_name, group_type, group_name))
@@ -148,7 +148,7 @@ class JSONImporter(Importer):
                     logger.debug("Adding Team group".format(group_name))
                     squad = Team(group_name)
                     for member_name in group['members']:
-                        member = self.micro_model.get_node_by_name(member_name)
+                        member = self.micro_model[member_name]
                         squad.add_member(member)
                         logger.debug("Added {} to group:{}  name:{}".format(
                             member_name, group_type, group_name))
