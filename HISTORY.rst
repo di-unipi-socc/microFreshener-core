@@ -2,7 +2,16 @@
 History
 =======
 
-2.0.2 (2019-16-13)
+
+1.3.0 (2019-08-29)
+----------------------------
+
+Compatibility with MicroTosca v1.3
+* Add support of MicroTosca v.1.3 model
+* renamed Database to DataStore
+
+
+1.0.2 (2019-06-13)
 ----------------------------
 
 *added add_all_sniffers to builder
@@ -13,4 +22,3 @@ History
 ----------------------------
 
 First release on pypi
-

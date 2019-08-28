@@ -16,7 +16,7 @@ class SingletonType(type):
 
 # python 3 style
 class MyLogger(object, metaclass=SingletonType):
-    """ A singleton containing the logging settings """ 
+    """ A singleton containing the logging settings """
     # __metaclass__ = SingletonType   # python 2 Style
     _logger = None
 
@@ -32,6 +32,7 @@ class MyLogger(object, metaclass=SingletonType):
 
         if not os.path.isdir(dirname):
             os.mkdir(dirname)
+            os.chmod(dirname, 0777)
         fileHandler = logging.FileHandler(dirname + "/log_" + now.strftime("%Y-%m-%d")+".log")
 
         streamHandler = logging.StreamHandler()
