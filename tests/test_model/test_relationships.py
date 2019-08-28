@@ -4,7 +4,7 @@ import uuid
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from microfreshener.core.model.microtosca import MicroToscaModel
 from microfreshener.core.model.nodes import Service, Datastore, MessageBroker, MessageRouter
-from microfreshener.core.errors import MicroToscaModelError, SelfLoopMicroToscaModelError
+from microfreshener.core.errors import MicroToscaModelError, SelfLoopMicroToscaModelError, RelationshipNotFoundError
 from microfreshener.core.model.relationships import InteractsWith
 
 
@@ -27,11 +27,12 @@ class TestModelRelationships(TestCase):
     def test_create_interactWith(self):
         source_node = self.microtosca[self.service_name]
         rel = InteractsWith(source_node, self.microtosca[self.database_name])
-        self.assertIsInstance(rel.id, uuid.UUID)
+        self.assertIsInstance(rel.id, str)
         self.assertEqual(rel.source, source_node)
         self.assertIsInstance(rel.source, Service)
         self.assertIsInstance(rel.target, Datastore)
         self.assertEqual(rel.target, self.microtosca[self.database_name])
+
 
     def test_add_interaction_with_interactwith(self):
         source_node = self.microtosca[self.service_name]
@@ -66,6 +67,10 @@ class TestModelRelationships(TestCase):
         self.assertIn(expected, source.interactions)
         self.assertIn(expected, target.incoming_interactions)
     
+    def test_get_relationship_errors(self):
+        with self.assertRaises(RelationshipNotFoundError):
+            self.microtosca.get_relationship("notexistinglink")
+        
     def test_remove_interacion_from_node(self):
         source = self.microtosca[self.service_name]
         target = self.microtosca[self.messagebroker_name]

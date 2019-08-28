@@ -39,6 +39,16 @@ class MicroToscaModelError(MicroFreshenerError):
         self.message = message
 
 
+class RelationshipNotFoundError(MicroToscaModelError):
+    """Exception raised for sel loop rlationship
+
+    Attributes:
+        message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        super(RelationshipNotFoundError, self).__init__(message)
+
 class SelfLoopMicroToscaModelError(MicroToscaModelError):
     """Exception raised for sel loop rlationship
 
@@ -48,3 +58,13 @@ class SelfLoopMicroToscaModelError(MicroToscaModelError):
 
     def __init__(self, message):
         super(SelfLoopMicroToscaModelError, self).__init__(message)
+    
+class GroupNotFoundError(MicroToscaModelError):
+    """Exception raised for sel loop rlationship
+
+    Attributes:
+        message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        super(GroupNotFoundError, self).__init__(message)

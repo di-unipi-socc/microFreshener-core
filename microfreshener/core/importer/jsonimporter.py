@@ -11,23 +11,26 @@ from ..model.type import MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSA
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 from .jsontype import JSON_RELATIONSHIP_INTERACT_WITH, JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
 from .jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
+import os
 
 from ..errors import ImporterError
 logger = MyLogger().get_logger()
-
 
 class JSONImporter(Importer):
 
     def Import(self, path_to_json)->MicroToscaModel:
         logger.info("Loading JSON file: {}".format(path_to_json))
-        with open(path_to_json) as f:
-            data = json.load(f)
-            self._load_microtosca(data)
-            self._load_nodes(data)
-            self._load_links(data)
-            self._load_groups(data)
-            return self.micro_model
-
+        if os.path.exists(path_to_json):
+            with open(path_to_json) as f:
+                data = json.load(f)
+        else:
+            data = json.loads(path_to_json)
+        self._load_microtosca(data)
+        self._load_nodes(data)
+        self._load_links(data)
+        self._load_groups(data)
+        return self.micro_model
+       
     def load_json(self, path_to_json):
         with open(path_to_json) as f:
             data = json.load(f)
@@ -37,10 +40,11 @@ class JSONImporter(Importer):
         self.micro_model = MicroToscaModel(data_json['name'])
 
     def _load_nodes(self, json_data):
-        for jnode in json_data['nodes']:
-            node = self.load_node_from_json(jnode)
-            self.micro_model.add_node(node)
-            logger.debug(f"Added node {node.name}")
+        if "nodes" in json_data:
+            for jnode in json_data['nodes']:
+                node = self.load_node_from_json(jnode)
+                self.micro_model.add_node(node)
+                logger.debug(f"Added node {node.name}")
 
     def load_node_from_json(self, json_node):
         if "type" not in json_node:
@@ -64,7 +68,7 @@ class JSONImporter(Importer):
         return el
 
     def _load_links(self, json_data):
-        if("links" in json_data):
+        if "links" in json_data:
             for link in json_data['links']:
                 self.import_link_from_json(link)
 
@@ -81,9 +85,15 @@ class JSONImporter(Importer):
         source_node = self.load_source_node_from_json(link_json)
         target_node = self.load_target_node_from_json(link_json)
         (with_timeout, with_circuit_breaker,
-         with_dynamic_discovery) = self._get_links_properties(link_json)
+         with_dynamic_discovery) = self.get_properties_of_interaction_from_json(link_json)
         return InteractsWith(source_node, target_node, with_timeout, with_circuit_breaker,
                              with_dynamic_discovery)
+    
+    # def load_node_id_from_json(self, link_json):
+    #     if "id" not in link_json:
+    #         raise ImporterError(
+    #             f"Attribute 'id' in missing in {link_json}")
+    #     return link_json['id']
 
     def load_source_node_from_json(self, link_json):
         if "source" not in link_json:
@@ -119,7 +129,7 @@ class JSONImporter(Importer):
     #     target_node = self.micro_model[link_json['target']]
     #     return (type_requirement, source_node, target_node)
 
-    def _get_links_properties(self, link_json):
+    def get_properties_of_interaction_from_json(self, link_json):
         is_timeout = False
         is_circuit_breaker = False
         is_dynamic_discovery = False

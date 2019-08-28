@@ -2,12 +2,13 @@
 MicroModelModel module
 '''
 import six
+from .type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter, MessageBroker
 from .relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Team, Edge
 from ..errors import MicroToscaModelError
 from ..logging import MyLogger
-
+from ..errors import RelationshipNotFoundError, GroupNotFoundError
 logger = MyLogger().get_logger()
 
 
@@ -33,11 +34,11 @@ class MicroToscaModel:
     @property
     def communication_patterns(self):
         return (v for k, v in self._nodes.items() if isinstance(v, CommunicationPattern))
-    
+
     @property
     def message_routers(self):
         return (v for k, v in self._nodes.items() if isinstance(v, MessageRouter))
-    
+
     @property
     def message_brokers(self):
         return (v for k, v in self._nodes.items() if isinstance(v, MessageBroker))
@@ -47,7 +48,7 @@ class MicroToscaModel:
         return (v for k, v in self._groups.items())
 
     @property
-    def squads(self):
+    def teams(self):
         return (v for k, v in self._groups.items() if isinstance(v, Team))
 
     @property
@@ -67,33 +68,56 @@ class MicroToscaModel:
         logger.debug(f"Deleted node {node}")
         del self._nodes[node.name]
 
+    def add_interaction(self, source_node, target_node, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False):
+        return source_node.add_interaction(target_node, with_timeout, with_circuit_breaker, with_dynamic_discovery)
+
     def get_relationship(self, id):
         for node in self.nodes:
-            for interacion in node.interactions:
-                if(interacion.id == id):
-                    return interacion
-        return None
+            for interaction in node.interactions:
+                if(interaction.id == id):
+                    return interaction
+        raise RelationshipNotFoundError(f"Relationship with id {id} not found")
 
     def delete_relationship(self, interaction):
         interaction.source.remove_interaction(interaction)
         logger.debug(f"Removed {interaction} interaction ")
 
     def add_group(self, group):
-        self._groups[group.name] = group
         logger.debug("Added group {}".format(group))
+        self._groups[group.name] = group
+        return self._groups[group.name] 
 
     def get_group(self, name):
-        return self._groups.get(name, None)
+        if name not in self._groups.keys():
+            raise GroupNotFoundError(f"Group {name} does not exists")
+        return self._groups.get(name)
 
-    def get_squad(self, name):
-        return self._groups.get(name, None)
-
+    # return the squad of a node
     def squad_of(self, node):
-        for squad in self.squads:
-            for member in squad.members:
+        for team in self.teams:
+            for member in team.members:
                 if(member == node):
-                    return squad
+                    return team
         return None
+
+    def get_subgraph(self, nodes):
+        logger.info(nodes)
+        subMicroToscaModel = MicroToscaModel(self.name)
+        for node in self.nodes:
+            if node in nodes:
+                newnode = subMicroToscaModel.add_node(node)
+                for interaction in node.interactions:
+                    if(interaction.target not in nodes):
+                        newnode.remove_interaction(interaction)
+                # add the group of the node in the subgraph
+                team_of_node = self.squad_of(node)
+                if team_of_node:
+                    if team_of_node not in subMicroToscaModel.teams:
+                        subMicroToscaModel.add_group(team_of_node)
+                    else:
+                        subMicroToscaModel.get_group(team_of_node.name).add_member(node)
+
+        return subMicroToscaModel
 
     def __getitem__(self, name):
         node = self._nodes.get(name, None)

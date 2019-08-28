@@ -39,7 +39,7 @@ class JSONExporter(Exporter):
                 for rel in node.interactions:
                     d['links'].append(self.export_link_to_json(rel))
             for group in obj.groups:
-                d['groups'].append(self._transform_group(group))
+                d['groups'].append(self.export_group_to_json(group))
         return d
 
     def transform_node_to_json(self, node):
@@ -57,9 +57,9 @@ class JSONExporter(Exporter):
             raise ExporterError(f"Node {n} not recognized")
         return dict_node
 
-
     def export_link_to_json(self, relationship):
         nrel = {}
+        nrel['id'] = relationship.id
         nrel['target'] = relationship.target.name
         nrel['source'] = relationship.source.name
         nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
@@ -71,7 +71,7 @@ class JSONExporter(Exporter):
             raise ExporterError("{} Relationship not recognized.".format(relationship))
         return nrel
 
-    def _transform_group(self, group):
+    def export_group_to_json(self, group):
         g_dict = {}
         g_dict['name'] = group.name
         if(isinstance(group, Edge)):
@@ -85,3 +85,6 @@ class JSONExporter(Exporter):
             members.append(member.name)
         g_dict['members'] = members
         return g_dict
+    
+  
+

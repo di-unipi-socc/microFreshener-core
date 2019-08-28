@@ -17,22 +17,24 @@ def _get_str_full_name(obj):
 
 class Relationship(object):
 
-    def __init__(self, source, target):
+    def __init__(self, source, target, id=None):
         if(source != target):
             self.source = source
             self.target = target
-            self.id = uuid.uuid4()
+            self.uuid = str(uuid.uuid4()) if id is None else id
         else:
             raise SelfLoopMicroToscaModelError(
                 f"Self loop relationship are not allowed in MicroTosca. Trying to add relationship from {source} to {target}")
+    @property
+    def id(self):
+        return str(self.uuid)
 
     def __repr__(self):
         return 's={0.source},t={0.target}'.format(self)
 
     def __eq__(self, other):
         # return self.source == other.source and self.target == other.target
-        return self.id == other.id
-
+        return self.uuid == other.uuid
 
     def __hash__(self):
         return hash(self.source)+hash(self.target)
@@ -44,11 +46,11 @@ class Relationship(object):
 
 class InteractsWith(Relationship):
 
-    def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None):
+    def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None, id=None):
         # TODO circular depenceics
         from .nodes import  Service, Datastore, CommunicationPattern, MessageRouter
         if(isinstance(source, Service) or isinstance(source, MessageRouter)):
-            super(InteractsWith, self).__init__(source, target)
+            super(InteractsWith, self).__init__(source, target, id)
             self.alias = alias
             self.property_timeout = with_timeout
             self.property_circuit_breaker = with_circuit_breaker
