@@ -39,10 +39,9 @@ class Root(object):
             item = InteractsWith(self, item, with_timeout=with_timeout,
                                     with_circuit_breaker=with_circuit_breaker,
                                     with_dynamic_discovery=with_dynamic_discovery)
-        if (item not in self._interactions):
-            self._interactions.append(item)
-        else:
+        if (item in self._interactions):
             raise MicroToscaModelError(f"Interaction {item} from {self} to {item.target} already exist")
+        self._interactions.append(item)          
         if not isinstance(item.target, str):
             item.target.add_incoming_interaction(item)
         return item
@@ -55,6 +54,7 @@ class Root(object):
     def remove_incoming_interaction(self, interaction):
         if interaction in self.up_interactions:
             self.up_interactions.remove(interaction)
+
 
     def __str__(self):
         return self.name

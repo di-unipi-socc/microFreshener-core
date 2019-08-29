@@ -32,7 +32,7 @@ class MyLogger(object, metaclass=SingletonType):
 
         if not os.path.isdir(dirname):
             os.mkdir(dirname)
-            os.chmod(dirname, 0777)
+            os.chmod(dirname, "0777")
         fileHandler = logging.FileHandler(dirname + "/log_" + now.strftime("%Y-%m-%d")+".log")
 
         streamHandler = logging.StreamHandler()

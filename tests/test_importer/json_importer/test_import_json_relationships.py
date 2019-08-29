@@ -16,6 +16,10 @@ class TestJSONImporterRelationships(TestCase):
         self.importer._load_microtosca(self.json_data)
         self.importer._load_nodes(self.json_data)
        
+    # def test_load_node_id_from_json(self):
+    #     link = self.json_data['links'][0]
+    #     id = load_node_id_from_json(link)
+
     def test_load_source_node_from_json(self):
         link = self.json_data['links'][0]
         source = self.importer.load_source_node_from_json(link)

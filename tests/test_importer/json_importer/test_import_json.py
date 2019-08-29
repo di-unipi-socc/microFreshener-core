@@ -8,8 +8,106 @@ class TestJSONImporter(TestCase):
     @classmethod
     def setUpClass(self):
         file = 'data/examples/hello-world/helloworld.json'
-        loader = JSONImporter()
-        self.microtosca_template = loader.Import(file)
+        self.loader = JSONImporter()
+        self.microtosca_template = self.loader.Import(file)
+    
+    def test_import_json_as_string(self):
+        json_string = """
+            {
+                "name": "hello-world",
+                "nodes": [
+                    {
+                        "name": "shipping",
+                        "type": "service"
+                    },
+                    {
+                        "name": "order_db",
+                        "type": "datastore"
+                    },
+                    {
+                        "name": "order",
+                        "type": "service"
+                    },
+                    {
+                        "name": "rabbitmq",
+                        "type": "messagebroker"
+                    },
+                    {
+                        "name": "gateway",
+                        "type": "messagerouter"
+                    }
+                ],
+                "links": [
+                    {
+                        "source": "shipping",
+                        "target": "rabbitmq",
+                        "type": "interaction"
+                    },
+                    {
+                        "source": "shipping",
+                        "target": "order_db",
+                        "type": "interaction"
+                    },
+                    {
+                        "source": "order",
+                        "target": "shipping",
+                        "type": "interaction",
+                        "timeout": true
+                    },
+                    {
+                        "source": "order",
+                        "target": "order_db",
+                        "type": "interaction"
+                    },
+                    {
+                        "source": "order",
+                        "target": "rabbitmq",
+                        "type": "interaction"
+                    },
+                    {
+                        "source": "order",
+                        "target": "shipping",
+                        "type": "interaction"
+                    },
+                    {
+                        "source": "gateway",
+                        "target": "shipping",
+                        "type": "interaction"
+                    }
+                ],
+                "groups": [
+                    {
+                        "name": "edgenodes",
+                        "type": "edgegroup",
+                        "members": [
+                            "shipping",
+                            "order",
+                            "gateway"
+                        ]
+                    },
+                    {
+                        "name": "team1",
+                        "type": "squadgroup",
+                        "members": [
+                            "shipping",
+                            "rabbitmq"
+                        ]
+                    },
+                    {
+                        "name": "team2",
+                        "type": "squadgroup",
+                        "members": [
+                            "order",
+                            "order_db"
+                        ]
+                    }
+                ]
+            }
+            """
+        self.microtosca_template = self.loader.Import(json_string)
+        self.assertEqual(len(list(self.microtosca_template.nodes)), 5)
+
+
 
     def test_number_nodes(self):
         self.assertEqual(len(list(self.microtosca_template.nodes)), 5)
