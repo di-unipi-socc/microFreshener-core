@@ -3,6 +3,14 @@ History
 =======
 
 
+1.3.1 (2019-08-29)
+----------------------------
+
+Compatibility with MicroTosca v1.3
+* Add support of MicroTosca v.1.3 model
+* renamed Database to DataStore
+* logging write permission
+
 1.3.0 (2019-08-29)
 ----------------------------
 
