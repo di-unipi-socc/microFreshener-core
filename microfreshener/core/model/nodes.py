@@ -4,7 +4,6 @@ nodes module
 
 from .relationships import DeploymentTimeInteraction, RunTimeInteraction, InteractsWith
 from ..logging import MyLogger
-
 from ..errors import MicroToscaModelError
 
 logger = MyLogger().get_logger()
@@ -60,14 +59,13 @@ class Root(object):
         return self.name
 
     def __eq__(self, other):
-        return self.name == other.name
+        return self.name == other.name #and type(self) == type(other)
 
     def __hash__(self):
         return hash(self.name)
 
     def to_dict(self):
         return {'name': self.name}
-
 
 class Software(Root):
 
@@ -102,10 +100,6 @@ class MessageBroker(CommunicationPattern):
     def __str__(self):
         return '{} ({})'.format(self.name, self.short_name)
 
-class MessageRouter(CommunicationPattern):
-
-    def __init__(self, name):
-        super(MessageRouter, self).__init__(name, "MR")
 
 class Datastore(Root):
 
@@ -115,4 +109,31 @@ class Datastore(Root):
     def __str__(self):
         return '{} ({})'.format(self.name, 'Datastore')
 
+class MessageRouter(CommunicationPattern):
 
+    def __init__(self, name, label="MR"):
+        self.label = label
+        super(MessageRouter, self).__init__(name, label)
+
+class KService(MessageRouter):
+
+    def __init__(self, name, selector=None):
+        self._selector = selector # {<key>:<value>}
+        super(KService, self).__init__(name, "KS")
+
+    @property
+    def selector(self):
+        return self._selector
+    
+    def __str__(self):
+        return '{} ({})'.format(self.name, 'Kservice')
+
+class KIngress(MessageRouter):
+
+    def __init__(self, name):
+        super(KIngress, self).__init__(name, "KIngress")
+
+class KProxy(MessageRouter):
+
+    def __init__(self, name):
+        super(KProxy, self).__init__(name, "KProxy")

@@ -2,9 +2,12 @@ import ruamel.yaml
 from pathlib import Path
 from ..model import MicroToscaModel
 from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import KProxy, KService, KIngress
 from ..model.groups import Team, Edge
 from .iimporter import Importer
+
 from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_COMMUNICATIONPATTERN, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
+from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER_KINGRESS, MICROTOSCA_NODES_MESSAGE_ROUTER_KPROXY, MICROTOSCA_NODES_MESSAGE_ROUTER_KSERVICE
 from ..model.type import MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
@@ -15,7 +18,6 @@ from ..errors import YMLImporterError
 from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
-
 
 class YMLImporter(Importer):
 
@@ -74,6 +76,12 @@ class YMLImporter(Importer):
                 el = MessageBroker(node_name)
             elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER:
                 el = MessageRouter(node_name)
+            elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER_KINGRESS:
+                el = KIngress(node_name)
+            elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER_KPROXY:
+                el = KProxy(node_name)
+            elif node_type == MICROTOSCA_NODES_MESSAGE_ROUTER_KSERVICE:
+                el = KService(node_name)
             elif node_type == MICROTOSCA_NODES_COMMUNICATIONPATTERN:
                 raise YMLImporterError(
                     f"The node type {MICROTOSCA_NODES_COMMUNICATIONPATTERN} cannot be istantiated.")

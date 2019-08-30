@@ -22,10 +22,10 @@ class TestJSONTranformer(TestCase):
         self.assertEqual(dict_s1["name"], "my_service")
     
     def test_transform_database(self):
-        db = self.microtosca['my_database']
+        db = self.microtosca['my_datastore']
         dict_db = self.tranformer.transform_node_to_json(db)
         self.assertEqual(dict_db["type"],JSON_NODE_DATABASE)
-        self.assertEqual(dict_db["name"], "my_database")
+        self.assertEqual(dict_db["name"], "my_datastore")
     
     def test_transform_messagebroker(self):
         mb = self.microtosca['my_messagebroker']

@@ -20,7 +20,7 @@ class TestYMLTranformer(TestCase):
         self.assertEqual(dict_service["type"], MICROTOSCA_NODES_SERVICE)
 
     def test_transform_database(self):
-        db = self.microtosca['my_database']
+        db = self.microtosca['my_datastore']
         dict_db = self.tranformer._transform_node_template(db)
         self.assertEqual(dict_db["type"], MICROTOSCA_NODES_DATABASE)
 

@@ -6,7 +6,7 @@
             "type": "service"
         },
         {
-            "name": "my_database",
+            "name": "my_datastore",
             "type": "datastore"
         },
         {
@@ -16,6 +16,18 @@
         {
             "name": "my_messagerouter",
             "type": "messagerouter"
+        },
+        {
+            "name": "my_kservice",
+            "type": "kservice"
+        },
+        {
+            "name": "my_kproxy",
+            "type": "kproxy"
+        },
+        {
+            "name": "my_kingress",
+            "type": "kingress"
         }
     ]
   }

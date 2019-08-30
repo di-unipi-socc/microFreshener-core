@@ -15,9 +15,18 @@ topology_template:
     
     my_messagerouter:
       type: micro.nodes.MessageRouter
-
-    my_database:
+    
+    my_datastore:
       type: micro.nodes.Datastore
+
+    my_kservice:
+      type: micro.nodes.MessageRouter.KService
+
+    my_kproxy:
+      type: micro.nodes.MessageRouter.KProxy
+
+    my_kingress:
+      type: micro.nodes.MessageRouter.KIngress
     
     # my_communicationpattern:
     #   type: micro.nodes.CommunicationPattern

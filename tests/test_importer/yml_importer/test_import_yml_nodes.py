@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter
-from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
+from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, KIngress, KProxy, KService
 
 class TestYMLImporterNodes(TestCase):
 
@@ -17,9 +17,9 @@ class TestYMLImporterNodes(TestCase):
         self.assertEqual(s1.name, "my_service")
     
     def test_database(self):
-        db = self.microtosca['my_database']
+        db = self.microtosca['my_datastore']
         self.assertIsInstance(db, Datastore)
-        self.assertEqual(db.name, "my_database")
+        self.assertEqual(db.name, "my_datastore")
     
     def test_messagebroker(self):
         mb = self.microtosca['my_messagebroker']
@@ -30,4 +30,20 @@ class TestYMLImporterNodes(TestCase):
         mr = self.microtosca['my_messagerouter']
         self.assertIsInstance(mr, MessageRouter)
         self.assertEqual(mr.name, "my_messagerouter")
+        self.assertEqual(mr.label, "MR")
+    
+    def test_kservice(self):
+        mr = self.microtosca['my_kservice']
+        self.assertIsInstance(mr, KService)
+        self.assertEqual(mr.name, "my_kservice")
+    
+    def test_kproxy(self):
+        mr = self.microtosca['my_kproxy']
+        self.assertIsInstance(mr, KProxy)
+        self.assertEqual(mr.name, "my_kproxy")
+    
+    def test_kingress(self):
+        mr = self.microtosca['my_kingress']
+        self.assertIsInstance(mr, KIngress)
+        self.assertEqual(mr.name, "my_kingress")
 
