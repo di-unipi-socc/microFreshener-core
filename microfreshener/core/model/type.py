@@ -8,11 +8,6 @@ MICROTOSCA_NODES_COMMUNICATIONPATTERN = 'micro.nodes.CommunicationPattern'
 MICROTOSCA_NODES_MESSAGE_BROKER = 'micro.nodes.MessageBroker'
 MICROTOSCA_NODES_MESSAGE_ROUTER = 'micro.nodes.MessageRouter'
 
-MICROTOSCA_NODES_MESSAGE_ROUTER_KINGRESS = 'micro.nodes.MessageRouter.KIngress'
-MICROTOSCA_NODES_MESSAGE_ROUTER_KSERVICE = 'micro.nodes.MessageRouter.KService'
-MICROTOSCA_NODES_MESSAGE_ROUTER_KPROXY = 'micro.nodes.MessageRouter.KProxy'
-
-
 # MicroTOSCA relationship types
 MICROTOSCA_RELATIONSHIPS_INTERACT_WITH = 'micro.relationships.InteractsWith'
 MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY = "timeout"
