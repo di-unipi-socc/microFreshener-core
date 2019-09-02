@@ -4,7 +4,6 @@ from ..logging import MyLogger
 
 logger = MyLogger().get_logger()
 
-
 class RootGroup(object):
 
     def __init__(self, name):
@@ -20,6 +19,10 @@ class RootGroup(object):
 
     def add_member(self, member):
         self._members[member.name] = member
+
+    def remove_member(self, member):
+        if member.name in self._members: 
+            del self._members[member.name ]
 
     def __contains__(self, member):
         if isinstance(member, six.string_types):
@@ -51,7 +54,6 @@ class Team(RootGroup):
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'squad')
-
 
 class Edge(RootGroup):
 

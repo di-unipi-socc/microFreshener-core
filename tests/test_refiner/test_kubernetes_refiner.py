@@ -9,7 +9,7 @@ class TestKubernetesRefiner(TestCase):
             self.microtosca = YMLImporter().Import('data/examples/sockshop/sockshop.yml')
             self.refiner = KubernetesRefiner('data/examples/sockshop/ksockshop.yml')
             self.kmicrotosca = self.refiner.Refine(self.microtosca)
-        
+
         def test_refine_carts(self):  
             carts = self.kmicrotosca['carts']
             kcarts = self.kmicrotosca['kcarts']

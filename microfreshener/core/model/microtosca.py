@@ -80,11 +80,16 @@ class MicroToscaModel:
 
     def delete_relationship(self, interaction):
         interaction.source.remove_interaction(interaction)
-        logger.debug(f"Removed {interaction} interaction ")
+        logger.debug(f"Removed {interaction} interaction")
 
     def add_group(self, group):
-        logger.debug("Added group {}".format(group))
+        #if isinstance(group, Edge):
+        #    if len(list(self.edges)) > 1:
+        #        raise MicroToscaModelError("Cannot be more than one Edge group")
+        #    self._groups[group.name] = group
+        #else:        
         self._groups[group.name] = group
+        logger.debug("Added group {}".format(group))
         return self._groups[group.name] 
 
     def get_group(self, name):
@@ -98,6 +103,14 @@ class MicroToscaModel:
             for member in team.members:
                 if(member == node):
                     return team
+        return None
+    
+     # return the edge of a node
+    def get_edge_of_node(self, node):
+        for edge in self.edges:
+            for member in edge.members:
+                if(member == node):
+                    return edge
         return None
 
     def get_subgraph(self, nodes):

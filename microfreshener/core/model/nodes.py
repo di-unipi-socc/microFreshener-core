@@ -72,7 +72,6 @@ class Software(Root):
     def __init__(self, name):
         super(Software, self).__init__(name)
 
-
 class Service(Software):
 
     def __init__(self, name):
@@ -99,7 +98,6 @@ class MessageBroker(CommunicationPattern):
 
     def __str__(self):
         return '{} ({})'.format(self.name, self.short_name)
-
 
 class Datastore(Root):
 
@@ -130,8 +128,18 @@ class KService(MessageRouter):
 
 class KIngress(MessageRouter):
 
-    def __init__(self, name):
+    def __init__(self, name, backends = []):
+        self.backend_services = backends
         super(KIngress, self).__init__(name, "KIngress")
+    
+    @property
+    def backends(self):
+        return self.backend_services
+
+    def add_service_name(self, name):
+        self.backend_services.append(name)
+
+    
 
 class KProxy(MessageRouter):
 

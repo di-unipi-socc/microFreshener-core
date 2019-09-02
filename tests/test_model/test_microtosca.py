@@ -119,32 +119,7 @@ class TestMicroTosca(TestCase):
         self.assertIn(first_third, third.incoming_interactions)
         self.assertIn(first_third, first.interactions)
 
-    def test_create_team(self):
-        first = self.microtosca.add_node(Service("first-team"))
-        second = self.microtosca.add_node(Service("second-team"))
-        team = Team("prova-team")
-        team.add_member(first)
-        team.add_member(second)
-        self.assertIn(first, team)
-        self.assertIn(second, team)
-        self.assertEqual(len(team.members), 2)
-        self.assertEqual(team[first.name], first)
-
-    def test_add_get_team(self):
-        team_name = "prova-team-add"
-        first = self.microtosca.add_node(Service("first-team-add"))
-        second = self.microtosca.add_node(Service("second-team-add"))
-        team = Team(team_name)
-        team.add_member(first)
-        team.add_member(second)
-        self.microtosca.add_group(team)
-        self.assertIsInstance(self.microtosca.get_group(team_name), Team)
-        self.assertEqual(self.microtosca.get_group(team_name), team)
     
-    def test_get_team_error(self):
-        with self.assertRaises(GroupNotFoundError):
-            self.microtosca.get_group("fake team")
-
 
     def test_get_subgraph_from_nodes(self):
         first = self.microtosca.add_node(Service("one"))
