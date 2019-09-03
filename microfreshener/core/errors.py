@@ -68,3 +68,13 @@ class GroupNotFoundError(MicroToscaModelError):
 
     def __init__(self, message):
         super(GroupNotFoundError, self).__init__(message)
+    
+class MultipleEdgeGroupsError(MicroToscaModelError):
+    """Exception raised for multiple esged nodes defined in themodel
+
+    Attributes:
+        message -- explanation of the error
+    """
+
+    def __init__(self, message):
+        super(MultipleEdgeGroupsError, self).__init__(message)

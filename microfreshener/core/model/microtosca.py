@@ -6,7 +6,7 @@ from .type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter, MessageBroker
 from .relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Team, Edge
-from ..errors import MicroToscaModelError
+from ..errors import MicroToscaModelError, MultipleEdgeGroupsError
 from ..logging import MyLogger
 from ..errors import RelationshipNotFoundError, GroupNotFoundError
 logger = MyLogger().get_logger()
@@ -83,14 +83,11 @@ class MicroToscaModel:
         logger.debug(f"Removed {interaction} interaction")
 
     def add_group(self, group):
-        #if isinstance(group, Edge):
-        #    if len(list(self.edges)) > 1:
-        #        raise MicroToscaModelError("Cannot be more than one Edge group")
-        #    self._groups[group.name] = group
-        #else:        
+        if isinstance(group, Edge) and len(list(self.edges)) > 1:
+            raise MultipleEdgeGroupsError("Cannot be more than one Edge group")
         self._groups[group.name] = group
         logger.debug("Added group {}".format(group))
-        return self._groups[group.name] 
+        return self._groups[group.name]
 
     def get_group(self, name):
         if name not in self._groups.keys():
@@ -104,7 +101,7 @@ class MicroToscaModel:
                 if(member == node):
                     return team
         return None
-    
+
      # return the edge of a node
     def get_edge_of_node(self, node):
         for edge in self.edges:
@@ -128,7 +125,8 @@ class MicroToscaModel:
                     if team_of_node not in subMicroToscaModel.teams:
                         subMicroToscaModel.add_group(team_of_node)
                     else:
-                        subMicroToscaModel.get_group(team_of_node.name).add_member(node)
+                        subMicroToscaModel.get_group(
+                            team_of_node.name).add_member(node)
 
         return subMicroToscaModel
 

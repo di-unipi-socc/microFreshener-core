@@ -115,9 +115,15 @@ class MessageRouter(CommunicationPattern):
 
 class KService(MessageRouter):
 
-    def __init__(self, name, selector=None):
+    def __init__(self, name, selector=None, stype=None):
         self._selector = selector # {<key>:<value>}
+        self._type = stype # LoadBalancer | NodePort :for knowing if the service is acessed by external
+
         super(KService, self).__init__(name, "KS")
+   
+    @property
+    def service_type(self):
+        return self._type
 
     @property
     def selector(self):

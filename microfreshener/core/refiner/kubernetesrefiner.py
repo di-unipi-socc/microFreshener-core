@@ -73,13 +73,21 @@ class KubernetesRefiner(Refiner):
             kservice.add_interaction(selected_node)
             self.microtosca.add_node(kservice)
 
+        # kservice with external access
+        if (kservice.service_type == "LoadBalancer"):
+            for edge in self.microtosca.edges:
+                edge.add_member(kservice)
+        if (kservice.service_type == "NodePort"):
+            for edge in self.microtosca.edges:
+                edge.add_member(kservice)
+
     def _load_kobject(self, kobject):
-        # if(kobject.get("kind") == "Deployment"):
-        #     kdeploy = self._load_kdeployment(kobject)
-        #     self.kdeployments.append(kdeploy)
-        # if(kobject.get("kind") == "Service"):
-        #     kservice = self._load_kservice(kobject)
-        #     self.kservices.append(kservice)
+        if(kobject.get("kind") == "Deployment"):
+            kdeploy = self._load_kdeployment(kobject)
+            self.kdeployments.append(kdeploy)
+        if(kobject.get("kind") == "Service"):
+            kservice = self._load_kservice(kobject)
+            self.kservices.append(kservice)
         if kobject.get("kind") == "Ingress":
             ingress = self._load_kingress(kobject)
             self.kingresses.append(ingress)
@@ -114,6 +122,9 @@ class KubernetesRefiner(Refiner):
                 selector = spec.get("selector")
                 #  <key: value>
                 #  the service target all the pods with a label that match the key:value
+
+            kservice_type = nested_lookup('type', spec)
+
         return KService(name, selector)
 
     def _load_kingress(self, kobject):
