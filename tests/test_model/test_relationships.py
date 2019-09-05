@@ -33,7 +33,6 @@ class TestModelRelationships(TestCase):
         self.assertIsInstance(rel.target, Datastore)
         self.assertEqual(rel.target, self.microtosca[self.database_name])
 
-
     def test_add_interaction_with_interactwith(self):
         source_node = self.microtosca[self.service_name]
         target_node = self.microtosca[self.messagerouter_name]
@@ -66,11 +65,11 @@ class TestModelRelationships(TestCase):
         self.assertEqual(rel, expected)
         self.assertIn(expected, source.interactions)
         self.assertIn(expected, target.incoming_interactions)
-    
+
     def test_get_relationship_errors(self):
         with self.assertRaises(RelationshipNotFoundError):
             self.microtosca.get_relationship("notexistinglink")
-        
+
     def test_remove_interacion_from_node(self):
         source = self.microtosca[self.service_name]
         target = self.microtosca[self.messagebroker_name]
@@ -80,7 +79,7 @@ class TestModelRelationships(TestCase):
         source.remove_interaction(rel)
         self.assertNotIn(rel, source.interactions)
         self.assertNotIn(rel, target.incoming_interactions)
-    
+
     def test_remove_incoming_interacion_from_node(self):
         source = self.microtosca[self.service_name]
         target = self.microtosca[self.messagebroker_name]
@@ -121,3 +120,20 @@ class TestModelRelationships(TestCase):
             source = self.microtosca[self.service_name]
             target = self.microtosca[self.service_name]
             source.add_interaction(target)
+
+    def test_change_properties(self):
+        s = self.microtosca.add_node(Service("s"))
+        t = self.microtosca.add_node(Service("t"))
+        link = self.microtosca.add_interaction(s, t)
+        self.assertFalse(link.timeout)
+        self.assertFalse(link.circuit_breaker)
+        self.assertFalse(link.dynamic_discovery)
+
+        link.set_timeout(True)
+        link.set_circuit_breaker(True)
+        link.set_dynamic_discovery(True)
+
+        self.assertTrue(link.timeout)
+        self.assertTrue(link.circuit_breaker)
+        self.assertTrue(link.dynamic_discovery)
+

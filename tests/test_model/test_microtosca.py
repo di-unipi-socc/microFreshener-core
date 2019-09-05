@@ -6,6 +6,7 @@ from microfreshener.core.model.nodes import Service, Datastore, MessageBroker, M
 from microfreshener.core.errors import MicroToscaModelError, GroupNotFoundError
 from microfreshener.core.model import Team
 
+
 class TestMicroTosca(TestCase):
 
     @classmethod
@@ -20,7 +21,7 @@ class TestMicroTosca(TestCase):
     def test_add_service_node(self):
         s = Service(self.service_name)
         self.microtosca.add_node(s)
-        self.assertTrue( s in self.microtosca)
+        self.assertTrue(s in self.microtosca)
         self.assertEqual(s, self.microtosca[self.service_name])
         self.assertIsInstance(self.microtosca[self.service_name], Service)
         self.assertIn(s, self.microtosca.services)
@@ -65,7 +66,7 @@ class TestMicroTosca(TestCase):
     def test_get_node_error(self):
         with self.assertRaises(MicroToscaModelError):
             self.microtosca['getNotExistingNode']
-   
+
     def test_add_interaction(self):
         nodo1 = self.microtosca.add_node(Service("inter1"))
         nodo2 = self.microtosca.add_node(Service("inter2"))
@@ -119,8 +120,6 @@ class TestMicroTosca(TestCase):
         self.assertIn(first_third, third.incoming_interactions)
         self.assertIn(first_third, first.interactions)
 
-    
-
     def test_get_subgraph_from_nodes(self):
         first = self.microtosca.add_node(Service("one"))
         second = self.microtosca.add_node(Service("two"))
@@ -136,22 +135,70 @@ class TestMicroTosca(TestCase):
 
         first_to_second = first.add_interaction(second)
         third_to_second = third.add_interaction(second)
-        
+
         subgraph = self.microtosca.get_subgraph([first, second, third])
 
         self.assertEqual(len(list(subgraph.nodes)), 3)
-        self.assertCountEqual(list(subgraph.nodes),[first, second, third])
+        self.assertCountEqual(list(subgraph.nodes), [first, second, third])
 
         self.assertIn(first_to_second, subgraph['one'].interactions)
         self.assertIn(first_to_second, subgraph['two'].incoming_interactions)
         self.assertEqual(2, len(subgraph['two'].incoming_interactions))
 
         self.assertIn(first, subgraph.get_group(team_name).members)
-        self.assertEqual(len(list(subgraph.get_group(team_name).members)),1)
+        self.assertEqual(len(list(subgraph.get_group(team_name).members)), 1)
 
+    def test_relink_incoming(self):
+        s1 = self.microtosca.add_node(Service("s1"))
+        s2 = self.microtosca.add_node(Service("s2"))
+        s3 = self.microtosca.add_node(Service("s3"))
 
+        current = self.microtosca.add_node(Service("current"))
+        new = self.microtosca.add_node(Service("new_node"))
 
+        s1.add_interaction(current)
+        s2.add_interaction(current)
+        s3.add_interaction(current)
 
+        self.assertEqual(len(list(current.incoming_interactions)), 3)
 
+        self.microtosca.relink_incoming(current, new)
 
+        self.assertEqual(len(list(current.incoming_interactions)), 0)
+        self.assertEqual(len(list(new.incoming_interactions)), 3)
+        self.assertCountEqual(
+            [rel.source for rel in new.incoming_interactions], [s1, s2, s3])
 
+    def test_relink_incoming_with_discard(self):
+        s1 = self.microtosca.add_node(Service("s1"))
+        s2 = self.microtosca.add_node(Service("s2"))
+        s3 = self.microtosca.add_node(Service("s3"))
+        discard = self.microtosca.add_node(Service("discard"))
+
+        current = self.microtosca.add_node(Service("cuurent"))
+        new = self.microtosca.add_node(Service("new_node"))
+
+        s1.add_interaction(current)
+        s2.add_interaction(current)
+        s3.add_interaction(current)
+        discard.add_interaction(current)
+
+        self.assertEqual(len(list(current.incoming_interactions)), 4)
+
+        self.microtosca.relink_incoming(current, new, [discard])
+
+        self.assertEqual(len(list(new.incoming_interactions)), 3)
+        self.assertCountEqual(
+            [rel.source for rel in new.incoming_interactions], [s1, s2, s3])
+        self.assertNotIn(
+            discard, [rel.source for rel in new.incoming_interactions])
+
+        self.assertEqual(len(list(current.incoming_interactions)), 1)
+        self.assertCountEqual(
+            [rel.source for rel in current.incoming_interactions], [discard])
+        self.assertNotIn(
+            s1, [rel.source for rel in current.incoming_interactions])
+        self.assertNotIn(
+            s2, [rel.source for rel in current.incoming_interactions])
+        self.assertNotIn(
+            s3, [rel.source for rel in current.incoming_interactions])

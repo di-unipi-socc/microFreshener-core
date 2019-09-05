@@ -1,7 +1,8 @@
-from .irefiner import Refiner
+from .irefiner import IRefiner
 from ..model import MicroToscaModel
 from ..model.nodes import KIngress, KService, KProxy
 
+from ..errors import GroupNotFoundError
 from ..model.groups import Edge
 from ..logging import MyLogger
 
@@ -12,7 +13,7 @@ import yaml
 logger = MyLogger().get_logger()
 
 
-class KubernetesRefiner(Refiner):
+class KubernetesRefiner(IRefiner):
 
     def __init__(self, yml_file):
         self.yml_file = yml_file
@@ -20,7 +21,7 @@ class KubernetesRefiner(Refiner):
         self.kservices = []
         self.kingresses = []
 
-    def Refine(self, microtosca: MicroToscaModel)->MicroToscaModel:
+    def Refine(self, microtosca: MicroToscaModel) -> MicroToscaModel:
         self.load_kubernetes_objects()
         self.microtosca = microtosca
         for kservice in self.kservices:
@@ -39,8 +40,9 @@ class KubernetesRefiner(Refiner):
         kd_matching = []
         for kdeployemnt in self.kdeployments:
             for label in kdeployemnt.labels:
-                if selector.get(label[0]) == label[1]:
-                    kd_matching.append(kdeployemnt)
+                for k, v in label.items():
+                    if selector.get(k) == v:
+                        kd_matching.append(kdeployemnt)
         return kd_matching
 
     def refine_kingress(self, kingress):
@@ -48,9 +50,12 @@ class KubernetesRefiner(Refiner):
         for backend in kingress.backends:
             node = self.microtosca[backend]
             edge = self.microtosca.get_edge_of_node(node)
-            if edge != None:
+            if edge is not None:
                 edge.remove_node(node)
-            kingress.add_interaction(node, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=True)
+            kingress.add_interaction(node,
+                                     with_timeout=False,
+                                     with_circuit_breaker=False,
+                                     with_dynamic_discovery=True)
         if len(list(self.microtosca.edges)) == 0:
             edge = Edge("k-edge")
         else:
@@ -59,27 +64,22 @@ class KubernetesRefiner(Refiner):
         self.microtosca.add_group(edge)
 
     def refine_kservice(self, kservice):
+        self.microtosca.add_node(kservice)
         kd_matching = self.get_kdeployment_with_label(kservice.selector)
         for kdeployment in kd_matching:
             selected_node = self.microtosca[kdeployment.name]
-            incoming_interactions = list(selected_node.incoming_interactions)
-            for incoming in incoming_interactions:
-                if isinstance(incoming.source, KService):
-                    raise Exception(
-                        f"{selected_node} has already a kservice defined")
-            for incoming in incoming_interactions:
-                incoming.source.remove_interaction(incoming)
-                incoming.source.add_interaction(kservice, False, False, True)
-            kservice.add_interaction(selected_node)
-            self.microtosca.add_node(kservice)
+            self.microtosca.relink_incoming(
+                selected_node, kservice, [kservice])
+            self.microtosca.add_interaction(
+                kservice, selected_node, False, False, True)
 
-        # kservice with external access
-        if (kservice.service_type == "LoadBalancer"):
-            for edge in self.microtosca.edges:
+        if kservice.is_external_accessed():
+            try:
+                edge = self.microtosca.edge
+            except GroupNotFoundError as e:
+                edge = Edge("kedge")
                 edge.add_member(kservice)
-        if (kservice.service_type == "NodePort"):
-            for edge in self.microtosca.edges:
-                edge.add_member(kservice)
+            self.microtosca.add_group(edge)
 
     def _load_kobject(self, kobject):
         if(kobject.get("kind") == "Deployment"):
@@ -101,14 +101,19 @@ class KubernetesRefiner(Refiner):
                 kdeployment = KDeployment(name)
             else:
                 raise Exception("name of kdepoyment not found")
-            if "labels" in metadata.keys():
-                labels = metadata.get("labels")
-                for label in labels.items():
-                    kdeployment.add_label(label)
+            labels = nested_lookup('labels', metadata)
+            for label in labels:
+                kdeployment.add_label(label)
+        if "spec" in kobject.keys():
+            spec = kobject.get("spec")
+            labels = nested_lookup('labels', spec)
+            for label in labels:
+                kdeployment.add_label(label)
         return kdeployment
 
     def _load_kservice(self, kobject):
         kservice = None
+        kservice_type = None
         if "metadata" in kobject.keys():
             metadata = kobject.get("metadata")
             if "name" in metadata.keys():
@@ -118,14 +123,13 @@ class KubernetesRefiner(Refiner):
                     f"Name is missing in service {kobject}")
         if "spec" in kobject.keys():
             spec = kobject.get("spec")
-            if "selector" in spec.keys():
-                selector = spec.get("selector")
-                #  <key: value>
-                #  the service target all the pods with a label that match the key:value
-
+            selector = nested_lookup('selector', spec)
+            if selector:
+                selector = selector[0]
             kservice_type = nested_lookup('type', spec)
-
-        return KService(name, selector)
+            if kservice_type:
+                kservice_type = kservice_type[0]
+        return KService(name, selector, kservice_type)
 
     def _load_kingress(self, kobject):
         name = None
@@ -140,23 +144,6 @@ class KubernetesRefiner(Refiner):
             serviceNames = nested_lookup('serviceName', spec)
             kingress = KIngress(name, serviceNames)
         return kingress
-
-    def retrieve_nested_value(mapping, key_of_interest):
-        mappings = [mapping]
-        while mappings:
-            mapping = mappings.pop()
-            try:
-                items = mapping.items()
-            except AttributeError:
-                # we didn't store a mapping earlier on so just skip that value
-                continue
-
-            for key, value in items:
-                if key == key_of_interest:
-                    yield value
-                else:
-                    # type of the value will be checked in the next loop
-                    mappings.append(value)
 
 
 class KDeployment():
@@ -173,7 +160,8 @@ class KDeployment():
         return self._labels
 
     def add_label(self, label):
-        self._labels.append(label)
+        if label not in self._labels:
+            self._labels.append(label)
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'KDeployement')

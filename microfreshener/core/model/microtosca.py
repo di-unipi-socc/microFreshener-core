@@ -51,14 +51,35 @@ class MicroToscaModel:
     def teams(self):
         return (v for k, v in self._groups.items() if isinstance(v, Team))
 
+    # deprecated
     @property
     def edges(self):
         return (v for k, v in self._groups.items() if isinstance(v, Edge))
+
+    @property
+    def edge(self):
+        for k, v in self._groups.items():
+            if isinstance(v, Edge):
+                return v
+        raise GroupNotFoundError("Edge group is missing")
 
     def add_node(self, node):
         self._nodes[node.name] = node
         logger.debug("Added node {}".format(node))
         return node
+
+    def relink_incoming(self, current_node, target_node, source_nodes_to_be_discarded=[]):
+        
+        incoming_interactions = list(current_node.incoming_interactions)
+        for incoming in incoming_interactions:
+            if incoming.source not in source_nodes_to_be_discarded:
+                incoming.source.remove_interaction(incoming)
+                incoming.source.add_interaction(
+                    target_node,
+                    incoming.timeout,
+                    incoming.circuit_breaker,
+                    incoming.dynamic_discovery)
+        # return target_node.add_interaction(current_node)
 
     def delete_node(self, node):
         for rel in node.interactions:
@@ -68,8 +89,14 @@ class MicroToscaModel:
         logger.debug(f"Deleted node {node}")
         del self._nodes[node.name]
 
-    def add_interaction(self, source_node, target_node, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False):
-        return source_node.add_interaction(target_node, with_timeout, with_circuit_breaker, with_dynamic_discovery)
+    def add_interaction(self, source_node, target_node,
+                        with_timeout=False,
+                        with_circuit_breaker=False,
+                        with_dynamic_discovery=False):
+        return source_node.add_interaction(target_node,
+                                           with_timeout,
+                                           with_circuit_breaker,
+                                           with_dynamic_discovery)
 
     def get_relationship(self, id):
         for node in self.nodes:
@@ -102,7 +129,7 @@ class MicroToscaModel:
                     return team
         return None
 
-     # return the edge of a node
+    # return the edge of a node
     def get_edge_of_node(self, node):
         for edge in self.edges:
             for member in edge.members:
@@ -111,7 +138,6 @@ class MicroToscaModel:
         return None
 
     def get_subgraph(self, nodes):
-        logger.info(nodes)
         subMicroToscaModel = MicroToscaModel(self.name)
         for node in self.nodes:
             if node in nodes:

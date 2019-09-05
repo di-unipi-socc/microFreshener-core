@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-from ..model import MicroToscaModel 
+from ..model import MicroToscaModel
 
 
-class Refiner(ABC):
- 
+class IRefiner(ABC):
+
     @abstractmethod
-    def Refine(self, microtosca:MicroToscaModel)->MicroToscaModel:
+    def Refine(self, microtosca: MicroToscaModel) -> MicroToscaModel:
         pass

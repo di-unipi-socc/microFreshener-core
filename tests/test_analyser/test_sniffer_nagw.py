@@ -1,18 +1,15 @@
 from unittest import TestCase
 
-from microfreshener.core.importer import YMLImporter
-from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer
 from microfreshener.core.analyser.smell import NoApiGatewaySmell
-from microfreshener.core.model import MicroToscaModel, Service, Datastore, MessageBroker, MessageRouter
-from microfreshener.core.model import Edge
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer
+from microfreshener.core.model import (Datastore, Edge, MessageBroker,
+                                       MessageRouter, MicroToscaModel, Service)
+
 
 class TestNoApiGatewaySmell(TestCase):
 
     @classmethod
     def setUpClass(self):
-        # file = 'data/tests/test_sniffer_nagw.yml'
-        # loader = YMLImporter()
-        # self.micro_model = loader.Import(file)
         self.service1 = Service("sr")
         self.service2 = Service("sr2")
         self.datastore = Datastore("db")
@@ -31,7 +28,7 @@ class TestNoApiGatewaySmell(TestCase):
         for smell in smells:
             self.assertIsInstance(smell, NoApiGatewaySmell)
         self.assertEqual(len(smells), 1)
-     
+
     def test_yes_apgw_with_messagebroker(self):
         micro_model = MicroToscaModel("test-noapigateway-smell")
         edge = Edge("edgenodes-msgbroker")
@@ -43,8 +40,7 @@ class TestNoApiGatewaySmell(TestCase):
         for smell in smells:
             self.assertIsInstance(smell, NoApiGatewaySmell)
         self.assertEqual(len(smells), 1)
-    
-         
+
     def test_no_apgw_with_messagerouter(self):
         micro_model = MicroToscaModel("test-noapigateway-smell")
         edge = Edge("edgenodes-msgrouter")
@@ -62,7 +58,7 @@ class TestNoApiGatewaySmell(TestCase):
         edge.add_member(self.datastore)
         edge.add_member(self.msg_router)
         edge.add_member(self.msg_broker)
-        
+
         apgwSniffer = NoApiGatewaySmellSniffer(micro_model)
         micro_model.add_group(edge)
         smells = apgwSniffer.snif(edge)

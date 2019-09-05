@@ -2,10 +2,11 @@
 Relationships module
 '''
 import six
-import uuid 
-  
+import uuid
+
 
 from ..errors import MicroToscaModelError, SelfLoopMicroToscaModelError
+
 
 def _get_str_name(obj):
     return obj if isinstance(obj, six.string_types) else obj.name
@@ -25,6 +26,7 @@ class Relationship(object):
         else:
             raise SelfLoopMicroToscaModelError(
                 f"Self loop relationship are not allowed in MicroTosca. Trying to add relationship from {source} to {target}")
+
     @property
     def id(self):
         return str(self.uuid)
@@ -46,9 +48,12 @@ class Relationship(object):
 
 class InteractsWith(Relationship):
 
-    def __init__(self, source, target, with_timeout=False, with_circuit_breaker=False, with_dynamic_discovery=False, alias=None, id=None):
-        # TODO circular depenceics
-        from .nodes import  Service, Datastore, CommunicationPattern, MessageRouter
+    def __init__(self, source, target, with_timeout=False,
+                 with_circuit_breaker=False,
+                 with_dynamic_discovery=False,
+                 alias=None,
+                 id=None):
+        from .nodes import Service, Datastore, CommunicationPattern, MessageRouter
         if(isinstance(source, Service) or isinstance(source, MessageRouter)):
             super(InteractsWith, self).__init__(source, target, id)
             self.alias = alias
@@ -56,7 +61,17 @@ class InteractsWith(Relationship):
             self.property_circuit_breaker = with_circuit_breaker
             self.property_dynamic_discovery = with_dynamic_discovery
         else:
-            raise  MicroToscaModelError(f"InteractWith relationship cannot be created from {source} to {target}. {type(source).__name__}")
+            raise MicroToscaModelError(
+                f"InteractWith relationship cannot be created from {source} to {target}. {type(source).__name__}")
+
+    def set_timeout(self, value):
+        self.property_timeout = value
+    
+    def set_circuit_breaker(self, value):
+        self.property_circuit_breaker = value
+    
+    def set_dynamic_discovery(self, value):
+        self.property_dynamic_discovery = value
 
     @property
     def timeout(self):
@@ -90,6 +105,7 @@ class InteractsWith(Relationship):
     def to_dict(self):
         # return {'source': str(self.source), 'target': str(self.target)}
         return {'source': self.source.name, 'target': self.target.name, "type": "interaction"}
+
 
 class DeploymentTimeInteraction(InteractsWith):
 

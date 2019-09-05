@@ -2,8 +2,8 @@ from unittest import TestCase
 
 from microfreshener.core.model.microtosca import MicroToscaModel
 from microfreshener.core.model.nodes import Service, Datastore, MessageBroker, MessageRouter
-from microfreshener.core.errors import MicroToscaModelError, GroupNotFoundError
-from microfreshener.core.model import Team
+from microfreshener.core.errors import MicroToscaModelError, GroupNotFoundError, GroupNotFoundError
+from microfreshener.core.model import Team, Edge
 
 
 class TestGroupMicrotosca(TestCase):
@@ -51,3 +51,16 @@ class TestGroupMicrotosca(TestCase):
         self.assertEqual(len(team.members), 1)
         self.assertNotIn(first, team.members)
         self.assertIn(second, team.members)
+
+    def test_add_edge(self):
+        edge = Edge("myedge")
+        edge.add_member(Service("first-edge"))
+        edge.add_member(Service("second-edge"))
+        self.microtosca.add_group(edge)
+        self.assertEqual(len(edge.members), 2)
+        self.assertIsInstance(self.microtosca.get_group("myedge"), Edge)
+        
+    def test_get_edge_error(self):
+        microtosca = MicroToscaModel(self.name)
+        with self.assertRaises(GroupNotFoundError):
+            microtosca.edge

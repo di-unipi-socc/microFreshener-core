@@ -16,10 +16,13 @@ class ImporterError(MicroFreshenerError):
     def __init__(self, message):
         self.message = message
 
+
 class YMLImporterError(ImporterError):
 
     def __init__(self, message):
-           super(YMLImporterError, self).__init__(message)
+        super(YMLImporterError, self).__init__(message)
+
+
 class ExporterError(MicroFreshenerError):
     """Exception raised for errors in the Exporter module.
 
@@ -27,7 +30,8 @@ class ExporterError(MicroFreshenerError):
         message -- explanation of the error
     """
     pass
-    
+
+
 class MicroToscaModelError(MicroFreshenerError):
     """Exception raised for errors in the MicroToscaModel module.
 
@@ -49,6 +53,7 @@ class RelationshipNotFoundError(MicroToscaModelError):
     def __init__(self, message):
         super(RelationshipNotFoundError, self).__init__(message)
 
+
 class SelfLoopMicroToscaModelError(MicroToscaModelError):
     """Exception raised for sel loop rlationship
 
@@ -58,7 +63,8 @@ class SelfLoopMicroToscaModelError(MicroToscaModelError):
 
     def __init__(self, message):
         super(SelfLoopMicroToscaModelError, self).__init__(message)
-    
+
+
 class GroupNotFoundError(MicroToscaModelError):
     """Exception raised for sel loop rlationship
 
@@ -68,9 +74,10 @@ class GroupNotFoundError(MicroToscaModelError):
 
     def __init__(self, message):
         super(GroupNotFoundError, self).__init__(message)
-    
+
+
 class MultipleEdgeGroupsError(MicroToscaModelError):
-    """Exception raised for multiple esged nodes defined in themodel
+    """Exception raised for multiple edge nodes defined in themodel
 
     Attributes:
         message -- explanation of the error
