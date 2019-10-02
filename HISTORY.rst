@@ -2,6 +2,11 @@
 History
 =======
 
+1.4.0 (2019-08-29)
+----------------------------
+Added refiner module
+* kubernetes refiner 
+* istio refiner
 
 1.3.2 (2019-08-29)
 ----------------------------
