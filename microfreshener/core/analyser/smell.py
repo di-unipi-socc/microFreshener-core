@@ -1,5 +1,4 @@
 from typing import List
-from ..model import Root
 from ..model import Relationship
 from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSITENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_CROSS_TEAM_DATA_MANAGEMENT
 from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP
@@ -70,7 +69,7 @@ class EndpointBasedServiceInteractionSmell(NodeSmell):
         sup_dict = super(EndpointBasedServiceInteractionSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
             {"name": REFACTORING_ADD_SERVICE_DISCOVERY, "description": "Add Service discovery"},
-            {"name": REFACTORING_ADD_MESSAGE_ROUTER, "description": "Add a message router"},
+            {"name": REFACTORING_ADD_MESSAGE_ROUTER, "description": "Add message router"},
             {"name": REFACTORING_ADD_MESSAGE_BROKER, "description": " Add message broker"}
         ]}}
 
