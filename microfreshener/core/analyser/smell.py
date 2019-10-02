@@ -69,7 +69,7 @@ class EndpointBasedServiceInteractionSmell(NodeSmell):
         sup_dict = super(EndpointBasedServiceInteractionSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
             {"name": REFACTORING_ADD_SERVICE_DISCOVERY, "description": "Add Service discovery"},
-            {"name": REFACTORING_ADD_MESSAGE_ROUTER, "description": "Add a message router"},
+            {"name": REFACTORING_ADD_MESSAGE_ROUTER, "description": "Add message router"},
             {"name": REFACTORING_ADD_MESSAGE_BROKER, "description": " Add message broker"}
         ]}}
 
