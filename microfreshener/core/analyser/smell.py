@@ -1,5 +1,6 @@
 from typing import List
 from ..model import Relationship
+from ..model import nodes
 from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSITENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_CROSS_TEAM_DATA_MANAGEMENT
 from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP
 class Smell(object):
@@ -9,7 +10,7 @@ class Smell(object):
         self.links_cause = []
         self.name = name
 
-    def addNodeCause(self, node: Root):
+    def addNodeCause(self, node):
         self.nodes_cause.append(node)
 
     def getNodeCause(self):
@@ -85,10 +86,21 @@ class WobblyServiceInteractionSmell(NodeSmell):
 
     def to_dict(self):
         sup_dict = super(WobblyServiceInteractionSmell, self).to_dict()
-        return {**sup_dict, **{"refactorings": [
-            {"name": REFACTORING_ADD_MESSAGE_BROKER, "description": "Add Message broker"},
-            {"name": REFACTORING_ADD_CIRCUIT_BREAKER, "description": " Add Circuit breaker"},
-            {"name": REFACTORING_USE_TIMEOUT, "description": "Use timeouts in the interaction"}]}}
+        
+        # add the message broker refactoring only if there exist
+        # at least one target node that is not a messageRouter.
+        add_mb_refactoring = False
+        if isinstance(self.node, nodes.Service):
+            for interaction in self.getLinkCause():
+                if not isinstance(interaction.target, nodes.MessageRouter):
+                    add_mb_refactoring = True
+        
+        refactorings = [{"name": REFACTORING_ADD_CIRCUIT_BREAKER, "description": " Add Circuit breaker"},
+            {"name": REFACTORING_USE_TIMEOUT, "description": "Use timeouts in the interaction"}]
+        if add_mb_refactoring:
+            refactorings.insert(0,{"name": REFACTORING_ADD_MESSAGE_BROKER, "description": "Add Message broker"})
+        return {**sup_dict, **{"refactorings": refactorings}}
+
 
 class SharedPersistencySmell(NodeSmell):
     name: str = SMELL_SHARED_PERSITENCY
