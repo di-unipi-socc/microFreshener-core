@@ -83,7 +83,7 @@ class Service(Software):
         return '{} ({})'.format(self.name, 'service')
 
 
-class Compute(Software):
+class Compute(Service):
 
     def __init__(self, name):
         super(Compute, self).__init__(name)
