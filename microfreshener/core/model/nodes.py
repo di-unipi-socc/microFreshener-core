@@ -83,6 +83,15 @@ class Service(Software):
         return '{} ({})'.format(self.name, 'service')
 
 
+class Compute(Software):
+
+    def __init__(self, name):
+        super(Compute, self).__init__(name)
+
+    def __str__(self):
+        return '{} ({})'.format(self.name, 'compute')
+
+
 class CommunicationPattern(Software):
 
     def __init__(self, name, short_name="CP"):

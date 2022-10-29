@@ -3,7 +3,7 @@ MicroModelModel module
 '''
 import six
 from .type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
-from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter, MessageBroker
+from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter, MessageBroker, Compute
 from .relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Team, Edge
 from ..errors import MicroToscaModelError, MultipleEdgeGroupsError
@@ -26,6 +26,10 @@ class MicroToscaModel:
     @property
     def services(self):
         return (v for k, v in self._nodes.items() if isinstance(v, Service))
+
+    @property
+    def computes(self):
+        return (v for k, v in self._nodes.items() if isinstance(v, Compute))
 
     @property
     def datastores(self):
