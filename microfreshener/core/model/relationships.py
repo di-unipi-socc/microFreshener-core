@@ -137,3 +137,24 @@ class RunTimeInteraction(InteractsWith):
 
     def to_dict(self):
         return {'source': self.source.name, 'target': self.target.name, "type": "runtime"}
+
+
+class DeployedOn(Relationship):
+
+    def __init__(self, source, target, id=None):
+        from nodes import Service, Compute
+        if isinstance(source, Service) and isinstance(target, Compute):
+            super().__init__(source, target, id)
+        else:
+            raise MicroToscaModelError(
+                f"DeployedOn relationship cannot be created from {source} to {target}. {type(source).__name__}")
+
+    def __str__(self):
+        return 'DeployedOn({})'.format(super(InteractsWith, self).__str__())
+
+    def __repr__(self):
+        return 'DeployedOn({})'.format(super(InteractsWith, self).__repr__())
+
+    def to_dict(self):
+        # return {'source': str(self.source), 'target': str(self.target)}
+        return {'source': self.source.name, 'target': self.target.name, "type": "deploment"}

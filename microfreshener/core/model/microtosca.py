@@ -102,6 +102,9 @@ class MicroToscaModel:
                                            with_circuit_breaker,
                                            with_dynamic_discovery)
 
+    def add_deployed_on(self, source_node, target_node):
+        return source_node.add_deployed_on(target_node=target_node)
+
     def get_relationship(self, id):
         for node in self.nodes:
             for interaction in node.interactions:

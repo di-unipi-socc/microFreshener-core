@@ -2,7 +2,7 @@
 nodes module
 '''
 
-from .relationships import DeploymentTimeInteraction, RunTimeInteraction, InteractsWith
+from .relationships import DeploymentTimeInteraction, RunTimeInteraction, InteractsWith, DeployedOn
 from ..logging import MyLogger
 from ..errors import MicroToscaModelError
 
@@ -81,6 +81,20 @@ class Service(Software):
 
     def __str__(self):
         return '{} ({})'.format(self.name, 'service')
+
+    # Adds a deployedOn interaction from source node (self) to target node. Only Service can be source of the relation
+    # and only Compute can be the target
+    def add_deployed_on(self, item):
+        if not isinstance(item, DeployedOn):
+            item = DeployedOn(source=self, target=item)
+
+        if item in self._interactions:
+            raise MicroToscaModelError(f"Interaction {item} from {self} to {item.target} already exist")
+
+        self._interactions.append(item)
+        if not isinstance(item.target, str):
+            item.target.add_incoming_interaction(item)
+        return item
 
 
 class Compute(Service):
