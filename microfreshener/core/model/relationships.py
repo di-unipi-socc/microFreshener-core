@@ -4,7 +4,6 @@ Relationships module
 import six
 import uuid
 
-
 from ..errors import MicroToscaModelError, SelfLoopMicroToscaModelError
 
 
@@ -142,8 +141,10 @@ class RunTimeInteraction(InteractsWith):
 class DeployedOn(Relationship):
 
     def __init__(self, source, target, id=None):
-        from nodes import Service, Compute
-        if isinstance(source, Service) and isinstance(target, Compute):
+        from .nodes import Service, Compute, Datastore
+        from microfreshener.core.model import MessageBroker
+
+        if (isinstance(source, Service) or isinstance(source, Datastore) or isinstance(source, MessageBroker)) and isinstance(target, Compute):
             super().__init__(source, target, id)
         else:
             raise MicroToscaModelError(
@@ -156,5 +157,4 @@ class DeployedOn(Relationship):
         return 'DeployedOn({})'.format(super(InteractsWith, self).__repr__())
 
     def to_dict(self):
-        # return {'source': str(self.source), 'target': str(self.target)}
         return {'source': self.source.name, 'target': self.target.name, "type": "deploment"}

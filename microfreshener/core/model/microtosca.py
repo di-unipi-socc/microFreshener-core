@@ -1,6 +1,8 @@
 '''
 MicroModelModel module
 '''
+import re
+
 import six
 from .type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter, MessageBroker, Compute
@@ -71,6 +73,20 @@ class MicroToscaModel:
         self._nodes[node.name] = node
         logger.debug("Added node {}".format(node))
         return node
+    
+    def rename_node(self, node, new_name):
+        old_name = node.name
+        self._nodes[new_name] = self._nodes.pop(node.name)
+
+        logger.debug(f"Renamed node {node.name} to {new_name}")
+        node.name = new_name
+
+        for name, group in self._groups.items():
+            for name in list(group._members.keys()):
+                if name == old_name:
+                    del group._members[name]
+                    group.add_member(node)
+
 
     def relink_incoming(self, current_node, target_node, source_nodes_to_be_discarded=[]):
         
@@ -90,6 +106,11 @@ class MicroToscaModel:
             rel.target.remove_incoming_interaction(rel)
         for up_rel in node.incoming_interactions:
             up_rel.source.remove_interaction(up_rel)
+
+        if isinstance(node, Service):
+            for dep in node.deployed_on:
+                node.remove_deployed_on(dep)
+
         logger.debug(f"Deleted node {node}")
         del self._nodes[node.name]
 
@@ -103,7 +124,7 @@ class MicroToscaModel:
                                            with_dynamic_discovery)
 
     def add_deployed_on(self, source_node, target_node):
-        return source_node.add_deployed_on(target_node=target_node)
+        return source_node.add_deployed_on(item=target_node)
 
     def get_relationship(self, id):
         for node in self.nodes:
@@ -162,6 +183,25 @@ class MicroToscaModel:
                             team_of_node.name).add_member(node)
 
         return subMicroToscaModel
+
+    def get_node_by_name(self, name: str, type = None):
+        nodes_to_consider = [n for n in self.nodes if isinstance(n, type)] if type else self.nodes
+
+        # Case: node.name == name
+        for node in nodes_to_consider:
+            if node.name == name:
+                return node
+
+        for node in nodes_to_consider:
+            # Case: name is FQDN (name.ns.svc, name.ns.svc.cluster, name.ns.svc.cluster.local)
+            match = re.match(name+r"([.][a-zA-Z]*){1,3}", node.name)
+            if match and match.string == node.name:
+                return node
+
+            # Case: node.name is FQDN (name.ns.svc, name.ns.svc.cluster, name.ns.svc.cluster.local)
+            match = re.match(node.name + r"([.][a-zA-Z]*){1,3}", name)
+            if match and match.string == name:
+                return node
 
     def __getitem__(self, name):
         node = self._nodes.get(name, None)

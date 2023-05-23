@@ -20,6 +20,10 @@ class Root(object):
         # Incoming interaction of a node
         self.up_interactions = []
 
+
+        # Outcoming DeployedOn relations
+        self._deployed_on = []
+
     @property
     def interactions(self):
         return self._interactions
@@ -27,6 +31,10 @@ class Root(object):
     @property
     def incoming_interactions(self):
         return self.up_interactions
+
+    @property
+    def deployed_on(self):
+        return self._deployed_on
 
     def add_incoming_interaction(self, interaction):
         self.up_interactions.append(interaction)
@@ -55,6 +63,25 @@ class Root(object):
         if interaction in self.up_interactions:
             self.up_interactions.remove(interaction)
 
+    # Adds a deployedOn interaction from source node (self) to target node. Only Service can be source of the relation
+    # and only Compute can be the target
+    def add_deployed_on(self, item):
+        if not isinstance(item, DeployedOn):
+            item = DeployedOn(source=self, target=item)
+
+        if item in self._deployed_on:
+            raise MicroToscaModelError(f"Interaction {item} from {self} to {item.target} already exist")
+
+        self._deployed_on.append(item)
+        if not isinstance(item.target, str):
+            item.target.add_deploy(item)
+        return item
+
+    def remove_deployed_on(self, link):
+        if link in self._deployed_on:
+            self._deployed_on.remove(link)
+        link.target.remove_deploy(link)
+
     def __str__(self):
         return self.name
 
@@ -82,28 +109,28 @@ class Service(Software):
     def __str__(self):
         return '{} ({})'.format(self.name, 'service')
 
-    # Adds a deployedOn interaction from source node (self) to target node. Only Service can be source of the relation
-    # and only Compute can be the target
-    def add_deployed_on(self, item):
-        if not isinstance(item, DeployedOn):
-            item = DeployedOn(source=self, target=item)
 
-        if item in self._interactions:
-            raise MicroToscaModelError(f"Interaction {item} from {self} to {item.target} already exist")
-
-        self._interactions.append(item)
-        if not isinstance(item.target, str):
-            item.target.add_incoming_interaction(item)
-        return item
-
-
-class Compute(Service):
+class Compute(Root):
 
     def __init__(self, name):
         super(Compute, self).__init__(name)
 
+        # Incoming DeployedOn relations
+        self._deploys: list = []
+
     def __str__(self):
         return '{} ({})'.format(self.name, 'compute')
+
+    @property
+    def deploys(self):
+        return self._deploys
+
+    def add_deploy(self, relation):
+        self._deploys.append(relation)
+
+    def remove_deploy(self, deploys):
+        if deploys in self._deploys:
+            self._deploys.remove(deploys)
 
 
 class CommunicationPattern(Software):
