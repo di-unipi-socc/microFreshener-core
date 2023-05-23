@@ -1,5 +1,5 @@
 
-from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, Compute
 from ..analyser.sniffer import NodeSmellSniffer, GroupSmellSniffer
 from ..logging import MyLogger
 
@@ -41,7 +41,7 @@ class MicroToscaAnalyser(object):
         logger.info("Group Sniffer {} added".format(sniffer))
         self.group_smell_sniffers.append(sniffer)
 
-    def run(self):
+    def run(self, smell_as_dict: bool = True):
         logger.debug("Running analysis")
         # Return a dictionary with two fields of types: ANodes:[], AGroups:[]
         result = {}
@@ -51,6 +51,8 @@ class MicroToscaAnalyser(object):
             anode = {'name': node.name}
             if(isinstance(node, Service)):
                 anode["type"] = "software"
+            if(isinstance(node, Compute)):
+                anode["type"] = "compute"
             if(isinstance(node, Datastore)):
                 anode["type"] = "datastore"
             if(isinstance(node, MessageBroker)):
@@ -67,7 +69,7 @@ class MicroToscaAnalyser(object):
                 # if self.get_ignore_smells_for_node(node) or sniffer not in self.get_ignore_smells_for_node(node):
                 smell = sniffer.snif(node)
                 if(smell and not smell.isEmpty()):
-                    smells.append(smell.to_dict())
+                    smells.append(smell.to_dict() if smell_as_dict else smell)
             if(smells):  # add only nodes that has at least one smell
                 anode['smells'] = smells
                 nodes.append(anode)
@@ -85,10 +87,10 @@ class MicroToscaAnalyser(object):
                     if isinstance(gsmells, list):
                         for smell in gsmells:
                             if(not smell.isEmpty()):
-                                smells.append(smell.to_dict())
+                                smells.append(smell.to_dict() if smell_as_dict else smell)
                     else:
                         if(not gsmells.isEmpty()):
-                            smells.append(gsmells.to_dict())
+                            smells.append(gsmells.to_dict() if smell_as_dict else gsmells)
             if(smells):
                 agroup['smells'] = smells
                 groups.append(agroup)

@@ -1,8 +1,8 @@
 from typing import List
 from ..model import Relationship
 from ..model import nodes
-from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSITENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_CROSS_TEAM_DATA_MANAGEMENT
-from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP
+from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSITENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_CROSS_TEAM_DATA_MANAGEMENT, SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER
+from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP, REFACTORING_SPLIT_SERVICES
 class Smell(object):
 
     def __init__(self, name):
@@ -148,3 +148,18 @@ class CrossTeamDataManagementSmell(GroupSmell):
             {"name": REFACTORING_CHANGE_DATABASE_OWENRSHIP, "description": "Move the Datastore to another team"},
             {"name": REFACTORING_CHANGE_SERVICE_OWENRSHIP, "description": "Move the service to another team"},
             ]}}
+
+class MultipleServicesInOneContainerSmell(NodeSmell):
+    name: str = SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER
+
+    def __init__(self, node):
+        super(MultipleServicesInOneContainerSmell, self).__init__(self.name, node)
+
+    def __str__(self):
+        return 'MultipleServicesInOneContainerSmell({})'.format(super(NodeSmell, self).__str__())
+
+    def to_dict(self):
+        sup_dict = super(MultipleServicesInOneContainerSmell, self).to_dict()
+        return {**sup_dict, **{"refactorings": [
+            {"name": REFACTORING_SPLIT_SERVICES, "description": "Split containers in two pods"},
+        ]}}
