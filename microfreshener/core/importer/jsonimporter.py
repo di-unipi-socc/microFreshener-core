@@ -1,6 +1,6 @@
 
 import json
-from ..model import MicroToscaModel
+from ..model import MicroToscaModel, Compute
 from ..model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
 
 from ..model import KProxy, KService, KIngress
@@ -12,7 +12,9 @@ from .iimporter import Importer
 from ..model.type import MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_GROUPS_TEAM, MICROTOSCA_GROUPS_EDGE, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
-from .jsontype import JSON_RELATIONSHIP_INTERACT_WITH, JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
+from .jsontype import JSON_RELATIONSHIP_INTERACT_WITH, JSON_RUN_TIME, JSON_DEPLOYMENT_TIME, JSON_NODE_SERVICE, \
+    JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER, JSON_NODE_COMPUTE, \
+    JSON_RELATIONSHIP_DEPLOYED_ON
 from .jsontype import JSON_NODE_MESSAGE_ROUTER_KINGRESS, JSON_NODE_MESSAGE_ROUTER_KPROXY, JSON_NODE_MESSAGE_ROUTER_KSERVICE
 from .jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
 import os
@@ -66,6 +68,8 @@ class JSONImporter(Importer):
             el = MessageRouter(name_node)
         elif(type_node == JSON_NODE_DATABASE):
             el = Datastore(name_node)
+        elif type_node == JSON_NODE_COMPUTE:
+            el = Compute(name_node)
         elif(type_node == JSON_NODE_MESSAGE_ROUTER_KSERVICE):
             el = KService(name_node)
         elif(type_node == JSON_NODE_MESSAGE_ROUTER_KPROXY):
@@ -88,6 +92,10 @@ class JSONImporter(Importer):
             interaction = self.load_interaction_from_json(link_json)
             source = self.load_source_node_from_json(link_json)
             return source.add_interaction(interaction)
+        elif type_rel == JSON_RELATIONSHIP_DEPLOYED_ON:
+            source = self.load_source_node_from_json(link_json)
+            target_node = self.load_target_node_from_json(link_json)
+            source.add_deployed_on(target_node)
         else:
             raise ImporterError(f"Link type {type_rel} not recognized")
 

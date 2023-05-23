@@ -36,7 +36,7 @@ class TestJSONTranformer(TestCase):
         self.assertEqual(squad_dict['name'], "team2")
         self.assertEqual("type" in squad_dict, True)
         self.assertEqual(squad_dict['type'], JSON_GROUPS_TEAM)
-      
+
 
 
 

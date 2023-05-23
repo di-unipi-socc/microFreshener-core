@@ -4,7 +4,9 @@ from microfreshener.core.importer import JSONImporter, YMLImporter
 from microfreshener.core.exporter import JSONExporter
 from microfreshener.core.model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY,MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY
 
-from microfreshener.core.importer.jsontype import JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER, JSON_NODE_SERVICE
+from microfreshener.core.importer.jsontype import JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, \
+    JSON_NODE_MESSAGE_ROUTER, JSON_NODE_SERVICE, JSON_NODE_COMPUTE
+
 
 class TestJSONTranformer(TestCase):
 
@@ -38,3 +40,9 @@ class TestJSONTranformer(TestCase):
         dict_mr = self.tranformer.transform_node_to_json(mr)
         self.assertEqual(dict_mr["type"],JSON_NODE_MESSAGE_ROUTER)
         self.assertEqual(dict_mr["name"], "my_messagerouter")
+
+    def test_transform_compute(self):
+        cmp = self.microtosca['my_compute']
+        dict_cmp = self.tranformer.transform_node_to_json(cmp)
+        self.assertEqual(dict_cmp["type"], JSON_NODE_COMPUTE)
+        self.assertEqual(dict_cmp["name"], "my_compute")

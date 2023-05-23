@@ -2,4 +2,4 @@
 
 __author__ = """Davide neri"""
 __email__ = 'davide.neri@di.unipi.it'
-__version__ = '1.4.0'
+__version__ = '1.5.0'

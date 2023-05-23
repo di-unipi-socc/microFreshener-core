@@ -2,8 +2,10 @@ from unittest import TestCase
 
 from microfreshener.core.importer import JSONImporter
 from microfreshener.core.errors import ImporterError
-from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, KIngress, KProxy, KService
-from microfreshener.core.importer.jsontype import JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER
+from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, KIngress, \
+    KProxy, KService, Compute
+from microfreshener.core.importer.jsontype import JSON_NODE_SERVICE, JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, \
+    JSON_NODE_MESSAGE_ROUTER, JSON_NODE_COMPUTE
 from microfreshener.core.importer.jsontype import JSON_NODE_MESSAGE_ROUTER_KINGRESS, JSON_NODE_MESSAGE_ROUTER_KPROXY, JSON_NODE_MESSAGE_ROUTER_KSERVICE
 
 class TestJSONImporterNodes(TestCase):
@@ -18,6 +20,11 @@ class TestJSONImporterNodes(TestCase):
         s1 = self.microtosca['my_service']
         self.assertIsInstance(s1, Service)
         self.assertEqual(s1.name, "my_service")
+
+    def test_compute(self):
+        cmp = self.microtosca['my_compute']
+        self.assertIsInstance(cmp, Compute)
+        self.assertEqual(cmp.name, "my_compute")
 
     def test_database(self):
         db = self.microtosca['my_datastore']
@@ -63,6 +70,12 @@ class TestJSONImporterNodes(TestCase):
         node = self.importer.load_node_from_json(
             {"type": JSON_NODE_SERVICE, "name": "prova"})
         self.assertIsInstance(node, Service)
+        self.assertEqual(node.name, "prova")
+
+    def test_load_node_compute(self):
+        node = self.importer.load_node_from_json(
+            {"type": JSON_NODE_COMPUTE, "name": "prova"})
+        self.assertIsInstance(node, Compute)
         self.assertEqual(node.name, "prova")
 
     def test_load_node_database(self):

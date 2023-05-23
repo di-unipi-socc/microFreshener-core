@@ -1,7 +1,7 @@
 from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter 
-from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
+from microfreshener.core.model import Service
 
 class TestYMLImporter(TestCase):
 
@@ -15,7 +15,7 @@ class TestYMLImporter(TestCase):
         self.assertEqual(len(list(self.microtosca.nodes)), 5)
         
     def test_get_node_by_name(self):
-        self.assertEqual(self.microtosca['shipping'].name, "shipping" )
+        self.assertEqual(self.microtosca['shipping'].name, "shipping")
 
     def test_get_services(self):
         self.assertEqual(len(list(self.microtosca.services)), 2)
@@ -32,7 +32,7 @@ class TestYMLImporter(TestCase):
     def test_order_interactions(self):
         order = self.microtosca["order"]
         rels = [link.target.name for link in order.interactions]       
-        self.assertCountEqual(rels, ['shipping','order_db','rabbitmq', 'shipping'])
+        self.assertCountEqual(rels, ['shipping', 'order_db', 'rabbitmq', 'shipping'])
     
     def test_gateway_interactions(self):
         order = self.microtosca["gateway"]

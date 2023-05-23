@@ -10,7 +10,7 @@ class TestJSONImporterRelationships(TestCase):
 
     @classmethod
     def setUpClass(self):
-        self.file = 'data/tests/test_relationships.json'
+        self.file = '../../../'+'data/tests/test_relationships.json'
         self.importer = JSONImporter()
         self.json_data = self.importer.load_json(self.file)
         self.importer._load_microtosca(self.json_data)

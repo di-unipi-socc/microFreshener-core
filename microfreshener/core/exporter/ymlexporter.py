@@ -3,13 +3,14 @@ from ruamel.yaml import YAML
 from ruamel.yaml.compat import StringIO
 
 from ..model import MicroToscaModel
-from ..model  import InteractsWith
-from ..model import Root, Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
+from ..model import InteractsWith
+from ..model import Root, Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, Compute
 from ..model.groups import RootGroup, Edge, Team
+from ..model.relationships import DeployedOn
 from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
-from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
-from ..model.type import  MICROTOSCA_GROUPS_EDGE, MICROTOSCA_GROUPS_TEAM
-from ..importer.ymltype import  YML_INTERACTION
+from ..model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_NODES_COMPUTE
+from ..model.type import MICROTOSCA_GROUPS_EDGE, MICROTOSCA_GROUPS_TEAM
+from ..importer.ymltype import YML_INTERACTION, YML_DEPLOYED_ON
 from ..importer.ymltype import YML_RELATIONSHIP_T, YML_RELATIONSHIP_D, YML_RELATIONSHIP_C, YML_RELATIONSHIP_CD, YML_RELATIONSHIP_TC, YML_RELATIONSHIP_TD, YML_RELATIONSHIP_TCD
 from .iexporter import Exporter
 from ..errors import ExporterError
@@ -100,6 +101,8 @@ class YMLExporter(Exporter):
             node_type = MICROTOSCA_NODES_MESSAGE_BROKER
         elif(isinstance(node, MessageRouter)):
             node_type = MICROTOSCA_NODES_MESSAGE_ROUTER
+        elif(isinstance(node, Compute)):
+            node_type = MICROTOSCA_NODES_COMPUTE
         else:
             raise ExporterError(f"Node {node} not recognized")
         d_node['type'] = node_type
@@ -107,6 +110,8 @@ class YMLExporter(Exporter):
         requirements = []
         for rel in node.interactions:
             requirements.append(self._transform_relationship(rel))
+        for dep in node.deployed_on:
+            requirements.append(self._transform_relationship(dep))
         if(requirements):
             d_node['requirements'] = requirements
         return d_node
@@ -130,6 +135,8 @@ class YMLExporter(Exporter):
                 d_rel[YML_INTERACTION] = {"node": rel.target.name, "relationship": YML_RELATIONSHIP_TCD}
             else:
                 d_rel[YML_INTERACTION] = rel.target.name
+        elif isinstance(rel, DeployedOn):
+            d_rel[YML_DEPLOYED_ON] = {"node": rel.target.name}
         else:
             raise ExporterError('{} relationship not recognized.'.format(rel))
         return d_rel

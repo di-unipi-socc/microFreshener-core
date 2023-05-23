@@ -35,6 +35,11 @@ relationship_types:
         type: boolean
         default: false
 
+  # relationship for modelling deploy
+  micro.relationships.DeployedOn:
+    derived_from: micro.relationships.Root
+    valid_target_types: [micro.nodes.Compute]
+
 node_types:
   micro.nodes.Root:
     derived_from: tosca.nodes.Root
@@ -53,6 +58,12 @@ node_types:
           occurrences: [ 0, UNBOUNDED ]
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
+      - deployed_on:
+          capability: tosca.capabilities.Node
+          occurrences: [ 0, UNBOUNDED ]
+          node: micro.nodes.compute
+          relationship: micro.relationships.DeployedOn
+
 
   # node type for representing communication patterns
   micro.nodes.CommunicationPattern:
@@ -66,6 +77,12 @@ node_types:
         type: tosca.capabilities.Node
         valid_source_types: [ micro.nodes.Service ] # communication patterns cannot interact with databases
         occurrences: [ 0, UNBOUNDED ]
+    requirements:
+      - deployed_on:
+          capability: tosca.capabilities.Node
+          occurrences: [ 0, UNBOUNDED ]
+          node: micro.nodes.compute
+          relationship: micro.relationships.DeployedOn
 
   #  Type of communication_patterns
   micro.nodes.MessageBroker:
@@ -79,3 +96,6 @@ node_types:
           occurrences: [ 1, UNBOUNDED ] # at least one (outgoing) interaction
           node: micro.nodes.Root
           relationship: micro.relationships.InteractsWith
+
+  micro.nodes.Compute:
+    derived_from: micro.nodes.Root
