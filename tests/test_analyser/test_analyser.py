@@ -3,7 +3,7 @@ from unittest import TestCase
 from microfreshener.core.importer import YMLImporter
 from microfreshener.core.analyser import MicroToscaAnalyser
 
-from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer, MultipleServicesInOneContainerSmellSniffer
 
 
 class TestAnalyser(TestCase):
@@ -52,4 +52,13 @@ class TestAnalyser(TestCase):
         expected_res = [{'source': 'shipping', 'target': 'order_db',  "type": "interaction"}]
         self.assertEqual(actual_res, expected_res)
         self.assertEqual(res['groups'][0]['smells'][0]['nodes'], [])
+
+    def test_MultipleServicesInOneContainerSniffer(self):
+        analyser = MicroToscaAnalyser(self.microtosca)
+        analyser.add_node_smell_sniffer(MultipleServicesInOneContainerSmellSniffer())
+        res = analyser.run()
+
+        d = res['nodes'][0]['smells'][0]['links']
+        my_res = [{'source': 'order', 'target': 'order-shipping-compute', 'type': 'deployment'}, {'source': 'shipping', 'target': 'order-shipping-compute', 'type': 'deployment'}]
+        self.assertEqual(d, my_res)
 

@@ -12,7 +12,7 @@ class TestYMLImporter(TestCase):
         self.microtosca = self.importer.Import(file)
 
     def test_number_nodes(self):
-        self.assertEqual(len(list(self.microtosca.nodes)), 5)
+        self.assertEqual(len(list(self.microtosca.nodes)), 7)
         
     def test_get_node_by_name(self):
         self.assertEqual(self.microtosca['shipping'].name, "shipping")
@@ -23,7 +23,22 @@ class TestYMLImporter(TestCase):
     def test_database(self):
         db = self.microtosca['shipping']
         self.assertIsInstance(db, Service)
-    
+
+    def test_compute(self):
+        self.assertEqual(len(list(self.microtosca.computes)), 2)
+
+    def test_shipping_deployed_on(self):
+        shipping = self.microtosca["shipping"]
+        self.assertEqual(len(shipping.deployed_on), 1)
+
+    def test_order_deployed_on(self):
+        order = self.microtosca["order"]
+        self.assertEqual(len(order.deployed_on), 1)
+
+    def test_order_db_deployed_on(self):
+        order_db = self.microtosca["order_db"]
+        self.assertEqual(len(order_db.deployed_on), 1)
+
     def test_shipping_interactions(self):
         shipping = self.microtosca["shipping"]
         rels = [link.target.name for link in shipping.interactions]       

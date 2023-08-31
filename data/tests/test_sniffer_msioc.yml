@@ -1,0 +1,48 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+
+description: For testing the Multiple Service in One Container smell
+
+imports:
+  - micro: ../../data/micro-tosca-types.yml
+
+topology_template:
+  node_templates:
+    # Test Compute node with no incoming edges
+    c0:
+      type: micro.nodes.Compute
+
+    # Test one Service deployed on one Compute
+    s1:
+      type: micro.nodes.Service
+      requirements:
+        - deployed_on: c1
+    c1:
+      type: micro.nodes.Compute
+
+    # Test multiple Services deployed on the same Compute
+    s2:
+      type: micro.nodes.Service
+      requirements:
+        - deployed_on: c23
+    s3:
+      type: micro.nodes.Service
+      requirements:
+        - deployed_on: c23
+    c23:
+      type: micro.nodes.Compute
+
+    # Test multiple Services deployed on the same Compute
+    s4:
+      type: micro.nodes.Service
+      requirements:
+        - deployed_on: c456
+    s5:
+      type: micro.nodes.Service
+      requirements:
+        - deployed_on: c456
+    s6:
+      type: micro.nodes.Service
+      requirements:
+        - deployed_on: c456
+    c456:
+      type: micro.nodes.Compute

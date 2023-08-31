@@ -16,6 +16,10 @@
     {
       "name": "mr",
       "type": "messagerouter"
+    },
+    {
+      "name": "c1",
+      "type": "compute"
     }
   ],
   "links": [

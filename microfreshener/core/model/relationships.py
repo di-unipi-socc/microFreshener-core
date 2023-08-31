@@ -157,4 +157,4 @@ class DeployedOn(Relationship):
         return 'DeployedOn({})'.format(super(InteractsWith, self).__repr__())
 
     def to_dict(self):
-        return {'source': self.source.name, 'target': self.target.name, "type": "deploment"}
+        return {'source': self.source.name, 'target': self.target.name, "type": "deployment"}
