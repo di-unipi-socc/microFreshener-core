@@ -11,7 +11,7 @@ class TestJSONTranformerRelationship(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = '../../'+ 'data/tests/test_relationships.yml'
+        file = 'data/tests/test_relationships.yml'
         self.importer = YMLImporter()
         self.microtosca = self.importer.Import(file)
         self.tranformer = JSONExporter()

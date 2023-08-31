@@ -4,9 +4,7 @@ MicroModelModel module
 import re
 
 import six
-from .type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH
 from .nodes import Root, Service, Datastore, CommunicationPattern, MessageRouter, MessageBroker, Compute
-from .relationships import InteractsWith, DeploymentTimeInteraction, RunTimeInteraction
 from .groups import Team, Edge
 from ..errors import MicroToscaModelError, MultipleEdgeGroupsError
 from ..logging import MyLogger

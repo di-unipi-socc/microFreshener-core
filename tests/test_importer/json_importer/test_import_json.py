@@ -10,7 +10,7 @@ class TestJSONImporter(TestCase):
         file = 'data/examples/hello-world/helloworld.json'
         self.loader = JSONImporter()
         self.microtosca_template = self.loader.Import(file)
-    
+    #TODO aggiungo un compute
     def test_import_json_as_string(self):
         json_string = """
             {
