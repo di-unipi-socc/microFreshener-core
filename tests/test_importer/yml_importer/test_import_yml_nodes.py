@@ -1,7 +1,9 @@
 from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter
-from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, KIngress, KProxy, KService
+from microfreshener.core.model import Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter, KIngress, \
+    KProxy, KService, Compute
+
 
 class TestYMLImporterNodes(TestCase):
 
@@ -15,7 +17,12 @@ class TestYMLImporterNodes(TestCase):
         s1 = self.microtosca['my_service']
         self.assertIsInstance(s1, Service)
         self.assertEqual(s1.name, "my_service")
-    
+
+    def test_compute(self):
+        s1 = self.microtosca['my_compute']
+        self.assertIsInstance(s1, Compute)
+        self.assertEqual(s1.name, "my_compute")
+
     def test_database(self):
         db = self.microtosca['my_datastore']
         self.assertIsInstance(db, Datastore)

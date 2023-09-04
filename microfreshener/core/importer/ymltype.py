@@ -1,6 +1,8 @@
 # Relationship instance name
 
 YML_INTERACTION = "interaction"
+YML_DEPLOYED_ON = "deployed_on"
+
 YML_RUN_TIME = "run_time"
 YML_DEPLOYMENT_TIME = "deployment_time"
 

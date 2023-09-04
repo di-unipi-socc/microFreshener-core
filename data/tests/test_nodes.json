@@ -28,6 +28,10 @@
         {
             "name": "my_kingress",
             "type": "kingress"
+        },
+        {
+            "name": "my_compute",
+            "type": "compute"
         }
     ]
   }

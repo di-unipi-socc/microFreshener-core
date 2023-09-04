@@ -20,9 +20,32 @@
         {
             "name": "gateway",
             "type": "messagerouter"
+        },
+        {
+            "name": "order_db_compute",
+            "type": "compute"
+        },
+        {
+            "name": "order_shipping_compute",
+            "type": "compute"
         }
     ],
     "links": [
+        {
+            "source": "order_db",
+            "target": "order_db_compute",
+            "type": "deployment"
+        },
+        {
+            "source": "order",
+            "target": "order_shipping_compute",
+            "type": "deployment"
+        },
+        {
+            "source": "shipping",
+            "target": "order_shipping_compute",
+            "type": "deployment"
+        },
         {
             "source": "shipping",
             "target": "rabbitmq",

@@ -1,7 +1,8 @@
 
 from abc import ABCMeta, abstractmethod
-from .smell import NodeSmell, CrossTeamDataManagementSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, WobblyServiceInteractionSmell, SharedPersistencySmell
-from ..model import Service, Datastore, CommunicationPattern, MessageRouter
+from .smell import NodeSmell, CrossTeamDataManagementSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, \
+    WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell
+from ..model import Service, Datastore, CommunicationPattern, MessageRouter, Compute
 from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model import MicroToscaModel
 from ..model.groups import Edge, Team
@@ -89,7 +90,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
         return 'NoApiGatewaySmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
     @visitor(Edge)
-    def snif(self, group: Edge)->[NoApiGatewaySmell]:
+    def snif(self, group: Edge) -> [NoApiGatewaySmell]:
         foundNoApiGatewaySmells = []
         for node in group.members:
             if not isinstance(node, MessageRouter):
@@ -116,3 +117,21 @@ class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
 
     def __str__(self):
         return 'CrossTeamDataManagementSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+
+class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
+
+    def __str__(self):
+        return 'MultipleServicesInOneContainerSmellSniffer({})'.format(super(NodeSmellSniffer, self).__str__())
+
+    @visitor(Compute)
+    def snif(self, node) -> MultipleServicesInOneContainerSmell:
+        smell = MultipleServicesInOneContainerSmell(node)
+        nodes = set(link.source for link in node.deploys)
+        if (len(nodes) > 1):
+            for link in node.deploys:
+                smell.addLinkCause(link)
+        return smell
+
+    @visitor(MicroToscaModel)
+    def snif(self, micro_model):
+        print("visiting all the nodes in the graph")

@@ -27,6 +27,9 @@ topology_template:
 
     my_kingress:
       type: micro.nodes.MessageRouter.KIngress
-    
+
+    my_compute:
+      type: micro.nodes.Compute
+
     # my_communicationpattern:
     #   type: micro.nodes.CommunicationPattern

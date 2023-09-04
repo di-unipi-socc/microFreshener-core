@@ -1,17 +1,17 @@
-import json
-
-from ..model import MicroToscaModel
-from ..model  import RunTimeInteraction, DeploymentTimeInteraction, InteractsWith
-from ..model import Root, Service, Datastore, CommunicationPattern, MessageBroker, MessageRouter
-from ..model.groups import Edge, Team
-
-from ..model.type import  MICROTOSCA_NODES_MESSAGE_BROKER
-from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
-from ..errors import ExporterError
 from .iexporter import Exporter
-from ..importer.jsontype import JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER, JSON_NODE_SERVICE
-from ..importer.jsontype import JSON_DEPLOYMENT_TIME, JSON_RUN_TIME, JSON_RELATIONSHIP_INTERACT_WITH
-from ..importer.jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM
+from ..errors import ExporterError
+from ..importer.jsontype import JSON_GROUPS_EDGE, JSON_GROUPS_TEAM, JSON_NODE_COMPUTE, JSON_RELATIONSHIP_DEPLOYED_ON
+from ..importer.jsontype import JSON_NODE_DATABASE, JSON_NODE_MESSAGE_BROKER, JSON_NODE_MESSAGE_ROUTER, \
+    JSON_NODE_SERVICE
+from ..importer.jsontype import JSON_RELATIONSHIP_INTERACT_WITH
+from ..model import InteractsWith, Compute, DeployedOn
+from ..model import MicroToscaModel
+from ..model import Service, Datastore, MessageBroker, MessageRouter
+from ..model.groups import Edge, Team
+from ..model.type import MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY, \
+    MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY, \
+    MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY
+
 
 class JSONExporter(Exporter):
 
@@ -38,6 +38,9 @@ class JSONExporter(Exporter):
                 d['nodes'].append(self.transform_node_to_json(node))
                 for rel in node.interactions:
                     d['links'].append(self.export_link_to_json(rel))
+                if hasattr(node, "deployed_on"):
+                    for rel in node.deployed_on:
+                        d['links'].append(self.export_link_to_json(rel))
             for group in obj.groups:
                 d['groups'].append(self.export_group_to_json(group))
         return d
@@ -53,6 +56,8 @@ class JSONExporter(Exporter):
             dict_node['type'] = JSON_NODE_MESSAGE_BROKER
         elif(isinstance(node, MessageRouter)):
             dict_node['type'] = JSON_NODE_MESSAGE_ROUTER
+        elif(isinstance(node, Compute)):
+            dict_node['type'] = JSON_NODE_COMPUTE
         else:
             raise ExporterError(f"Node {n} not recognized")
         return dict_node
@@ -62,11 +67,14 @@ class JSONExporter(Exporter):
         nrel['id'] = relationship.id
         nrel['target'] = relationship.target.name
         nrel['source'] = relationship.source.name
-        nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
-        nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
-        nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
+
         if(isinstance(relationship, InteractsWith)):
             nrel['type'] = JSON_RELATIONSHIP_INTERACT_WITH
+            nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_TIMEOUT_PROPERTY] = relationship.timeout
+            nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_CIRCUIT_BREAKER_PROPERTY] = relationship.circuit_breaker
+            nrel[MICROTOSCA_RELATIONSHIPS_INTERACT_WITH_DYNAMIC_DISCOVEY_PROPERTY] = relationship.dynamic_discovery
+        elif isinstance(relationship, DeployedOn):
+            nrel['type'] = JSON_RELATIONSHIP_DEPLOYED_ON
         else:
             raise ExporterError("{} Relationship not recognized.".format(relationship))
         return nrel

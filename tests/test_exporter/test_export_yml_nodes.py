@@ -2,7 +2,8 @@ from unittest import TestCase
 
 from microfreshener.core.importer import YMLImporter
 from microfreshener.core.exporter import YMLExporter
-from microfreshener.core.model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER
+from microfreshener.core.model.type import MICROTOSCA_NODES_SERVICE, MICROTOSCA_NODES_DATABASE, \
+    MICROTOSCA_NODES_MESSAGE_BROKER, MICROTOSCA_NODES_MESSAGE_ROUTER, MICROTOSCA_NODES_COMPUTE
 
 
 class TestYMLTranformer(TestCase):
@@ -33,3 +34,8 @@ class TestYMLTranformer(TestCase):
         mr = self.microtosca['my_messagerouter']
         dict_mr = self.tranformer._transform_node_template(mr)
         self.assertEqual(dict_mr["type"], MICROTOSCA_NODES_MESSAGE_ROUTER)
+
+    def test_transform_compute(self):
+        mr = self.microtosca['my_compute']
+        dict_mr = self.tranformer._transform_node_template(mr)
+        self.assertEqual(dict_mr["type"], MICROTOSCA_NODES_COMPUTE)

@@ -17,6 +17,7 @@ topology_template:
             node: shipping
             relationship: t
         - interaction: shipping
+        - deployed_on: order-shipping-compute
 
     rabbitmq:
       type: micro.nodes.MessageBroker
@@ -26,14 +27,23 @@ topology_template:
       requirements:
         - interaction: rabbitmq
         - interaction: order_db
+        - deployed_on: order-shipping-compute
 
     order_db:
       type: micro.nodes.Datastore
+      requirements:
+        - deployed_on: order-db-compute
     
     gateway:
       type: micro.nodes.MessageRouter
       requirements:
         - interaction: shipping
+
+    order-shipping-compute:
+      type: micro.nodes.Compute
+
+    order-db-compute:
+      type: micro.nodes.Compute
   
   groups:
     edgenodes:

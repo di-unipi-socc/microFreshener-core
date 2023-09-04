@@ -10,7 +10,7 @@ class TestJSONImporter(TestCase):
         file = 'data/examples/hello-world/helloworld.json'
         self.loader = JSONImporter()
         self.microtosca_template = self.loader.Import(file)
-    
+
     def test_import_json_as_string(self):
         json_string = """
             {
@@ -35,9 +35,32 @@ class TestJSONImporter(TestCase):
                     {
                         "name": "gateway",
                         "type": "messagerouter"
+                    },
+                    {
+                        "name": "order_db_compute",
+                        "type": "compute"
+                    },
+                    {
+                        "name": "order_shipping_compute",
+                        "type": "compute"
                     }
                 ],
                 "links": [
+                    {
+                        "source": "order_db",
+                        "target": "order_db_compute",
+                        "type": "deployment"
+                    },
+                    {
+                        "source": "order",
+                        "target": "order_shipping_compute",
+                        "type": "deployment"
+                    },
+                    {
+                        "source": "shipping",
+                        "target": "order_shipping_compute",
+                        "type": "deployment"
+                    },
                     {
                         "source": "shipping",
                         "target": "rabbitmq",
@@ -105,12 +128,12 @@ class TestJSONImporter(TestCase):
             }
             """
         self.microtosca_template = self.loader.Import(json_string)
-        self.assertEqual(len(list(self.microtosca_template.nodes)), 5)
+        self.assertEqual(len(list(self.microtosca_template.nodes)), 7)
 
 
 
     def test_number_nodes(self):
-        self.assertEqual(len(list(self.microtosca_template.nodes)), 5)
+        self.assertEqual(len(list(self.microtosca_template.nodes)), 7)
 
     def test_get_node_by_id(self):
         self.assertEqual(self.microtosca_template['shipping'].name, "shipping")
@@ -125,17 +148,33 @@ class TestJSONImporter(TestCase):
         self.assertEqual(len(list(self.microtosca_template.datastores)), 1)  
 
     def test_get_mr(self):
-        self.assertEqual(len(list(self.microtosca_template.datastores)), 1)  
+        self.assertEqual(len(list(self.microtosca_template.datastores)), 1)
+
+    def test_get_compute(self):
+        self.assertEqual(len(list(self.microtosca_template.computes)), 2)
 
     def test_shipping_interactions(self):
         shipping = self.microtosca_template["shipping"]
         rels = [link.target.name for link in shipping.interactions]
         self.assertCountEqual(rels,  ['order_db','rabbitmq'])
+        self.assertEqual(len(shipping.deployed_on), 1)
 
     def test_order_interactions(self):
         order = self.microtosca_template["order"]
         rels = [link.target.name for link in order.interactions]
         self.assertCountEqual(rels, [ 'order_db', 'rabbitmq', 'shipping', 'shipping'])
+
+    def test_shipping_deployed_on(self):
+        shipping = self.microtosca_template["shipping"]
+        self.assertEqual(len(shipping.deployed_on), 1)
+
+    def test_order_deployed_on(self):
+        order = self.microtosca_template["order"]
+        self.assertEqual(len(order.deployed_on), 1)
+
+    def test_order_db_deployed_on(self):
+        order_db = self.microtosca_template["order_db"]
+        self.assertEqual(len(order_db.deployed_on), 1)
 
     def test_gateway_interactions(self):
         order = self.microtosca_template["gateway"]

@@ -2,6 +2,11 @@
 History
 =======
 
+1.5.0 (2023-04-20)
+----------------------------
+* Added Compute node
+* Added DeployedOn relationship
+
 1.4.0 (2019-08-29)
 ----------------------------
 Added refiner module
