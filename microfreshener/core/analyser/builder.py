@@ -1,5 +1,5 @@
 from .analyser import MicroToscaAnalyser
-from .costants import SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SHARED_PERSITENCY, SMELL_SINGLE_LAYER_TEAMS, \
+from .costants import SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SHARED_PERSISTENCY, SMELL_SINGLE_LAYER_TEAMS, \
     SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_ESB_MISUSE
 from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, \
     WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamsSmellSniffer, \
@@ -25,7 +25,7 @@ class MicroToscaAnalyserBuilder(object):
             self.analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
         elif smell == SMELL_ESB_MISUSE  or smell == 5:
             pass
-        elif smell == SMELL_SHARED_PERSITENCY or smell == 6:
+        elif smell == SMELL_SHARED_PERSISTENCY or smell == 6:
             self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         elif smell == SMELL_SINGLE_LAYER_TEAMS or smell == 7:
             self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
@@ -44,7 +44,7 @@ class MicroToscaAnalyserBuilder(object):
             self.analyser.ignore_smell_for_node(node, WobblyServiceInteractionSmellSniffer())
         elif smell == SMELL_ESB_MISUSE:
             pass
-        elif smell == SMELL_SHARED_PERSITENCY:
+        elif smell == SMELL_SHARED_PERSISTENCY:
             self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         elif smell == SMELL_SINGLE_LAYER_TEAMS:
             self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
