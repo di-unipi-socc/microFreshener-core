@@ -1,6 +1,6 @@
 
 from abc import ABCMeta, abstractmethod
-from .smell import NodeSmell, CrossTeamDataManagementSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, \
+from .smell import NodeSmell, SingleLayerTeamsSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, \
     WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell
 from ..model import Service, Datastore, CommunicationPattern, MessageRouter, Compute
 from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
@@ -100,10 +100,10 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
         return foundNoApiGatewaySmells
 
 
-class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
+class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
 
-    def snif(self, group: Team)->CrossTeamDataManagementSmell:
-        smell = CrossTeamDataManagementSmell(group)
+    def snif(self, group: Team)->SingleLayerTeamsSmell:
+        smell = SingleLayerTeamsSmell(group)
         for node in group.members:
             for relationship in node.interactions:
                 source_node = relationship.source
@@ -116,7 +116,7 @@ class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
         return smell
 
     def __str__(self):
-        return 'CrossTeamDataManagementSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+        return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
 
 class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
 
