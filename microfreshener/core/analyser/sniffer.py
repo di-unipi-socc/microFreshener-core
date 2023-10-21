@@ -102,6 +102,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
 
 class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
 
+    @visitor(Team)
     def snif(self, group: Team)->SingleLayerTeamsSmell:
         smell = SingleLayerTeamsSmell(group)
         for node in group.members:
