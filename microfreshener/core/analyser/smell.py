@@ -1,8 +1,7 @@
-from typing import List
 from ..model import Relationship
 from ..model import nodes
 from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSISTENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SINGLE_LAYER_TEAMS, SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER
-from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP, REFACTORING_SPLIT_SERVICES
+from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_ADD_TEAM_DATA_MANAGER, REFACTORING_CHANGE_DATABASE_OWENRSHIP, REFACTORING_CHANGE_SERVICE_OWENRSHIP, REFACTORING_SPLIT_SERVICES, REFACTORING_MERGE_TEAMS
 class Smell(object):
 
     def __init__(self, name):
@@ -114,7 +113,7 @@ class SharedPersistencySmell(NodeSmell):
     def to_dict(self):
         sup_dict = super(SharedPersistencySmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": REFACTORING_MERGE_SERVICES,"description": "Merge services accesing the same Datastore"},
+            {"name": REFACTORING_MERGE_SERVICES,"description": "Merge services accessing the same Datastore"},
             {"name": REFACTORING_SPLIT_DATABASE, "description": "Split the Datastore."},
             {"name": REFACTORING_ADD_DATA_MANAGER, "description": " Add Data manager"}]}}
 
@@ -144,7 +143,8 @@ class SingleLayerTeamsSmell(GroupSmell):
     def to_dict(self):
         sup_dict = super(SingleLayerTeamsSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
-            {"name": REFACTORING_ADD_TEAM_DATA_MANAGER, "description": "Move the Datastore to another team"},
+            {"name": REFACTORING_SPLIT_DATABASE, "description": "Split the Datastore."},
+            {"name": REFACTORING_MERGE_TEAMS, "description": "Merge the teams owning the different nodes."},
             {"name": REFACTORING_CHANGE_DATABASE_OWENRSHIP, "description": "Move the Datastore to another team"},
             {"name": REFACTORING_CHANGE_SERVICE_OWENRSHIP, "description": "Move the service to another team"},
             ]}}
