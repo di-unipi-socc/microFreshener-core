@@ -111,8 +111,9 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
                 target_node = relationship.target
                 source_squad = self.micro_model.squad_of(source_node)
                 target_squad = self.micro_model.squad_of(target_node)
-                if (isinstance(source_node, Service) and isinstance(target_node, Datastore)
-                        and source_squad != target_squad):
+                if (target_squad is None or
+                    (isinstance(source_node, Service) and isinstance(target_node, Datastore)
+                    and source_squad != target_squad)):
                     smell.addLinkCause(relationship)
         return smell
 
