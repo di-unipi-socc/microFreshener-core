@@ -146,10 +146,9 @@ class TightlyCoupledTeamsSmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    def _get_coupling_measure(self, CRITERION):
-        match CRITERION:
-            case GRAPH_DEGREE_COUPLING:
-                return self._graph_degree_coupling
+    def _get_coupling_measure(self, criterion):
+        if criterion == self.GRAPH_DEGREE_COUPLING:
+            return self._graph_degree_coupling
 
     def _graph_degree_coupling(link):
         source_node = link.source
