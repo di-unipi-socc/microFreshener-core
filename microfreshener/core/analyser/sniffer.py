@@ -1,6 +1,6 @@
 
 from abc import ABCMeta, abstractmethod
-from .smell import NodeSmell, SingleLayerTeamsSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, \
+from .smell import NodeSmell, SingleLayerTeamsSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, TightlyCoupledTeamsSmell, \
     WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell
 from ..model import Service, Datastore, CommunicationPattern, MessageRouter, Compute
 from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
@@ -10,6 +10,7 @@ from typing import List
 
 from ..helper.decorator import visitor
 
+import sys
 
 class NodeSmellSniffer(metaclass=ABCMeta):
 
@@ -102,8 +103,11 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
 
 class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
 
+    def __str__(self):
+        return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
+
     @visitor(Team)
-    def snif(self, group: Team)->SingleLayerTeamsSmell:
+    def snif(self, group: Team) -> SingleLayerTeamsSmell:
         smell = SingleLayerTeamsSmell(group)
         for node in group.members:
             for relationship in node.interactions:
@@ -116,9 +120,6 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
                     and source_squad != target_squad)):
                     smell.addLinkCause(relationship)
         return smell
-
-    def __str__(self):
-        return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
 
 class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
 
@@ -137,3 +138,43 @@ class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
     @visitor(MicroToscaModel)
     def snif(self, micro_model):
         print("visiting all the nodes in the graph")
+
+class TightlyCoupledTeamsSmellSniffer(GroupSmellSniffer):
+
+    GRAPH_DEGREE_COUPLING = "graph-degree-coupling"
+
+    def __str__(self):
+        return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
+
+    def _get_coupling_measure(self, CRITERION):
+        match CRITERION:
+            case GRAPH_DEGREE_COUPLING:
+                return self._graph_degree_coupling
+
+    def _graph_degree_coupling(link):
+        source_node = link.source
+        target_node = link.target
+        if source_node != target_node:
+            return 1
+        else:
+            return sys.maxsize
+
+    @visitor(Team)
+    def snif(self, group: Team) -> TightlyCoupledTeamsSmell:
+        smell = TightlyCoupledTeamsSmell(group)
+        coupling = self._get_coupling_measure(self.GRAPH_DEGREE_COUPLING)
+        for node in group.members:
+            outer_coupled_squads = {}
+            for relationship in node.interactions:
+                source_node = relationship.source
+                source_squad = self.micro_model.squad_of(source_node)
+                target_node = relationship.target
+                target_squad = self.micro_model.squad_of(target_node)
+                if source_squad != group:
+                    outer_coupled_squads[source_squad] = outer_coupled_squads.get(source_squad, 0) + coupling(node, source_node)
+                elif target_squad != group:
+                    outer_coupled_squads[target_squad] = outer_coupled_squads.get(target_squad, 0) + coupling(node, target_node)
+            most_interacting_squads = [squad for squad, count in outer_coupled_squads.items() if count == max(outer_coupled_squads.values())]
+            if group not in most_interacting_squads:
+                smell.addNodeCause(node)
+        return smell
