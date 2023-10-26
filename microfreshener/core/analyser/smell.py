@@ -1,7 +1,7 @@
 from ..model import Relationship
 from ..model import nodes
-from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSISTENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SINGLE_LAYER_TEAMS, SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER
-from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_SPLIT_SERVICES, REFACTORING_SPLIT_TEAMS_BY_SERVICE
+from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSISTENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SINGLE_LAYER_TEAMS, SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_TIGHTLY_COUPLED_TEAMS
+from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_SPLIT_SERVICES, REFACTORING_SPLIT_TEAMS_BY_SERVICE, REFACTORING_SPLIT_TEAMS_BY_COUPLING
 class Smell(object):
 
     def __init__(self, name):
@@ -138,7 +138,7 @@ class SingleLayerTeamsSmell(GroupSmell):
         super(SingleLayerTeamsSmell, self).__init__(self.name, group)
 
     def __str__(self):
-        return 'CrossTeamDataManagement({})'.format(super(SingleLayerTeamsSmell, self).__str__())
+        return 'SingleLayerTeams({})'.format(super(SingleLayerTeamsSmell, self).__str__())
 
     def to_dict(self):
         sup_dict = super(SingleLayerTeamsSmell, self).to_dict()
@@ -160,3 +160,18 @@ class MultipleServicesInOneContainerSmell(NodeSmell):
         return {**sup_dict, **{"refactorings": [
             {"name": REFACTORING_SPLIT_SERVICES, "description": "Split containers in two pods"},
         ]}}
+
+class TightlyCoupledTeamsSmell(GroupSmell):
+    name: str = SMELL_TIGHTLY_COUPLED_TEAMS
+
+    def __init__(self, group):
+        super(TightlyCoupledTeamsSmell, self).__init__(self.name, group)
+
+    def __str__(self):
+        return 'TightlyCoupledTeams({})'.format(super(TightlyCoupledTeamsSmell, self).__str__())
+
+    def to_dict(self):
+        sup_dict = super(TightlyCoupledTeamsSmell, self).to_dict()
+        return {**sup_dict, **{"refactorings": [
+            {"name": REFACTORING_SPLIT_TEAMS_BY_COUPLING, "description": "Split the teams by coupling."},
+            ]}}
