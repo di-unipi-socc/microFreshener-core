@@ -104,7 +104,7 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
 class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
 
     def __str__(self):
-        return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
+        return 'SingleLayerTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
     @visitor(Team)
     def snif(self, group: Team) -> SingleLayerTeamsSmell:
@@ -141,16 +141,16 @@ class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
 
 class TightlyCoupledTeamsSmellSniffer(GroupSmellSniffer):
 
-    GRAPH_DEGREE_COUPLING = "graph-degree-coupling"
-
     def __str__(self):
-        return 'SingleLayerTeamsSmell({})'.format(super(GroupSmellSniffer, self).__str__())
+        return 'TightlyCoupledTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+    
+    GRAPH_DEGREE_COUPLING = "graph-degree-coupling"
 
     def _get_coupling_measure(self, criterion):
         if criterion == self.GRAPH_DEGREE_COUPLING:
             return self._graph_degree_coupling
 
-    def _graph_degree_coupling(link):
+    def _graph_degree_coupling(self, link):
         source_node = link.source
         target_node = link.target
         if source_node != target_node:
@@ -170,9 +170,9 @@ class TightlyCoupledTeamsSmellSniffer(GroupSmellSniffer):
                 target_node = relationship.target
                 target_squad = self.micro_model.squad_of(target_node)
                 if source_squad != group:
-                    outer_coupled_squads[source_squad] = outer_coupled_squads.get(source_squad, 0) + coupling(node, source_node)
+                    outer_coupled_squads[source_squad] = outer_coupled_squads.get(source_squad, 0) + coupling(relationship)
                 elif target_squad != group:
-                    outer_coupled_squads[target_squad] = outer_coupled_squads.get(target_squad, 0) + coupling(node, target_node)
+                    outer_coupled_squads[target_squad] = outer_coupled_squads.get(target_squad, 0) + coupling(relationship)
             most_interacting_squads = [squad for squad, count in outer_coupled_squads.items() if count == max(outer_coupled_squads.values())]
             if group not in most_interacting_squads:
                 smell.addNodeCause(node)

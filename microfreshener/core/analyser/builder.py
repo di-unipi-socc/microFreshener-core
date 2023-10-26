@@ -3,7 +3,7 @@ from .costants import SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SHARED_PERSI
     SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_ESB_MISUSE, SMELL_TIGHTLY_COUPLED_TEAMS
 from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, \
     WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamsSmellSniffer, \
-    MultipleServicesInOneContainerSmellSniffer, TightlyCoupledTeamsSmell
+    MultipleServicesInOneContainerSmellSniffer, TightlyCoupledTeamsSmellSniffer
 
 from .constant import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY
 
@@ -30,7 +30,7 @@ class MicroToscaAnalyserBuilder(object):
         elif smell == SMELL_SINGLE_LAYER_TEAMS or smell == 7:
             self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
         elif smell == SMELL_TIGHTLY_COUPLED_TEAMS or smell == 8:
-            self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmell(self.micro_model))
+            self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
@@ -51,7 +51,7 @@ class MicroToscaAnalyserBuilder(object):
         elif smell == SMELL_SINGLE_LAYER_TEAMS:
             self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
         elif smell == SMELL_TIGHTLY_COUPLED_TEAMS:
-            self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmell(self.micro_model))
+            self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
@@ -62,7 +62,7 @@ class MicroToscaAnalyserBuilder(object):
         self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         self.analyser.add_node_smell_sniffer(MultipleServicesInOneContainerSmellSniffer())
         self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
-        self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmell(self.micro_model))
+        self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmellSniffer(self.micro_model))
         self.analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer(self.micro_model))
         return self
 
