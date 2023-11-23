@@ -1,9 +1,9 @@
 from .analyser import MicroToscaAnalyser
 from .costants import SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SHARED_PERSISTENCY, SMELL_SINGLE_LAYER_TEAMS, \
-    SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_ESB_MISUSE, SMELL_TIGHTLY_COUPLED_TEAMS
+    SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_ESB_MISUSE, SMELL_TIGHTLY_COUPLED_TEAMS, SMELL_SHARED_BOUNDED_CONTEXT
 from .sniffer import EndpointBasedServiceInteractionSmellSniffer, NoApiGatewaySmellSniffer, \
     WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamsSmellSniffer, \
-    MultipleServicesInOneContainerSmellSniffer, TightlyCoupledTeamsSmellSniffer
+    MultipleServicesInOneContainerSmellSniffer, TightlyCoupledTeamsSmellSniffer, SharedBoundedContextSmellSniffer
 
 from .constant import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY
 
@@ -31,6 +31,8 @@ class MicroToscaAnalyserBuilder(object):
             self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
         elif smell == SMELL_TIGHTLY_COUPLED_TEAMS or smell == 8:
             self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmellSniffer(self.micro_model))
+        elif smell == SMELL_SHARED_BOUNDED_CONTEXT or smell == 9:
+            self.analyser.add_group_smell_sniffer(SharedBoundedContextSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
@@ -52,6 +54,8 @@ class MicroToscaAnalyserBuilder(object):
             self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
         elif smell == SMELL_TIGHTLY_COUPLED_TEAMS:
             self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmellSniffer(self.micro_model))
+        elif smell == SMELL_SHARED_BOUNDED_CONTEXT:
+            self.analyser.add_group_smell_sniffer(SharedBoundedContextSmellSniffer(self.micro_model))
         else:
             raise ValueError('Smell {} not recognized'.format(smell))
         return self
@@ -61,9 +65,10 @@ class MicroToscaAnalyserBuilder(object):
         self.analyser.add_node_smell_sniffer(WobblyServiceInteractionSmellSniffer())
         self.analyser.add_node_smell_sniffer(SharedPersistencySmellSniffer())
         self.analyser.add_node_smell_sniffer(MultipleServicesInOneContainerSmellSniffer())
+        self.analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer(self.micro_model))
         self.analyser.add_group_smell_sniffer(SingleLayerTeamsSmellSniffer(self.micro_model))
         self.analyser.add_group_smell_sniffer(TightlyCoupledTeamsSmellSniffer(self.micro_model))
-        self.analyser.add_group_smell_sniffer(NoApiGatewaySmellSniffer(self.micro_model))
+        self.analyser.add_group_smell_sniffer(SharedBoundedContextSmellSniffer(self.micro_model))
         return self
 
     def build(self):

@@ -1,7 +1,7 @@
 from ..model import Relationship
 from ..model import nodes
-from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSISTENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SINGLE_LAYER_TEAMS, SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_TIGHTLY_COUPLED_TEAMS
-from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_SPLIT_SERVICES, REFACTORING_SPLIT_TEAMS_BY_SERVICE, REFACTORING_SPLIT_TEAMS_BY_COUPLING
+from .costants import SMELL_ENDPOINT_BASED_SERVICE_INTERACTION, SMELL_NO_API_GATEWAY, SMELL_SHARED_PERSISTENCY, SMELL_WOBBLY_SERVICE_INTERACTION_SMELL, SMELL_SINGLE_LAYER_TEAMS, SMELL_MULTIPLE_SERVICES_IN_ONE_CONTAINER, SMELL_TIGHTLY_COUPLED_TEAMS, SMELL_SHARED_BOUNDED_CONTEXT
+from .costants import REFACTORING_ADD_SERVICE_DISCOVERY, REFACTORING_ADD_MESSAGE_ROUTER, REFACTORING_ADD_MESSAGE_BROKER, REFACTORING_ADD_CIRCUIT_BREAKER, REFACTORING_USE_TIMEOUT, REFACTORING_MERGE_SERVICES, REFACTORING_SPLIT_DATABASE, REFACTORING_ADD_DATA_MANAGER, REFACTORING_ADD_API_GATEWAY, REFACTORING_SPLIT_SERVICES, REFACTORING_SPLIT_TEAMS_BY_SERVICE, REFACTORING_SPLIT_TEAMS_BY_COUPLING, REFACTORING_MERGE_TEAMS
 class Smell(object):
 
     def __init__(self, name):
@@ -174,4 +174,20 @@ class TightlyCoupledTeamsSmell(GroupSmell):
         sup_dict = super(TightlyCoupledTeamsSmell, self).to_dict()
         return {**sup_dict, **{"refactorings": [
             {"name": REFACTORING_SPLIT_TEAMS_BY_COUPLING, "description": "Split the teams by coupling."},
+            ]}}
+
+class SharedBoundedContextSmell(GroupSmell):
+    name: str = SMELL_SHARED_BOUNDED_CONTEXT
+
+    def __init__(self, group):
+        super(SharedBoundedContextSmell, self).__init__(self.name, group)
+
+    def __str__(self):
+        return 'SharedBoundedContext({})'.format(super(SharedBoundedContextSmell, self).__str__())
+
+    def to_dict(self):
+        sup_dict = super(SharedBoundedContextSmell, self).to_dict()
+        return {**sup_dict, **{"refactorings": [
+            {"name": REFACTORING_SPLIT_DATABASE, "description": "Split the database among the user teams."},
+            {"name": REFACTORING_MERGE_TEAMS, "description": "Merge the teams."},
             ]}}
