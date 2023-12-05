@@ -1,7 +1,7 @@
 
 from abc import ABCMeta, abstractmethod
 from .smell import NodeSmell, SingleLayerTeamsSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, TightlyCoupledTeamsSmell, \
-    WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell
+    WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell, SharedBoundedContextSmell
 from ..model import Service, Datastore, CommunicationPattern, MessageRouter, Compute
 from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model import MicroToscaModel
@@ -188,4 +188,28 @@ class TightlyCoupledTeamsSmellSniffer(GroupSmellSniffer):
             most_interacting_squads = [squad for squad, count in coupled_squads.items() if count == max(coupled_squads.values())]
             if group not in most_interacting_squads:
                 smell.addNodeCause(node)
+        return smell
+
+class SharedBoundedContextSmellSniffer(GroupSmellSniffer):
+
+    def __str__(self):
+        return 'SharedBoundedContextSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+
+
+    @visitor(Team)
+    def snif(self, group: Team) -> SharedBoundedContextSmell:
+        smell = SharedBoundedContextSmell(group)
+        for node in group.members:
+            if(isinstance(node, Datastore)):
+                for relationship in node.incoming_interactions:
+                    source_node = relationship.source
+                    source_squad = self.micro_model.squad_of(source_node)
+                    if source_squad is not None and source_squad != group:
+                        smell.addLinkCause(relationship)
+            elif(isinstance(node, Service)):
+                for relationship in node.interactions:
+                    target_node = relationship.target
+                    target_squad = self.micro_model.squad_of(target_node)
+                    if target_squad is not None and target_squad != group:
+                        smell.addLinkCause(relationship)
         return smell
