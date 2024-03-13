@@ -111,7 +111,7 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
         for link in (node.interactions + node.incoming_interactions):
             source_squad = self.micro_model.squad_of(link.source)
             target_squad = self.micro_model.squad_of(link.target)
-            if (link.source is not node and source_squad is same_squad) or (link.target is not node and target_squad is same_squad):
+            if (link.target is node and source_squad is same_squad) or (link.source is node and target_squad is same_squad):
                 return False
         return True
 
@@ -125,7 +125,8 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
                 target_node = relationship.target
                 source_squad = self.micro_model.squad_of(source_node)
                 target_squad = self.micro_model.squad_of(target_node)
-                if (target_squad is not None and
+                if (source_squad is not None and
+                    target_squad is not None and
                     source_squad != target_squad and
                     isinstance(source_node, Service) and
                     not isinstance(target_node, Service) and
