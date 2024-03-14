@@ -5,7 +5,7 @@ from microfreshener.core.analyser.sniffer import SharedBoundedContextSmellSniffe
 from microfreshener.core.analyser.smell import SharedBoundedContextSmell
 
 
-class TestTightlyCoupledTeamsSmell(TestCase):
+class TestSharedBoundedContextSmell(TestCase):
 
     @classmethod
     def setUpClass(self):

@@ -197,16 +197,11 @@ class SharedBoundedContextSmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'SharedBoundedContextSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    def _is_datastore_linked_to_other_squads(self, node, nsquads, *args, **kwargs):
-        squads = []
+    def _is_datastore_linked_to_other_squads(self, node, allowedSquad):
         for link in node.incoming_interactions:
-            source_node = link.source
-            source_squad = self.micro_model.squad_of(source_node)
-            if source_squad is not None:
-                if source_squad not in squads and source_squad not in kwargs.get('exclude', []):
-                    squads.append(source_squad)
-                if len(squads) > nsquads:
-                    return True
+            source_squad = self.micro_model.squad_of(link.source)
+            if source_squad is not None and source_squad is not allowedSquad:
+                return True
         return False
 
     @visitor(Team)
@@ -219,8 +214,6 @@ class SharedBoundedContextSmellSniffer(GroupSmellSniffer):
             elif(isinstance(node, Service)):
                 for relationship in node.interactions:
                     target_node = relationship.target
-                    if isinstance(target_node, Datastore):
-                        target_squad = self.micro_model.squad_of(target_node)
-                        if target_squad is not group and self._is_datastore_linked_to_other_squads(target_node, 1, exclude=group):
-                                smell.addLinkCause(relationship)
+                    if isinstance(target_node, Datastore) and self._is_datastore_linked_to_other_squads(target_node, group):
+                        smell.addLinkCause(relationship)
         return smell
