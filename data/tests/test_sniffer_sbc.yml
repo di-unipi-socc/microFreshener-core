@@ -1,0 +1,113 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+description: For testing the Shared Bounded Context smell
+imports:
+- micro: https://di-unipi-socc.github.io/microTOSCA/1.1/microTOSCA.yaml
+topology_template:
+  node_templates:
+    d1t1:
+      type: micro.nodes.Datastore
+    s1t1:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: d1t1
+    s2t1:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: d1t1
+    s2t2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt2
+    dt2:
+      type: micro.nodes.Datastore
+    s1t2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt2
+    st3:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt3
+    dt3:
+      type: micro.nodes.Datastore
+    dbt4:
+      type: micro.nodes.Datastore
+    s2t4:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dbt4
+    s1t4:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dbt4
+  groups:
+    Edge:
+      type: micro.groups.Edge
+      members: []
+    t1t1:
+      type: micro.groups.Team
+      members:
+      - s1t1
+    t2t1:
+      type: micro.groups.Team
+      members:
+      - d1t1
+      - s2t1
+    t2t2:
+      type: micro.groups.Team
+      members:
+      - dt2
+    t1t2:
+      type: micro.groups.Team
+      members:
+      - s1t2
+    t1t3:
+      type: micro.groups.Team
+      members:
+      - st3
+    t2t3:
+      type: micro.groups.Team
+      members:
+      - dt3
+    t1t4:
+      type: micro.groups.Team
+      members:
+      - s1t4
+    t2t4:
+      type: micro.groups.Team
+      members:
+      - s2t4
+  relationship_templates:
+    t:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+    c:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+    d:
+      type: micro.relationships.InteractsWith
+      properties:
+        dynamic_discovery: true
+    tc:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+    td:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        dynamic_discovery: true
+    cd:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+        dynamic_discovery: true
+    tcd:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+        dynamic_discovery: true
