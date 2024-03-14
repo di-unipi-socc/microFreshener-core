@@ -1,5 +1,5 @@
 tosca_definitions_version: tosca_simple_yaml_1_1
-description: For testing the Tightly Coupled Teams smell
+description: For testing the Wobbly Service Interaction Smell
 imports:
 - micro: https://di-unipi-socc.github.io/microTOSCA/1.1/microTOSCA.yaml
 topology_template:
@@ -64,6 +64,15 @@ topology_template:
       - interaction: dt7
     dt7:
       type: micro.nodes.Datastore
+    s1t8:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s2t8
+      - interaction: s3t8
+    s2t8:
+      type: micro.nodes.Service
+    s3t8:
+      type: micro.nodes.Service
   groups:
     t1t1:
       type: micro.groups.Team
@@ -125,6 +134,10 @@ topology_template:
       type: micro.groups.Team
       members:
       - dt7
+    tt8:
+      type: micro.groups.Team
+      members:
+      - s1t8
   relationship_templates:
     t:
       type: micro.relationships.InteractsWith

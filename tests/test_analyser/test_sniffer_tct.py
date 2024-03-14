@@ -80,3 +80,18 @@ class TestTightlyCoupledTeamsSmell(TestCase):
         smell2 = self.tctSniffer.snif(team2)
         self.assertIsInstance(smell2, TightlyCoupledTeamsSmell)
         self.assertFalse(smell2.isEmpty())
+
+    def test_tct_with_db_both(self):
+        team1 = self.micro_model.get_group("t1t7")
+        smell1 = self.tctSniffer.snif(team1)
+        self.assertIsInstance(smell1, TightlyCoupledTeamsSmell)
+        self.assertFalse(smell1.isEmpty())
+        team2 = self.micro_model.get_group("t2t7")
+        smell2 = self.tctSniffer.snif(team2)
+        self.assertIsInstance(smell2, TightlyCoupledTeamsSmell)
+        self.assertFalse(smell2.isEmpty())
+
+    def test_tct_with_db_both(self):
+        team1 = self.micro_model.get_group("tt8")
+        smell1 = self.tctSniffer.snif(team1)
+        self.assertTrue(smell1.isEmpty())
