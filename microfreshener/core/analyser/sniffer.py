@@ -106,12 +106,13 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'SingleLayerTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    def _not_internally_linked(self, node):
+    def _not_internally_linked_to_service(self, node):
         same_squad = self.micro_model.squad_of(node)
         for link in (node.interactions + node.incoming_interactions):
             source_squad = self.micro_model.squad_of(link.source)
             target_squad = self.micro_model.squad_of(link.target)
-            if (link.target is node and source_squad is same_squad) or (link.source is node and target_squad is same_squad):
+            # Check for a link to/from a service within the same team
+            if ((link.target is node and source_squad is same_squad) or (link.source is node and target_squad is same_squad)) and (isinstance(link.source, Service) or isinstance(link.target, Service)):
                 return False
         return True
 
@@ -130,7 +131,7 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
                     source_squad != target_squad and
                     isinstance(source_node, Service) and
                     not isinstance(target_node, Service) and
-                    (isinstance(target_node, Datastore) or self._not_internally_linked(target_node))):
+                    (isinstance(target_node, Datastore) or self._not_internally_linked_to_service(target_node))):
                         smell.addLinkCause(relationship)
         return smell
 

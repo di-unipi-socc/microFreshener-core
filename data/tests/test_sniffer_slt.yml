@@ -1,0 +1,169 @@
+tosca_definitions_version: tosca_simple_yaml_1.1
+description: For testing the Single Layer Teams sniffer
+imports:
+- micro: https://di-unipi-socc.github.io/microTOSCA/1.1/microTOSCA.yaml
+topology_template:
+  node_templates:
+    st1:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt1
+    dt1:
+      type: micro.nodes.Datastore
+    s1t2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt2
+    s2t2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt2
+    dt2:
+      type: micro.nodes.Datastore
+    st3:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt3
+    dt3:
+      type: micro.nodes.Datastore
+    st4:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mrt4
+    mrt4:
+      type: micro.nodes.MessageRouter
+    st5:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mbt5
+    mbt5:
+      type: micro.nodes.MessageBroker
+    s1t6:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mrt6
+    s2t6:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mrt6
+    mrt6:
+      type: micro.nodes.MessageRouter
+    s1t7:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mbt7
+    s2t7:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mbt7
+    mbt7:
+      type: micro.nodes.MessageBroker
+    st8:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mr1t8
+    mr1t8:
+      type: micro.nodes.MessageRouter
+      requirements:
+      - interaction: mr2t8
+    mr2t8:
+      type: micro.nodes.MessageRouter
+  groups:
+    t1t1:
+      type: micro.groups.Team
+      members:
+      - st1
+    t2t1:
+      type: micro.groups.Team
+      members:
+      - dt1
+    t1t2:
+      type: micro.groups.Team
+      members:
+      - s1t2
+    t2t2:
+      type: micro.groups.Team
+      members:
+      - dt2
+      - s2t2
+    tt3:
+      type: micro.groups.Team
+      members:
+      - st3
+    t1t4:
+      type: micro.groups.Team
+      members:
+      - st4
+    t2t4:
+      type: micro.groups.Team
+      members:
+      - mrt4
+    t1t5:
+      type: micro.groups.Team
+      members:
+      - st5
+    t2t5:
+      type: micro.groups.Team
+      members:
+      - mbt5
+    t1t6:
+      type: micro.groups.Team
+      members:
+      - s1t6
+    t2t6:
+      type: micro.groups.Team
+      members:
+      - mrt6
+      - s2t6
+    t1t7:
+      type: micro.groups.Team
+      members:
+      - s1t7
+    t2t7:
+      type: micro.groups.Team
+      members:
+      - mbt7
+      - s2t7
+    t1t8:
+      type: micro.groups.Team
+      members:
+      - st8
+    t2t8:
+      type: micro.groups.Team
+      members:
+      - mr1t8
+      - mr2t8
+  relationship_templates:
+    t:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+    c:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+    d:
+      type: micro.relationships.InteractsWith
+      properties:
+        dynamic_discovery: true
+    tc:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+    td:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        dynamic_discovery: true
+    cd:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+        dynamic_discovery: true
+    tcd:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+        dynamic_discovery: true
