@@ -1,0 +1,174 @@
+tosca_definitions_version: tosca_simple_yaml_1_1
+description: For testing the Wobbly Service Interaction Smell
+imports:
+- micro: https://di-unipi-socc.github.io/microTOSCA/1.1/microTOSCA.yaml
+topology_template:
+  node_templates:
+    s1t1:
+      type: micro.nodes.Service
+    s2t1:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s1t1
+      - interaction: s3t1
+    s3t1:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s1t1
+    s1t2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s2t2
+    s2t2:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: d1t2
+    d1t2:
+      type: micro.nodes.Datastore
+    mrt3:
+      type: micro.nodes.MessageRouter
+      requirements:
+      - interaction: s1t3
+      - interaction: s2t3
+    s1t3:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s2t3
+    s2t3:
+      type: micro.nodes.Service
+    s1t4:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s3t4
+    s2t4:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s1t4
+    s3t4:
+      type: micro.nodes.Service
+    mbt5:
+      type: micro.nodes.MessageBroker
+    st5:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mbt5
+    st6:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mrt6
+    mrt6:
+      type: micro.nodes.MessageRouter
+    st7:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dt7
+    dt7:
+      type: micro.nodes.Datastore
+    s1t8:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: s2t8
+      - interaction: s3t8
+    s2t8:
+      type: micro.nodes.Service
+    s3t8:
+      type: micro.nodes.Service
+  groups:
+    t1t1:
+      type: micro.groups.Team
+      members:
+      - s1t1
+    t2t1:
+      type: micro.groups.Team
+      members:
+      - s2t1
+      - s3t1
+    t1t2:
+      type: micro.groups.Team
+      members:
+      - s1t2
+    t2t2:
+      type: micro.groups.Team
+      members:
+      - s2t2
+      - d1t2
+    t1t3:
+      type: micro.groups.Team
+      members:
+      - mrt3
+    t2t3:
+      type: micro.groups.Team
+      members:
+      - s1t3
+      - s2t3
+    t1t4:
+      type: micro.groups.Team
+      members:
+      - s1t4
+    t2t4:
+      type: micro.groups.Team
+      members:
+      - s2t4
+      - s3t4
+    t1t5:
+      type: micro.groups.Team
+      members:
+      - mbt5
+    t2t5:
+      type: micro.groups.Team
+      members:
+      - st5
+    t1t6:
+      type: micro.groups.Team
+      members:
+      - st6
+    t2t6:
+      type: micro.groups.Team
+      members:
+      - mrt6
+    t1t7:
+      type: micro.groups.Team
+      members:
+      - st7
+    t2t7:
+      type: micro.groups.Team
+      members:
+      - dt7
+    tt8:
+      type: micro.groups.Team
+      members:
+      - s1t8
+  relationship_templates:
+    t:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+    c:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+    d:
+      type: micro.relationships.InteractsWith
+      properties:
+        dynamic_discovery: true
+    tc:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+    td:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        dynamic_discovery: true
+    cd:
+      type: micro.relationships.InteractsWith
+      properties:
+        circuit_breaker: true
+        dynamic_discovery: true
+    tcd:
+      type: micro.relationships.InteractsWith
+      properties:
+        timeout: true
+        circuit_breaker: true
+        dynamic_discovery: true
