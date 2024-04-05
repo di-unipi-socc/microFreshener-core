@@ -68,7 +68,34 @@ topology_template:
       - interaction: mr2t8
     mr2t8:
       type: micro.nodes.MessageRouter
+    st9:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: d2t9
+    d1t9:
+      type: micro.nodes.Datastore
+    d2t9:
+      type: micro.nodes.Datastore
+    mr1t10:
+      type: micro.nodes.MessageRouter
+    mr2t10:
+      type: micro.nodes.MessageRouter
+    st10:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mr2t10
+    st11:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: mb2t11
+    mb1t11:
+      type: micro.nodes.MessageBroker
+    mb2t11:
+      type: micro.nodes.MessageBroker
   groups:
+    Edge:
+      type: micro.groups.Edge
+      members: []
     t1t1:
       type: micro.groups.Team
       members:
@@ -133,6 +160,33 @@ topology_template:
       members:
       - mr1t8
       - mr2t8
+    t1t9:
+      type: micro.groups.Team
+      members:
+      - d1t9
+      - st9
+    t2t9:
+      type: micro.groups.Team
+      members:
+      - d2t9
+    t1t11:
+      type: micro.groups.Team
+      members:
+      - mb1t11
+      - st11
+    t2t11:
+      type: micro.groups.Team
+      members:
+      - mb2t11
+    t1t10:
+      type: micro.groups.Team
+      members:
+      - mr1t10
+      - st10
+    t2t10:
+      type: micro.groups.Team
+      members:
+      - mr2t10
   relationship_templates:
     t:
       type: micro.relationships.InteractsWith

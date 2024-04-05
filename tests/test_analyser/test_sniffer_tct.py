@@ -4,12 +4,13 @@ from microfreshener.core.importer import YMLImporter
 from microfreshener.core.analyser.sniffer import TightlyCoupledTeamsSmellSniffer
 from microfreshener.core.analyser.smell import TightlyCoupledTeamsSmell
 
+import os
 
 class TestTightlyCoupledTeamsSmell(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/tests/test_sniffer_tct.yml'
+        file = os.getcwd() + '/data/tests/test_sniffer_tct.yml'
         loader = YMLImporter()
         self.micro_model = loader.Import(file)
         self.tctSniffer = TightlyCoupledTeamsSmellSniffer(self.micro_model)

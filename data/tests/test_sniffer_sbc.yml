@@ -40,6 +40,12 @@ topology_template:
       type: micro.nodes.Service
       requirements:
       - interaction: dbt4
+    st5:
+      type: micro.nodes.Service
+      requirements:
+      - interaction: dbt5
+    dbt5:
+      type: micro.nodes.Datastore
   groups:
     Edge:
       type: micro.groups.Edge
@@ -77,6 +83,11 @@ topology_template:
       type: micro.groups.Team
       members:
       - s2t4
+    tt5:
+      type: micro.groups.Team
+      members:
+      - st5
+      - dbt5
   relationship_templates:
     t:
       type: micro.relationships.InteractsWith

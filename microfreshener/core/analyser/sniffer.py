@@ -106,6 +106,12 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'SingleLayerTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
+    def _team_not_containing_type(self, group: Team, type):
+        for node in group.members:
+            if isinstance(node, type):
+                return False
+        return True
+
     def _not_internally_linked_to_service(self, node):
         same_squad = self.micro_model.squad_of(node)
         for link in (node.interactions + node.incoming_interactions):
@@ -116,7 +122,6 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
                 return False
         return True
 
-
     @visitor(Team)
     def snif(self, group: Team) -> SingleLayerTeamsSmell:
         smell = SingleLayerTeamsSmell(group)
@@ -126,11 +131,8 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
                 target_node = relationship.target
                 source_squad = self.micro_model.squad_of(source_node)
                 target_squad = self.micro_model.squad_of(target_node)
-                if (source_squad is not None and
-                    target_squad is not None and
-                    source_squad != target_squad and
-                    isinstance(source_node, Service) and
-                    not isinstance(target_node, Service) and
+                if ((source_squad is not None and target_squad is not None and source_squad != target_squad) and
+                    (isinstance(source_node, Service) and not isinstance(target_node, Service) and self._team_not_containing_type(source_squad, type(target_node))) and
                     (isinstance(target_node, Datastore) or self._not_internally_linked_to_service(target_node))):
                         smell.addLinkCause(relationship)
         return smell
@@ -197,23 +199,20 @@ class SharedBoundedContextSmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'SharedBoundedContextSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    def _is_datastore_linked_to_other_squads(self, node, allowedSquad):
-        for link in node.incoming_interactions:
-            source_squad = self.micro_model.squad_of(link.source)
-            if source_squad is not None and source_squad is not allowedSquad:
-                return True
-        return False
-
     @visitor(Team)
     def snif(self, group: Team) -> SharedBoundedContextSmell:
         smell = SharedBoundedContextSmell(group)
         for node in group.members:
             if(isinstance(node, Datastore)):
-                if self._is_datastore_linked_to_other_squads(node, 2):
-                    smell.addLinkCause(relationship)
+                for relationship in node.incoming_interactions:
+                    source_node = relationship.source
+                    source_squad = self.micro_model.squad_of(source_node)
+                    if (source_squad is not None and source_squad is not group):
+                        smell.addLinkCause(relationship)
             elif(isinstance(node, Service)):
                 for relationship in node.interactions:
                     target_node = relationship.target
-                    if isinstance(target_node, Datastore) and self._is_datastore_linked_to_other_squads(target_node, group):
+                    target_squad = self.micro_model.squad_of(target_node)
+                    if (isinstance(target_node, Datastore) and target_squad is not group):
                         smell.addLinkCause(relationship)
         return smell

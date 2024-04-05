@@ -4,12 +4,13 @@ from microfreshener.core.importer import YMLImporter
 from microfreshener.core.analyser.sniffer import SingleLayerTeamsSmellSniffer
 from microfreshener.core.analyser.smell import SingleLayerTeamsSmell
 
+import os
 
 class TestSingleLayerTeamsSmell(TestCase):
 
     @classmethod
     def setUpClass(self):
-        file = 'data/tests/test_sniffer_slt.yml'
+        file = os.getcwd() + '/data/tests/test_sniffer_slt.yml'
         loader = YMLImporter()
         self.micro_model = loader.Import(file)
         self.sltSniffer = SingleLayerTeamsSmellSniffer(self.micro_model)
@@ -79,3 +80,18 @@ class TestSingleLayerTeamsSmell(TestCase):
         team2 = self.micro_model.get_group("t2t8")
         smell2 = self.sltSniffer.snif(team2)
         self.assertTrue(smell2.isEmpty())
+
+    def test_no_slt_with_owned_db(self):
+        team1 = self.micro_model.get_group("t1t9")
+        smell1 = self.sltSniffer.snif(team1)
+        self.assertTrue(smell1.isEmpty())
+
+    def test_no_slt_with_owned_mr(self):
+        team1 = self.micro_model.get_group("t1t10")
+        smell1 = self.sltSniffer.snif(team1)
+        self.assertTrue(smell1.isEmpty())
+
+    def test_no_slt_with_owned_mb(self):
+        team1 = self.micro_model.get_group("t1t11")
+        smell1 = self.sltSniffer.snif(team1)
+        self.assertTrue(smell1.isEmpty())
