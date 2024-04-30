@@ -106,24 +106,18 @@ class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
     def __str__(self):
         return 'SingleLayerTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
 
-    def _team_not_containing_type(self, group: Team, type):
-        for node in group.members:
-            if isinstance(node, type):
-                return False
-        return True
-
     @visitor(Team)
     def snif(self, group: Team) -> SingleLayerTeamsSmell:
         smell = SingleLayerTeamsSmell(group)
+        isSingleLayer = True
+        lastSniffedType = None
         for node in group.members:
-            for relationship in node.interactions + node.deployed_on:
-                source_node = relationship.source
-                target_node = relationship.target
-                source_squad = self.micro_model.squad_of(source_node)
-                target_squad = self.micro_model.squad_of(target_node)
-                if ((source_squad is not None and target_squad is not None and source_squad != target_squad)
-                    and self._team_not_containing_type(source_squad, type(target_node))):
-                        smell.addLinkCause(relationship)
+            if type(node) is not lastSniffedType and lastSniffedType is not None:
+                isSingleLayer = False
+            lastSniffedType = type(node)
+        if isSingleLayer:
+            for node in group.members:
+                smell.addNodeCause(node)
         return smell
 
 class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
