@@ -41,7 +41,7 @@ from microfreshener.core.analyser import MicroToscaAnalyserBuilder
 
 yml_importer = YMLImporter()
 
-model = json_importer.Import("helloworld.yml")
+model = yml_importer.Import("helloworld.yml")
 builder = MicroToscaAnalyserBuilder(model)
 builder.add_all_sniffers()
 analyser = builder.build()

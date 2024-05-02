@@ -1,7 +1,7 @@
 
 from abc import ABCMeta, abstractmethod
-from .smell import NodeSmell, CrossTeamDataManagementSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, \
-    WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell
+from .smell import NodeSmell, SingleLayerTeamsSmell, EndpointBasedServiceInteractionSmell, NoApiGatewaySmell, TightlyCoupledTeamsSmell, \
+    WobblyServiceInteractionSmell, SharedPersistencySmell, MultipleServicesInOneContainerSmell, SharedBoundedContextSmell
 from ..model import Service, Datastore, CommunicationPattern, MessageRouter, Compute
 from ..model.type import MICROTOSCA_NODES_MESSAGE_ROUTER
 from ..model import MicroToscaModel
@@ -10,6 +10,7 @@ from typing import List
 
 from ..helper.decorator import visitor
 
+import sys
 
 class NodeSmellSniffer(metaclass=ABCMeta):
 
@@ -100,23 +101,24 @@ class NoApiGatewaySmellSniffer(GroupSmellSniffer):
         return foundNoApiGatewaySmells
 
 
-class CrossTeamDataManagementSmellSniffer(GroupSmellSniffer):
-
-    def snif(self, group: Team)->CrossTeamDataManagementSmell:
-        smell = CrossTeamDataManagementSmell(group)
-        for node in group.members:
-            for relationship in node.interactions:
-                source_node = relationship.source
-                target_node = relationship.target
-                source_squad = self.micro_model.squad_of(source_node)
-                target_squad = self.micro_model.squad_of(target_node)
-                if (isinstance(source_node, Service) and isinstance(target_node, Datastore)
-                        and source_squad != target_squad):
-                    smell.addLinkCause(relationship)
-        return smell
+class SingleLayerTeamsSmellSniffer(GroupSmellSniffer):
 
     def __str__(self):
-        return 'CrossTeamDataManagementSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+        return 'SingleLayerTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+
+    @visitor(Team)
+    def snif(self, group: Team) -> SingleLayerTeamsSmell:
+        smell = SingleLayerTeamsSmell(group)
+        isSingleLayer = True
+        lastSniffedType = None
+        for node in group.members:
+            if type(node) is not lastSniffedType and lastSniffedType is not None:
+                isSingleLayer = False
+            lastSniffedType = type(node)
+        if isSingleLayer:
+            for node in group.members:
+                smell.addNodeCause(node)
+        return smell
 
 class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
 
@@ -135,3 +137,65 @@ class MultipleServicesInOneContainerSmellSniffer(NodeSmellSniffer):
     @visitor(MicroToscaModel)
     def snif(self, micro_model):
         print("visiting all the nodes in the graph")
+
+class TightlyCoupledTeamsSmellSniffer(GroupSmellSniffer):
+
+    def __str__(self):
+        return 'TightlyCoupledTeamsSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+    
+    GRAPH_DEGREE_COUPLING = "graph-degree-coupling"
+
+    def _get_coupling_measure(self, criterion):
+        if criterion == self.GRAPH_DEGREE_COUPLING:
+            return self._graph_degree_coupling
+
+    def _graph_degree_coupling(self, link):
+        source_node = link.source
+        target_node = link.target
+        if source_node != target_node:
+            return 1
+        else:
+            return sys.maxsize
+
+    @visitor(Team)
+    def snif(self, group: Team) -> TightlyCoupledTeamsSmell:
+        smell = TightlyCoupledTeamsSmell(group)
+        coupling = self._get_coupling_measure(self.GRAPH_DEGREE_COUPLING)
+        for node in group.members:
+            coupled_squads = { group: 0 }
+            for relationship in (node.interactions + node.incoming_interactions):
+                source_node = relationship.source
+                source_squad = self.micro_model.squad_of(source_node)
+                target_node = relationship.target
+                target_squad = self.micro_model.squad_of(target_node)
+                if node is source_node and target_squad is not None:
+                    coupled_squads[target_squad] = coupled_squads.get(target_squad, 0) + coupling(relationship)
+                elif node is target_node and source_squad is not None:
+                    coupled_squads[source_squad] = coupled_squads.get(source_squad, 0) + coupling(relationship)
+            most_interacting_squads = [squad for squad, count in coupled_squads.items() if count == max(coupled_squads.values())]
+            if group not in most_interacting_squads:
+                smell.addNodeCause(node)
+        return smell
+
+class SharedBoundedContextSmellSniffer(GroupSmellSniffer):
+
+    def __str__(self):
+        return 'SharedBoundedContextSmellSniffer({})'.format(super(GroupSmellSniffer, self).__str__())
+
+    @visitor(Team)
+    def snif(self, group: Team) -> SharedBoundedContextSmell:
+        smell = SharedBoundedContextSmell(group)
+        for node in group.members:
+            if(isinstance(node, Datastore)):
+                for relationship in node.incoming_interactions:
+                    source_node = relationship.source
+                    source_squad = self.micro_model.squad_of(source_node)
+                    if (source_squad is not None and source_squad is not group):
+                        smell.addLinkCause(relationship)
+            elif(isinstance(node, Service)):
+                for relationship in node.interactions:
+                    target_node = relationship.target
+                    target_squad = self.micro_model.squad_of(target_node)
+                    if (isinstance(target_node, Datastore) and target_squad is not group):
+                        smell.addLinkCause(relationship)
+        return smell

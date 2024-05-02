@@ -2,7 +2,7 @@ import unittest
 from microfreshener.core.importer import YMLImporter
 from microfreshener.core.analyser.builder import MicroToscaAnalyserBuilder
 from microfreshener.core.analyser.smell import WobblyServiceInteractionSmell
-from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, EndpointBasedServiceInteractionSmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamsSmellSniffer
 
 
 class TestAnalyserBUilder(unittest.TestCase):

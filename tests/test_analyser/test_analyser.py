@@ -3,7 +3,7 @@ from unittest import TestCase
 from microfreshener.core.importer import YMLImporter
 from microfreshener.core.analyser import MicroToscaAnalyser
 
-from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, CrossTeamDataManagementSmellSniffer, MultipleServicesInOneContainerSmellSniffer
+from microfreshener.core.analyser.sniffer import NoApiGatewaySmellSniffer, WobblyServiceInteractionSmellSniffer, SharedPersistencySmellSniffer, SingleLayerTeamsSmellSniffer, MultipleServicesInOneContainerSmellSniffer
 
 
 class TestAnalyser(TestCase):
@@ -45,7 +45,7 @@ class TestAnalyser(TestCase):
 
     def test_SingleLayerTeamSniffer(self):
         analyser = MicroToscaAnalyser(self.microtosca)
-        sltm = CrossTeamDataManagementSmellSniffer(self.microtosca)
+        sltm = SingleLayerTeamsSmellSniffer(self.microtosca)
         analyser.add_group_smell_sniffer(sltm)
         res = analyser.run()
         actual_res = res['groups'][0]['smells'][0]['links']
